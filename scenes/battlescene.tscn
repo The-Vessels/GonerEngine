@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
-[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scenes/sprite_2d.gd" id="2_30i1k"]
+[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
 
