@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ENGINE_GONER"
+run/main_scene="uid://bkh7rtxnd2dux"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,13 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/window_width_override=1920
+window/size/window_height_override=1440
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="ENGINE_GONER"
 
 [input]
 
