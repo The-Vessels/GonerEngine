@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkh7rtxnd2dux"]
+
+[ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_56eic")

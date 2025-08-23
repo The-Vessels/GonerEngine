@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1q75mmscv56l"]
+
+[ext_resource type="Script" uid="uid://b70bn0hacqco7" path="res://Scripts/soul.gd" id="1_jnmxf"]
+[ext_resource type="Texture2D" uid="uid://ck8jshawr5lj8" path="res://Assets/Sprites/soul.png" id="2_dt1lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6usl"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_jnmxf")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n6usl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dt1lx")

@@ -1,0 +1,13 @@
+extends CharacterBody2D
+
+
+const SPEED = 120
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	var Xmovement = Input.get_axis("left","right") * SPEED
+	var Ymovement = Input.get_axis("up","down") * SPEED
+	
+	velocity = Vector2(Xmovement,Ymovement)
+	position += velocity * delta
