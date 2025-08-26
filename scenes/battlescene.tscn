@@ -1,14 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=8 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
+[ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://Shaders/battlebackground.gdshader" id="1_bm4ed"]
+[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_fbgux"]
 [ext_resource type="Script" uid="uid://30luryew0pnd" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
+[ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://Scripts/background.gd" id="2_kr7th"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm4ed"]
+shader = ExtResource("1_bm4ed")
+shader_parameter/grid_spacing = 50.0
+shader_parameter/border_proportion = 0.03
+shader_parameter/screen_resolution = Vector2(640, 480)
+shader_parameter/grid_color_1 = Color(0.520053, 0.000193341, 0.520049, 1)
+shader_parameter/grid_color_2 = Color(0.291373, 5.71071e-05, 0.291371, 1)
+shader_parameter/speed = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_fbgux")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_bm4ed")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(665, 653)
+script = ExtResource("2_kr7th")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(100, 100)
+position = Vector2(300, 200)
 script = ExtResource("1_56eic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -17,6 +43,7 @@ shape = SubResource("RectangleShape2D_56eic")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 z_index = 1
 script = ExtResource("2_30i1k")
+box_size = Vector2(200, 200)
 
 [node name="Button" type="Button" parent="."]
 offset_left = 450.0
@@ -31,3 +58,10 @@ offset_top = 15.0
 offset_right = 542.0
 offset_bottom = 38.0
 text = "Child count: "
+
+[node name="QuitLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 100.0
+offset_bottom = 32.0
+text = "QUITTING"

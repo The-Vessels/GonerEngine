@@ -15,16 +15,18 @@ func _ready() -> void:
 
 func onpress() -> void:
 	tween = create_tween()
-	tween.tween_property($Sprite2D, 'position:x', 400.0, 1.0).from(0.0)
+	tween.tween_property($Sprite2D, 'rotation', 0.0, 1.0).from(-50.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:x', 1.0, 1.0).from(0.1)
+	tween.parallel().tween_property($Sprite2D, 'scale:y', 1.0, 1.0).from(0.1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # 'delta' is that a deltarune reference?!?!?!
 func _process(delta: float) -> void:
 	# is your tween running?
 	# then you better go catch it!
-	if tween and tween.is_running():
+	if tween != null and tween.is_running():
 		var afterimage: Sprite2D = $Sprite2D.duplicate()
-		afterimage.z_index = 0
+		# afterimage.z_index = 0
 		var after_tween = afterimage.create_tween()
 		after_tween.tween_property(afterimage, 'modulate:a', 0.0, 1.0)
 		after_tween.tween_callback(afterimage.queue_free)
