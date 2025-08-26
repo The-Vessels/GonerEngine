@@ -1,0 +1,40 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://d0du66fs534c6"
+path="res://.godot/imported/8bitoperator_jve.ttf-90235e8e1b37ced7f4718b4ffcfd55a4.fontdata"
+
+[deps]
+
+source_file="res://Assets/fonts/8bitoperator_jve.ttf"
+dest_files=["res://.godot/imported/8bitoperator_jve.ttf-90235e8e1b37ced7f4718b4ffcfd55a4.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=0
+subpixel_positioning=0
+keep_rounding_remainders=false
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}

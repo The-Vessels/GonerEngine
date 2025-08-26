@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5nrska6i801g"]
+
+[ext_resource type="Script" uid="uid://ctuq23nnr37xr" path="res://Scripts/textbox.gd" id="1_g5d5p"]
+[ext_resource type="Texture2D" uid="uid://vugy03rctlg0" path="res://Assets/Sprites/lw_textbox.png" id="2_qagdh"]
+[ext_resource type="Texture2D" uid="uid://d1650avehqbrp" path="res://Assets/Sprites/sincere.png" id="3_g5d5p"]
+[ext_resource type="FontFile" uid="uid://d0du66fs534c6" path="res://Assets/fonts/8bitoperator_jve.ttf" id="4_c4wvf"]
+[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://Assets/sounds/voice/susie.wav" id="4_qagdh"]
+
+[sub_resource type="FontVariation" id="FontVariation_g5d5p"]
+base_font = ExtResource("4_c4wvf")
+spacing_glyph = 2
+spacing_space = 10
+
+[node name="Textbox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g5d5p")
+
+[node name="Box" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 608.0
+offset_bottom = 472.0
+texture = ExtResource("2_qagdh")
+
+[node name="TalkSprite" type="TextureRect" parent="Box"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 30.0
+offset_right = 77.0
+offset_bottom = 81.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_g5d5p")
+
+[node name="dialoguetext" type="Label" parent="Box"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 20.0
+offset_right = 576.0
+offset_bottom = 132.0
+theme_override_fonts/font = SubResource("FontVariation_g5d5p")
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 2
+
+[node name="talkblip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qagdh")
+max_polyphony = 15
