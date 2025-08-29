@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=30 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://Shaders/battlebackground.gdshader" id="1_bm4ed"]
 [ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_fbgux"]
 [ext_resource type="Script" uid="uid://30luryew0pnd" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://Scripts/background.gd" id="2_kr7th"]
+[ext_resource type="Texture2D" uid="uid://c6s57kqbmhmj5" path="res://Assets/Sprites/battle.png" id="6_wj8kd"]
+[ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scenes/battle_buttons.gd" id="7_bg738"]
+[ext_resource type="Texture2D" uid="uid://bvv8cycakq3fj" path="res://Assets/Sprites/battle_buttons.png" id="7_r612u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm4ed"]
 shader = ExtResource("1_bm4ed")
@@ -17,11 +20,146 @@ shader_parameter/speed = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg738"]
+atlas = ExtResource("7_r612u")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reqto"]
+atlas = ExtResource("7_r612u")
+region = Rect2(32, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yehbw"]
+atlas = ExtResource("7_r612u")
+region = Rect2(64, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lfwp"]
+atlas = ExtResource("7_r612u")
+region = Rect2(96, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxtjb"]
+atlas = ExtResource("7_r612u")
+region = Rect2(128, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pacne"]
+atlas = ExtResource("7_r612u")
+region = Rect2(160, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e80ej"]
+atlas = ExtResource("7_r612u")
+region = Rect2(0, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fig28"]
+atlas = ExtResource("7_r612u")
+region = Rect2(32, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aop0"]
+atlas = ExtResource("7_r612u")
+region = Rect2(64, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekalr"]
+atlas = ExtResource("7_r612u")
+region = Rect2(96, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5okxb"]
+atlas = ExtResource("7_r612u")
+region = Rect2(128, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fk0n"]
+atlas = ExtResource("7_r612u")
+region = Rect2(160, 33, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa6mt"]
+atlas = ExtResource("7_r612u")
+region = Rect2(0, 66, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dmcs"]
+atlas = ExtResource("7_r612u")
+region = Rect2(32, 66, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dghj"]
+atlas = ExtResource("7_r612u")
+region = Rect2(64, 66, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1memg"]
+atlas = ExtResource("7_r612u")
+region = Rect2(96, 66, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vkn2"]
+atlas = ExtResource("7_r612u")
+region = Rect2(128, 66, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smdh1"]
+atlas = ExtResource("7_r612u")
+region = Rect2(160, 66, 31, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh60p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg738")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reqto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yehbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lfwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxtjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pacne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e80ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fig28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aop0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekalr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5okxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fk0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa6mt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dmcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dghj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1memg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vkn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smdh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fbgux")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_bm4ed")
@@ -65,3 +203,39 @@ offset_top = 16.0
 offset_right = 100.0
 offset_bottom = 32.0
 text = "QUITTING"
+
+[node name="Battle" type="Sprite2D" parent="."]
+position = Vector2(805, 916)
+texture = ExtResource("6_wj8kd")
+
+[node name="BattleButtons" type="Node2D" parent="."]
+position = Vector2(100, 50)
+script = ExtResource("7_bg738")
+
+[node name="Fight" type="AnimatedSprite2D" parent="BattleButtons"]
+sprite_frames = SubResource("SpriteFrames_jh60p")
+centered = false
+
+[node name="ActMagic" type="AnimatedSprite2D" parent="BattleButtons"]
+position = Vector2(35, 0)
+sprite_frames = SubResource("SpriteFrames_jh60p")
+frame = 1
+centered = false
+
+[node name="Item" type="AnimatedSprite2D" parent="BattleButtons"]
+position = Vector2(70, 0)
+sprite_frames = SubResource("SpriteFrames_jh60p")
+frame = 2
+centered = false
+
+[node name="Spare" type="AnimatedSprite2D" parent="BattleButtons"]
+position = Vector2(105, 0)
+sprite_frames = SubResource("SpriteFrames_jh60p")
+frame = 3
+centered = false
+
+[node name="Defend" type="AnimatedSprite2D" parent="BattleButtons"]
+position = Vector2(140, 0)
+sprite_frames = SubResource("SpriteFrames_jh60p")
+frame = 4
+centered = false
