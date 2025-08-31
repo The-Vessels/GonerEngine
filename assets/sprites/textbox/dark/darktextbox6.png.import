@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:Assets/Sprites/textbox/dark/darktextbox6.png.import
-uid="uid://bhmhjmrvemlck"
-path="res://.godot/imported/darktextbox6.png-f2f3a71b323eac66363790a0c12ae7ee.ctex"
-=======
-uid="uid://ccjf2wyrmhw5r"
+uid="uid://b287o0v7xk0ic"
 path="res://.godot/imported/darktextbox6.png-a0633c254a971cfd5a48f53dafed6e22.ctex"
->>>>>>> origin/textbox:assets/sprites/textbox/dark/darktextbox6.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD:Assets/Sprites/textbox/dark/darktextbox6.png.import
-source_file="res://Assets/Sprites/textbox/dark/darktextbox6.png"
-dest_files=["res://.godot/imported/darktextbox6.png-f2f3a71b323eac66363790a0c12ae7ee.ctex"]
-=======
 source_file="res://assets/sprites/textbox/dark/darktextbox6.png"
 dest_files=["res://.godot/imported/darktextbox6.png-a0633c254a971cfd5a48f53dafed6e22.ctex"]
->>>>>>> origin/textbox:assets/sprites/textbox/dark/darktextbox6.png.import
 
 [params]
 

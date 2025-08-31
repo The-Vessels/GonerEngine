@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cggup4hci8hcu"
-path="res://.godot/imported/spr_headkris_10.png-d0ddee1094a125729f0fab5f8e88580a.ctex"
+path="res://.godot/imported/spr_headkris_10.png-c30fa4db1a9e0c1a8245909d3ee456bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/kris/battle/head/spr_headkris_10.png"
-dest_files=["res://.godot/imported/spr_headkris_10.png-d0ddee1094a125729f0fab5f8e88580a.ctex"]
+source_file="res://assets/sprites/kris/battle/head/spr_headkris_10.png"
+dest_files=["res://.godot/imported/spr_headkris_10.png-c30fa4db1a9e0c1a8245909d3ee456bf.ctex"]
 
 [params]
 

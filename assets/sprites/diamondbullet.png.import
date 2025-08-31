@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr17sniph12bw"
-path="res://.godot/imported/diamondbullet.png-bb8454dcc54833129ac4e3daea32abbb.ctex"
+path="res://.godot/imported/diamondbullet.png-c324df3e3b81cb29c4894d2d1282fe0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/diamondbullet.png"
-dest_files=["res://.godot/imported/diamondbullet.png-bb8454dcc54833129ac4e3daea32abbb.ctex"]
+source_file="res://assets/sprites/diamondbullet.png"
+dest_files=["res://.godot/imported/diamondbullet.png-c324df3e3b81cb29c4894d2d1282fe0c.ctex"]
 
 [params]
 

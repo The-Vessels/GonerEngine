@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1wtekjc515uk"
-path="res://.godot/imported/hpslash.png-bbe1c22a597f452a1bd41aa35c1ea678.ctex"
+path="res://.godot/imported/hpslash.png-dcc838e13eb4932e06866b0e623d8450.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/battle/hpslash.png"
-dest_files=["res://.godot/imported/hpslash.png-bbe1c22a597f452a1bd41aa35c1ea678.ctex"]
+source_file="res://assets/sprites/battle/hpslash.png"
+dest_files=["res://.godot/imported/hpslash.png-dcc838e13eb4932e06866b0e623d8450.ctex"]
 
 [params]
 

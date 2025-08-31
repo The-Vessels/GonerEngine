@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ho7tcbnd3xlt"
-path="res://.godot/imported/lighttextbox.png-30e66f0f6c8ce035bb7790c92f774823.ctex"
+path="res://.godot/imported/lighttextbox.png-22076562e0513007c0c8bf4377c6d090.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/textbox/light/lighttextbox.png"
-dest_files=["res://.godot/imported/lighttextbox.png-30e66f0f6c8ce035bb7790c92f774823.ctex"]
+source_file="res://assets/sprites/textbox/light/lighttextbox.png"
+dest_files=["res://.godot/imported/lighttextbox.png-22076562e0513007c0c8bf4377c6d090.ctex"]
 
 [params]
 
