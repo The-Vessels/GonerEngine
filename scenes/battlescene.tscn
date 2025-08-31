@@ -1,13 +1,14 @@
-[gd_scene load_steps=53 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=54 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://Shaders/battlebackground.gdshader" id="1_bm4ed"]
-[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_fbgux"]
-[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
-[ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://Scripts/background.gd" id="2_kr7th"]
+[ext_resource type="Script" path="res://scenes/exit_handler.gd" id="1_fbgux"]
+[ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
+[ext_resource type="Script" path="res://Scripts/background.gd" id="2_kr7th"]
 [ext_resource type="Texture2D" uid="uid://c6s57kqbmhmj5" path="res://Assets/Sprites/battle.png" id="6_wj8kd"]
-[ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scenes/battle_buttons.gd" id="7_bg738"]
+[ext_resource type="Script" path="res://scenes/battle_buttons.gd" id="7_bg738"]
 [ext_resource type="Texture2D" uid="uid://bvv8cycakq3fj" path="res://Assets/Sprites/battle_buttons.png" id="7_r612u"]
+[ext_resource type="Script" uid="uid://dwcjf83fg0ogw" path="res://Scripts/slidything.gd" id="8_jh60p"]
 [ext_resource type="Shader" uid="uid://d1sxice8sk65g" path="res://Shaders/bottomblackrectangle.gdshader" id="8_smdh1"]
 [ext_resource type="FontFile" uid="uid://t5itkvwlmkw8" path="res://Assets/Fonts/main_mono.ttf" id="9_reqto"]
 [ext_resource type="FontFile" uid="uid://cwo2x1iotua0h" path="res://Assets/Fonts/hpnumbers.png" id="9_yehbw"]
@@ -221,33 +222,6 @@ shader_parameter/speed = 0.5
 shader_parameter/mul = 4.0
 shader_parameter/color = Color(1, 0.184314, 0.501961, 1)
 
-[sub_resource type="Animation" id="Animation_smdh1"]
-resource_name = "box_popup"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BorderRect:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.766667),
-"transitions": PackedFloat32Array(0.3, 1),
-"update": 0,
-"values": [Vector2(213, 38), Vector2(213, 71)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BorderRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.766667),
-"transitions": PackedFloat32Array(0.3, 1),
-"update": 0,
-"values": [Vector2(669, 250), Vector2(669, 217)]
-}
-
 [sub_resource type="Animation" id="Animation_jh60p"]
 length = 0.001
 tracks/0/type = "value"
@@ -273,6 +247,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(669, 249)]
+}
+
+[sub_resource type="Animation" id="Animation_smdh1"]
+resource_name = "box_popup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BorderRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector2(213, 38), Vector2(213, 71)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BorderRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector2(669, 250), Vector2(669, 217)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cn621"]
@@ -344,6 +345,7 @@ visible_characters_behavior = 2
 visible_ratio = 0.514706
 
 [node name="Node" type="Node2D" parent="."]
+script = ExtResource("8_jh60p")
 
 [node name="BattleButtons" type="Node2D" parent="Node"]
 z_index = 1
@@ -378,6 +380,13 @@ sprite_frames = SubResource("SpriteFrames_jh60p")
 frame = 4
 centered = false
 
+[node name="BottomRect" type="ColorRect" parent="Node"]
+offset_left = 669.0
+offset_top = 287.001
+offset_right = 882.0
+offset_bottom = 290.001
+color = Color(0.2, 0.12549, 0.2, 1)
+
 [node name="BorderRect" type="ColorRect" parent="Node"]
 clip_contents = true
 offset_left = 669.0
@@ -388,6 +397,7 @@ color = Color(1, 0.184218, 0.502832, 1)
 
 [node name="TopBlackRect" type="ColorRect" parent="Node/BorderRect"]
 z_index = 1
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 211.0
@@ -395,6 +405,7 @@ offset_bottom = 36.0
 color = Color(0, 0, 0, 1)
 
 [node name="HPBar" type="ColorRect" parent="Node/BorderRect/TopBlackRect"]
+layout_mode = 0
 offset_left = 126.0
 offset_top = 19.0
 offset_right = 202.0
@@ -417,6 +428,7 @@ texture = ExtResource("23_5qs4g")
 centered = false
 
 [node name="HPLabel1" type="Label" parent="Node/BorderRect/TopBlackRect"]
+layout_mode = 0
 offset_left = 126.0
 offset_top = 6.0
 offset_right = 158.0
@@ -432,6 +444,7 @@ texture = ExtResource("24_t13wt")
 centered = false
 
 [node name="HPLabel2" type="Label" parent="Node/BorderRect/TopBlackRect"]
+layout_mode = 0
 offset_left = 171.0
 offset_top = 6.0
 offset_right = 203.0
@@ -444,19 +457,15 @@ horizontal_alignment = 2
 [node name="BottomBlackRect" type="ColorRect" parent="Node"]
 material = SubResource("ShaderMaterial_jh60p")
 offset_left = 671.0
-offset_top = 255.0
+offset_top = 254.0
 offset_right = 880.0
-offset_bottom = 285.0
+offset_bottom = 288.0
 color = Color(0, 0, 0, 1)
-
-[node name="BottomRect" type="ColorRect" parent="Node"]
-offset_left = 669.0
-offset_top = 285.001
-offset_right = 882.0
-offset_bottom = 288.001
-color = Color(0.2, 0.12549, 0.2, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
 libraries = {
 &"": SubResource("AnimationLibrary_cn621")
 }
+
+[node name="Camera2D" type="Camera2D" parent="Node"]
+position = Vector2(773, 260)
