@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cidlskgw5vhag"]
+
+[ext_resource type="Script" uid="uid://cvh72avhw238y" path="res://bullet.gd" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://dr17sniph12bw" path="res://Assets/Sprites/diamondbullet.png" id="2_y25gk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(36, 20)
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_mkf8s")
+forwardsVelocity = Vector2(50, 0)
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_y25gk")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y25gk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
