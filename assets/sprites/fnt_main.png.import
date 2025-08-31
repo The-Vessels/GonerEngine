@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vugy03rctlg0"
-path="res://.godot/imported/lw_textbox.png-7dff86fad23429f0df6df7a2cab7e735.ctex"
+uid="uid://c0bnt6qu8n2fb"
+path="res://.godot/imported/fnt_main.png-256d3cfb179e0248d6a93731ba03c8df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/lw_textbox.png"
-dest_files=["res://.godot/imported/lw_textbox.png-7dff86fad23429f0df6df7a2cab7e735.ctex"]
+source_file="res://assets/sprites/fnt_main.png"
+dest_files=["res://.godot/imported/fnt_main.png-256d3cfb179e0248d6a93731ba03c8df.ctex"]
 
 [params]
 

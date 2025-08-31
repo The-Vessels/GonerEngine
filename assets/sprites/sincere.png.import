@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0bnt6qu8n2fb"
-path="res://.godot/imported/fnt_main.png-45f016b80adc722e1071c9aea9ba5b4b.ctex"
+uid="uid://d1650avehqbrp"
+path="res://.godot/imported/sincere.png-4ce33c7bbb1f4d9095e7f7a2764d9618.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/fnt_main.png"
-dest_files=["res://.godot/imported/fnt_main.png-45f016b80adc722e1071c9aea9ba5b4b.ctex"]
+source_file="res://assets/sprites/sincere.png"
+dest_files=["res://.godot/imported/sincere.png-4ce33c7bbb1f4d9095e7f7a2764d9618.ctex"]
 
 [params]
 
