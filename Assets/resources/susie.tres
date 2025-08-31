@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueChar" load_steps=2 format=3 uid="uid://b2iorpejka76m"]
+
+[ext_resource type="Script" uid="uid://cenx8t11bbgkj" path="res://Scripts/dialogue_char_resource.gd" id="1_tgros"]
+
+[resource]
+script = ExtResource("1_tgros")
+PortraitPath = ""
+metadata/_custom_type_script = "uid://cenx8t11bbgkj"
