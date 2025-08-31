@@ -1,8 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=6 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
+[ext_resource type="PackedScene" uid="uid://d1q75mmscv56l" path="res://scenes/soul.tscn" id="2_30i1k"]
+[ext_resource type="PackedScene" uid="uid://cidlskgw5vhag" path="res://scenes/bullet.tscn" id="2_bm4ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30i1k"]
+size = Vector2(1, 1)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 script = ExtResource("1_56eic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_56eic")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_30i1k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_56eic")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_56eic")
+
+[node name="Node2D" parent="." instance=ExtResource("2_30i1k")]
+position = Vector2(330, 185)
+
+[node name="Bullet" parent="." instance=ExtResource("2_bm4ed")]
+position = Vector2(98, 183)

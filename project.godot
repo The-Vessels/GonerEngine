@@ -14,6 +14,10 @@ config/name="ENGINE_GONER"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoulRefrence="*res://Scripts/SoulRefrence.gd"
+
 [display]
 
 window/size/viewport_width=640
