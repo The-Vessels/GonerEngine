@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmgoyadworudd"]
+
+[ext_resource type="Texture2D" uid="uid://tgbujqml5yls" path="res://Assets/Sprites/textbox/dark/darktextbox1.png" id="1_nyhto"]
+[ext_resource type="AnimationLibrary" uid="uid://bl7s47b4qjqif" path="res://Assets/Sprites/textbox/dark/dtbanimlib.tres" id="2_avhq4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 144.0
+offset_top = 126.0
+offset_right = 176.0
+offset_bottom = 158.0
+texture = ExtResource("1_nyhto")
+region_rect = Rect2(0, 0, 33, 33)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../NinePatchRect")
+libraries = {
+&"": ExtResource("2_avhq4")
+}
+autoplay = "darktextbox"

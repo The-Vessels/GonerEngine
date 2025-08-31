@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="ENGINE_GONER"
+run/main_scene="uid://bkh7rtxnd2dux"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=30
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +24,17 @@ SoulRefrence="*res://Scripts/SoulRefrence.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/window_width_override=1920
+window/size/window_height_override=1440
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="ENGINE_GONER"
+
+[gui]
+
+theme/custom_font="uid://e8d4ah3nxtnm"
 
 [input]
 
@@ -45,6 +58,10 @@ down={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[physics]
+
+common/physics_ticks_per_second=30
 
 [rendering]
 
