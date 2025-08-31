@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://Shaders/battlebackground.gdshader" id="1_bm4ed"]
-[ext_resource type="Script" path="res://scenes/exit_handler.gd" id="1_fbgux"]
-[ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
-[ext_resource type="Script" path="res://Scripts/background.gd" id="2_kr7th"]
+[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_fbgux"]
+[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://Scripts/sprite_2d.gd" id="2_30i1k"]
+[ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://Scripts/background.gd" id="2_kr7th"]
 [ext_resource type="Texture2D" uid="uid://c6s57kqbmhmj5" path="res://Assets/Sprites/battle.png" id="6_wj8kd"]
-[ext_resource type="Script" path="res://scenes/battle_buttons.gd" id="7_bg738"]
+[ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scenes/battle_buttons.gd" id="7_bg738"]
 [ext_resource type="Texture2D" uid="uid://bvv8cycakq3fj" path="res://Assets/Sprites/battle_buttons.png" id="7_r612u"]
-[ext_resource type="Script" uid="uid://dwcjf83fg0ogw" path="res://Scripts/slidything.gd" id="8_jh60p"]
+[ext_resource type="Script" uid="uid://blsrkjhl1vvtm" path="res://Scripts/slidything.gd" id="8_jh60p"]
 [ext_resource type="Shader" uid="uid://d1sxice8sk65g" path="res://Shaders/bottomblackrectangle.gdshader" id="8_smdh1"]
 [ext_resource type="FontFile" uid="uid://t5itkvwlmkw8" path="res://Assets/Fonts/main_mono.ttf" id="9_reqto"]
 [ext_resource type="FontFile" uid="uid://cwo2x1iotua0h" path="res://Assets/Fonts/hpnumbers.png" id="9_yehbw"]
@@ -387,6 +387,13 @@ offset_right = 882.0
 offset_bottom = 290.001
 color = Color(0.2, 0.12549, 0.2, 1)
 
+[node name="BottomRect2" type="ColorRect" parent="Node"]
+offset_left = 669.0
+offset_top = 255.0
+offset_right = 882.0
+offset_bottom = 290.0
+color = Color(1, 0.184314, 0.501961, 1)
+
 [node name="BorderRect" type="ColorRect" parent="Node"]
 clip_contents = true
 offset_left = 669.0
@@ -457,10 +464,11 @@ horizontal_alignment = 2
 [node name="BottomBlackRect" type="ColorRect" parent="Node"]
 material = SubResource("ShaderMaterial_jh60p")
 offset_left = 671.0
-offset_top = 254.0
+offset_top = 256.0
 offset_right = 880.0
-offset_bottom = 288.0
+offset_bottom = 290.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
 libraries = {
