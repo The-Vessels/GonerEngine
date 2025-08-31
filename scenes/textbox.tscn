@@ -1,15 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5nrska6i801g"]
+[gd_scene load_steps=18 format=3 uid="uid://c5nrska6i801g"]
 
 [ext_resource type="Script" uid="uid://ctuq23nnr37xr" path="res://Scripts/textbox.gd" id="1_g5d5p"]
-[ext_resource type="Texture2D" uid="uid://vugy03rctlg0" path="res://Assets/Sprites/lw_textbox.png" id="2_qagdh"]
-[ext_resource type="Texture2D" uid="uid://d1650avehqbrp" path="res://Assets/Sprites/sincere.png" id="3_g5d5p"]
-[ext_resource type="FontFile" uid="uid://d0du66fs534c6" path="res://Assets/fonts/8bitoperator_jve.ttf" id="4_c4wvf"]
-[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://Assets/sounds/voice/susie.wav" id="4_qagdh"]
+[ext_resource type="Texture2D" uid="uid://vugy03rctlg0" path="res://assets/sprites/lw_textbox.png" id="2_qagdh"]
+[ext_resource type="Texture2D" uid="uid://d1650avehqbrp" path="res://assets/sprites/sincere.png" id="3_g5d5p"]
+[ext_resource type="FontFile" uid="uid://cgxof7ma1wj1r" path="res://assets/fonts/main_mono.ttf" id="4_c4wvf"]
+[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://assets/sounds/voice/susie.wav" id="4_qagdh"]
+[ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://assets/sprites/textbox/dark/darktextbox1.png" id="6_o60sd"]
+[ext_resource type="Texture2D" uid="uid://cs4mn4gjwhqtt" path="res://assets/sprites/textbox/dark/darktextbox2.png" id="7_3s5mu"]
+[ext_resource type="Texture2D" uid="uid://cf4oltvj3yacv" path="res://assets/sprites/textbox/dark/darktextbox3.png" id="8_h48g6"]
+[ext_resource type="Texture2D" uid="uid://beqmacfjuy86v" path="res://assets/sprites/textbox/dark/darktextbox4.png" id="9_k0kpg"]
+[ext_resource type="Texture2D" uid="uid://dka0ivcx3t3sd" path="res://assets/sprites/textbox/dark/darktextbox5.png" id="10_i7yyr"]
+[ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://assets/sprites/textbox/dark/darktextbox6.png" id="11_a5qqc"]
+[ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://assets/sprites/textbox/dark/darktextbox7.png" id="12_bk4x5"]
+[ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://assets/sprites/textbox/dark/darktextbox8.png" id="13_wh21d"]
 
-[sub_resource type="FontVariation" id="FontVariation_g5d5p"]
-base_font = ExtResource("4_c4wvf")
-spacing_glyph = 2
-spacing_space = 10
+[sub_resource type="LabelSettings" id="LabelSettings_c4wvf"]
+line_spacing = 4.0
+font = ExtResource("4_c4wvf")
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_2m7l8"]
+resource_name = "darktextbox"
+length = 2.33337
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 1.98, 2.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_o60sd"), ExtResource("7_3s5mu"), ExtResource("8_h48g6"), ExtResource("9_k0kpg"), ExtResource("10_i7yyr"), ExtResource("11_a5qqc"), ExtResource("12_bk4x5"), ExtResource("13_wh21d")]
+}
+
+[sub_resource type="Animation" id="Animation_i5cy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_o60sd")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
+_data = {
+&"RESET": SubResource("Animation_i5cy3"),
+&"darktextbox": SubResource("Animation_2m7l8")
+}
 
 [node name="Textbox" type="Control"]
 layout_mode = 3
@@ -24,7 +70,7 @@ script = ExtResource("1_g5d5p")
 layout_mode = 0
 offset_left = 32.0
 offset_top = 320.0
-offset_right = 608.0
+offset_right = 610.0
 offset_bottom = 472.0
 texture = ExtResource("2_qagdh")
 
@@ -41,12 +87,32 @@ texture = ExtResource("3_g5d5p")
 layout_mode = 0
 offset_left = 142.0
 offset_top = 20.0
-offset_right = 576.0
+offset_right = 558.0
 offset_bottom = 132.0
-theme_override_fonts/font = SubResource("FontVariation_g5d5p")
 theme_override_font_sizes/font_size = 32
-autowrap_mode = 2
+text = "* Dreemurr residence, is
+	this real? uh, uh uh,
+	uh uh, hu hu huh uh uhu"
+label_settings = SubResource("LabelSettings_c4wvf")
+autowrap_mode = 3
+tab_stops = PackedFloat32Array(32)
 
 [node name="talkblip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qagdh")
+volume_db = -10.0
 max_polyphony = 15
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_o60sd")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jt0pv")
+}
