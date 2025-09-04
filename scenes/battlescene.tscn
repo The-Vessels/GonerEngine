@@ -1,16 +1,3 @@
-
-[gd_scene load_steps=6 format=3 uid="uid://bkh7rtxnd2dux"]
-
-[ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
-[ext_resource type="PackedScene" uid="uid://d1q75mmscv56l" path="res://scenes/soul.tscn" id="2_30i1k"]
-[ext_resource type="PackedScene" uid="uid://cidlskgw5vhag" path="res://scenes/bullet.tscn" id="2_bm4ed"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
-size = Vector2(1, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_30i1k"]
-size = Vector2(1, 1)
-
 [gd_scene load_steps=54 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
@@ -23,7 +10,7 @@ size = Vector2(1, 1)
 [ext_resource type="Texture2D" uid="uid://bvv8cycakq3fj" path="res://Assets/Sprites/battle_buttons.png" id="7_r612u"]
 [ext_resource type="Script" uid="uid://blsrkjhl1vvtm" path="res://Scripts/slidything.gd" id="8_jh60p"]
 [ext_resource type="Shader" uid="uid://d1sxice8sk65g" path="res://Shaders/bottomblackrectangle.gdshader" id="8_smdh1"]
-[ext_resource type="FontFile" uid="uid://t5itkvwlmkw8" path="res://Assets/Fonts/main_mono.ttf" id="9_reqto"]
+[ext_resource type="FontFile" uid="uid://cgxof7ma1wj1r" path="res://Assets/Fonts/main_mono.ttf" id="9_reqto"]
 [ext_resource type="FontFile" uid="uid://cwo2x1iotua0h" path="res://Assets/Fonts/hpnumbers.png" id="9_yehbw"]
 [ext_resource type="Texture2D" uid="uid://dgne56t87bpp4" path="res://Assets/Sprites/hp.png" id="11_7lfwp"]
 [ext_resource type="Texture2D" uid="uid://cum1ojl1j35d5" path="res://Assets/Sprites/kris/battle/head/spr_headkris_0.png" id="12_2vkn2"]
@@ -295,7 +282,6 @@ _data = {
 &"box_popup": SubResource("Animation_smdh1")
 }
 
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fbgux")
 
@@ -319,25 +305,6 @@ script = ExtResource("1_56eic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_56eic")
-
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, -1)
-shape = SubResource("RectangleShape2D_30i1k")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_56eic")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_56eic")
-
-[node name="Node2D" parent="." instance=ExtResource("2_30i1k")]
-position = Vector2(330, 185)
-
-[node name="Bullet" parent="." instance=ExtResource("2_bm4ed")]
-position = Vector2(98, 183)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 z_index = 1
@@ -501,7 +468,6 @@ offset_top = 256.0
 offset_right = 880.0
 offset_bottom = 290.0
 color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
 libraries = {
@@ -510,4 +476,3 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="Node"]
 position = Vector2(773, 260)
-

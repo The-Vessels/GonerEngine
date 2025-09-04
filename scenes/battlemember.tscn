@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvxybbw7bvwqp"]
+
+[ext_resource type="Texture2D" uid="uid://c6s57kqbmhmj5" path="res://Assets/Sprites/battle.png" id="1_8g608"]
+
+[node name="Battlemember" type="Node2D"]
+
+[node name="Battle" type="Sprite2D" parent="."]
+texture = ExtResource("1_8g608")
+centered = false
+region_enabled = true
+region_rect = Rect2(690, 279, 213, 70)
+
+[node name="Battle2" type="Sprite2D" parent="."]
+position = Vector2(1, 81)
+texture = ExtResource("1_8g608")
+centered = false
+region_enabled = true
+region_rect = Rect2(737, 62, 212, 36)

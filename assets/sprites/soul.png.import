@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck8jshawr5lj8"
-path="res://.godot/imported/soul.png-8bec5bb368804fa49f9e06d9b00fb5f2.ctex"
+path="res://.godot/imported/soul.png-d58fd2e83857a12bfd8088cfff6631db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/soul.png"
-dest_files=["res://.godot/imported/soul.png-8bec5bb368804fa49f9e06d9b00fb5f2.ctex"]
+source_file="res://Assets/Sprites/soul.png"
+dest_files=["res://.godot/imported/soul.png-d58fd2e83857a12bfd8088cfff6631db.ctex"]
 
 [params]
 
