@@ -19,6 +19,21 @@ line_spacing = 4.0
 font = ExtResource("4_c4wvf")
 font_size = 32
 
+[sub_resource type="Animation" id="Animation_i5cy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_o60sd")]
+}
+
 [sub_resource type="Animation" id="Animation_2m7l8"]
 resource_name = "darktextbox"
 length = 2.33337
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("6_o60sd"), ExtResource("7_3s5mu"), ExtResource("8_h48g6"), ExtResource("9_k0kpg"), ExtResource("10_i7yyr"), ExtResource("11_a5qqc"), ExtResource("12_bk4x5"), ExtResource("13_wh21d")]
-}
-
-[sub_resource type="Animation" id="Animation_i5cy3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_o60sd")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
@@ -96,6 +96,8 @@ text = "* Dreemurr residence, is
 label_settings = SubResource("LabelSettings_c4wvf")
 autowrap_mode = 3
 tab_stops = PackedFloat32Array(32)
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="talkblip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qagdh")
