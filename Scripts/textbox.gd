@@ -1,7 +1,7 @@
 extends Control
 
 var text = "* Dreemurr residence, whooooo is this?"
-@onready var dialoguetext: Label = $Box/dialoguetext
+@onready var dialoguetext: RichTextLabel = $Box/dialoguetext
 @onready var talkblip: AudioStreamPlayer = $talkblip
 
 # Called when the node enters the scene tree for the first time.
