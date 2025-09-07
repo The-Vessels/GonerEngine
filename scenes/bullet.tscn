@@ -7,8 +7,8 @@
 size = Vector2(36, 20)
 
 [node name="Bullet" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_mkf8s")
-forwardsVelocity = Vector2(50, 0)
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_y25gk")

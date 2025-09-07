@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	position += forwardsVelocity * delta
 	position += transform.x + (velocity * delta)
 	soulPosition = SoulRefrence.soulPosition
+	look_at(soulPosition)
 
 func _on_area_entered(area: Area2D) -> void:
 	area._damage(damage)

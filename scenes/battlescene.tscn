@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=53 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://Scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://Shaders/battlebackground.gdshader" id="1_bm4ed"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scenes/battle_buttons.gd" id="7_bg738"]
 [ext_resource type="Texture2D" uid="uid://bvv8cycakq3fj" path="res://Assets/Sprites/battle_buttons.png" id="7_r612u"]
 [ext_resource type="Script" uid="uid://blsrkjhl1vvtm" path="res://Scripts/slidything.gd" id="8_jh60p"]
-[ext_resource type="Shader" uid="uid://d1sxice8sk65g" path="res://Shaders/bottomblackrectangle.gdshader" id="8_smdh1"]
 [ext_resource type="FontFile" uid="uid://cgxof7ma1wj1r" path="res://Assets/Fonts/main_mono.ttf" id="9_reqto"]
 [ext_resource type="FontFile" uid="uid://cwo2x1iotua0h" path="res://Assets/Fonts/hpnumbers.png" id="9_yehbw"]
 [ext_resource type="Texture2D" uid="uid://dgne56t87bpp4" path="res://Assets/Sprites/hp.png" id="11_7lfwp"]
@@ -217,10 +216,6 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh60p"]
-shader = ExtResource("8_smdh1")
-shader_parameter/speed = 0.5
-shader_parameter/mul = 4.0
-shader_parameter/color = Color(1, 0.184314, 0.501961, 1)
 
 [sub_resource type="Animation" id="Animation_jh60p"]
 length = 0.001
