@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d23jjh36jbrwm"]
+
+[ext_resource type="Script" uid="uid://kqfktbtjifed" path="res://Scripts/attack.gd" id="1_nursx"]
+[ext_resource type="PackedScene" uid="uid://cidlskgw5vhag" path="res://scenes/bullet.tscn" id="2_6fs0s"]
+[ext_resource type="PackedScene" uid="uid://d1q75mmscv56l" path="res://scenes/soul.tscn" id="2_jy1op"]
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_nursx")
+attack_length = 10.0
+bullet = ExtResource("2_6fs0s")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(260, 77)
+
+[node name="Node2D" parent="." instance=ExtResource("2_jy1op")]
+position = Vector2(260, 147)
+
+[node name="Bullet Interval" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Bullet Interval" to="." method="_on_bullet_interval_timeout"]

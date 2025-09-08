@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://t5itkvwlmkw8"
+uid="uid://cgxof7ma1wj1r"
 path="res://.godot/imported/main_mono.ttf-8aba75bcd4c15e8f4b84983c3a5bd274.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/main_mono.ttf-8aba75bcd4c15e8f4b84983c3a5bd27
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -29,7 +29,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}
