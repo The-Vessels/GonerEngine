@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://j7qqth7mvnst"
-path="res://.godot/imported/darktextbox1.png-9f954e06865feec33c675dc0d18943ba.ctex"
+path="res://.godot/imported/darktextbox1.png-86a90b99f931f69f0c96c5083d73c147.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/textbox/dark/darktextbox1.png"
-dest_files=["res://.godot/imported/darktextbox1.png-9f954e06865feec33c675dc0d18943ba.ctex"]
+source_file="res://Assets/Sprites/textbox/dark/darktextbox1.png"
+dest_files=["res://.godot/imported/darktextbox1.png-86a90b99f931f69f0c96c5083d73c147.ctex"]
 
 [params]
 
