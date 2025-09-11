@@ -4,22 +4,27 @@ extends Control
 @export_multiline var text: String = '':
 	set(new):
 		text = new
-		set_text(text)
-		set_asterisks()
+		if Engine.is_editor_hint():
+			set_text(text)
+			set_asterisks()
 
-@onready var ast = $Box/HBoxContainer/asterisks
-@onready var dia = $Box/HBoxContainer/dialoguetext
+@onready var ast = $HBoxContainer/asterisks
+@onready var dia = $HBoxContainer/dialoguetext
 
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
 var line_starts_with_asterisk: Array[bool] = []
+
+func line_asterisk(line: String) -> bool:
+	return (len(line) == 1 and line[0] == '*') \
+		or (line.substr(0,2) == '* ')
 
 func set_text(text: String):
 	line_starts_with_asterisk.clear()
 	var lines = text.split('\n')
 	var new_lines: Array[String] = []
 	for line in lines:
-		var lswa = (line.substr(0, 2) == '* ')
+		var lswa = line_asterisk(line)
 		line_starts_with_asterisk.append(lswa)
 		new_lines.append(line.substr(2) if lswa else line)
 	dia.text = '\n'.join(new_lines)
@@ -35,7 +40,16 @@ func set_asterisks():
 		lineno += 1
 
 func _ready():
-	pass
+	match Global.world_type:
+		Global.WORLD_LIGHT:
+			$TalkSprite.set_position(Vector2(64.0, 350.0))
+			$AnimationPlayer.play('lighttextbox')
+		Global.WORLD_DARK:
+			$TalkSprite.set_position(Vector2(69.0, 350.0))
+			$AnimationPlayer.play('darktextbox')
+	
+	set_text(text)
+	set_asterisks()
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5nrska6i801g"]
+[gd_scene load_steps=21 format=3 uid="uid://c5nrska6i801g"]
 
 [ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://Scripts/textbox/please.gd" id="1_o60sd"]
-[ext_resource type="Texture2D" uid="uid://vugy03rctlg0" path="res://Assets/Sprites/lw_textbox.png" id="2_qagdh"]
 [ext_resource type="Texture2D" uid="uid://d1650avehqbrp" path="res://Assets/Sprites/sincere.png" id="3_g5d5p"]
 [ext_resource type="FontFile" uid="uid://cgxof7ma1wj1r" path="res://Assets/Fonts/main_mono.ttf" id="4_c4wvf"]
 [ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://Assets/sounds/voice/susie.wav" id="4_qagdh"]
@@ -13,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://Assets/Sprites/textbox/dark/darktextbox6.png" id="11_a5qqc"]
 [ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://Assets/Sprites/textbox/dark/darktextbox7.png" id="12_bk4x5"]
 [ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://Assets/Sprites/textbox/dark/darktextbox8.png" id="13_wh21d"]
+[ext_resource type="Texture2D" uid="uid://dwdjrfwgkxt7y" path="res://Assets/Sprites/textbox/refdark.png" id="14_h48g6"]
+[ext_resource type="Texture2D" uid="uid://ho7tcbnd3xlt" path="res://Assets/Sprites/textbox/light/lighttextbox.png" id="14_k0kpg"]
+[ext_resource type="Texture2D" uid="uid://cwx4fak60lx5f" path="res://Assets/Sprites/textbox/reflight.png" id="15_k0kpg"]
 
 [sub_resource type="FontVariation" id="FontVariation_o60sd"]
 base_font = ExtResource("4_c4wvf")
@@ -34,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2m7l8"]
 resource_name = "darktextbox"
-length = 2.33337
+length = 2.6667
 loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
@@ -50,10 +52,28 @@ tracks/0/keys = {
 "values": [ExtResource("6_o60sd"), ExtResource("7_3s5mu"), ExtResource("8_h48g6"), ExtResource("9_k0kpg"), ExtResource("10_i7yyr"), ExtResource("11_a5qqc"), ExtResource("12_bk4x5"), ExtResource("13_wh21d")]
 }
 
+[sub_resource type="Animation" id="Animation_i7yyr"]
+resource_name = "lighttextbox"
+length = 0.001
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_k0kpg")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
 _data = {
 &"RESET": SubResource("Animation_i5cy3"),
-&"darktextbox": SubResource("Animation_2m7l8")
+&"darktextbox": SubResource("Animation_2m7l8"),
+&"lighttextbox": SubResource("Animation_i7yyr")
 }
 
 [node name="Textbox" type="Control"]
@@ -64,48 +84,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o60sd")
+text = "* Dreemurr residence, who is this?"
 
-[node name="Box" type="TextureRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 320.0
-offset_right = 610.0
-offset_bottom = 472.0
-texture = ExtResource("2_qagdh")
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 321.0
+offset_bottom = 396.0
+scale = Vector2(2, 2)
+texture = ExtResource("6_o60sd")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="TalkSprite" type="TextureRect" parent="Box"]
+[node name="TalkSprite" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 30.0
-offset_right = 77.0
-offset_bottom = 81.0
+offset_left = 69.0
+offset_top = 350.0
+offset_right = 114.0
+offset_bottom = 401.0
 scale = Vector2(2, 2)
 texture = ExtResource("3_g5d5p")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Box"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 148.0
-offset_top = 19.0
-offset_right = 564.0
-offset_bottom = 132.0
+offset_left = 174.0
+offset_top = 340.0
+offset_right = 590.0
+offset_bottom = 453.0
 theme_override_constants/separation = 16
 
-[node name="asterisks" type="Label" parent="Box/HBoxContainer"]
+[node name="asterisks" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("4_c4wvf")
 theme_override_font_sizes/font_size = 32
-text = " "
+text = "*"
 autowrap_mode = 1
 
-[node name="dialoguetext" type="RichTextLabel" parent="Box/HBoxContainer"]
+[node name="dialoguetext" type="RichTextLabel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(352, 96)
 layout_mode = 2
 theme_override_constants/line_separation = 4
 theme_override_fonts/normal_font = SubResource("FontVariation_o60sd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+text = "Dreemurr residence, who is this?"
 scroll_active = false
 autowrap_mode = 2
 tab_size = 2
@@ -115,18 +142,20 @@ stream = ExtResource("4_qagdh")
 volume_db = -10.0
 max_polyphony = 15
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("6_o60sd")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_jt0pv")
 }
-autoplay = "darktextbox"
+
+[node name="References" type="Node2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.337255)
+
+[node name="Refdark" type="Sprite2D" parent="References"]
+texture = ExtResource("14_h48g6")
+centered = false
+
+[node name="Reflight" type="Sprite2D" parent="References"]
+visible = false
+texture = ExtResource("15_k0kpg")
+centered = false
