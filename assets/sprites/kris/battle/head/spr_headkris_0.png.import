@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs4mn4gjwhqtt"
-path="res://.godot/imported/darktextbox2.png-bff2490425ba6c629ee5c068e5c17adc.ctex"
+uid="uid://cum1ojl1j35d5"
+path="res://.godot/imported/spr_headkris_0.png-fb72ce19e751bc914000e52dc3b275f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/textbox/dark/darktextbox2.png"
-dest_files=["res://.godot/imported/darktextbox2.png-bff2490425ba6c629ee5c068e5c17adc.ctex"]
+source_file="res://assets/sprites/kris/battle/head/spr_headkris_0.png"
+dest_files=["res://.godot/imported/spr_headkris_0.png-fb72ce19e751bc914000e52dc3b275f6.ctex"]
 
 [params]
 

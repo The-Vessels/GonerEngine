@@ -8,3 +8,6 @@
 .mono/*
 data_*/
 mono_crash.*.json
+
+# stupid macos
+.DS_Store

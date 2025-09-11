@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d23jjh36jbrwm"]
 
-[ext_resource type="Script" uid="uid://kqfktbtjifed" path="res://Scripts/attack.gd" id="1_nursx"]
+[ext_resource type="Script" uid="uid://kqfktbtjifed" path="res://scripts/attack.gd" id="1_nursx"]
 [ext_resource type="PackedScene" uid="uid://cidlskgw5vhag" path="res://scenes/bullet.tscn" id="2_6fs0s"]
 [ext_resource type="PackedScene" uid="uid://d1q75mmscv56l" path="res://scenes/soul.tscn" id="2_jy1op"]
 

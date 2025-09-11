@@ -1,20 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5nrska6i801g"]
+[gd_scene load_steps=19 format=3 uid="uid://c5nrska6i801g"]
 
-[ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://Scripts/textbox/please.gd" id="1_o60sd"]
-[ext_resource type="Texture2D" uid="uid://d1650avehqbrp" path="res://Assets/Sprites/sincere.png" id="3_g5d5p"]
-[ext_resource type="FontFile" uid="uid://cgxof7ma1wj1r" path="res://Assets/Fonts/main_mono.ttf" id="4_c4wvf"]
-[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://Assets/sounds/voice/susie.wav" id="4_qagdh"]
-[ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://Assets/Sprites/textbox/dark/darktextbox1.png" id="6_o60sd"]
-[ext_resource type="Texture2D" uid="uid://cs4mn4gjwhqtt" path="res://Assets/Sprites/textbox/dark/darktextbox2.png" id="7_3s5mu"]
-[ext_resource type="Texture2D" uid="uid://cf4oltvj3yacv" path="res://Assets/Sprites/textbox/dark/darktextbox3.png" id="8_h48g6"]
-[ext_resource type="Texture2D" uid="uid://beqmacfjuy86v" path="res://Assets/Sprites/textbox/dark/darktextbox4.png" id="9_k0kpg"]
-[ext_resource type="Texture2D" uid="uid://dka0ivcx3t3sd" path="res://Assets/Sprites/textbox/dark/darktextbox5.png" id="10_i7yyr"]
-[ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://Assets/Sprites/textbox/dark/darktextbox6.png" id="11_a5qqc"]
-[ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://Assets/Sprites/textbox/dark/darktextbox7.png" id="12_bk4x5"]
-[ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://Assets/Sprites/textbox/dark/darktextbox8.png" id="13_wh21d"]
-[ext_resource type="Texture2D" uid="uid://dwdjrfwgkxt7y" path="res://Assets/Sprites/textbox/refdark.png" id="14_h48g6"]
-[ext_resource type="Texture2D" uid="uid://ho7tcbnd3xlt" path="res://Assets/Sprites/textbox/light/lighttextbox.png" id="14_k0kpg"]
-[ext_resource type="Texture2D" uid="uid://cwx4fak60lx5f" path="res://Assets/Sprites/textbox/reflight.png" id="15_k0kpg"]
+[ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/textbox/please.gd" id="1_o60sd"]
+[ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://assets/sprites/sincere.png" id="3_g5d5p"]
+[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="4_c4wvf"]
+[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://assets/sounds/voice/susie.wav" id="4_qagdh"]
+[ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://assets/sprites/textbox/dark/darktextbox1.png" id="6_o60sd"]
 
 [sub_resource type="FontVariation" id="FontVariation_o60sd"]
 base_font = ExtResource("4_c4wvf")
@@ -34,6 +24,27 @@ tracks/0/keys = {
 "values": [ExtResource("6_o60sd")]
 }
 
+[sub_resource type="Resource" id="Resource_qagdh"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox2.png"
+
+[sub_resource type="Resource" id="Resource_c4wvf"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox3.png"
+
+[sub_resource type="Resource" id="Resource_1rgox"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox4.png"
+
+[sub_resource type="Resource" id="Resource_6occq"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox5.png"
+
+[sub_resource type="Resource" id="Resource_b4n6f"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox6.png"
+
+[sub_resource type="Resource" id="Resource_van45"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox7.png"
+
+[sub_resource type="Resource" id="Resource_mqg6b"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox8.png"
+
 [sub_resource type="Animation" id="Animation_2m7l8"]
 resource_name = "darktextbox"
 length = 2.6667
@@ -49,8 +60,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 1.98, 2.33333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_o60sd"), ExtResource("7_3s5mu"), ExtResource("8_h48g6"), ExtResource("9_k0kpg"), ExtResource("10_i7yyr"), ExtResource("11_a5qqc"), ExtResource("12_bk4x5"), ExtResource("13_wh21d")]
+"values": [ExtResource("6_o60sd"), SubResource("Resource_qagdh"), SubResource("Resource_c4wvf"), SubResource("Resource_1rgox"), SubResource("Resource_6occq"), SubResource("Resource_b4n6f"), SubResource("Resource_van45"), SubResource("Resource_mqg6b")]
 }
+
+[sub_resource type="Resource" id="Resource_gupew"]
+metadata/__load_path__ = "res://Assets/Sprites/textbox/light/lighttextbox.png"
 
 [sub_resource type="Animation" id="Animation_i7yyr"]
 resource_name = "lighttextbox"
@@ -66,7 +80,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("14_k0kpg")]
+"values": [SubResource("Resource_gupew")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
@@ -152,10 +166,8 @@ visible = false
 modulate = Color(1, 1, 1, 0.337255)
 
 [node name="Refdark" type="Sprite2D" parent="References"]
-texture = ExtResource("14_h48g6")
 centered = false
 
 [node name="Reflight" type="Sprite2D" parent="References"]
 visible = false
-texture = ExtResource("15_k0kpg")
 centered = false
