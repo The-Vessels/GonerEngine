@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ENGINE_GONER"
-run/main_scene="uid://c5nrska6i801g"
+run/main_scene="uid://cy8co0c6bkwdr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"
