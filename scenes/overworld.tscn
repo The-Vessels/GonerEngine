@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy8co0c6bkwdr"]
+[gd_scene load_steps=5 format=3 uid="uid://cy8co0c6bkwdr"]
 
+[ext_resource type="Script" uid="uid://bcbdm7rrd0kky" path="res://scripts/overworld/overworld.gd" id="1_356oe"]
 [ext_resource type="Texture2D" uid="uid://dh0kyqfsvdhjk" path="res://assets/sprites/overworld/references/true.png" id="1_m1b5j"]
 [ext_resource type="SpriteFrames" uid="uid://dadmv7bxbi8o0" path="res://assets/sprites/overworld/menu/buttons.tres" id="2_u2ss0"]
 [ext_resource type="SpriteFrames" uid="uid://ch8lh5yhnlknr" path="res://assets/sprites/overworld/menu/desc.tres" id="3_356oe"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_356oe")
 
 [node name="True" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("1_m1b5j")
 centered = false
 

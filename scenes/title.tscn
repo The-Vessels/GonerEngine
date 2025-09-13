@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdhhevl4avjx6"]
+[gd_scene load_steps=10 format=3 uid="uid://cdhhevl4avjx6"]
 
 [ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
 [ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
+[ext_resource type="Script" uid="uid://xoes8x15g1bq" path="res://scripts/title/menu.gd" id="3_4rr2b"]
+[ext_resource type="Texture2D" uid="uid://dcgllram77pam" path="res://assets/sprites/title/IMAGE_SOUL_BLUR.png" id="3_b3w7a"]
+[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="5_yql1r"]
 
 [sub_resource type="Animation" id="Animation_b3w7a"]
 length = 0.001
@@ -42,6 +45,8 @@ _data = {
 &"title": SubResource("Animation_pyl7j")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pyl7j"]
+
 [node name="Title" type="Node2D"]
 
 [node name="ImageDepth" type="Sprite2D" parent="."]
@@ -63,3 +68,39 @@ libraries = {
 }
 autoplay = "title"
 speed_scale = 0.4
+
+[node name="Menu" type="Node2D" parent="."]
+script = ExtResource("3_4rr2b")
+speed = 100.0
+
+[node name="Soul" type="Sprite2D" parent="Menu"]
+position = Vector2(100, 176)
+scale = Vector2(2, 2)
+texture = ExtResource("3_b3w7a")
+centered = false
+offset = Vector2(-24, -2)
+
+[node name="Choices" type="VBoxContainer" parent="Menu"]
+material = SubResource("ShaderMaterial_pyl7j")
+offset_left = 100.0
+offset_top = 176.0
+offset_right = 196.0
+offset_bottom = 284.0
+
+[node name="Play" type="Label" parent="Menu/Choices"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_yql1r")
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+
+[node name="Config" type="Label" parent="Menu/Choices"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_yql1r")
+theme_override_font_sizes/font_size = 32
+text = "CONFIG"
+
+[node name="Quit" type="Label" parent="Menu/Choices"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_yql1r")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
