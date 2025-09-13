@@ -13,7 +13,6 @@ config_version=5
 config/name="ENGINE_GONER"
 run/main_scene="uid://cy8co0c6bkwdr"
 config/features=PackedStringArray("4.4", "Forward Plus")
-run/max_fps=30
 config/icon="res://icon.svg"
 
 [autoload]
@@ -63,6 +62,7 @@ down={
 [physics]
 
 common/physics_ticks_per_second=30
+common/physics_interpolation=true
 
 [rendering]
 
