@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://brd4vgwifopta"]
 
-[ext_resource type="Script" uid="uid://b4r2oqwuulttr" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bl3vgfjne481g" path="res://scripts/player2.gd" id="1_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://wm22e40g208r" path="res://assets/sprites/party/kriseskris/light/walk/down_1.png" id="2_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://dn27l2p6pwr2r" path="res://assets/sprites/party/kriseskris/light/walk/down_2.png" id="3_fulsm"]
 [ext_resource type="Texture2D" uid="uid://cmdwuacsxo6d5" path="res://assets/sprites/party/kriseskris/light/walk/down_3.png" id="4_4r5pv"]
@@ -125,12 +125,11 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_3vyb7")
+script = ExtResource("1_qfm1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g2els")
-animation = &"facing_down"
-frame_progress = 0.383174
+animation = &"walk_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qhqgy")
