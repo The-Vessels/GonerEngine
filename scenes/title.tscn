@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdhhevl4avjx6"]
+
+[ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
+[ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
+
+[sub_resource type="Animation" id="Animation_b3w7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(234, 30)]
+}
+
+[sub_resource type="Animation" id="Animation_pyl7j"]
+resource_name = "title"
+length = 4.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(234, 30), Vector2(234, 70), Vector2(234, 30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rr2b"]
+_data = {
+&"RESET": SubResource("Animation_b3w7a"),
+&"title": SubResource("Animation_pyl7j")
+}
+
+[node name="Title" type="Node2D"]
+
+[node name="ImageDepth" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_wosw1")
+centered = false
+flip_h = true
+
+[node name="Titletext" type="Sprite2D" parent="."]
+position = Vector2(234, 30)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p6dhs")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Titletext")
+libraries = {
+&"": SubResource("AnimationLibrary_4rr2b")
+}
+autoplay = "title"
+speed_scale = 0.4
