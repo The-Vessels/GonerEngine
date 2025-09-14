@@ -29,7 +29,8 @@ func _input(event):
 	if event.is_action_pressed('confirm'):
 		if choice == CHOICE_PLAY:
 			go_to_overworld()
-			
+		elif choice == CHOICE_QUIT:
+			get_tree().quit()
 
 func _process(delta: float) -> void:
 	var pos := get_choice(choice).get_screen_position()

@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdhhevl4avjx6"]
+[gd_scene load_steps=13 format=3 uid="uid://cdhhevl4avjx6"]
 
 [ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
+[ext_resource type="Script" uid="uid://bybm0vcrvcat5" path="res://scripts/title/title.gd" id="1_yql1r"]
 [ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
 [ext_resource type="Script" uid="uid://xoes8x15g1bq" path="res://scripts/title/menu.gd" id="3_4rr2b"]
 [ext_resource type="Texture2D" uid="uid://dcgllram77pam" path="res://assets/sprites/title/IMAGE_SOUL_BLUR.png" id="3_b3w7a"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="5_yql1r"]
+[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="6_yql1r"]
 
 [sub_resource type="Animation" id="Animation_b3w7a"]
 length = 0.001
@@ -47,7 +49,16 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyl7j"]
 
+[sub_resource type="GDScript" id="GDScript_ia1n6"]
+script/source = "extends AudioStreamPlayer
+
+func _ready():
+	var tween = create_tween()
+	tween.tween_property(self, 'pitch_scale', 1.0, 5.0)
+"
+
 [node name="Title" type="Node2D"]
+script = ExtResource("1_yql1r")
 
 [node name="ImageDepth" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -104,3 +115,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_yql1r")
 theme_override_font_sizes/font_size = 32
 text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yql1r")
+autoplay = true
+parameters/looping = true
+script = SubResource("GDScript_ia1n6")
