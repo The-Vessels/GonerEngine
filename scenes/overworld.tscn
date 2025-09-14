@@ -1,58 +1,102 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8co0c6bkwdr"]
+[gd_scene load_steps=9 format=3 uid="uid://cy8co0c6bkwdr"]
 
-[ext_resource type="Script" uid="uid://bcbdm7rrd0kky" path="res://scripts/overworld/overworld.gd" id="1_356oe"]
 [ext_resource type="Texture2D" uid="uid://dh0kyqfsvdhjk" path="res://assets/sprites/overworld/references/true.png" id="1_m1b5j"]
 [ext_resource type="SpriteFrames" uid="uid://dadmv7bxbi8o0" path="res://assets/sprites/overworld/menu/buttons.tres" id="2_u2ss0"]
 [ext_resource type="SpriteFrames" uid="uid://ch8lh5yhnlknr" path="res://assets/sprites/overworld/menu/desc.tres" id="3_356oe"]
+[ext_resource type="Script" uid="uid://3q1thmgous1v" path="res://scripts/overworld/dark_menu.gd" id="3_eab5i"]
 [ext_resource type="AudioStream" uid="uid://c2ntcovc1sqwi" path="res://assets/music/titan_battle.ogg" id="5_3gvrs"]
 
+[sub_resource type="Animation" id="Animation_fkyvp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eab5i"]
+resource_name = "fade_in"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjxaj"]
+_data = {
+&"RESET": SubResource("Animation_fkyvp"),
+&"fade_in": SubResource("Animation_eab5i")
+}
+
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_356oe")
+modulate = Color(0, 0, 0, 1)
 
 [node name="True" type="Sprite2D" parent="."]
 texture = ExtResource("1_m1b5j")
 centered = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="DarkMenu" type="ColorRect" parent="."]
 offset_right = 640.0
 offset_bottom = 80.0
 color = Color(0, 0, 0, 1)
+script = ExtResource("3_eab5i")
 
-[node name="Item" type="AnimatedSprite2D" parent="ColorRect"]
+[node name="Description" type="AnimatedSprite2D" parent="DarkMenu"]
+position = Vector2(20, 24)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_356oe")
+centered = false
+
+[node name="Item" type="AnimatedSprite2D" parent="DarkMenu"]
 position = Vector2(120, 20)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u2ss0")
 frame = 8
 centered = false
 
-[node name="Equip" type="AnimatedSprite2D" parent="ColorRect"]
+[node name="Equip" type="AnimatedSprite2D" parent="DarkMenu"]
 position = Vector2(220, 20)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u2ss0")
 frame = 1
 centered = false
 
-[node name="Tech" type="AnimatedSprite2D" parent="ColorRect"]
+[node name="Tech" type="AnimatedSprite2D" parent="DarkMenu"]
 position = Vector2(320, 20)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u2ss0")
 frame = 2
 centered = false
 
-[node name="Config" type="AnimatedSprite2D" parent="ColorRect"]
+[node name="Config" type="AnimatedSprite2D" parent="DarkMenu"]
 position = Vector2(420, 20)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u2ss0")
 frame = 3
 centered = false
 
-[node name="Description" type="AnimatedSprite2D" parent="ColorRect"]
-position = Vector2(20, 24)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("3_356oe")
-centered = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3gvrs")
 autoplay = true
 parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qjxaj")
+}
+autoplay = "fade_in"

@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdhhevl4avjx6"]
+[gd_scene load_steps=14 format=3 uid="uid://cdhhevl4avjx6"]
 
 [ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
-[ext_resource type="Script" uid="uid://bybm0vcrvcat5" path="res://scripts/title/title.gd" id="1_yql1r"]
 [ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
 [ext_resource type="Script" uid="uid://xoes8x15g1bq" path="res://scripts/title/menu.gd" id="3_4rr2b"]
 [ext_resource type="Texture2D" uid="uid://dcgllram77pam" path="res://assets/sprites/title/IMAGE_SOUL_BLUR.png" id="3_b3w7a"]
@@ -44,21 +43,145 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4rr2b"]
 _data = {
 &"RESET": SubResource("Animation_b3w7a"),
-&"title": SubResource("Animation_pyl7j")
+&"titletext_move": SubResource("Animation_pyl7j")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyl7j"]
 
-[sub_resource type="GDScript" id="GDScript_ia1n6"]
-script/source = "extends AudioStreamPlayer
+[sub_resource type="Animation" id="Animation_4rr2b"]
+resource_name = "fade_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.02, 0.98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ImageDepth:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Titletext:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/Soul:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.25, 4.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menu/Choices:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-func _ready():
-	var tween = create_tween()
-	tween.tween_property(self, 'pitch_scale', 1.0, 5.0)
-"
+[sub_resource type="Animation" id="Animation_yql1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ImageDepth:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Titletext:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/Soul:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menu/Choices:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ia1n6"]
+_data = {
+&"RESET": SubResource("Animation_yql1r"),
+&"fade_in": SubResource("Animation_4rr2b")
+}
 
 [node name="Title" type="Node2D"]
-script = ExtResource("1_yql1r")
 
 [node name="ImageDepth" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -72,12 +195,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_p6dhs")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Titletext")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Titletext"]
 libraries = {
 &"": SubResource("AnimationLibrary_4rr2b")
 }
-autoplay = "title"
+autoplay = "titletext_move"
 speed_scale = 0.4
 
 [node name="Menu" type="Node2D" parent="."]
@@ -118,6 +240,12 @@ text = "QUIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_yql1r")
+pitch_scale = 0.98
 autoplay = true
 parameters/looping = true
-script = SubResource("GDScript_ia1n6")
+
+[node name="FadeInPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ia1n6")
+}
+autoplay = "fade_in"

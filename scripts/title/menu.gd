@@ -3,6 +3,7 @@ extends Node2D
 @export var speed := 1.0
 var choice := 0
 @onready var n_choices = $Choices.get_child_count()
+@onready var fade_in_player: AnimationPlayer = get_node('../FadeInPlayer')
 
 enum {
 	CHOICE_PLAY,
@@ -18,6 +19,12 @@ func _ready():
 	get_choice(choice).modulate = Color.YELLOW
 
 func _input(event):
+	# Stop animation if key is pressed
+	# TODO i don't know why it triggers when the
+	# mouse is pressed
+	if fade_in_player.is_playing() and event.is_action_type():
+		fade_in_player.play('RESET')
+	
 	var old_choice := choice
 	if event.is_action_pressed('down'):
 		choice = posmod(choice + 1, CHOICE_NUMBER)
