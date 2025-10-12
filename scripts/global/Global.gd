@@ -4,3 +4,17 @@ extends Node
 # https://store.steampowered.com/app/1671210/DELTARUNE/
 enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_LIGHT
+
+var asp := AudioStreamPlayer.new()
+
+func _ready():
+	setup_discord_rpc()
+
+func setup_discord_rpc():
+	DiscordRPC.app_id = 1416858009635913738
+	DiscordRPC.details = 'Playing GonerEngine'
+	DiscordRPC.state = 'Somewhere in GonerEngine'
+	DiscordRPC.large_image = 'gonerenginelogo'
+	DiscordRPC.large_image_text = 'Gaster!!!'
+	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	DiscordRPC.refresh()
