@@ -25,25 +25,25 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Resource" id="Resource_qagdh"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox2.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox2.png"
 
 [sub_resource type="Resource" id="Resource_c4wvf"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox3.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox3.png"
 
 [sub_resource type="Resource" id="Resource_1rgox"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox4.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox4.png"
 
 [sub_resource type="Resource" id="Resource_6occq"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox5.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox5.png"
 
 [sub_resource type="Resource" id="Resource_b4n6f"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox6.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox6.png"
 
 [sub_resource type="Resource" id="Resource_van45"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox7.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox7.png"
 
 [sub_resource type="Resource" id="Resource_mqg6b"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/dark/darktextbox8.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox8.png"
 
 [sub_resource type="Animation" id="Animation_2m7l8"]
 resource_name = "darktextbox"
@@ -64,7 +64,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Resource" id="Resource_gupew"]
-metadata/__load_path__ = "res://Assets/Sprites/textbox/light/lighttextbox.png"
+metadata/__load_path__ = "res://assets/sprites/textbox/light/lighttextbox.png"
 
 [sub_resource type="Animation" id="Animation_i7yyr"]
 resource_name = "lighttextbox"

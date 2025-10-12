@@ -1,12 +1,12 @@
 [gd_resource type="AnimationLibrary" load_steps=10 format=3 uid="uid://bl7s47b4qjqif"]
 
-[ext_resource type="Texture2D" uid="uid://tgbujqml5yls" path="res://Assets/Sprites/textbox/dark/darktextbox1.png" id="1_2pxnm"]
-[ext_resource type="Texture2D" uid="uid://dw7fb852la77x" path="res://Assets/Sprites/textbox/dark/darktextbox2.png" id="2_xb05p"]
-[ext_resource type="Texture2D" uid="uid://bspempb7mrv04" path="res://Assets/Sprites/textbox/dark/darktextbox3.png" id="3_o0yye"]
-[ext_resource type="Texture2D" uid="uid://byy111kfgl225" path="res://Assets/Sprites/textbox/dark/darktextbox4.png" id="4_kgpnm"]
-[ext_resource type="Texture2D" uid="uid://d0b6mrt5p734r" path="res://Assets/Sprites/textbox/dark/darktextbox5.png" id="5_41xys"]
-[ext_resource type="Texture2D" uid="uid://bhmhjmrvemlck" path="res://Assets/Sprites/textbox/dark/darktextbox6.png" id="6_uk53w"]
-[ext_resource type="Texture2D" uid="uid://1kage02rhxkl" path="res://Assets/Sprites/textbox/dark/darktextbox7.png" id="7_0eqh7"]
+[ext_resource type="Texture2D" uid="uid://tgbujqml5yls" path="res://assets/sprites/textbox/dark/darktextbox1.png" id="1_2pxnm"]
+[ext_resource type="Texture2D" uid="uid://dw7fb852la77x" path="res://assets/sprites/textbox/dark/darktextbox2.png" id="2_xb05p"]
+[ext_resource type="Texture2D" uid="uid://bspempb7mrv04" path="res://assets/sprites/textbox/dark/darktextbox3.png" id="3_o0yye"]
+[ext_resource type="Texture2D" uid="uid://byy111kfgl225" path="res://assets/sprites/textbox/dark/darktextbox4.png" id="4_kgpnm"]
+[ext_resource type="Texture2D" uid="uid://d0b6mrt5p734r" path="res://assets/sprites/textbox/dark/darktextbox5.png" id="5_41xys"]
+[ext_resource type="Texture2D" uid="uid://bhmhjmrvemlck" path="res://assets/sprites/textbox/dark/darktextbox6.png" id="6_uk53w"]
+[ext_resource type="Texture2D" uid="uid://1kage02rhxkl" path="res://assets/sprites/textbox/dark/darktextbox7.png" id="7_0eqh7"]
 
 [sub_resource type="Animation" id="Animation_8kreq"]
 resource_name = "darktextbox"
