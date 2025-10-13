@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://carwwxyhhsbfj"
-path="res://.godot/imported/down_2.png-e1b42f74b83653bc3064c76aa3c6a413.ctex"
+uid="uid://b3fecni77upt2"
+path="res://.godot/imported/buttonref.png-f741884a58620fda11d265838b1d41ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/party/kriseskris/dark/walk/down_2.png"
-dest_files=["res://.godot/imported/down_2.png-e1b42f74b83653bc3064c76aa3c6a413.ctex"]
+source_file="res://assets/buttons/buttonref.png"
+dest_files=["res://.godot/imported/buttonref.png-f741884a58620fda11d265838b1d41ca.ctex"]
 
 [params]
 

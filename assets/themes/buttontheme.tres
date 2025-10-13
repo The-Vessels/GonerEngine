@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dlf02a788g6br"]
+
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="1_oltr1"]
+[ext_resource type="Script" uid="uid://wnnicqgh5b66" path="res://scripts/buttontest/style_box_soul.gd" id="1_stv6m"]
+
+[sub_resource type="StyleBox" id="StyleBox_stv6m"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("1_stv6m")
+soul_offset = null
+metadata/_custom_type_script = "uid://wnnicqgh5b66"
+
+[sub_resource type="StyleBox" id="StyleBox_dsdwh"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("1_stv6m")
+soul_offset = null
+metadata/_custom_type_script = "uid://wnnicqgh5b66"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stv6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjiex"]
+
+[resource]
+default_font = ExtResource("1_oltr1")
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 0
+Button/constants/line_spacing = 0
+Button/styles/focus = SubResource("StyleBox_stv6m")
+Button/styles/hover = SubResource("StyleBox_dsdwh")
+Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
+Button/styles/pressed = SubResource("StyleBoxEmpty_xjiex")
+VBoxContainer/constants/separation = 0
