@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://brd4vgwifopta"]
+[gd_scene load_steps=5 format=3 uid="uid://brd4vgwifopta"]
 
 [ext_resource type="Script" uid="uid://c2s1axou4qut5" path="res://scripts/player3.gd" id="1_g2els"]
 [ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://assets/sprites/party/susie/susie_animations.tres" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://bqrjh2iyhh6p2" path="res://assets/sounds/example/footstep.wav" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 
@@ -16,3 +17,6 @@ speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="Footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qhqgy")

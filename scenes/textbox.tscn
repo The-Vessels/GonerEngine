@@ -1,10 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5nrska6i801g"]
+[gd_scene load_steps=20 format=3 uid="uid://c5nrska6i801g"]
 
 [ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/textbox/please.gd" id="1_o60sd"]
 [ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://assets/sprites/sincere.png" id="3_g5d5p"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="4_c4wvf"]
 [ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://assets/sounds/voice/susie.wav" id="4_qagdh"]
+[ext_resource type="Texture2D" uid="uid://cs4mn4gjwhqtt" path="res://assets/sprites/textbox/dark/darktextbox2.png" id="6_3s5mu"]
 [ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://assets/sprites/textbox/dark/darktextbox1.png" id="6_o60sd"]
+[ext_resource type="Texture2D" uid="uid://cf4oltvj3yacv" path="res://assets/sprites/textbox/dark/darktextbox3.png" id="7_h48g6"]
+[ext_resource type="Texture2D" uid="uid://beqmacfjuy86v" path="res://assets/sprites/textbox/dark/darktextbox4.png" id="8_k0kpg"]
+[ext_resource type="Texture2D" uid="uid://dka0ivcx3t3sd" path="res://assets/sprites/textbox/dark/darktextbox5.png" id="9_i7yyr"]
+[ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://assets/sprites/textbox/dark/darktextbox6.png" id="10_a5qqc"]
+[ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://assets/sprites/textbox/dark/darktextbox7.png" id="11_bk4x5"]
+[ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://assets/sprites/textbox/dark/darktextbox8.png" id="12_wh21d"]
+[ext_resource type="Texture2D" uid="uid://ho7tcbnd3xlt" path="res://assets/sprites/textbox/light/lighttextbox.png" id="13_2m7l8"]
 
 [sub_resource type="FontVariation" id="FontVariation_o60sd"]
 base_font = ExtResource("4_c4wvf")
@@ -24,26 +32,8 @@ tracks/0/keys = {
 "values": [ExtResource("6_o60sd")]
 }
 
-[sub_resource type="Resource" id="Resource_qagdh"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox2.png"
-
-[sub_resource type="Resource" id="Resource_c4wvf"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox3.png"
-
-[sub_resource type="Resource" id="Resource_1rgox"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox4.png"
-
-[sub_resource type="Resource" id="Resource_6occq"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox5.png"
-
-[sub_resource type="Resource" id="Resource_b4n6f"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox6.png"
-
 [sub_resource type="Resource" id="Resource_van45"]
 metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox7.png"
-
-[sub_resource type="Resource" id="Resource_mqg6b"]
-metadata/__load_path__ = "res://assets/sprites/textbox/dark/darktextbox8.png"
 
 [sub_resource type="Animation" id="Animation_2m7l8"]
 resource_name = "darktextbox"
@@ -57,14 +47,11 @@ tracks/0/path = NodePath("NinePatchRect:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 1.98, 2.33333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667, 1, 1.3333334, 1.6666667, 1.98, 2, 2.3333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_o60sd"), SubResource("Resource_qagdh"), SubResource("Resource_c4wvf"), SubResource("Resource_1rgox"), SubResource("Resource_6occq"), SubResource("Resource_b4n6f"), SubResource("Resource_van45"), SubResource("Resource_mqg6b")]
+"values": [ExtResource("6_o60sd"), ExtResource("6_3s5mu"), ExtResource("7_h48g6"), ExtResource("8_k0kpg"), ExtResource("9_i7yyr"), ExtResource("10_a5qqc"), SubResource("Resource_van45"), ExtResource("11_bk4x5"), ExtResource("12_wh21d")]
 }
-
-[sub_resource type="Resource" id="Resource_gupew"]
-metadata/__load_path__ = "res://assets/sprites/textbox/light/lighttextbox.png"
 
 [sub_resource type="Animation" id="Animation_i7yyr"]
 resource_name = "lighttextbox"
@@ -80,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("Resource_gupew")]
+"values": [ExtResource("13_2m7l8")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
@@ -98,7 +85,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o60sd")
-text = "* Dreemurr residence, who is this?"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -136,17 +122,17 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("4_c4wvf")
 theme_override_font_sizes/font_size = 32
-text = "*"
+text = " "
 autowrap_mode = 1
 
 [node name="dialoguetext" type="RichTextLabel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(352, 96)
 layout_mode = 2
 theme_override_constants/line_separation = 4
+theme_override_constants/paragraph_separation = 4
 theme_override_fonts/normal_font = SubResource("FontVariation_o60sd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Dreemurr residence, who is this?"
 scroll_active = false
 autowrap_mode = 2
 tab_size = 2

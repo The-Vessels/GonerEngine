@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy8co0c6bkwdr"]
+[gd_scene load_steps=11 format=3 uid="uid://cy8co0c6bkwdr"]
 
-[ext_resource type="Texture2D" uid="uid://dh0kyqfsvdhjk" path="res://assets/sprites/overworld/references/true.png" id="1_m1b5j"]
 [ext_resource type="SpriteFrames" uid="uid://dadmv7bxbi8o0" path="res://assets/sprites/overworld/menu/buttons.tres" id="2_u2ss0"]
 [ext_resource type="SpriteFrames" uid="uid://ch8lh5yhnlknr" path="res://assets/sprites/overworld/menu/desc.tres" id="3_356oe"]
 [ext_resource type="Script" uid="uid://3q1thmgous1v" path="res://scripts/overworld/dark_menu.gd" id="3_eab5i"]
-[ext_resource type="AudioStream" uid="uid://c2ntcovc1sqwi" path="res://assets/music/titan_battle.ogg" id="5_3gvrs"]
+[ext_resource type="AudioStream" uid="uid://bm8itkv0jj3mv" path="res://assets/sounds/example/happytown.ogg" id="5_fkyvp"]
+[ext_resource type="AudioStream" uid="uid://7cxlp5wcft1p" path="res://assets/sounds/example/troubledingle.ogg" id="6_e184d"]
+[ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/player.tscn" id="6_eab5i"]
+[ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://example/wingledingle.gd" id="6_qjxaj"]
 
 [sub_resource type="Animation" id="Animation_fkyvp"]
 length = 0.001
@@ -43,13 +45,26 @@ _data = {
 &"fade_in": SubResource("Animation_eab5i")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="True" type="Sprite2D" parent="."]
-texture = ExtResource("1_m1b5j")
-centered = false
+[node name="True" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3019608, 0.3019608, 0.3019608, 1)
 
 [node name="DarkMenu" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 80.0
 color = Color(0, 0, 0, 1)
@@ -90,12 +105,25 @@ frame = 3
 centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_3gvrs")
+stream = ExtResource("5_fkyvp")
+volume_db = 0.06
+pitch_scale = 0.13
 autoplay = true
 parameters/looping = true
+
+[node name="DinglePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e184d")
+volume_db = -27.582
+pitch_scale = 3.02
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_qjxaj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_qjxaj")
 }
 autoplay = "fade_in"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_eab5i")]
+position = Vector2(348, -61)

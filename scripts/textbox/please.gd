@@ -50,6 +50,19 @@ func _ready():
 	
 	set_text(text)
 	set_asterisks()
+	
+	animate_text()
+
+
+func animate_text():
+	var text: String = dia.get_parsed_text()
+	print(text)
+	dia.visible_characters = 0
+	while dia.visible_characters < dia.get_total_character_count():
+		dia.visible_characters += 1
+		if text[dia.visible_characters - 1] != ' ':
+			$talkblip.play()
+		await get_tree().physics_frame
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)

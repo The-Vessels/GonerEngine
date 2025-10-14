@@ -2,10 +2,18 @@ extends CharacterBody2D
 
 var speed := 90.0
 var facing = "down"
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+var happy_frames   := preload("res://assets/sprites/party/susie/susie_animations.tres")
+var unhappy_frames := preload("res://assets/sprites/party/susie/susie_unhappy_animations.tres")
+@onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
+var old_frame := 0
 func set_frame(frame: int):
 	sprite.frame = frame
+	if frame != old_frame:
+		if frame == 1 or frame == 3:
+			$Footstep.play()
+	old_frame = frame
+
 func set_anim(anim: String):
 	var old_frame := sprite.frame
 	sprite.animation = anim
@@ -53,8 +61,12 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed('down'):
 		move.y = 1.0
 	
+	if Input.is_action_pressed('confirm'):
+		sprite.sprite_frames = happy_frames
+	elif Input.is_action_pressed('cancel'):
+		sprite.sprite_frames = unhappy_frames
+	
 	var walk := (move.x != 0.0) or (move.y != 0.0)
-	print(walkbuffer)
 	if walk:
 		walkbuffer = 6.0
 	if walkbuffer > 3.0:
