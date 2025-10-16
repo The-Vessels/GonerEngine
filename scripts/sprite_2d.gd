@@ -17,4 +17,4 @@ func _draw() -> void:
 	var box_pos = -box_size / 2.0
 	var rect = Rect2(box_pos, box_size)
 	draw_rect(rect, Color.GREEN, false, 4.0)
-	draw_rect(rect, Color.BLACK, true)
+	#draw_rect(rect, Color.BLACK, true)
