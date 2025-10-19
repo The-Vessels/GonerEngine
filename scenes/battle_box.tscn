@@ -17,16 +17,19 @@ z_index = 1
 script = ExtResource("2_ehgqo")
 box_size = Vector2(200, 200)
 
-[node name="Button" type="Button" parent="."]
+[node name="OpenButton" type="Button" parent="."]
 offset_left = 103.0
 offset_top = 146.0
 offset_right = 201.0
 offset_bottom = 177.0
 text = "OPEN"
 
-[node name="Button2" type="Button" parent="."]
+[node name="CloseButton" type="Button" parent="."]
 offset_left = 120.0
 offset_top = 91.0
 offset_right = 218.0
 offset_bottom = 122.0
 text = "CLOSE"
+
+[connection signal="pressed" from="OpenButton" to="." method="_on_open_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
