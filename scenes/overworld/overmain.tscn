@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp5p1tf3br3qs"]
+
+[ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/overworld/player.tscn" id="1_0em7b"]
+[ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
+
+[node name="Main" type="Node2D"]
+
+[node name="SceneContainer" type="Node2D" parent="."]
+
+[node name="Hometown" parent="SceneContainer" instance=ExtResource("2_2n5go")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_0em7b")]

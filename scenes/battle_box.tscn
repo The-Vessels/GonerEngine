@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl514bwocxesm"]
+
+[ext_resource type="PackedScene" uid="uid://dlxhexfpx43vw" path="res://scenes/battle_buttons.tscn" id="1_th5wx"]
+[ext_resource type="Texture2D" uid="uid://baqom7q1ahs4l" path="res://assets/sprites/battle.png" id="2_ehgqo"]
+[ext_resource type="Texture2D" uid="uid://2xrf7d3rsof5" path="res://assets/sprites/kris/battle/head/spr_headkris_5.png" id="3_qipex"]
+[ext_resource type="Texture2D" uid="uid://bay3s8uxf18ux" path="res://assets/sprites/kris/battle/name.png" id="4_rqlex"]
+[ext_resource type="Texture2D" uid="uid://1wtekjc515uk" path="res://assets/sprites/battle/hpslash.png" id="5_7l6un"]
+[ext_resource type="Texture2D" uid="uid://buqxyog4aayfy" path="res://assets/sprites/battle/hp.png" id="6_jb01c"]
+[ext_resource type="FontFile" uid="uid://ch1ggge7v052v" path="res://assets/fonts/hpnumbers.png" id="7_b4ef8"]
+[ext_resource type="Texture2D" uid="uid://d3iukq610xw20" path="res://assets/sprites/misc/spr_pixel_white.png" id="8_g23dv"]
+
+[node name="BattleBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Battle2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(226, -16)
+texture = ExtResource("2_ehgqo")
+centered = false
+region_enabled = true
+region_rect = Rect2(737, 62, 212, 36)
+
+[node name="Battle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(0, -39)
+texture = ExtResource("2_ehgqo")
+centered = false
+region_enabled = true
+region_rect = Rect2(690, 279, 213, 71)
+
+[node name="BattleButtons" parent="." instance=ExtResource("1_th5wx")]
+layout_mode = 0
+offset_left = 15.0
+offset_right = 15.0
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 226.0
+offset_top = -16.0
+offset_right = 437.0
+offset_bottom = 18.0
+
+[node name="Head" type="Sprite2D" parent="Control"]
+position = Vector2(12, 9)
+texture = ExtResource("3_qipex")
+centered = false
+
+[node name="Name" type="Sprite2D" parent="Control"]
+position = Vector2(50, 12)
+texture = ExtResource("4_rqlex")
+centered = false
+
+[node name="Hpslash" type="Sprite2D" parent="Control"]
+position = Vector2(158, 5)
+texture = ExtResource("5_7l6un")
+centered = false
+
+[node name="Hp" type="Sprite2D" parent="Control"]
+position = Vector2(108, 20)
+texture = ExtResource("6_jb01c")
+centered = false
+
+[node name="MaxHpLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 7.0
+offset_right = 204.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("7_b4ef8")
+theme_override_font_sizes/font_size = 10
+text = "999"
+horizontal_alignment = 2
+
+[node name="HpLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 7.0
+offset_right = 159.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("7_b4ef8")
+theme_override_font_sizes/font_size = 10
+text = "999"
+horizontal_alignment = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 20.0
+offset_right = 203.0
+offset_bottom = 29.0
+value = 30.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_g23dv")
+texture_progress = ExtResource("8_g23dv")
+tint_under = Color(0.5019608, 0, 0, 1)

@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bqrjh2iyhh6p2" path="res://assets/sounds/example/footstep.wav" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(20, 7)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -16,6 +17,7 @@ animation = &"walk_right"
 speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19.5)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Footstep" type="AudioStreamPlayer" parent="."]

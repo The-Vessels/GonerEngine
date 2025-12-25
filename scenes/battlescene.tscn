@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene load_steps=58 format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="1_bm4ed"]
@@ -6,12 +6,16 @@
 [ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/sprite_2d.gd" id="2_30i1k"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://scripts/background.gd" id="2_kr7th"]
 [ext_resource type="Texture2D" uid="uid://baqom7q1ahs4l" path="res://assets/sprites/battle.png" id="6_wj8kd"]
-[ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scenes/battle_buttons.gd" id="7_bg738"]
+[ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scripts/battle/battle_buttons_OLD.gd" id="7_bg738"]
+[ext_resource type="Texture2D" uid="uid://r5m0aamh52ih" path="res://assets/sprites/battle/tensionbar/cutout_inverted.png" id="7_jfvy1"]
+[ext_resource type="Script" uid="uid://cbor0tqjg3hwu" path="res://scripts/battle/tension_bar_draw.gd" id="7_jh60p"]
 [ext_resource type="Texture2D" uid="uid://cmpcgi5pe6o24" path="res://assets/sprites/battle_buttons.png" id="7_r612u"]
+[ext_resource type="Texture2D" uid="uid://cxus3u4wbd8y4" path="res://assets/sprites/battle/tensionbar/redbar.png" id="8_6yt3o"]
+[ext_resource type="Texture2D" uid="uid://bixljevuclud1" path="res://assets/sprites/battle/tensionbar/blackbar.png" id="8_jfvy1"]
 [ext_resource type="Script" uid="uid://blsrkjhl1vvtm" path="res://scripts/slidything.gd" id="8_jh60p"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="9_reqto"]
 [ext_resource type="FontFile" uid="uid://ch1ggge7v052v" path="res://assets/fonts/hpnumbers.png" id="9_yehbw"]
-[ext_resource type="Texture2D" uid="uid://buqxyog4aayfy" path="res://assets/sprites/hp.png" id="11_7lfwp"]
+[ext_resource type="Texture2D" uid="uid://buqxyog4aayfy" path="res://assets/sprites/battle/hp.png" id="11_7lfwp"]
 [ext_resource type="Texture2D" uid="uid://cum1ojl1j35d5" path="res://assets/sprites/kris/battle/head/spr_headkris_0.png" id="12_2vkn2"]
 [ext_resource type="Texture2D" uid="uid://og33q0vs23if" path="res://assets/sprites/kris/battle/head/spr_headkris_1.png" id="13_smdh1"]
 [ext_resource type="Texture2D" uid="uid://dp7r8ogfhf5kf" path="res://assets/sprites/kris/battle/head/spr_headkris_2.png" id="14_jh60p"]
@@ -25,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cggup4hci8hcu" path="res://assets/sprites/kris/battle/head/spr_headkris_10.png" id="22_ohmei"]
 [ext_resource type="Texture2D" uid="uid://bay3s8uxf18ux" path="res://assets/sprites/kris/battle/name.png" id="23_5qs4g"]
 [ext_resource type="Texture2D" uid="uid://1wtekjc515uk" path="res://assets/sprites/battle/hpslash.png" id="24_t13wt"]
+[ext_resource type="Shader" uid="uid://tykmv775gau5" path="res://shaders/battleboxbackground.gdshader" id="30_2ca6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm4ed"]
 shader = ExtResource("1_bm4ed")
@@ -216,6 +221,7 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh60p"]
+shader = ExtResource("30_2ca6u")
 
 [sub_resource type="Animation" id="Animation_jh60p"]
 length = 0.001
@@ -307,11 +313,18 @@ script = ExtResource("2_30i1k")
 box_size = Vector2(200, 200)
 
 [node name="Button" type="Button" parent="."]
-offset_left = 450.0
-offset_top = 303.0
-offset_right = 548.0
-offset_bottom = 334.0
-text = "Click here!!!"
+offset_left = 84.0
+offset_top = 105.0
+offset_right = 182.0
+offset_bottom = 136.0
+text = "Increment"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 84.0
+offset_top = 146.0
+offset_right = 182.0
+offset_bottom = 177.0
+text = "Decrement"
 
 [node name="QuitLabel" type="Label" parent="."]
 offset_left = 16.0
@@ -325,6 +338,23 @@ visible = false
 position = Vector2(805, 916)
 texture = ExtResource("6_wj8kd")
 
+[node name="TensionBar" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(38, 41)
+texture = ExtResource("7_jfvy1")
+centered = false
+
+[node name="Redbar" type="Sprite2D" parent="TensionBar"]
+texture = ExtResource("8_6yt3o")
+centered = false
+
+[node name="Draw" type="Sprite2D" parent="TensionBar"]
+script = ExtResource("7_jh60p")
+
+[node name="Blackbar" type="Sprite2D" parent="TensionBar"]
+texture = ExtResource("8_jfvy1")
+centered = false
+
 [node name="BattleText" type="Label" parent="."]
 offset_left = 30.0
 offset_top = 375.0
@@ -332,19 +362,17 @@ offset_right = 592.0
 offset_bottom = 407.0
 theme = SubResource("Theme_bg738")
 theme_override_fonts/font = ExtResource("9_reqto")
-text = "* togore murderer knew about the brand new day. say that again? haha"
+text = "* you feel you're"
 autowrap_mode = 2
 tab_stops = PackedFloat32Array(32)
-visible_characters = 35
 visible_characters_behavior = 2
-visible_ratio = 0.514706
 
 [node name="Node" type="Node2D" parent="."]
 script = ExtResource("8_jh60p")
 
 [node name="BattleButtons" type="Node2D" parent="Node"]
 z_index = 1
-position = Vector2(684, 256.002)
+position = Vector2(426, 257.002)
 script = ExtResource("7_bg738")
 
 [node name="Fight" type="AnimatedSprite2D" parent="Node/BattleButtons"]
@@ -376,17 +404,17 @@ frame = 4
 centered = false
 
 [node name="BottomRect" type="ColorRect" parent="Node"]
-offset_left = 669.0
-offset_top = 287.001
-offset_right = 882.0
-offset_bottom = 290.001
+offset_left = 411.0
+offset_top = 288.001
+offset_right = 624.0
+offset_bottom = 291.001
 color = Color(0.2, 0.12549, 0.2, 1)
 
 [node name="BottomRect2" type="ColorRect" parent="Node"]
-offset_left = 669.0
-offset_top = 255.0
-offset_right = 882.0
-offset_bottom = 290.0
+offset_left = 411.0
+offset_top = 256.0
+offset_right = 624.0
+offset_bottom = 291.0
 color = Color(1, 0.184314, 0.501961, 1)
 
 [node name="BorderRect" type="ColorRect" parent="Node"]
@@ -458,10 +486,10 @@ horizontal_alignment = 2
 
 [node name="BottomBlackRect" type="ColorRect" parent="Node"]
 material = SubResource("ShaderMaterial_jh60p")
-offset_left = 671.0
-offset_top = 256.0
-offset_right = 880.0
-offset_bottom = 290.0
+offset_left = 413.0
+offset_top = 257.0
+offset_right = 622.0
+offset_bottom = 291.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
@@ -470,4 +498,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="Node"]
-position = Vector2(773, 260)
+enabled = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -15,3 +15,10 @@ func _input(event):
 		var reset_tween = create_tween()
 		reset_tween.tween_property($QuitLabel, 'modulate:a', 0.0, 0.1)
 		reset_tween.tween_callback(func(): $QuitLabel.text = 'QUITTING')
+
+
+func _on_button_pressed() -> void:
+	Global.tension += 40
+
+func _on_button_2_pressed() -> void:
+	Global.tension -= 40

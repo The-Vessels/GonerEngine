@@ -5,6 +5,8 @@ extends Node
 enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_LIGHT
 
+var tension := 0
+var maxtension := 250
 var asp := AudioStreamPlayer.new()
 
 func _ready():
