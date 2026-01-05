@@ -17,9 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoulRefrence="*res://scripts/SoulRefrence.gd"
-Global="*res://scripts/global/Global.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+Global="*res://scenes/global.tscn"
 
 [display]
 

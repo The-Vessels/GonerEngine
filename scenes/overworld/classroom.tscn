@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbopyi6jxh138"]
+
+[ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://assets/sprites/tiles/unused.png" id="1_gobvo"]
+[ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_165k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gobvo"]
+size = Vector2(80, 79)
+
+[node name="Classroom" type="Node2D"]
+
+[node name="Unused" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_gobvo")
+centered = false
+
+[node name="TeleportArea" type="Area2D" parent="."]
+script = ExtResource("2_165k2")
+destination_scene = "uid://d2se1oi1rtnix"
+metadata/_custom_type_script = "uid://cnspaa06cvy5v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea"]
+position = Vector2(320, 372.5)
+shape = SubResource("RectangleShape2D_gobvo")

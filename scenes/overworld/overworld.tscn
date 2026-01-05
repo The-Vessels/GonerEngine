@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://3q1thmgous1v" path="res://scripts/overworld/dark_menu.gd" id="3_eab5i"]
 [ext_resource type="AudioStream" uid="uid://bm8itkv0jj3mv" path="res://assets/sounds/example/happytown.ogg" id="5_fkyvp"]
 [ext_resource type="AudioStream" uid="uid://7cxlp5wcft1p" path="res://assets/sounds/example/troubledingle.ogg" id="6_e184d"]
-[ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/player.tscn" id="6_eab5i"]
+[ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/overworld/player.tscn" id="6_eab5i"]
 [ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://example/wingledingle.gd" id="6_qjxaj"]
 
 [sub_resource type="Animation" id="Animation_fkyvp"]

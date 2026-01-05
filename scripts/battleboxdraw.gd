@@ -12,6 +12,8 @@ var x := 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
+	#var button: Button = get_node('../Button')
+	#button.pressed.connect(onpress)
 
 func _on_open_button_pressed() -> void:
 	tween = create_tween()

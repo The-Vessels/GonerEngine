@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://btho7jl7fwb7q"]
+
+[ext_resource type="PackedScene" uid="uid://cl514bwocxesm" path="res://scenes/battle/battle_box.tscn" id="1_24o0f"]
+[ext_resource type="Script" uid="uid://cx87bvt7i2jvq" path="res://scenes/battle/battlescene_2.gd" id="1_28e2v"]
+[ext_resource type="Script" uid="uid://cd1a8of3kgipq" path="res://scenes/charboxcontainer.gd" id="1_ct4bp"]
+[ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/superdeltarune.png" id="1_p58ht"]
+
+[node name="Battlescene2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28e2v")
+
+[node name="Superdeltarune2" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_p58ht")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+color = Color(0.22576521, 0.12564851, 0.30312884, 1)
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_top = 325.0
+offset_right = 639.0
+offset_bottom = 365.0
+script = ExtResource("1_ct4bp")
+
+[node name="BattleBox" parent="Container" instance=ExtResource("1_24o0f")]
+layout_mode = 2
+
+[node name="BattleBox2" parent="Container" instance=ExtResource("1_24o0f")]
+layout_mode = 2
+
+[node name="BattleBox3" parent="Container" instance=ExtResource("1_24o0f")]
+layout_mode = 2
