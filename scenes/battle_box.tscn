@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl514bwocxesm"]
+
+[ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="1_th5wx"]
+[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/sprite_2d.gd" id="2_ehgqo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th5wx"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(300, 200)
+script = ExtResource("1_th5wx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_th5wx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+script = ExtResource("2_ehgqo")
+box_size = Vector2(200, 200)
+
+[node name="OpenButton" type="Button" parent="."]
+offset_left = 103.0
+offset_top = 146.0
+offset_right = 201.0
+offset_bottom = 177.0
+text = "OPEN"
+
+[node name="CloseButton" type="Button" parent="."]
+offset_left = 120.0
+offset_top = 91.0
+offset_right = 218.0
+offset_bottom = 122.0
+text = "CLOSE"
+
+[connection signal="pressed" from="OpenButton" to="." method="_on_open_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
