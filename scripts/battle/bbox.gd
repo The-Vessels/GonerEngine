@@ -34,12 +34,9 @@ func animate_openclose(selected: bool, input: float, dt: float) -> float:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	grow_size = animate_openclose(is_selected, grow_size, delta)
 	set_rect_grow_size(grow_size)
-
-func _on_button_pressed() -> void:
-	is_selected = not is_selected

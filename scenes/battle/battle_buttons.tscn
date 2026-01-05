@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlxhexfpx43vw"]
+[gd_scene load_steps=13 format=3 uid="uid://dlxhexfpx43vw"]
 
 [ext_resource type="Texture2D" uid="uid://chhn4j8v7y0sd" path="res://assets/sprites/battle/buttons/btfight_0.png" id="2_jfcx8"]
 [ext_resource type="Script" uid="uid://b1ae8g0njgnek" path="res://scripts/battle/battle_buttons.gd" id="2_muc58"]
@@ -12,39 +12,37 @@
 [ext_resource type="Texture2D" uid="uid://co7dfsjfj4ekb" path="res://assets/sprites/battle/buttons/btdefend_0.png" id="10_qv163"]
 [ext_resource type="Texture2D" uid="uid://cg5h3opa7e27t" path="res://assets/sprites/battle/buttons/btdefend_1.png" id="11_dwws5"]
 
-[node name="BattleButtons" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="Theme" id="Theme_0qj1e"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
+[node name="HBoxContainer" type="HBoxContainer"]
 offset_right = 171.0
 offset_bottom = 32.0
 script = ExtResource("2_muc58")
 
-[node name="Fight" type="TextureButton" parent="HBoxContainer"]
+[node name="Fight" type="TextureButton" parent="."]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Defend")
 focus_previous = NodePath("../Defend")
+theme = SubResource("Theme_0qj1e")
 texture_normal = ExtResource("2_jfcx8")
 texture_focused = ExtResource("3_muc58")
 
-[node name="ActTech" type="TextureButton" parent="HBoxContainer"]
+[node name="ActTech" type="TextureButton" parent="."]
 layout_mode = 2
 texture_normal = ExtResource("4_fifx6")
 texture_focused = ExtResource("5_3lt7g")
 
-[node name="Item" type="TextureButton" parent="HBoxContainer"]
+[node name="Item" type="TextureButton" parent="."]
 layout_mode = 2
 texture_normal = ExtResource("6_aj8am")
 texture_focused = ExtResource("7_gbxsp")
 
-[node name="Spare" type="TextureButton" parent="HBoxContainer"]
+[node name="Spare" type="TextureButton" parent="."]
 layout_mode = 2
 texture_normal = ExtResource("8_ax5fy")
 texture_focused = ExtResource("9_5j8cd")
 
-[node name="Defend" type="TextureButton" parent="HBoxContainer"]
+[node name="Defend" type="TextureButton" parent="."]
 layout_mode = 2
 focus_neighbor_right = NodePath("../Fight")
 focus_next = NodePath("../Fight")
