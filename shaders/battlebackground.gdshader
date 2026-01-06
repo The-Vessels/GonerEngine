@@ -1,31 +1,30 @@
 shader_type canvas_item;
 
-uniform float grid_spacing;
-uniform float border_proportion;
-uniform vec2 screen_resolution;
-uniform vec4 grid_color_1 : source_color;
-uniform vec4 grid_color_2 : source_color;
-uniform float speed;
+uniform sampler2D background_sprite;
+
+const float bgspeed1 = -15.0;
+const float bgspeed2 = 30.0;
 
 void vertex() {
 }
 
-bool in_grid(float time, vec2 uv, vec2 speed_factor, vec2 offset) {
-	vec2 v1 = (uv * screen_resolution) + vec2(time * speed * speed_factor) + offset;
-	vec2 v2 = mod(v1 / grid_spacing, 1.0);
-	bool in_border = (v2.x <= border_proportion)
-		|| (v2.y <= border_proportion);
-	return in_border;
+vec2 uv(vec2 uv0, vec2 offset, vec2 tsize) {
+	vec2 uv_px = uv0 * vec2(640.0, 480.0) + offset;
+	vec2 uv1 = fract(uv_px / tsize);
+	return uv1;
 }
 
 void fragment() {
-	if (in_grid(TIME, UV, vec2(1.0, 1.0), vec2(0.0))) {
-		COLOR = grid_color_1;
-	} else if (in_grid(TIME, UV, vec2(1.0, -1.0), vec2(10.0))) {
-		COLOR = grid_color_2;
-	} else {
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	}
+	vec2 tsize = vec2(textureSize(background_sprite, 0));
+
+	vec2 offset1 = vec2(TIME * bgspeed1) + vec2(-200.0, -210.0);
+	vec2 offset2 = vec2(TIME * bgspeed2) + vec2(-100.0, -100.0);
+
+	vec4 tex1 = texture(background_sprite, uv(UV, offset1, tsize));
+	vec4 tex2 = texture(background_sprite, uv(UV, offset2, tsize));
+	float alpha = max(tex1.a, 0.5 * tex2.a);
+	vec4 final_color = vec4(mix(tex2.rgb, tex1.rgb, tex1.a), alpha);
+	COLOR = final_color;
 }
 
 //void light() {

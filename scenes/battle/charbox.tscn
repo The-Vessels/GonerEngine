@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl514bwocxesm"]
+[gd_scene load_steps=10 format=3 uid="uid://7r3lp84po220"]
 
-[ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/battle_box.gd" id="1_7l6un"]
+[ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/charbox.gd" id="1_84xhp"]
 [ext_resource type="PackedScene" uid="uid://dlxhexfpx43vw" path="res://scenes/battle/battle_buttons.tscn" id="1_th5wx"]
 [ext_resource type="Texture2D" uid="uid://2xrf7d3rsof5" path="res://assets/sprites/kris/battle/head/spr_headkris_5.png" id="3_qipex"]
 [ext_resource type="Texture2D" uid="uid://bay3s8uxf18ux" path="res://assets/sprites/kris/battle/name.png" id="4_rqlex"]
@@ -10,19 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://d3iukq610xw20" path="res://assets/sprites/misc/spr_pixel_white.png" id="8_g23dv"]
 [ext_resource type="Script" uid="uid://cr7k0hgil5iw1" path="res://scripts/battle/bbox.gd" id="9_rqlex"]
 
-[node name="BattleBox" type="Control"]
+[node name="Charbox" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 213.0
 offset_bottom = 37.0
-script = ExtResource("1_7l6un")
+script = ExtResource("1_84xhp")
 
 [node name="BattleButtons" parent="." instance=ExtResource("1_th5wx")]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 8.0
-offset_right = 20.0
-offset_bottom = 8.0
+offset_right = 191.0
+offset_bottom = 40.0
 
 [node name="Ctrl" type="Control" parent="."]
 anchors_preset = 0

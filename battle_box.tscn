@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://d12o1emkighxd"]
 
-[ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/battle_box.gd" id="1_48j0o"]
+[ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/charbox.gd" id="1_48j0o"]
 [ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/superdeltarune.png" id="2_qdfob"]
 [ext_resource type="PackedScene" uid="uid://dlxhexfpx43vw" path="res://scenes/battle/battle_buttons.tscn" id="3_5xd7j"]
 [ext_resource type="Script" uid="uid://cr7k0hgil5iw1" path="res://scripts/battle/bbox.gd" id="4_wu1pj"]
