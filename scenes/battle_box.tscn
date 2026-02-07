@@ -98,3 +98,15 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_g23dv")
 texture_progress = ExtResource("8_g23dv")
 tint_under = Color(0.5019608, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 95.0
+offset_right = 443.0
+offset_bottom = 135.0
+theme_override_colors/font_shadow_color = Color(0, 0, 1, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 17
+text = "RICHTEXTDELTARUNE"
