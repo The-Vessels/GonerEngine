@@ -15,31 +15,38 @@ func _ready() -> void:
 	#var button: Button = get_node('../Button')
 	#button.pressed.connect(onpress)
 
-
-func onpress() -> void:
+func _on_open_button_pressed() -> void:
 	tween = create_tween()
-	tween.tween_property($Sprite2D, 'rotation', 0.0, 1.0).from(-50.0)
-	tween.parallel().tween_property($Sprite2D, 'scale:x', 1.0, 1.0).from(0.1)
-	tween.parallel().tween_property($Sprite2D, 'scale:y', 1.0, 1.0).from(0.1)
+	tween.tween_property($Sprite2D, 'rotation', 0.0, 0.5).from(PI)
+	tween.parallel().tween_property($Sprite2D, 'scale:x', 1.0, 0.5).from(0.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:y', 1.0, 0.5).from(0.0)
+
+func _on_close_button_pressed() -> void:
+	tween = create_tween()
+	tween.tween_property($Sprite2D, 'rotation', PI, 0.5).from(0.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:x', 0.0, 0.5).from(1.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:y', 0.0, 0.5).from(1.0)
+
+func open() -> void:
+	pass
+	#tween = create_tween()
+	#tween.tween_property($Sprite2D, 'rotation', 0.0, 0.5).from(PI)
+	#tween.parallel().tween_property($Sprite2D, 'scale:x', 1.0, 0.5).from(0.0)
+	#tween.parallel().tween_property($Sprite2D, 'scale:y', 1.0, 0.5).from(0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 # 'delta' is that a deltarune reference?!?!?!
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# is your tween running?
 	# then you better go catch it!
 	if tween != null and tween.is_running():
 		var afterimage: Sprite2D = $Sprite2D.duplicate()
-		# afterimage.z_index = 0
-		var after_tween = afterimage.create_tween()
-		after_tween.tween_property(afterimage, 'modulate:a', 0.0, 1.0)
-		after_tween.tween_callback(afterimage.queue_free)
+		afterimage.is_afterimage = true
+		afterimage.z_index = z_index + 1
+		var alpha = 0.6 - (0.5 * tween.get_total_elapsed_time() * 2)
+		afterimage.modulate.a = alpha
+		#var after_tween = afterimage.create_tween()
+		#after_tween.tween_property(afterimage, 'modulate:a', 0.0, 0.5).from(0.6 - (0.5 * tween.get_total_elapsed_time() * 2))
+		#after_tween.tween_callback(afterimage.queue_free)
 		add_child(afterimage)
-		label.text = 'Child count: %d' % get_child_count()
-
-
-
-func approach(val, target, amount):
-	if target < val:
-		return
-	

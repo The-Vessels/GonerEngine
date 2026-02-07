@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dg7vumge6d0yp"]
+
+[node name="Test" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 76.0
+offset_top = 123.0
+offset_right = 577.0
+offset_bottom = 246.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_right = -100.0
+offset_bottom = 40.0
+color = Color(0, 0.07722807, 1, 1)
