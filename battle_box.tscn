@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d12o1emkighxd"]
+[gd_scene format=3 uid="uid://d12o1emkighxd"]
 
 [ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/charbox.gd" id="1_48j0o"]
 [ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/superdeltarune.png" id="2_qdfob"]
@@ -11,7 +11,7 @@
 [ext_resource type="FontFile" uid="uid://ch1ggge7v052v" path="res://assets/fonts/hpnumbers.png" id="9_2nd1w"]
 [ext_resource type="Texture2D" uid="uid://d3iukq610xw20" path="res://assets/sprites/misc/spr_pixel_white.png" id="10_yyj4b"]
 
-[node name="BattleBox" type="Control"]
+[node name="BattleBox" type="Control" unique_id=1107092429]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,27 +20,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_48j0o")
 
-[node name="Superdeltarune2" type="Sprite2D" parent="."]
+[node name="Superdeltarune2" type="Sprite2D" parent="." unique_id=234516355]
 visible = false
 position = Vector2(0, -325)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_qdfob")
 centered = false
 
-[node name="BattleButtons" parent="." instance=ExtResource("3_5xd7j")]
+[node name="BattleButtons" parent="." unique_id=136635651 instance=ExtResource("3_5xd7j")]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 8.0
 offset_right = 20.0
 offset_bottom = 8.0
 
-[node name="Ctrl" type="Control" parent="."]
+[node name="Ctrl" type="Control" parent="." unique_id=914987643]
 anchors_preset = 0
 offset_right = 213.0
 offset_bottom = 37.0
 script = ExtResource("4_wu1pj")
 
-[node name="ColorRect2" type="ColorRect" parent="Ctrl"]
+[node name="ColorRect2" type="ColorRect" parent="Ctrl" unique_id=2091198477]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -48,7 +48,7 @@ offset_right = 213.0
 offset_bottom = -35.0
 color = Color(0, 1, 1, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Ctrl"]
+[node name="ColorRect" type="ColorRect" parent="Ctrl" unique_id=1510663660]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -56,27 +56,27 @@ offset_right = 211.0
 offset_bottom = 37.0
 color = Color(0, 0, 0, 1)
 
-[node name="Head" type="Sprite2D" parent="Ctrl/ColorRect"]
+[node name="Head" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=1086803160]
 position = Vector2(11, 9)
 texture = ExtResource("5_v8qlh")
 centered = false
 
-[node name="Name" type="Sprite2D" parent="Ctrl/ColorRect"]
+[node name="Name" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=1732164110]
 position = Vector2(49, 12)
 texture = ExtResource("6_skoy1")
 centered = false
 
-[node name="Hpslash" type="Sprite2D" parent="Ctrl/ColorRect"]
+[node name="Hpslash" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=896279123]
 position = Vector2(157, 5)
 texture = ExtResource("7_b03tk")
 centered = false
 
-[node name="Hp" type="Sprite2D" parent="Ctrl/ColorRect"]
+[node name="Hp" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=447302326]
 position = Vector2(107, 20)
 texture = ExtResource("8_tqrvw")
 centered = false
 
-[node name="MaxHpLabel" type="Label" parent="Ctrl/ColorRect"]
+[node name="MaxHpLabel" type="Label" parent="Ctrl/ColorRect" unique_id=1844524388]
 layout_mode = 0
 offset_left = 175.0
 offset_top = 7.0
@@ -87,7 +87,7 @@ theme_override_font_sizes/font_size = 10
 text = "999"
 horizontal_alignment = 2
 
-[node name="HpLabel" type="Label" parent="Ctrl/ColorRect"]
+[node name="HpLabel" type="Label" parent="Ctrl/ColorRect" unique_id=547290742]
 layout_mode = 0
 offset_left = 130.0
 offset_top = 7.0
@@ -98,7 +98,7 @@ theme_override_font_sizes/font_size = 10
 text = "999"
 horizontal_alignment = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Ctrl/ColorRect"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Ctrl/ColorRect" unique_id=1397329590]
 layout_mode = 0
 offset_left = 126.0
 offset_top = 20.0

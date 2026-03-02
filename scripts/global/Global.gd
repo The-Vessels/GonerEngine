@@ -3,7 +3,7 @@ extends Node
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
 enum {WORLD_LIGHT, WORLD_DARK}
-var world_type = WORLD_LIGHT
+var world_type = WORLD_DARK
 
 var tension := 0
 var maxtension := 250

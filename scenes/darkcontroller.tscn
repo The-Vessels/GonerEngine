@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://ngayfl0f6g57"]
+
+[ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://assets/sprites/dcreference.png" id="1_kkvsk"]
+[ext_resource type="Texture2D" uid="uid://crc76dli0yory" path="res://assets/sprites/ui/menu/desc/item.png" id="1_kw60l"]
+[ext_resource type="Script" uid="uid://jhy2lw5p26ao" path="res://scripts/darkcontroller.gd" id="1_q3523"]
+[ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="1_xk2oo"]
+[ext_resource type="Texture2D" uid="uid://u58xn3gdknf3" path="res://assets/sprites/ui/menu/btn/item.png" id="4_x26u1"]
+[ext_resource type="Texture2D" uid="uid://cjfgk428ue7j8" path="res://assets/sprites/ui/menu/btn/equip.png" id="5_p1tnq"]
+[ext_resource type="Texture2D" uid="uid://bx1d4pspxmmk5" path="res://assets/sprites/ui/menu/btn/item_hs.png" id="6_pmh4i"]
+[ext_resource type="Texture2D" uid="uid://cmo57frolnfk5" path="res://assets/sprites/ui/menu/btn/power.png" id="6_q3523"]
+[ext_resource type="Texture2D" uid="uid://dhpj530ymx4dq" path="res://assets/sprites/ui/menu/btn/config.png" id="7_2cq6r"]
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="8_p1tnq"]
+[ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://assets/sprites/ui/menu/btn/equip_hs.png" id="8_uo3ks"]
+[ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://assets/sprites/ui/menu/btn/power_hs.png" id="10_v4i7q"]
+[ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://assets/sprites/ui/menu/btn/config_hs.png" id="12_llpoq"]
+
+[sub_resource type="Theme" id="Theme_53y5c"]
+
+[node name="Darkcontroller" type="Control" unique_id=25315914]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3523")
+
+[node name="TopRect" type="ColorRect" parent="." unique_id=514284593]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+
+[node name="DarkMenuDescContainer" type="Container" parent="TopRect" unique_id=2080571554]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 90.0
+offset_bottom = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TopRect/DarkMenuDescContainer" unique_id=1369720126]
+scale = Vector2(2, 2)
+texture = ExtResource("1_kw60l")
+centered = false
+
+[node name="BottomRect" type="ColorRect" parent="." unique_id=1491312947]
+layout_mode = 0
+offset_top = 417.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Charbox" parent="BottomRect" unique_id=637116621 instance=ExtResource("1_xk2oo")]
+layout_mode = 0
+
+[node name="Charbox2" parent="BottomRect" unique_id=625688750 instance=ExtResource("1_xk2oo")]
+layout_mode = 0
+offset_left = 213.0
+offset_right = 426.0
+
+[node name="Charbox3" parent="BottomRect" unique_id=1525097512 instance=ExtResource("1_xk2oo")]
+layout_mode = 0
+offset_left = 426.0
+offset_right = 639.0
+
+[node name="DarkMenuBtnContainer" type="HBoxContainer" parent="." unique_id=993974646]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 486.0
+offset_bottom = 68.0
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="DarkItemBtn" type="TextureButton" parent="DarkMenuBtnContainer" unique_id=1858827102]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../DarkConfigBtn")
+focus_neighbor_right = NodePath("../DarkEquipBtn")
+focus_next = NodePath("../DarkEquipBtn")
+focus_previous = NodePath("../DarkConfigBtn")
+theme = SubResource("Theme_53y5c")
+texture_normal = ExtResource("4_x26u1")
+texture_focused = ExtResource("6_pmh4i")
+stretch_mode = 6
+
+[node name="DarkEquipBtn" type="TextureButton" parent="DarkMenuBtnContainer" unique_id=1899990050]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_p1tnq")
+texture_focused = ExtResource("8_uo3ks")
+stretch_mode = 6
+
+[node name="DarkPowerBtn" type="TextureButton" parent="DarkMenuBtnContainer" unique_id=1685726400]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_q3523")
+texture_focused = ExtResource("10_v4i7q")
+stretch_mode = 6
+
+[node name="DarkConfigBtn" type="TextureButton" parent="DarkMenuBtnContainer" unique_id=1978195060]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../DarkItemBtn")
+focus_next = NodePath("../DarkItemBtn")
+texture_normal = ExtResource("7_2cq6r")
+texture_focused = ExtResource("12_llpoq")
+stretch_mode = 6
+
+[node name="CurrencyLabel" type="Label" parent="." unique_id=290528985]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 20.0
+offset_right = 568.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("8_p1tnq")
+theme_override_font_sizes/font_size = 32
+text = "D$ 0"
+
+[node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
+visible = false
+position = Vector2(320, 240)
+texture = ExtResource("1_kkvsk")

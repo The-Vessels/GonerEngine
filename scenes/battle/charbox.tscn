@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7r3lp84po220"]
+[gd_scene format=3 uid="uid://7r3lp84po220"]
 
 [ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/charbox.gd" id="1_84xhp"]
 [ext_resource type="PackedScene" uid="uid://dlxhexfpx43vw" path="res://scenes/battle/battle_buttons.tscn" id="1_th5wx"]
@@ -10,27 +10,27 @@
 [ext_resource type="Texture2D" uid="uid://d3iukq610xw20" path="res://assets/sprites/misc/spr_pixel_white.png" id="8_g23dv"]
 [ext_resource type="Script" uid="uid://cr7k0hgil5iw1" path="res://scripts/battle/bbox.gd" id="9_rqlex"]
 
-[node name="Charbox" type="Control"]
+[node name="Charbox" type="Control" unique_id=1573525226]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 213.0
 offset_bottom = 37.0
 script = ExtResource("1_84xhp")
 
-[node name="BattleButtons" parent="." instance=ExtResource("1_th5wx")]
+[node name="BattleButtons" parent="." unique_id=1904428020 instance=ExtResource("1_th5wx")]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 8.0
 offset_right = 191.0
 offset_bottom = 40.0
 
-[node name="Ctrl" type="Control" parent="."]
+[node name="Ctrl" type="Control" parent="." unique_id=1575228919]
 anchors_preset = 0
 offset_right = 213.0
 offset_bottom = 37.0
 script = ExtResource("9_rqlex")
 
-[node name="ColorRect2" type="ColorRect" parent="Ctrl"]
+[node name="ColorRect2" type="ColorRect" parent="Ctrl" unique_id=545215904]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -38,7 +38,7 @@ offset_right = 213.0
 offset_bottom = -35.0
 color = Color(0, 1, 1, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Ctrl"]
+[node name="ColorRect" type="ColorRect" parent="Ctrl" unique_id=1837986739]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -46,54 +46,54 @@ offset_right = 211.0
 offset_bottom = 37.0
 color = Color(0, 0, 0, 1)
 
-[node name="Head" type="Sprite2D" parent="Ctrl/ColorRect"]
-position = Vector2(11, 9)
+[node name="Head" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=228262515]
+position = Vector2(11, 11)
 texture = ExtResource("3_qipex")
 centered = false
 
-[node name="Name" type="Sprite2D" parent="Ctrl/ColorRect"]
-position = Vector2(49, 12)
+[node name="Name" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=31835176]
+position = Vector2(49, 14)
 texture = ExtResource("4_rqlex")
 centered = false
 
-[node name="Hpslash" type="Sprite2D" parent="Ctrl/ColorRect"]
-position = Vector2(157, 5)
+[node name="Hpslash" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=552032073]
+position = Vector2(157, 7)
 texture = ExtResource("5_7l6un")
 centered = false
 
-[node name="Hp" type="Sprite2D" parent="Ctrl/ColorRect"]
-position = Vector2(107, 20)
+[node name="Hp" type="Sprite2D" parent="Ctrl/ColorRect" unique_id=140648343]
+position = Vector2(107, 22)
 texture = ExtResource("6_jb01c")
 centered = false
 
-[node name="MaxHpLabel" type="Label" parent="Ctrl/ColorRect"]
+[node name="MaxHpLabel" type="Label" parent="Ctrl/ColorRect" unique_id=323173738]
 layout_mode = 0
 offset_left = 175.0
-offset_top = 7.0
+offset_top = 9.0
 offset_right = 203.0
-offset_bottom = 17.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("7_b4ef8")
 theme_override_font_sizes/font_size = 10
 text = "999"
 horizontal_alignment = 2
 
-[node name="HpLabel" type="Label" parent="Ctrl/ColorRect"]
+[node name="HpLabel" type="Label" parent="Ctrl/ColorRect" unique_id=1092654309]
 layout_mode = 0
 offset_left = 130.0
-offset_top = 7.0
+offset_top = 9.0
 offset_right = 158.0
-offset_bottom = 17.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("7_b4ef8")
 theme_override_font_sizes/font_size = 10
 text = "999"
 horizontal_alignment = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Ctrl/ColorRect"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Ctrl/ColorRect" unique_id=214862277]
 layout_mode = 0
 offset_left = 126.0
-offset_top = 20.0
+offset_top = 22.0
 offset_right = 202.0
-offset_bottom = 29.0
+offset_bottom = 31.0
 value = 30.0
 nine_patch_stretch = true
 texture_under = ExtResource("8_g23dv")
