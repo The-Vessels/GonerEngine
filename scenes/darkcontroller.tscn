@@ -34,14 +34,14 @@ offset_top = -80.0
 offset_right = 640.0
 color = Color(0, 0, 0, 1)
 
-[node name="DarkMenuDescContainer" type="Container" parent="TopRect" unique_id=2080571554]
-layout_mode = 0
+[node name="DarkMenuDescContainer" type="Control" parent="TopRect" unique_id=249865164]
+anchors_preset = 0
 offset_left = 20.0
 offset_top = 24.0
 offset_right = 90.0
 offset_bottom = 60.0
 
-[node name="Sprite2D" type="Sprite2D" parent="TopRect/DarkMenuDescContainer" unique_id=1369720126]
+[node name="DarkMenuDesc" type="Sprite2D" parent="TopRect/DarkMenuDescContainer" unique_id=1369720126]
 scale = Vector2(2, 2)
 texture = ExtResource("1_kw60l")
 centered = false

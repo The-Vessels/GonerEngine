@@ -35,7 +35,7 @@ var asp := AudioStreamPlayer.new()
 
 var ui_menumove := preload('res://assets/sfx/ui/menumove.wav')
 
-var selectedBtn := 0
+var selectedDarkBtn := 0
 var darkMenuOpened := false
 var darkSubmenuOpened := false
 

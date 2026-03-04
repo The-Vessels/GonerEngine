@@ -6,7 +6,7 @@ func _ready() -> void:
 		func():
 			if Global.darkMenuOpened:
 				Global.play_ui_sound('menumove')
-				Global.selectedBtn = self.get_index()
+				Global.selectedDarkBtn = self.get_index()
 	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

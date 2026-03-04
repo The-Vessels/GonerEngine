@@ -1,6 +1,6 @@
 extends Control
 
-@export var isCurrentChar := false
+@export var isCurrentHero := false
 @onready var color_rect_2: ColorRect = $Ctrl/ColorRect2
 
 func activate() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if isCurrentChar:
+	if isCurrentHero:
 		# TODO: Character Colors
 		color_rect_2.color = Global.c_aqua
 	else:
