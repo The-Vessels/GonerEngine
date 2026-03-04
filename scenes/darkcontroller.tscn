@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://jhy2lw5p26ao" path="res://scripts/darkcontroller.gd" id="1_q3523"]
 [ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="1_xk2oo"]
 [ext_resource type="Texture2D" uid="uid://u58xn3gdknf3" path="res://assets/sprites/ui/menu/btn/item.png" id="4_x26u1"]
+[ext_resource type="Script" uid="uid://cvwsaci17tj2d" path="res://scripts/dark_btn.gd" id="5_llpoq"]
 [ext_resource type="Texture2D" uid="uid://cjfgk428ue7j8" path="res://assets/sprites/ui/menu/btn/equip.png" id="5_p1tnq"]
 [ext_resource type="Texture2D" uid="uid://bx1d4pspxmmk5" path="res://assets/sprites/ui/menu/btn/item_hs.png" id="6_pmh4i"]
 [ext_resource type="Texture2D" uid="uid://cmo57frolnfk5" path="res://assets/sprites/ui/menu/btn/power.png" id="6_q3523"]
@@ -65,6 +66,7 @@ theme = SubResource("Theme_53y5c")
 texture_normal = ExtResource("4_x26u1")
 texture_focused = ExtResource("6_pmh4i")
 stretch_mode = 6
+script = ExtResource("5_llpoq")
 
 [node name="DarkItemMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkItemBtn" unique_id=120378169]
 visible = false
@@ -87,6 +89,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("5_p1tnq")
 texture_focused = ExtResource("8_uo3ks")
 stretch_mode = 6
+script = ExtResource("5_llpoq")
 
 [node name="DarkEquipMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkEquipBtn" unique_id=647231109]
 visible = false
@@ -109,6 +112,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("6_q3523")
 texture_focused = ExtResource("10_v4i7q")
 stretch_mode = 6
+script = ExtResource("5_llpoq")
 
 [node name="DarkPowerMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkPowerBtn" unique_id=916112105]
 visible = false
@@ -133,6 +137,7 @@ focus_next = NodePath("../DarkItemBtn")
 texture_normal = ExtResource("7_2cq6r")
 texture_focused = ExtResource("12_llpoq")
 stretch_mode = 6
+script = ExtResource("5_llpoq")
 
 [node name="DarkConfigMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkConfigBtn" unique_id=744498130]
 visible = false
