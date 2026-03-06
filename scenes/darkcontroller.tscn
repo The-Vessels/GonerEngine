@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://assets/sprites/ui/menu/btn/equip_hs.png" id="8_uo3ks"]
 [ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://assets/sprites/ui/menu/btn/power_hs.png" id="10_v4i7q"]
 [ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://assets/sprites/ui/menu/btn/config_hs.png" id="12_llpoq"]
+[ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/dark_box.tscn" id="15_v4i7q"]
 
 [sub_resource type="Theme" id="Theme_53y5c"]
 
@@ -131,3 +132,15 @@ offset_bottom = 35.0
 [node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
 position = Vector2(320, 240)
 texture = ExtResource("1_kkvsk")
+
+[node name="DarkSubmenuContainer" type="Control" parent="." unique_id=2016943390]
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="DarkBox" parent="DarkSubmenuContainer" unique_id=619300672 instance=ExtResource("15_v4i7q")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 80.0
+offset_right = 320.5
+offset_bottom = 250.5
