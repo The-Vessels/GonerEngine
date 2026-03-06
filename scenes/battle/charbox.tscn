@@ -36,7 +36,7 @@ anchors_preset = -1
 anchor_bottom = 1.0
 offset_right = 213.0
 offset_bottom = -35.0
-color = Color(0, 1, 1, 1)
+color = Color(0.2, 0.1254902, 0.2, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Ctrl" unique_id=1837986739]
 layout_mode = 0

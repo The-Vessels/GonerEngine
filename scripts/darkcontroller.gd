@@ -33,13 +33,13 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu", false) && Global.darkMenuOpened == false:
 		top_rect.position.y += top_rect.size.y
-		bottom_rect.position.y -= bottom_rect.size.y
+		bottom_rect.position.y -= bottom_rect.size.y + 2 # +2 to account for charbox top line
 		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
 		dark_menu_btn_container.get_child(Global.selectedDarkBtn).grab_focus()
 		Global.darkMenuOpened = true
 	elif (event.is_action_pressed("menu", false) || event.is_action_pressed("cancel", false)) && Global.darkMenuOpened == true:
 		top_rect.position.y -= top_rect.size.y
-		bottom_rect.position.y += bottom_rect.size.y
+		bottom_rect.position.y += bottom_rect.size.y + 2 # +2 to account for charbox top line
 		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
 		Global.darkMenuOpened = false
 	elif event.is_action_pressed("right") && Global.darkMenuOpened == true:

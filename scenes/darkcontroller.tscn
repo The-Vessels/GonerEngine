@@ -9,9 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cjfgk428ue7j8" path="res://assets/sprites/ui/menu/btn/equip.png" id="5_p1tnq"]
 [ext_resource type="Texture2D" uid="uid://bx1d4pspxmmk5" path="res://assets/sprites/ui/menu/btn/item_hs.png" id="6_pmh4i"]
 [ext_resource type="Texture2D" uid="uid://cmo57frolnfk5" path="res://assets/sprites/ui/menu/btn/power.png" id="6_q3523"]
-[ext_resource type="Texture2D" uid="uid://dutwf64kfk37e" path="res://assets/sprites/battle/buttons/btact_0.png" id="6_v4i7q"]
 [ext_resource type="Texture2D" uid="uid://dhpj530ymx4dq" path="res://assets/sprites/ui/menu/btn/config.png" id="7_2cq6r"]
-[ext_resource type="Texture2D" uid="uid://c18rgmqly88uc" path="res://assets/sprites/battle/buttons/btact_1.png" id="7_llpoq"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="8_p1tnq"]
 [ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://assets/sprites/ui/menu/btn/equip_hs.png" id="8_uo3ks"]
 [ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://assets/sprites/ui/menu/btn/power_hs.png" id="10_v4i7q"]
@@ -68,21 +66,6 @@ texture_focused = ExtResource("6_pmh4i")
 stretch_mode = 6
 script = ExtResource("5_llpoq")
 
-[node name="DarkItemMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkItemBtn" unique_id=120378169]
-visible = false
-anchors_preset = 0
-offset_left = 9.0
-offset_top = 94.0
-offset_right = 49.0
-offset_bottom = 134.0
-
-[node name="TextureButton" type="TextureButton" parent="TopRect/DarkMenuBtnContainer/DarkItemBtn/DarkItemMenu" unique_id=1151200868]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("6_v4i7q")
-texture_focused = ExtResource("7_llpoq")
-
 [node name="DarkEquipBtn" type="TextureButton" parent="TopRect/DarkMenuBtnContainer" unique_id=1899990050]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,21 +74,6 @@ texture_focused = ExtResource("8_uo3ks")
 stretch_mode = 6
 script = ExtResource("5_llpoq")
 
-[node name="DarkEquipMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkEquipBtn" unique_id=647231109]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="TopRect/DarkMenuBtnContainer/DarkEquipBtn/DarkEquipMenu" unique_id=971056676]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 105.0
-offset_right = 48.0
-offset_bottom = 145.0
-texture_normal = ExtResource("6_v4i7q")
-texture_focused = ExtResource("7_llpoq")
-
 [node name="DarkPowerBtn" type="TextureButton" parent="TopRect/DarkMenuBtnContainer" unique_id=1685726400]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -113,21 +81,6 @@ texture_normal = ExtResource("6_q3523")
 texture_focused = ExtResource("10_v4i7q")
 stretch_mode = 6
 script = ExtResource("5_llpoq")
-
-[node name="DarkPowerMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkPowerBtn" unique_id=916112105]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="TopRect/DarkMenuBtnContainer/DarkPowerBtn/DarkPowerMenu" unique_id=1449894886]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 99.0
-offset_right = 50.0
-offset_bottom = 139.0
-texture_normal = ExtResource("6_v4i7q")
-texture_focused = ExtResource("7_llpoq")
 
 [node name="DarkConfigBtn" type="TextureButton" parent="TopRect/DarkMenuBtnContainer" unique_id=1978195060]
 layout_mode = 2
@@ -138,21 +91,6 @@ texture_normal = ExtResource("7_2cq6r")
 texture_focused = ExtResource("12_llpoq")
 stretch_mode = 6
 script = ExtResource("5_llpoq")
-
-[node name="DarkConfigMenu" type="Control" parent="TopRect/DarkMenuBtnContainer/DarkConfigBtn" unique_id=744498130]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="TopRect/DarkMenuBtnContainer/DarkConfigBtn/DarkConfigMenu" unique_id=626206952]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 107.0
-offset_right = 53.0
-offset_bottom = 147.0
-texture_normal = ExtResource("6_v4i7q")
-texture_focused = ExtResource("7_llpoq")
 
 [node name="CurrencyLabel" type="Label" parent="TopRect" unique_id=290528985]
 layout_mode = 0
@@ -166,25 +104,30 @@ text = "D$ 0"
 
 [node name="BottomRect" type="ColorRect" parent="." unique_id=1491312947]
 layout_mode = 0
-offset_top = 480.0
+offset_top = 482.0
 offset_right = 640.0
 offset_bottom = 543.0
 color = Color(0, 0, 0, 1)
 
 [node name="Charbox" parent="BottomRect" unique_id=637116621 instance=ExtResource("1_xk2oo")]
 layout_mode = 0
+offset_top = -2.0
+offset_bottom = 35.0
 
 [node name="Charbox2" parent="BottomRect" unique_id=625688750 instance=ExtResource("1_xk2oo")]
 layout_mode = 0
 offset_left = 213.0
+offset_top = -2.0
 offset_right = 426.0
+offset_bottom = 35.0
 
 [node name="Charbox3" parent="BottomRect" unique_id=1525097512 instance=ExtResource("1_xk2oo")]
 layout_mode = 0
 offset_left = 426.0
+offset_top = -2.0
 offset_right = 639.0
+offset_bottom = 35.0
 
 [node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
-visible = false
 position = Vector2(320, 240)
 texture = ExtResource("1_kkvsk")

@@ -17,4 +17,4 @@ func _process(delta: float) -> void:
 		# TODO: Character Colors
 		color_rect_2.color = Global.c_aqua
 	else:
-		color_rect_2.color = Color(0.129, 0.078, 0.129, 1.0)
+		color_rect_2.color = Color.html("#332033")
