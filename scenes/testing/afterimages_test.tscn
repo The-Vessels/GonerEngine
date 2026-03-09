@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cw8smprqrucvq"]
 
 [ext_resource type="Script" uid="uid://5q55u4ue34ti" path="res://scripts/testing/afterimages_test.gd" id="1_3r5cq"]
-[ext_resource type="Texture2D" uid="uid://b1nvrbpa5ye50" path="res://assets/sprites/party/ralsei/dark/walk/down_1.png" id="2_kdlsn"]
+[ext_resource type="Texture2D" uid="uid://dqvckx747rte5" path="res://thenight.png" id="2_kdlsn"]
 
 [node name="AfterimagesTest" type="Node2D" unique_id=295270854]
 script = ExtResource("1_3r5cq")
 texture_to_show = ExtResource("2_kdlsn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1410505943]

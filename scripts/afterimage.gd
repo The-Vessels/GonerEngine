@@ -15,5 +15,6 @@ func _init(starting_opacity: float, time_until_delete: float, vel: Vector2 = Vec
 func _process(delta: float) -> void:
 	position += velocity * delta
 	modulate.a -= opacity_rate * delta
+	#modulate -= Color(1.25, 1.25, 1.25, 0.0) * delta
 	if modulate.a <= 0.0:
 		queue_free()

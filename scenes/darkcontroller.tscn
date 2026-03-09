@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://assets/sprites/ui/menu/btn/equip_hs.png" id="8_uo3ks"]
 [ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://assets/sprites/ui/menu/btn/power_hs.png" id="10_v4i7q"]
 [ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://assets/sprites/ui/menu/btn/config_hs.png" id="12_llpoq"]
-[ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/dark_box.tscn" id="15_v4i7q"]
+[ext_resource type="PackedScene" uid="uid://n6ki6822lfe5" path="res://scenes/dark_config_menu.tscn" id="15_v4i7q"]
 
 [sub_resource type="Theme" id="Theme_53y5c"]
 
@@ -62,6 +62,7 @@ focus_neighbor_right = NodePath("../DarkEquipBtn")
 focus_next = NodePath("../DarkEquipBtn")
 focus_previous = NodePath("../DarkConfigBtn")
 theme = SubResource("Theme_53y5c")
+action_mode = 0
 texture_normal = ExtResource("4_x26u1")
 texture_focused = ExtResource("6_pmh4i")
 stretch_mode = 6
@@ -70,6 +71,7 @@ script = ExtResource("5_llpoq")
 [node name="DarkEquipBtn" type="TextureButton" parent="TopRect/DarkMenuBtnContainer" unique_id=1899990050]
 layout_mode = 2
 size_flags_horizontal = 3
+action_mode = 0
 texture_normal = ExtResource("5_p1tnq")
 texture_focused = ExtResource("8_uo3ks")
 stretch_mode = 6
@@ -78,6 +80,7 @@ script = ExtResource("5_llpoq")
 [node name="DarkPowerBtn" type="TextureButton" parent="TopRect/DarkMenuBtnContainer" unique_id=1685726400]
 layout_mode = 2
 size_flags_horizontal = 3
+action_mode = 0
 texture_normal = ExtResource("6_q3523")
 texture_focused = ExtResource("10_v4i7q")
 stretch_mode = 6
@@ -88,6 +91,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../DarkItemBtn")
 focus_next = NodePath("../DarkItemBtn")
+action_mode = 0
 texture_normal = ExtResource("7_2cq6r")
 texture_focused = ExtResource("12_llpoq")
 stretch_mode = 6
@@ -130,6 +134,7 @@ offset_right = 639.0
 offset_bottom = 35.0
 
 [node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
+visible = false
 position = Vector2(320, 240)
 texture = ExtResource("1_kkvsk")
 
@@ -138,9 +143,5 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 
-[node name="DarkBox" parent="DarkSubmenuContainer" unique_id=619300672 instance=ExtResource("15_v4i7q")]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 80.0
-offset_right = 320.5
-offset_bottom = 250.5
+[node name="DarkConfigMenu" parent="DarkSubmenuContainer" unique_id=185338700 instance=ExtResource("15_v4i7q")]
+layout_mode = 1

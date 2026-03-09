@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://06qrpkls3ofa"]
+[gd_scene format=3 uid="uid://06qrpkls3ofa"]
 
 [ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/global/Global.gd" id="1_4pk28"]
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="2_nmxvb"]
 
-[node name="Global" type="Node"]
+[sub_resource type="LabelSettings" id="LabelSettings_opebo"]
+font = ExtResource("2_nmxvb")
+
+[node name="Global" type="Node" unique_id=1753942826]
 script = ExtResource("1_4pk28")
 
-[node name="UIAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="UIAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=54696501]
+
+[node name="FPS_COUNTER" type="Label" parent="." unique_id=1576897455]
+offset_left = 4.0
+offset_right = 61.0
+offset_bottom = 23.0
+text = "greembus"
+label_settings = SubResource("LabelSettings_opebo")

@@ -28,9 +28,11 @@ Global="*res://scenes/global.tscn"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=960
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [dotnet]
 

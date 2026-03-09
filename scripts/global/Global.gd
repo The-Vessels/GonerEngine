@@ -1,4 +1,5 @@
 extends Node
+@onready var fps_counter: Label = $FPS_COUNTER
 
 # Maybe figure out how to get these to be const
 var c_white = Color.html("#FFFFFF")
@@ -41,6 +42,9 @@ var darkSubmenuOpened := false
 
 func _ready():
 	setup_discord_rpc()
+	
+func _physics_process(_delta: float) -> void:
+	fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
 
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738
