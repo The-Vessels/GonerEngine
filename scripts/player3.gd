@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		walktimer += 1.5
 		walktimer = fposmod(walktimer, 40.0)
 		set_frame(int(walktimer / 10.0))
-	elif walkbuffer <= 0.0:
+	elif walkbuffer <= 0.0 && velocity == Vector2(0, 0):
 		walktimer = 10.0 * int(walktimer / 10.0) + 9.5
 		set_frame(0)
 	if walkbuffer > 0.0:
@@ -87,5 +87,8 @@ func _physics_process(delta: float) -> void:
 	sprite.play('walk_' + facing)
 	sprite.set_frame_and_progress(old_frame, old_progress)
 	
-	velocity = move * speed
+	if Input.is_action_pressed("cancel"):
+		velocity = move * speed * 2
+	else:
+		velocity = move * speed
 	move_and_slide()
