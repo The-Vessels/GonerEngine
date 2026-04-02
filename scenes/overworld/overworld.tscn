@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://example/wingledingle.gd" id="6_qjxaj"]
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_lvsx0"]
+tile_data = PackedInt32Array(0, 0, 12, 65536, 0, 13, 131072, 0, 14, 1, 65536, 12, 65537, 65536, 13, 131073, 65536, 14, 2, 131072, 12, 65538, 131072, 13, 131074, 131072, 14, 3, 196608, 12, 65539, 196608, 13, 131075, 196608, 14, 4, 262144, 12, 65540, 262144, 13, 131076, 262144, 14)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bduoi"]
 texture = ExtResource("8_lvsx0")
 texture_region_size = Vector2i(20, 20)
@@ -71,10 +74,6 @@ texture_region_size = Vector2i(20, 20)
 7:7/0 = 0
 8:7/0 = 0
 9:7/0 = 0
-1:8/0 = 0
-1:8/0/y_sort_origin = 20
-2:8/0 = 0
-2:8/0/y_sort_origin = 20
 4:8/0 = 0
 5:8/0 = 0
 6:8/0 = 0
@@ -85,12 +84,6 @@ texture_region_size = Vector2i(20, 20)
 7:9/0 = 0
 8:9/0 = 0
 9:9/0 = 0
-0:10/0 = 0
-0:10/0/y_sort_origin = -20
-1:10/0 = 0
-1:10/0/y_sort_origin = -20
-2:10/0 = 0
-2:10/0/y_sort_origin = -20
 5:10/0 = 0
 6:10/0 = 0
 7:10/0 = 0
@@ -99,32 +92,6 @@ texture_region_size = Vector2i(20, 20)
 7:11/0 = 0
 8:11/0 = 0
 9:11/0 = 0
-0:12/0 = 0
-0:12/0/y_sort_origin = 20
-1:12/0 = 0
-1:12/0/y_sort_origin = 20
-2:12/0 = 0
-2:12/0/y_sort_origin = 20
-3:12/0 = 0
-3:12/0/y_sort_origin = 20
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-9:12/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
-8:14/0 = 0
-9:14/0 = 0
-5:15/0 = 0
-6:15/0 = 0
-7:15/0 = 0
-8:15/0 = 0
-9:15/0 = 0
 2:16/0 = 0
 3:16/0 = 0
 4:16/0 = 0
@@ -210,42 +177,25 @@ texture_region_size = Vector2i(20, 20)
 1:25/0 = 0
 0:25/0 = 0
 0:24/0 = 0
-7:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-5:13/0 = 0
-4:13/0 = 0
-3:13/0 = 0
-4:12/0 = 0
-4:12/0/y_sort_origin = 20
-3:14/0 = 0
-3:14/0/y_sort_origin = -20
-4:14/0 = 0
-4:14/0/y_sort_origin = -20
-2:14/0 = 0
-2:14/0/y_sort_origin = -20
-1:14/0 = 0
-1:14/0/y_sort_origin = -20
-0:14/0 = 0
-0:14/0/y_sort_origin = -20
-0:13/0 = 0
 4:10/0 = 0
 4:9/0 = 0
-2:9/0 = 0
-1:9/0 = 0
-0:9/0 = 0
-0:8/0 = 0
-0:8/0/y_sort_origin = 20
 1:5/0 = 0
 0:5/0 = 0
 9:3/0 = 0
 0:17/0 = 0
 6:18/0 = 0
 0:19/0 = 0
+0:12/size_in_atlas = Vector2i(5, 3)
+0:12/0 = 0
+5:12/size_in_atlas = Vector2i(5, 4)
+5:12/0 = 0
+0:8/size_in_atlas = Vector2i(3, 3)
+0:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_lia7k"]
 tile_size = Vector2i(20, 20)
 sources/0 = SubResource("TileSetAtlasSource_bduoi")
+pattern_0 = SubResource("TileMapPattern_lvsx0")
 
 [sub_resource type="Animation" id="Animation_fkyvp"]
 length = 0.001
@@ -322,7 +272,7 @@ tile_set = SubResource("TileSet_lia7k")
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1983803170]
 y_sort_enabled = true
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAIAAEAAAAAAAgAAAAIAAIAAAAAAAkAAAAIAAMAAAAAAAoAAAAJAAEAAAABAAgAAAAJAAIAAAABAAkAAAAJAAMAAAABAAoAAAAKAAEAAAACAAgAAAAKAAIAAAACAAkAAAAKAAMAAAACAAoAAAACAAgAAAAAAAgAAAACAAkAAAAAAAkAAAACAAoAAAAAAAoAAAADAAgAAAABAAgAAAADAAkAAAABAAkAAAADAAoAAAABAAoAAAAEAAgAAAACAAgAAAAEAAkAAAACAAkAAAAEAAoAAAACAAoAAAABAAIAAAAAAAwAAAABAAMAAAAAAA0AAAABAAQAAAAAAA4AAAACAAIAAAABAAwAAAACAAMAAAABAA0AAAACAAQAAAABAA4AAAADAAIAAAACAAwAAAADAAMAAAACAA0AAAADAAQAAAACAA4AAAAEAAIAAAADAAwAAAAEAAMAAAADAA0AAAAEAAQAAAADAA4AAAAFAAIAAAAEAAwAAAAFAAMAAAAEAA0AAAAFAAQAAAAEAA4AAAAHAAcAAAAAAAwAAAAHAAgAAAAAAA0AAAAHAAkAAAAAAA4AAAAIAAcAAAABAAwAAAAIAAgAAAABAA0AAAAIAAkAAAABAA4AAAAJAAcAAAACAAwAAAAJAAgAAAACAA0AAAAJAAkAAAACAA4AAAAKAAcAAAADAAwAAAAKAAgAAAADAA0AAAAKAAkAAAADAA4AAAALAAcAAAAEAAwAAAALAAgAAAAEAA0AAAALAAkAAAAEAA4AAAA=")
+tile_map_data = PackedByteArray("AAADAAkAAAAAAAgAAAAJAAIAAAAAAAgAAAADAAMAAAAAAAwAAAAJAAgAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_lia7k")
 y_sort_origin = 10
 

@@ -65,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		sprite.sprite_frames = happy_frames
 	elif Input.is_action_pressed('cancel'):
 		sprite.sprite_frames = unhappy_frames
+		sprite.speed_scale
 	
 	var walk := (move.x != 0.0) or (move.y != 0.0)
 	if walk:
