@@ -10,6 +10,8 @@ extends Control
 
 @onready var ast = $HBoxContainer/asterisks
 @onready var dia = $HBoxContainer/dialoguetext
+@onready var dark_box: NinePatchRect = $DarkBox
+@onready var light_box: NinePatchRect = $LightBox
 
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
@@ -42,11 +44,13 @@ func set_asterisks():
 func _ready():
 	match Global.world_type:
 		Global.WORLD_LIGHT:
+			dark_box.visible = false
+			light_box.visible = true
 			$TalkSprite.set_position(Vector2(64.0, 350.0))
-			$AnimationPlayer.play('lighttextbox')
 		Global.WORLD_DARK:
+			dark_box.visible = true
+			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
-			$AnimationPlayer.play('darktextbox')
 	
 	set_text(text)
 	set_asterisks()

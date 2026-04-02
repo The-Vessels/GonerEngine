@@ -1,78 +1,14 @@
 [gd_scene format=3 uid="uid://c5nrska6i801g"]
 
 [ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/textbox/please.gd" id="1_o60sd"]
+[ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/dark_box.tscn" id="2_1rgox"]
+[ext_resource type="PackedScene" uid="uid://d1tmmpanucxap" path="res://scenes/light_box.tscn" id="3_6occq"]
 [ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://assets/sprites/sincere.png" id="3_g5d5p"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="4_c4wvf"]
 [ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://assets/sounds/voice/susie.wav" id="4_qagdh"]
-[ext_resource type="Texture2D" uid="uid://cs4mn4gjwhqtt" path="res://assets/sprites/textbox/dark/darktextbox2.png" id="6_3s5mu"]
-[ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://assets/sprites/textbox/dark/darktextbox1.png" id="6_o60sd"]
-[ext_resource type="Texture2D" uid="uid://cf4oltvj3yacv" path="res://assets/sprites/textbox/dark/darktextbox3.png" id="7_h48g6"]
-[ext_resource type="Texture2D" uid="uid://beqmacfjuy86v" path="res://assets/sprites/textbox/dark/darktextbox4.png" id="8_k0kpg"]
-[ext_resource type="Texture2D" uid="uid://dka0ivcx3t3sd" path="res://assets/sprites/textbox/dark/darktextbox5.png" id="9_i7yyr"]
-[ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://assets/sprites/textbox/dark/darktextbox6.png" id="10_a5qqc"]
-[ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://assets/sprites/textbox/dark/darktextbox7.png" id="11_bk4x5"]
-[ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://assets/sprites/textbox/dark/darktextbox8.png" id="12_wh21d"]
-[ext_resource type="Texture2D" uid="uid://ho7tcbnd3xlt" path="res://assets/sprites/textbox/light/lighttextbox.png" id="13_2m7l8"]
 
 [sub_resource type="FontVariation" id="FontVariation_o60sd"]
 base_font = ExtResource("4_c4wvf")
-
-[sub_resource type="Animation" id="Animation_i5cy3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_o60sd")]
-}
-
-[sub_resource type="Animation" id="Animation_2m7l8"]
-resource_name = "darktextbox"
-length = 2.6667
-loop_mode = 1
-step = 0.333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.6666667, 1, 1.3333334, 1.6666667, 2, 2.3333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("6_o60sd"), ExtResource("6_3s5mu"), ExtResource("7_h48g6"), ExtResource("8_k0kpg"), ExtResource("9_i7yyr"), ExtResource("10_a5qqc"), ExtResource("11_bk4x5"), ExtResource("12_wh21d")]
-}
-
-[sub_resource type="Animation" id="Animation_i7yyr"]
-resource_name = "lighttextbox"
-length = 0.001
-step = 0.333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_2m7l8")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jt0pv"]
-_data = {
-&"RESET": SubResource("Animation_i5cy3"),
-&"darktextbox": SubResource("Animation_2m7l8"),
-&"lighttextbox": SubResource("Animation_i7yyr")
-}
 
 [node name="Textbox" type="Control" unique_id=810857812]
 layout_mode = 3
@@ -84,18 +20,21 @@ grow_vertical = 2
 script = ExtResource("1_o60sd")
 text = "* Kris you should know this place since you're a fucking traitor"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1982840833]
+[node name="DarkBox" parent="." unique_id=619300672 instance=ExtResource("2_1rgox")]
+visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 312.0
 offset_right = 321.0
 offset_bottom = 396.0
-scale = Vector2(2, 2)
-texture = ExtResource("6_o60sd")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
+
+[node name="LightBox" parent="." unique_id=1111038318 instance=ExtResource("3_6occq")]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 321.0
+offset_bottom = 396.0
 
 [node name="TalkSprite" type="TextureRect" parent="." unique_id=1788532552]
 layout_mode = 0
@@ -141,9 +80,6 @@ visible_characters_behavior = 1
 stream = ExtResource("4_qagdh")
 volume_db = -10.0
 max_polyphony = 15
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=999963877]
-libraries/ = SubResource("AnimationLibrary_jt0pv")
 
 [node name="References" type="Node2D" parent="." unique_id=1801481437]
 visible = false

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d1tmmpanucxap"]
+
+[ext_resource type="Texture2D" uid="uid://ho7tcbnd3xlt" path="res://assets/sprites/textbox/light/lighttextbox.png" id="1_c3pdv"]
+
+[node name="LightBox" type="NinePatchRect" unique_id=619300672]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_c3pdv")
+region_rect = Rect2(4, 4, 25, 25)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16

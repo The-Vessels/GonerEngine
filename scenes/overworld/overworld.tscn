@@ -271,6 +271,7 @@ tile_set = SubResource("TileSet_lia7k")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1983803170]
 y_sort_enabled = true
+position = Vector2(0, 1)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAADAAkAAAAAAAgAAAAJAAIAAAAAAAgAAAADAAMAAAAAAAwAAAAJAAgAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_lia7k")
