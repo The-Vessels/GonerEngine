@@ -377,3 +377,4 @@ shape = SubResource("WorldBoundaryShape2D_lvsx0")
 [node name="Musicer" type="AudioStreamPlayer" parent="." unique_id=762315420]
 stream = ExtResource("9_bduoi")
 autoplay = true
+parameters/looping = true
