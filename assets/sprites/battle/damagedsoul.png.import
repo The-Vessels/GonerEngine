@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c18rgmqly88uc"
-path="res://.godot/imported/btact_1.png-25966ab9a129c232b7824fd71ae71788.ctex"
+uid="uid://cg4vwijkofrrx"
+path="res://.godot/imported/damagedsoul.png-f014bbdc615b86f2093b09f2f7a87050.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/battle/buttons/btact_1.png"
-dest_files=["res://.godot/imported/btact_1.png-25966ab9a129c232b7824fd71ae71788.ctex"]
+source_file="res://assets/sprites/battle/damagedsoul.png"
+dest_files=["res://.godot/imported/damagedsoul.png-f014bbdc615b86f2093b09f2f7a87050.ctex"]
 
 [params]
 

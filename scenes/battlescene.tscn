@@ -1,6 +1,6 @@
-[gd_scene load_steps=58 format=3 uid="uid://bthb6dnjh0uiy"]
+[gd_scene format=3 uid="uid://bthb6dnjh0uiy"]
 
-[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_ry25i"]
+[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scripts/exit_handler.gd" id="1_ry25i"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="2_rlls0"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://scripts/background.gd" id="3_y4p8x"]
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="4_tekiq"]

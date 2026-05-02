@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chhn4j8v7y0sd"
-path="res://.godot/imported/btfight_0.png-bf751bf9dd10f02eb79c819c182e31a0.ctex"
+uid="uid://dktds4q82y1sr"
+path="res://.godot/imported/btspare_2.png-5331df03efd7ba7d49072ffdbfdea942.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/battle/buttons/btfight_0.png"
-dest_files=["res://.godot/imported/btfight_0.png-bf751bf9dd10f02eb79c819c182e31a0.ctex"]
+source_file="res://assets/sprites/battle/btn/btspare_2.png"
+dest_files=["res://.godot/imported/btspare_2.png-5331df03efd7ba7d49072ffdbfdea942.ctex"]
 
 [params]
 

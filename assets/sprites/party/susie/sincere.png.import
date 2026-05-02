@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dutwf64kfk37e"
-path="res://.godot/imported/btact_0.png-9d34c5128982f11fcb68f4f920ee638e.ctex"
+uid="uid://bu708k77nhnyg"
+path="res://.godot/imported/sincere.png-1893a92ac6124f0d78cf537a5e931de0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/battle/buttons/btact_0.png"
-dest_files=["res://.godot/imported/btact_0.png-9d34c5128982f11fcb68f4f920ee638e.ctex"]
+source_file="res://assets/sprites/party/susie/sincere.png"
+dest_files=["res://.godot/imported/sincere.png-1893a92ac6124f0d78cf537a5e931de0.ctex"]
 
 [params]
 

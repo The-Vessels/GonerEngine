@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://csdsg4wiw05jy"]
+[gd_scene format=3 uid="uid://csdsg4wiw05jy"]
 
 [ext_resource type="Script" uid="uid://bt4kljojuhcdm" path="res://scripts/buttontest/buttons.gd" id="1_ew542"]
 [ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://assets/themes/buttontheme.tres" id="2_puxpd"]
-[ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://assets/buttons/buttonref.png" id="2_tvki0"]
-[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://assets/sprites/soul.png" id="4_yg274"]
+[ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://assets/sprites/buttonref.png" id="2_tvki0"]
+[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://assets/sprites/battle/soul.png" id="4_yg274"]
 
 [node name="Buttons" type="Node2D"]
 script = ExtResource("1_ew542")

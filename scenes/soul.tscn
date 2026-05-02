@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1q75mmscv56l"]
+[gd_scene format=3 uid="uid://d1q75mmscv56l"]
 
 [ext_resource type="Script" uid="uid://b70bn0hacqco7" path="res://scripts/soul.gd" id="1_jnmxf"]
-[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://assets/sprites/soul.png" id="2_dt1lx"]
+[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://assets/sprites/battle/soul.png" id="2_dt1lx"]
 [ext_resource type="Script" uid="uid://cbt07mr243ca" path="res://scripts/PlayerHitbox.gd" id="2_n6usl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jnmxf"]

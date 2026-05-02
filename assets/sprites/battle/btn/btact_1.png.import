@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmclf3tlxn0l"
-path="res://.godot/imported/lw_textbox.png-420cc84c4af189237f20e556d4963f41.ctex"
+uid="uid://c18rgmqly88uc"
+path="res://.godot/imported/btact_1.png-12a0c45a11f5fc46e4aa4344fbc01de1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/lw_textbox.png"
-dest_files=["res://.godot/imported/lw_textbox.png-420cc84c4af189237f20e556d4963f41.ctex"]
+source_file="res://assets/sprites/battle/btn/btact_1.png"
+dest_files=["res://.godot/imported/btact_1.png-12a0c45a11f5fc46e4aa4344fbc01de1.ctex"]
 
 [params]
 

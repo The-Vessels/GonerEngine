@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu708k77nhnyg"
-path="res://.godot/imported/sincere.png-4ce33c7bbb1f4d9095e7f7a2764d9618.ctex"
+uid="uid://co7dfsjfj4ekb"
+path="res://.godot/imported/btdefend_0.png-4972f4c2ee2abfd1853849af345a665d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sincere.png"
-dest_files=["res://.godot/imported/sincere.png-4ce33c7bbb1f4d9095e7f7a2764d9618.ctex"]
+source_file="res://assets/sprites/battle/btn/btdefend_0.png"
+dest_files=["res://.godot/imported/btdefend_0.png-4972f4c2ee2abfd1853849af345a665d.ctex"]
 
 [params]
 

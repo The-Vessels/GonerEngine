@@ -1,8 +1,8 @@
-[gd_scene load_steps=58 format=3 uid="uid://bkh7rtxnd2dux"]
+[gd_scene format=3 uid="uid://bkh7rtxnd2dux"]
 
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="1_bm4ed"]
-[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scenes/exit_handler.gd" id="1_fbgux"]
+[ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scripts/exit_handler.gd" id="1_fbgux"]
 [ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/sprite_2d.gd" id="2_30i1k"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://scripts/background.gd" id="2_kr7th"]
 [ext_resource type="Texture2D" uid="uid://baqom7q1ahs4l" path="res://assets/sprites/battle.png" id="6_wj8kd"]

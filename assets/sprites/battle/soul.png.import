@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ei072b4aewrl"
-path="res://.godot/imported/btspare_0.png-f49052887e9407f1ad7bca16fee28519.ctex"
+uid="uid://dfv5tvlj53h6v"
+path="res://.godot/imported/soul.png-a9d9223ee0804c6b61b9daddc33a1975.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/battle/buttons/btspare_0.png"
-dest_files=["res://.godot/imported/btspare_0.png-f49052887e9407f1ad7bca16fee28519.ctex"]
+source_file="res://assets/sprites/battle/soul.png"
+dest_files=["res://.godot/imported/soul.png-a9d9223ee0804c6b61b9daddc33a1975.ctex"]
 
 [params]
 

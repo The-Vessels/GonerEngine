@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br5syp4p6snfe"
-path="res://.godot/imported/diamondbullet.png-c324df3e3b81cb29c4894d2d1282fe0c.ctex"
+uid="uid://cmclf3tlxn0l"
+path="res://.godot/imported/lw_textbox.png-066dc6ac698a6298f061d6940fb8818f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/diamondbullet.png"
-dest_files=["res://.godot/imported/diamondbullet.png-c324df3e3b81cb29c4894d2d1282fe0c.ctex"]
+source_file="res://assets/sprites/textbox/light/lw_textbox.png"
+dest_files=["res://.godot/imported/lw_textbox.png-066dc6ac698a6298f061d6940fb8818f.ctex"]
 
 [params]
 

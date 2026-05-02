@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://66gtmbljcdi5"
-path="res://.godot/imported/btspare_1.png-2c22449921c26878c4e84332426702af.ctex"
+uid="uid://br5syp4p6snfe"
+path="res://.godot/imported/diamondbullet.png-301b4db7c98b787bbd1525d890de46f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/battle/buttons/btspare_1.png"
-dest_files=["res://.godot/imported/btspare_1.png-2c22449921c26878c4e84332426702af.ctex"]
+source_file="res://assets/sprites/battle/diamondbullet.png"
+dest_files=["res://.godot/imported/diamondbullet.png-301b4db7c98b787bbd1525d890de46f9.ctex"]
 
 [params]
 

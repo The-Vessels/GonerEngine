@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqvckx747rte5"
-path="res://.godot/imported/thenight.png-a6c4d449c5778458a7a015ece81aae5a.ctex"
+uid="uid://bxevwx3m6r8f0"
+path="res://.godot/imported/bttech_2.png-62c6c9926b677ea7ee81c988009e8431.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://thenight.png"
-dest_files=["res://.godot/imported/thenight.png-a6c4d449c5778458a7a015ece81aae5a.ctex"]
+source_file="res://assets/sprites/battle/btn/bttech_2.png"
+dest_files=["res://.godot/imported/bttech_2.png-62c6c9926b677ea7ee81c988009e8431.ctex"]
 
 [params]
 

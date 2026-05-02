@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://btho7jl7fwb7q"]
+[gd_scene format=3 uid="uid://btho7jl7fwb7q"]
 
-[ext_resource type="Script" uid="uid://cx87bvt7i2jvq" path="res://scenes/battle/battlescene_2.gd" id="1_28e2v"]
-[ext_resource type="Script" uid="uid://cd1a8of3kgipq" path="res://scenes/charboxcontainer.gd" id="1_ct4bp"]
+[ext_resource type="Script" uid="uid://cx87bvt7i2jvq" path="res://scripts/battlescene_2.gd" id="1_28e2v"]
+[ext_resource type="Script" uid="uid://cd1a8of3kgipq" path="res://scripts/charboxcontainer.gd" id="1_ct4bp"]
 [ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/superdeltarune.png" id="1_p58ht"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="2_dlyct"]
 [ext_resource type="Texture2D" uid="uid://cp63ifo1my1jy" path="res://assets/sprites/battle/background.png" id="3_sp4op"]

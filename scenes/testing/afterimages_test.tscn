@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cw8smprqrucvq"]
 
 [ext_resource type="Script" uid="uid://5q55u4ue34ti" path="res://scripts/testing/afterimages_test.gd" id="1_3r5cq"]
-[ext_resource type="Texture2D" uid="uid://dqvckx747rte5" path="res://thenight.png" id="2_kdlsn"]
+[ext_resource type="Texture2D" uid="uid://dqvckx747rte5" path="res://assets/sprites/thenight.png" id="2_kdlsn"]
 
 [node name="AfterimagesTest" type="Node2D" unique_id=295270854]
 script = ExtResource("1_3r5cq")
