@@ -34,7 +34,7 @@ var tension := 0
 var maxtension := 250
 var asp := AudioStreamPlayer.new()
 
-var ui_menumove := preload('res://assets/sfx/ui/menumove.wav')
+var ui_menumove := preload('res://assets/sounds/ui/menumove.wav')
 
 var selectedDarkBtn := 0
 var darkMenuOpened := false

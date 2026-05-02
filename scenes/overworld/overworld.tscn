@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/overworld/player.tscn" id="6_eab5i"]
 [ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://scripts/wingledingle.gd" id="6_qjxaj"]
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
+[ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="9_bduoi"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lvsx0"]
 tile_data = PackedInt32Array(0, 0, 12, 65536, 0, 13, 131072, 0, 14, 1, 65536, 12, 65537, 65536, 13, 131073, 65536, 14, 2, 131072, 12, 65538, 131072, 13, 131074, 131072, 14, 3, 196608, 12, 65539, 196608, 13, 131075, 196608, 14, 4, 262144, 12, 65540, 262144, 13, 131076, 262144, 14)
@@ -323,14 +324,12 @@ centered = false
 stream = ExtResource("5_fkyvp")
 volume_db = 0.06
 pitch_scale = 0.13
-autoplay = true
 parameters/looping = true
 
 [node name="DinglePlayer" type="AudioStreamPlayer" parent="." unique_id=1647937311]
 stream = ExtResource("6_e184d")
 volume_db = -27.582
 pitch_scale = 3.02
-autoplay = true
 parameters/looping = true
 script = ExtResource("6_qjxaj")
 
@@ -374,3 +373,7 @@ shape = SubResource("RectangleShape2D_lvsx0")
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Hitboxes/StaticBody2D2" unique_id=262926652]
 position = Vector2(620, 460)
 shape = SubResource("WorldBoundaryShape2D_lvsx0")
+
+[node name="Musicer" type="AudioStreamPlayer" parent="." unique_id=762315420]
+stream = ExtResource("9_bduoi")
+autoplay = true
