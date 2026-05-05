@@ -27,6 +27,9 @@ var c_yellow = Color.html("#ffff00");
 enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_DARK
 
+var currentRoom: PackedScene
+signal changeRoom(room, target, facing)
+
 # change this to undefined later its 0 for testing pur's
 var currentHero = 0
 

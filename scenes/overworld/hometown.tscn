@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="1_q338v"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_rhlg7"]
+[ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_rhlg7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tcbqp"]
 texture = ExtResource("1_q338v")
@@ -236,8 +237,15 @@ tile_set = SubResource("TileSet_ijgb4")
 [node name="TeleportArea" type="Area2D" parent="." unique_id=1869891425]
 script = ExtResource("2_rhlg7")
 target_scene = "uid://cbopyi6jxh138"
+player_facing = "up"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=591842712]
 position = Vector2(339.5, 99)
 shape = SubResource("RectangleShape2D_ewgd1")
+
+[node name="TargetMarker" type="Marker2D" parent="." unique_id=1513624942]
+position = Vector2(131, 104)
+script = ExtResource("3_rhlg7")
+marker_id = 1
+metadata/_custom_type_script = "uid://dixqt176beevg"

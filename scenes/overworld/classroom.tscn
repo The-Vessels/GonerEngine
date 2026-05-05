@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://assets/sprites/tiles/unused.png" id="1_gobvo"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_165k2"]
+[ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_165k2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gobvo"]
 size = Vector2(80, 79)
@@ -16,8 +17,14 @@ centered = false
 [node name="TeleportArea" type="Area2D" parent="." unique_id=253675558]
 script = ExtResource("2_165k2")
 target_scene = "uid://d2se1oi1rtnix"
+target_marker_id = 1
+player_facing = "right"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=542609714]
 position = Vector2(320, 410)
 shape = SubResource("RectangleShape2D_gobvo")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1848633290]
+position = Vector2(321, 293)
+script = ExtResource("3_165k2")

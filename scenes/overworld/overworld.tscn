@@ -243,6 +243,9 @@ size = Vector2(40, 40)
 normal = Vector2(-1, 0)
 distance = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lia7k"]
+size = Vector2(40, 480)
+
 [node name="Node2D" type="Control" unique_id=1269252097]
 y_sort_enabled = true
 layout_mode = 3
@@ -373,6 +376,7 @@ position = Vector2(380, 140)
 shape = SubResource("RectangleShape2D_lvsx0")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Hitboxes" unique_id=1477035324]
+position = Vector2(40, 160)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Hitboxes/StaticBody2D2" unique_id=262926652]
 position = Vector2(620, 460)
@@ -401,6 +405,12 @@ rotation = -1.5707964
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Hitboxes/StaticBody2D5" unique_id=971446839]
 position = Vector2(620, 460)
 shape = SubResource("WorldBoundaryShape2D_lvsx0")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Hitboxes" unique_id=1547954404]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/StaticBody2D6" unique_id=303219848]
+position = Vector2(620, 240)
+shape = SubResource("RectangleShape2D_lia7k")
 
 [node name="Musicer" type="AudioStreamPlayer" parent="." unique_id=762315420]
 stream = ExtResource("9_bduoi")

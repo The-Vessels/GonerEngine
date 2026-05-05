@@ -1,9 +1,6 @@
-[gd_scene format=3 uid="uid://dp5p1tf3br3qs"]
+[gd_scene format=3 uid="uid://db2a74kvtvl0u"]
 
-[ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/overworld/player.tscn" id="1_0em7b"]
-[ext_resource type="Script" uid="uid://riofa83c0ggl" path="res://scripts/overworld/room_manager.gd" id="1_jimbh"]
-[ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
-[ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
+[ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="1_12c8c"]
 
 [sub_resource type="Animation" id="Animation_jweab"]
 length = 0.001
@@ -59,24 +56,15 @@ _data = {
 &"fade_to_normal": SubResource("Animation_qj1lb")
 }
 
-[node name="Main" type="Node2D" unique_id=1637654934]
+[node name="TransitionScreen" type="CanvasLayer" unique_id=2126809513]
+script = ExtResource("1_12c8c")
 
-[node name="RoomManager" type="Node2D" parent="." unique_id=1516968592]
-script = ExtResource("1_jimbh")
-
-[node name="Hometown" parent="RoomManager" unique_id=1381263894 instance=ExtResource("2_2n5go")]
-
-[node name="Player" parent="." unique_id=1261652957 instance=ExtResource("1_0em7b")]
-
-[node name="TransitionScreen" type="CanvasLayer" parent="." unique_id=2126809513]
-script = ExtResource("4_jimbh")
-
-[node name="ColorRect" type="ColorRect" parent="TransitionScreen" unique_id=93965506]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=93965506]
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen" unique_id=1243601964]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1243601964]
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
-[connection signal="animation_finished" from="TransitionScreen/AnimationPlayer" to="TransitionScreen" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
