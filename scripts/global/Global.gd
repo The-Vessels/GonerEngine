@@ -58,6 +58,8 @@ func _physics_process(_delta: float) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
 		toggle_fullscreen()
+	if Input.is_key_pressed(KEY_F2):
+		get_tree().reload_current_scene()
 
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738

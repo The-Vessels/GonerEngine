@@ -85,6 +85,7 @@ color = Color(0, 0, 0, 0)
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1314239038]
+position = Vector2(320, 240)
 script = ExtResource("5_feyxp")
 
 [connection signal="animation_finished" from="TransitionScreen/AnimationPlayer" to="TransitionScreen" method="_on_animation_player_animation_finished"]
