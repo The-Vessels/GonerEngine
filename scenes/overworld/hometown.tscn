@@ -245,7 +245,7 @@ position = Vector2(339.5, 99)
 shape = SubResource("RectangleShape2D_ewgd1")
 
 [node name="TargetMarker" type="Marker2D" parent="." unique_id=1513624942]
-position = Vector2(131, 104)
+position = Vector2(336, 159)
 script = ExtResource("3_rhlg7")
 marker_id = 1
 metadata/_custom_type_script = "uid://dixqt176beevg"

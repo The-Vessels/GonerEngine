@@ -2,9 +2,37 @@
 
 [ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/global/Global.gd" id="1_4pk28"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="2_nmxvb"]
+[ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="3_mmyj5"]
+[ext_resource type="Texture2D" uid="uid://brxkji0i88mft" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_1.png" id="4_unqd7"]
+[ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_2.png" id="5_x8cda"]
+[ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_3.png" id="6_bv183"]
+[ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_4.png" id="7_5rvs8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_opebo"]
 font = ExtResource("2_nmxvb")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wokaa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mmyj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_unqd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x8cda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bv183")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5rvs8")
+}],
+"loop": true,
+"name": &"quit_anim",
+"speed": 3.0
+}]
 
 [node name="Global" type="Node" unique_id=1753942826]
 script = ExtResource("1_4pk28")
@@ -12,8 +40,20 @@ script = ExtResource("1_4pk28")
 [node name="UIAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=54696501]
 
 [node name="FPS_COUNTER" type="Label" parent="." unique_id=1576897455]
+visible = false
 offset_left = 4.0
 offset_right = 61.0
 offset_bottom = 23.0
 text = "greembus"
 label_settings = SubResource("LabelSettings_opebo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1659258570]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=2085435511]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_wokaa")
+animation = &"quit_anim"
+centered = false

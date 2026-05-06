@@ -3,14 +3,15 @@ extends Node2D
 @onready var transition_player: AnimationPlayer = $"../TransitionScreen/AnimationPlayer"
 @onready var player: CharacterBody2D = $"../Player"
 
-
 func _ready() -> void:
 	Global.changeRoom.connect(
 		func(room, target, facing):
+			player.nopress = true
 			transition_player.play("fade_to_black")
 			await transition_player.animation_finished
 			goto_room(room, target, facing)
 			transition_player.play("fade_to_normal")
+			player.nopress = false
 	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

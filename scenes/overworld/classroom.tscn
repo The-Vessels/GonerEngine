@@ -18,10 +18,21 @@ centered = false
 script = ExtResource("2_165k2")
 target_scene = "uid://d2se1oi1rtnix"
 target_marker_id = 1
-player_facing = "right"
+player_facing = "down"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=542609714]
+position = Vector2(320, 410)
+shape = SubResource("RectangleShape2D_gobvo")
+
+[node name="TeleportArea2" type="Area2D" parent="." unique_id=2123993654]
+position = Vector2(-224, -192)
+script = ExtResource("2_165k2")
+target_scene = "uid://cy8co0c6bkwdr"
+player_facing = "down"
+metadata/_custom_type_script = "uid://cnspaa06cvy5v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea2" unique_id=2088458932]
 position = Vector2(320, 410)
 shape = SubResource("RectangleShape2D_gobvo")
 

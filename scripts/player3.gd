@@ -1,7 +1,9 @@
-extends CharacterBody2D
+class_name player extends CharacterBody2D
 
 var speed := 90.0
 var facing = "down"
+var nopress := false
+
 var happy_frames   := preload("res://assets/sprites/party/susie/susie_animations.tres")
 var unhappy_frames := preload("res://assets/sprites/party/susie/susie_unhappy_animations.tres")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
@@ -51,15 +53,15 @@ var walkbuffer := 0.0
 var walktimer := 0.0
 func _physics_process(delta: float) -> void:
 	var move := Vector2.ZERO
-	var nopress := false
-	if Input.is_action_pressed('left'):
-		move.x = -1.0
-	elif Input.is_action_pressed('right'):
-		move.x = 1.0
-	if Input.is_action_pressed('up'):
-		move.y = -1.0
-	elif Input.is_action_pressed('down'):
-		move.y = 1.0
+	if !nopress:
+		if Input.is_action_pressed('left'):
+			move.x = -1.0
+		elif Input.is_action_pressed('right'):
+			move.x = 1.0
+		if Input.is_action_pressed('up'):
+			move.y = -1.0
+		elif Input.is_action_pressed('down'):
+			move.y = 1.0
 	
 	if Input.is_action_pressed('confirm'):
 		sprite.sprite_frames = happy_frames

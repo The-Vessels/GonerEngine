@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://riofa83c0ggl" path="res://scripts/overworld/room_manager.gd" id="1_jimbh"]
 [ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
+[ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
 
 [sub_resource type="Animation" id="Animation_jweab"]
 length = 0.001
@@ -22,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jrk67"]
 resource_name = "fade_to_black"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,7 +31,7 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
@@ -38,7 +39,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qj1lb"]
 resource_name = "fade_to_normal"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,7 +47,7 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -60,13 +61,17 @@ _data = {
 }
 
 [node name="Main" type="Node2D" unique_id=1637654934]
+y_sort_enabled = true
 
 [node name="RoomManager" type="Node2D" parent="." unique_id=1516968592]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_jimbh")
 
 [node name="Hometown" parent="RoomManager" unique_id=1381263894 instance=ExtResource("2_2n5go")]
 
 [node name="Player" parent="." unique_id=1261652957 instance=ExtResource("1_0em7b")]
+position = Vector2(96, 72)
 
 [node name="TransitionScreen" type="CanvasLayer" parent="." unique_id=2126809513]
 script = ExtResource("4_jimbh")
@@ -78,5 +83,8 @@ color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen" unique_id=1243601964]
 libraries/ = SubResource("AnimationLibrary_8adi8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1314239038]
+script = ExtResource("5_feyxp")
 
 [connection signal="animation_finished" from="TransitionScreen/AnimationPlayer" to="TransitionScreen" method="_on_animation_player_animation_finished"]
