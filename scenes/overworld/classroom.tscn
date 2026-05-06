@@ -1,13 +1,25 @@
 [gd_scene format=3 uid="uid://cbopyi6jxh138"]
 
 [ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://assets/sprites/tiles/unused.png" id="1_gobvo"]
+[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_qd6vq"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_165k2"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_165k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ad1y3"]
+size = Vector2(640, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gobvo"]
 size = Vector2(80, 79)
 
 [node name="Classroom" type="Node2D" unique_id=830096811]
+
+[node name="CameraBounds" type="Area2D" parent="." unique_id=729842976]
+script = ExtResource("1_qd6vq")
+metadata/_custom_type_script = "uid://do8e6sp7047i0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=976175003]
+position = Vector2(320, 240)
+shape = SubResource("RectangleShape2D_ad1y3")
 
 [node name="Unused" type="Sprite2D" parent="." unique_id=1010266825]
 scale = Vector2(2, 2)

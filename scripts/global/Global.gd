@@ -27,6 +27,8 @@ var c_yellow = Color.html("#ffff00");
 enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_DARK
 
+var borderEnabled := false
+
 var currentRoom: PackedScene
 signal changeRoom(room, target, facing)
 
@@ -91,5 +93,5 @@ func handle_quitting():
 		quitting_sprite_index = 0.0
 			
 	quitting_sprite.modulate.a = clampf(quitting_sprite.modulate.a, 0.0, 1.0)
-	print("hi: " + str(quitting_sprite_index) + " becomes " + str(quitting_sprite.frame))
+	#print("hi: " + str(quitting_sprite_index) + " becomes " + str(quitting_sprite.frame))
 	quitting_sprite.frame = int(quitting_sprite_index)

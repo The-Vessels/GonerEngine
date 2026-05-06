@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cy8co0c6bkwdr"]
 
+[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_lia7k"]
 [ext_resource type="SpriteFrames" uid="uid://dadmv7bxbi8o0" path="res://assets/sprites/overworld/menu/buttons.tres" id="2_u2ss0"]
 [ext_resource type="SpriteFrames" uid="uid://ch8lh5yhnlknr" path="res://assets/sprites/overworld/menu/desc.tres" id="3_356oe"]
 [ext_resource type="Script" uid="uid://3q1thmgous1v" path="res://scripts/overworld/dark_menu.gd" id="3_eab5i"]
@@ -9,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
 [ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="9_bduoi"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="11_ff0t0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0t0"]
+size = Vector2(840, 680)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lvsx0"]
 tile_data = PackedInt32Array(0, 0, 12, 65536, 0, 13, 131072, 0, 14, 1, 65536, 12, 65537, 65536, 13, 131073, 65536, 14, 2, 131072, 12, 65538, 131072, 13, 131074, 131072, 14, 3, 196608, 12, 65539, 196608, 13, 131075, 196608, 14, 4, 262144, 12, 65540, 262144, 13, 131076, 262144, 14)
@@ -251,8 +255,18 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 200.0
+offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CameraBounds" type="Area2D" parent="." unique_id=10365924]
+script = ExtResource("1_lia7k")
+metadata/_custom_type_script = "uid://do8e6sp7047i0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=2141765927]
+position = Vector2(220, 340)
+shape = SubResource("RectangleShape2D_ff0t0")
 
 [node name="True" type="ColorRect" parent="." unique_id=756315677]
 layout_mode = 1
@@ -381,7 +395,7 @@ position = Vector2(1024, 80)
 rotation = 1.5707964
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Hitboxes/StaticBody2D3" unique_id=64786631]
-position = Vector2(620, 460)
+position = Vector2(620, 260)
 shape = SubResource("WorldBoundaryShape2D_lvsx0")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Hitboxes" unique_id=611840423]
@@ -397,7 +411,7 @@ position = Vector2(-640, 600)
 rotation = -1.5707964
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Hitboxes/StaticBody2D5" unique_id=971446839]
-position = Vector2(620, 460)
+position = Vector2(620, 660)
 shape = SubResource("WorldBoundaryShape2D_lvsx0")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="Hitboxes" unique_id=1547954404]
