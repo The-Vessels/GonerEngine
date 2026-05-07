@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdhhevl4avjx6"]
+[gd_scene format=3 uid="uid://cdhhevl4avjx6"]
 
 [ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
 [ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
@@ -181,71 +181,67 @@ _data = {
 &"fade_in": SubResource("Animation_4rr2b")
 }
 
-[node name="Title" type="Node2D"]
+[node name="Title" type="Node2D" unique_id=1038947837]
 
-[node name="ImageDepth" type="Sprite2D" parent="."]
+[node name="ImageDepth" type="Sprite2D" parent="." unique_id=643628987]
 scale = Vector2(4, 4)
 texture = ExtResource("1_wosw1")
 centered = false
 flip_h = true
 
-[node name="Titletext" type="Sprite2D" parent="."]
+[node name="Titletext" type="Sprite2D" parent="." unique_id=213831884]
 position = Vector2(234, 30)
 scale = Vector2(2, 2)
 texture = ExtResource("2_p6dhs")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Titletext"]
-libraries = {
-&"": SubResource("AnimationLibrary_4rr2b")
-}
-autoplay = "titletext_move"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Titletext" unique_id=789478781]
+libraries/ = SubResource("AnimationLibrary_4rr2b")
+autoplay = &"titletext_move"
 speed_scale = 0.4
 
-[node name="Menu" type="Node2D" parent="."]
+[node name="Menu" type="Node2D" parent="." unique_id=156653272]
 script = ExtResource("3_4rr2b")
 speed = 100.0
 
-[node name="Soul" type="Sprite2D" parent="Menu"]
+[node name="Soul" type="Sprite2D" parent="Menu" unique_id=1966401917]
 position = Vector2(100, 176)
 scale = Vector2(2, 2)
 texture = ExtResource("3_b3w7a")
 centered = false
 offset = Vector2(-24, -2)
 
-[node name="Choices" type="VBoxContainer" parent="Menu"]
+[node name="Choices" type="VBoxContainer" parent="Menu" unique_id=109837756]
 material = SubResource("ShaderMaterial_pyl7j")
 offset_left = 100.0
 offset_top = 176.0
 offset_right = 196.0
 offset_bottom = 284.0
 
-[node name="Play" type="Label" parent="Menu/Choices"]
+[node name="Play" type="Label" parent="Menu/Choices" unique_id=233687490]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_yql1r")
 theme_override_font_sizes/font_size = 32
 text = "PLAY"
 
-[node name="Config" type="Label" parent="Menu/Choices"]
+[node name="Config" type="Label" parent="Menu/Choices" unique_id=1147600292]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_yql1r")
 theme_override_font_sizes/font_size = 32
 text = "CONFIG"
 
-[node name="Quit" type="Label" parent="Menu/Choices"]
+[node name="Quit" type="Label" parent="Menu/Choices" unique_id=1197980201]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_yql1r")
 theme_override_font_sizes/font_size = 32
 text = "QUIT"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=513123357]
 stream = ExtResource("6_yql1r")
 pitch_scale = 0.98
 autoplay = true
 parameters/looping = true
 
-[node name="FadeInPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ia1n6")
-}
-autoplay = "fade_in"
+[node name="FadeInPlayer" type="AnimationPlayer" parent="." unique_id=1359152319]
+libraries/ = SubResource("AnimationLibrary_ia1n6")
+autoplay = &"fade_in"

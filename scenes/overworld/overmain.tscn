@@ -135,26 +135,29 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="RoomManager" type="Node2D" parent="CenterContainer/GameView/SubViewport" unique_id=1516968592]
+[node name="Node2D" type="Node2D" parent="CenterContainer/GameView/SubViewport" unique_id=1844534548]
+y_sort_enabled = true
+
+[node name="RoomManager" type="Node2D" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=1516968592]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_jimbh")
 
-[node name="Hometown" parent="CenterContainer/GameView/SubViewport/RoomManager" unique_id=1381263894 instance=ExtResource("2_2n5go")]
+[node name="Hometown" parent="CenterContainer/GameView/SubViewport/Node2D/RoomManager" unique_id=1381263894 instance=ExtResource("2_2n5go")]
 
-[node name="Player" parent="CenterContainer/GameView/SubViewport" unique_id=1261652957 instance=ExtResource("1_0em7b")]
+[node name="Player" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=1261652957 instance=ExtResource("1_0em7b")]
 y_sort_enabled = true
 position = Vector2(96, 72)
 
-[node name="Camera2D" type="Camera2D" parent="CenterContainer/GameView/SubViewport" unique_id=1314239038]
+[node name="Camera2D" type="Camera2D" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=1314239038]
 position = Vector2(320, 240)
 script = ExtResource("5_feyxp")
 
-[node name="TransitionScreen" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport" unique_id=2126809513]
+[node name="TransitionScreen" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=2126809513]
 follow_viewport_enabled = true
 script = ExtResource("4_jimbh")
 
-[node name="ColorRect" type="ColorRect" parent="CenterContainer/GameView/SubViewport/TransitionScreen" unique_id=93965506]
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen" unique_id=93965506]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -162,18 +165,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/GameView/SubViewport/TransitionScreen" unique_id=1243601964]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen" unique_id=1243601964]
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport" unique_id=535914796]
+[node name="CanvasLayer" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=535914796]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/GameView/SubViewport/CanvasLayer" unique_id=689846216]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/GameView/SubViewport/Node2D/CanvasLayer" unique_id=689846216]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_gecxn")
 animation = &"quit_anim"
 centered = false
 
-[connection signal="animation_finished" from="CenterContainer/GameView/SubViewport/TransitionScreen/AnimationPlayer" to="CenterContainer/GameView/SubViewport/TransitionScreen" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen/AnimationPlayer" to="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen" method="_on_animation_player_animation_finished"]

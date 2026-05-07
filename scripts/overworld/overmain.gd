@@ -1,5 +1,5 @@
 extends Node2D
-@onready var quitting_sprite: AnimatedSprite2D = $CenterContainer/GameView/SubViewport/CanvasLayer/AnimatedSprite2D
+@onready var quitting_sprite: AnimatedSprite2D = $CenterContainer/GameView/SubViewport/Node2D/CanvasLayer/AnimatedSprite2D
 var quitting_sprite_index := 0.0
 
 # Called when the node enters the scene tree for the first time.

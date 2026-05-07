@@ -46,4 +46,4 @@ func _process(delta: float) -> void:
 	# position.y = move_toward(position.y, pos.y, delta * speed)
 
 func go_to_overworld():
-	get_tree().change_scene_to_packed(preload('res://scenes/overworld/overworld.tscn'))
+	get_tree().change_scene_to_packed(preload('res://scenes/overworld/overmain.tscn'))
