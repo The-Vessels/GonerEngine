@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://assets/sprites/ui/borders/device_border.png" id="2_y2too"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
 [ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
+[ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="9_65ftm"]
+[ext_resource type="Texture2D" uid="uid://brxkji0i88mft" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_1.png" id="10_4cbgx"]
+[ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_2.png" id="11_83t3m"]
+[ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_3.png" id="12_wb7gr"]
+[ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_4.png" id="13_oynbp"]
 
 [sub_resource type="Animation" id="Animation_jweab"]
 length = 0.001
@@ -62,6 +67,29 @@ _data = {
 &"fade_to_black": SubResource("Animation_jrk67"),
 &"fade_to_normal": SubResource("Animation_qj1lb")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gecxn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_65ftm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4cbgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_83t3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wb7gr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_oynbp")
+}],
+"loop": true,
+"name": &"quit_anim",
+"speed": 3.0
+}]
 
 [node name="Main" type="Node2D" unique_id=703671160]
 y_sort_enabled = true
@@ -118,6 +146,10 @@ script = ExtResource("1_jimbh")
 y_sort_enabled = true
 position = Vector2(96, 72)
 
+[node name="Camera2D" type="Camera2D" parent="CenterContainer/GameView/SubViewport" unique_id=1314239038]
+position = Vector2(320, 240)
+script = ExtResource("5_feyxp")
+
 [node name="TransitionScreen" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport" unique_id=2126809513]
 follow_viewport_enabled = true
 script = ExtResource("4_jimbh")
@@ -133,8 +165,15 @@ color = Color(0, 0, 0, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/GameView/SubViewport/TransitionScreen" unique_id=1243601964]
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
-[node name="Camera2D" type="Camera2D" parent="CenterContainer/GameView/SubViewport" unique_id=1314239038]
-position = Vector2(320, 240)
-script = ExtResource("5_feyxp")
+[node name="CanvasLayer" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport" unique_id=535914796]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/GameView/SubViewport/CanvasLayer" unique_id=689846216]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_gecxn")
+animation = &"quit_anim"
+centered = false
 
 [connection signal="animation_finished" from="CenterContainer/GameView/SubViewport/TransitionScreen/AnimationPlayer" to="CenterContainer/GameView/SubViewport/TransitionScreen" method="_on_animation_player_animation_finished"]

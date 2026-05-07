@@ -46,15 +46,11 @@ var selectedDarkBtn := 0
 var darkMenuOpened := false
 var darkSubmenuOpened := false
 
-@onready var quitting_sprite: AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
-var quitting_sprite_index := 0.0
-
 func _ready():
 	setup_discord_rpc()
 	
 func _physics_process(_delta: float) -> void:
 	fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
-	handle_quitting()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
@@ -105,22 +101,3 @@ func toggle_fullscreen():
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 		is_fullscreen = true
-
-func handle_quitting():
-	if Input.is_action_pressed("quit"):
-		if quitting_sprite_index >= 5.0:
-			get_tree().quit()
-		
-		quitting_sprite.modulate.a += 0.05
-		quitting_sprite_index += 0.1
-	elif quitting_sprite.modulate.a > 0:
-			quitting_sprite_index -= 0.5
-			quitting_sprite_index = max(0, quitting_sprite_index)
-			
-			quitting_sprite.modulate.a -= 0.1
-	else:
-		quitting_sprite_index = 0.0
-			
-	quitting_sprite.modulate.a = clampf(quitting_sprite.modulate.a, 0.0, 1.0)
-	#print("hi: " + str(quitting_sprite_index) + " becomes " + str(quitting_sprite.frame))
-	quitting_sprite.frame = int(quitting_sprite_index)
