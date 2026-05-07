@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/overmain.gd" id="1_drpig"]
 [ext_resource type="Script" uid="uid://riofa83c0ggl" path="res://scripts/overworld/room_manager.gd" id="1_jimbh"]
 [ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
-[ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://assets/sprites/ui/borders/device_border.png" id="2_y2too"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
 [ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
 [ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="9_65ftm"]
@@ -101,7 +100,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BorderView" type="SubViewportContainer" parent="CenterContainer" unique_id=709908490]
-visible = false
 layout_mode = 2
 script = ExtResource("1_crb4c")
 
@@ -109,7 +107,7 @@ script = ExtResource("1_crb4c")
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(960, 540)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="CenterContainer/BorderView/SubViewport" unique_id=1999327463]
 anchors_preset = 15
@@ -120,10 +118,16 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="BorderTexture" type="TextureRect" parent="CenterContainer/BorderView/SubViewport" unique_id=608848387]
+modulate = Color(1, 1, 1, 0)
 offset_right = 960.0
 offset_bottom = 540.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_y2too")
+
+[node name="BorderPrevTexture" type="TextureRect" parent="CenterContainer/BorderView/SubViewport" unique_id=2139040643]
+modulate = Color(1, 1, 1, 0)
+offset_right = 960.0
+offset_bottom = 540.0
+scale = Vector2(0.5, 0.5)
 
 [node name="GameView" type="SubViewportContainer" parent="CenterContainer" unique_id=14131136]
 y_sort_enabled = true

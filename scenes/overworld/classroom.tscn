@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_qd6vq"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_165k2"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_165k2"]
+[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="5_lq7jd"]
+[ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://assets/sprites/ui/borders/device_border.png" id="6_v7bo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad1y3"]
 size = Vector2(640, 480)
@@ -51,3 +53,8 @@ shape = SubResource("RectangleShape2D_gobvo")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1848633290]
 position = Vector2(321, 293)
 script = ExtResource("3_165k2")
+
+[node name="BorderNode" type="Node2D" parent="." unique_id=1912141536]
+script = ExtResource("5_lq7jd")
+border_texture = ExtResource("6_v7bo3")
+metadata/_custom_type_script = "uid://b6jsajndjvi2p"

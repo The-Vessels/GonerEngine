@@ -4,8 +4,10 @@
 [ext_resource type="AudioStream" uid="uid://bm8itkv0jj3mv" path="res://assets/sounds/example/happytown.ogg" id="5_fkyvp"]
 [ext_resource type="AudioStream" uid="uid://7cxlp5wcft1p" path="res://assets/sounds/example/troubledingle.ogg" id="6_e184d"]
 [ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://scripts/wingledingle.gd" id="6_qjxaj"]
+[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="8_bduoi"]
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
 [ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="9_bduoi"]
+[ext_resource type="Texture2D" uid="uid://ks4ukhf2yiv1" path="res://assets/sprites/ui/borders/border_dw_blue_0.png" id="9_lia7k"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="11_ff0t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0t0"]
@@ -376,3 +378,8 @@ script = ExtResource("11_ff0t0")
 metadata/_custom_type_script = "uid://dixqt176beevg"
 
 [node name="Sprite2D" type="Sprite2D" parent="TargetMarker" unique_id=1216532737]
+
+[node name="BorderNode" type="Node2D" parent="." unique_id=804725700]
+script = ExtResource("8_bduoi")
+border_texture = ExtResource("9_lia7k")
+metadata/_custom_type_script = "uid://b6jsajndjvi2p"

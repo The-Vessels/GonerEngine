@@ -28,7 +28,17 @@ enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_DARK
 
 var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-var borderEnabled := false
+
+var border_enabled := false
+enum BorderModes {
+	DYNAMIC,
+	SIMPLE,
+	NONE
+}
+var border_mode := BorderModes.DYNAMIC
+
+var border_texture: Texture2D
+signal changeBorder(border)
 
 var currentRoom: PackedScene
 signal changeRoom(room, target, facing)
@@ -58,20 +68,20 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("temporary_border_toggle"):
-		if borderEnabled:
+		if border_enabled:
 			if is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 			else:
 				get_window().size = Vector2(640, 480)
-			borderEnabled = false
+			border_enabled = false
 		else:
 			if is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
 			else:
 				get_window().size = Vector2(960, 540)
-			borderEnabled = true
+			border_enabled = true
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738
 	DiscordRPC.details = 'Playing GonerEngine'
@@ -88,7 +98,7 @@ func play_ui_sound(sound_name: String):
 func toggle_fullscreen():
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		if !borderEnabled:
+		if !border_enabled:
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
 			get_window().size = Vector2(640, 480)
@@ -97,7 +107,7 @@ func toggle_fullscreen():
 		is_fullscreen = false
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		if !borderEnabled:
+		if !border_enabled:
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 		is_fullscreen = true
