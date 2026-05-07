@@ -27,6 +27,7 @@ var c_yellow = Color.html("#ffff00");
 enum {WORLD_LIGHT, WORLD_DARK}
 var world_type = WORLD_DARK
 
+var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 var borderEnabled := false
 
 var currentRoom: PackedScene
@@ -60,6 +61,9 @@ func _process(delta: float) -> void:
 		toggle_fullscreen()
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("temporary_border_toggle"):
+		get_window().size = Vector2(640, 480) if borderEnabled else Vector2(960, 540)
+		borderEnabled = !borderEnabled
 
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738
@@ -75,9 +79,8 @@ func play_ui_sound(sound_name: String):
 	$UIAudioPlayer.play()
 	
 func toggle_fullscreen():
-	var mode := DisplayServer.window_get_mode()
-	var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if is_fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN)
+	is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
 func handle_quitting():
 	if Input.is_action_pressed("quit"):
