@@ -62,9 +62,20 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("temporary_border_toggle"):
-		get_window().size = Vector2(640, 480) if borderEnabled else Vector2(960, 540)
-		borderEnabled = !borderEnabled
-
+		if borderEnabled:
+			if is_fullscreen:
+				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
+			else:
+				get_window().size = Vector2(640, 480)
+			borderEnabled = false
+		else:
+			if is_fullscreen:
+				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+			else:
+				get_window().size = Vector2(960, 540)
+			borderEnabled = true
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738
 	DiscordRPC.details = 'Playing GonerEngine'
@@ -79,8 +90,21 @@ func play_ui_sound(sound_name: String):
 	$UIAudioPlayer.play()
 	
 func toggle_fullscreen():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if is_fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN)
-	is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		if !borderEnabled:
+			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+			get_window().size = Vector2(640, 480)
+		else:
+			get_window().size = Vector2(960, 540)
+		is_fullscreen = false
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		if !borderEnabled:
+			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
+		is_fullscreen = true
 
 func handle_quitting():
 	if Input.is_action_pressed("quit"):
