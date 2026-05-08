@@ -1,0 +1,44 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://c1r0yd542sja7"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://ljbjmoc34kxi" path="res://new_animation_node_blend_space_2d.tres" id="1_sw5rj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71bjh"]
+animation = &"idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wicgm"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a67oh"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qpklc"]
+animation = &"idle_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wicgm"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_71bjh")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_wicgm")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_a67oh")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_qpklc")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a67oh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_khriw"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vmh5e"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[resource]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_wicgm")
+states/Idle/position = Vector2(367, 169)
+states/Walk/node = ExtResource("1_sw5rj")
+states/Walk/position = Vector2(367, 46)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_a67oh"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_khriw"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_vmh5e")]
