@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/overmain.gd" id="1_drpig"]
 [ext_resource type="Script" uid="uid://riofa83c0ggl" path="res://scripts/overworld/room_manager.gd" id="1_jimbh"]
 [ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
+[ext_resource type="Texture2D" uid="uid://rfitwotdwjpa" path="res://assets/sprites/ui/borders/border_simple.png" id="3_65ftm"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
 [ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
 [ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="9_65ftm"]
@@ -122,6 +123,7 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 960.0
 offset_bottom = 540.0
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_65ftm")
 
 [node name="BorderPrevTexture" type="TextureRect" parent="CenterContainer/BorderView/SubViewport" unique_id=2139040643]
 modulate = Color(1, 1, 1, 0)

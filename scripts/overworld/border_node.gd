@@ -6,5 +6,6 @@ class_name BorderNode extends Node2D
 func _ready() -> void:
 	if border_texture == Global.border_texture:
 		return
+	Global.current_dynamic_border = border_texture
 	if Global.border_mode == Global.BorderModes.DYNAMIC:
 		Global.changeBorder.emit(border_texture)

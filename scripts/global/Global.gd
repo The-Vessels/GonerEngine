@@ -36,8 +36,9 @@ enum BorderModes {
 	NONE
 }
 var border_mode := BorderModes.DYNAMIC
-
+var border_trans := 1.0
 var border_texture: Texture2D
+var current_dynamic_border: Texture2D
 signal changeBorder(border)
 
 var currentRoom: PackedScene
@@ -67,21 +68,7 @@ func _process(delta: float) -> void:
 		toggle_fullscreen()
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("temporary_border_toggle"):
-		if border_enabled:
-			if is_fullscreen:
-				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
-			else:
-				get_window().size = Vector2(640, 480)
-			border_enabled = false
-		else:
-			if is_fullscreen:
-				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
-			else:
-				get_window().size = Vector2(960, 540)
-			border_enabled = true
+
 func setup_discord_rpc():
 	DiscordRPC.app_id = 1416858009635913738
 	DiscordRPC.details = 'Playing GonerEngine'

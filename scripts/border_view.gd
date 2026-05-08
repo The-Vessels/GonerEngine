@@ -1,45 +1,70 @@
 extends SubViewportContainer
 @onready var border_rect: TextureRect = $SubViewport/BorderTexture
 @onready var border_prev_rect: TextureRect = $SubViewport/BorderPrevTexture
-var border_trans := 0.0
+var tween: Tween
+
+const BORDER_SIMPLE = preload("uid://rfitwotdwjpa")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	tween = get_tree().create_tween()
+	Global.border_texture = border_rect.texture
 	Global.changeBorder.connect(
 		func(border):
 			set_border(border)
 	)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("temporary_border_toggle"):
+		toggle_border()
+	
 	visible = true if Global.border_enabled else false
-	
-	if Global.border_enabled and border_rect.modulate.a < 1.0:
-		border_rect.modulate.a += 0.05
-	if !Global.border_enabled and border_rect.modulate.a > 0.0:
-		border_rect.modulate.a = 0.0
-	
-	border_rect.modulate.a = clampf(border_rect.modulate.a, 0.0, 1.0)
 	
 	match Global.border_mode:
 		Global.BorderModes.NONE:
-			border_rect.visible = false
+			border_rect.texture = null
 		Global.BorderModes.SIMPLE:
-			border_rect.texture = preload("res://assets/sprites/ui/borders/border_simple.png")
+			border_rect.texture = BORDER_SIMPLE
 		Global.BorderModes.DYNAMIC:
 			border_rect.texture = Global.border_texture
+			
+	if Global.border_trans < 1.0:
+		border_prev_rect.modulate.a = 1.0 - Global.border_trans
+	else:
+		border_prev_rect.modulate.a = 0.0
+	border_rect.modulate.a = Global.border_trans
+	
+	border_rect.modulate.a = clampf(border_rect.modulate.a, 0.0, 1.0)
 
 func set_border(new_border):
-	border_prev_rect.texture = new_border
-	var tween = get_tree().create_tween()
-	tween.tween_property(border_prev_rect, "modulate",  Color.WHITE, 1.0)
-	tween.tween_property(border_rect, "modulate",  Color.TRANSPARENT, 1.0)
-	tween.tween_callback(
-		func():
-			Global.border_texture = new_border
-			border_rect.texture = new_border
-			border_rect.modulate.a = 1.0
-			border_prev_rect.modulate.a = 0.0
-			border_prev_rect.texture = null
-	)
+	if !Global.border_enabled:
+		return
+	
+	border_prev_rect.texture = border_rect.texture
+	Global.border_texture = new_border
+	
+	Global.border_trans = 0.0
+	
+	tween.kill()
+	tween = get_tree().create_tween()
+	tween.tween_property(Global, "border_trans", 1.0, 1.0)
+	
+func toggle_border():
+	if Input.is_action_just_pressed("temporary_border_toggle"):
+		if Global.border_enabled:
+			if Global.is_fullscreen:
+				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
+			else:
+				get_window().size = Vector2(640, 480)
+			Global.border_enabled = false
+			Global.border_texture = null
+		else:
+			if Global.is_fullscreen:
+				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+			else:
+				get_window().size = Vector2(960, 540)
+			Global.border_enabled = true
+			set_border(Global.current_dynamic_border)
