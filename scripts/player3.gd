@@ -51,7 +51,7 @@ func _init():
 
 var walkbuffer := 0.0
 var walktimer := 0.0
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var move := Vector2.ZERO
 	if !nopress:
 		if Input.is_action_pressed('left'):

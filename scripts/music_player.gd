@@ -1,12 +1,19 @@
-class_name TargetMarker extends Marker2D
+extends AudioStreamPlayer
 
-@export var marker_id: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Global.changeMusic.connect(
+		func(music, pitch):
+			set_music(music, pitch)
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func set_music(music, pitch):
+	stream = music
+	pitch_scale = pitch
+	playing = true

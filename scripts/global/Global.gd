@@ -1,5 +1,6 @@
 extends Node
 @onready var fps_counter: Label = $FPS_COUNTER
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 # Maybe figure out how to get these to be const
 var c_white = Color.html("#FFFFFF")
@@ -40,6 +41,7 @@ var border_trans := 1.0
 var border_texture: Texture2D
 var current_dynamic_border: Texture2D
 signal changeBorder(border)
+signal changeMusic(music, pitch)
 
 var currentRoom: PackedScene
 signal changeRoom(room, target, facing)
@@ -63,7 +65,7 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
 		toggle_fullscreen()
 	if Input.is_key_pressed(KEY_F2):
@@ -88,13 +90,16 @@ func toggle_fullscreen():
 		if !border_enabled:
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+			
 			get_window().size = Vector2(640, 480)
 		else:
 			get_window().size = Vector2(960, 540)
 		is_fullscreen = false
+		print(get_window().position)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		if !border_enabled:
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 		is_fullscreen = true
+		print(get_window().position)

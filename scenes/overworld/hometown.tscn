@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_rhlg7"]
 [ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="5_ewgd1"]
 [ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="6_ekmrd"]
+[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="7_t1b7b"]
+[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="8_lmp26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -266,3 +268,9 @@ metadata/_custom_type_script = "uid://dixqt176beevg"
 [node name="BorderNode" type="Node2D" parent="." unique_id=1804770846]
 script = ExtResource("5_ewgd1")
 border_texture = ExtResource("6_ekmrd")
+
+[node name="MusicNode" type="Node2D" parent="." unique_id=256684731]
+script = ExtResource("7_t1b7b")
+music = ExtResource("8_lmp26")
+pitch = 1.0
+metadata/_custom_type_script = "uid://c1gf4tb6hioe0"

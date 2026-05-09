@@ -15,7 +15,7 @@ func _ready() -> void:
 	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("temporary_border_toggle"):
 		toggle_border()
 	
@@ -52,19 +52,25 @@ func set_border(new_border):
 	
 func toggle_border():
 	if Input.is_action_just_pressed("temporary_border_toggle"):
+		var prev_size = get_window().size
+		print(get_window().position)
 		if Global.border_enabled:
 			if Global.is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 			else:
 				get_window().size = Vector2(640, 480)
+			get_window().position -= (get_window().size - prev_size) / 2
+				
 			Global.border_enabled = false
 			Global.border_texture = null
 		else:
 			if Global.is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+				
 			else:
 				get_window().size = Vector2(960, 540)
+			get_window().position += (prev_size - get_window().size) / 2
 			Global.border_enabled = true
 			set_border(Global.current_dynamic_border)

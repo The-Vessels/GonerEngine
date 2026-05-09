@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://scripts/wingledingle.gd" id="6_qjxaj"]
 [ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="8_bduoi"]
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
-[ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="9_bduoi"]
+[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="9_bduoi"]
 [ext_resource type="Texture2D" uid="uid://ks4ukhf2yiv1" path="res://assets/sprites/ui/borders/border_dw_blue_0.png" id="9_lia7k"]
+[ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="10_lia7k"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="11_ff0t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0t0"]
@@ -367,11 +368,6 @@ shape = SubResource("WorldBoundaryShape2D_lvsx0")
 position = Vector2(620, 240)
 shape = SubResource("RectangleShape2D_lia7k")
 
-[node name="Musicer" type="AudioStreamPlayer" parent="." unique_id=762315420]
-stream = ExtResource("9_bduoi")
-autoplay = true
-parameters/looping = true
-
 [node name="TargetMarker" type="Marker2D" parent="." unique_id=1149845914]
 position = Vector2(-136, 80)
 script = ExtResource("11_ff0t0")
@@ -383,3 +379,8 @@ metadata/_custom_type_script = "uid://dixqt176beevg"
 script = ExtResource("8_bduoi")
 border_texture = ExtResource("9_lia7k")
 metadata/_custom_type_script = "uid://b6jsajndjvi2p"
+
+[node name="MusicNode" type="Node2D" parent="." unique_id=661316728]
+script = ExtResource("9_bduoi")
+music = ExtResource("10_lia7k")
+metadata/_custom_type_script = "uid://c1gf4tb6hioe0"

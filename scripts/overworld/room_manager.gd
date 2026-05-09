@@ -23,7 +23,7 @@ func _ready() -> void:
 				camera_2d.limit_bottom = child.br_corner.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func goto_room(room, target, facing):
