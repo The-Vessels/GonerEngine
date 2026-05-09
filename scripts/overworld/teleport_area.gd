@@ -12,12 +12,3 @@ func _ready():
 
 func _on_body_entered(_body: Node2D) -> void:
 	Global.changeRoom.emit(target_scene, target_marker_id, player_facing)
-	#var child := scene_container.get_child(0)
-	#if child != null:
-		#child.queue_free()
-	#if scene_container.get_child_count() == 1:
-		#var scene: PackedScene = load(target_scene)
-		#Global.currentRoom = scene
-		#var instantiated := scene.instantiate()
-		#scene_container.add_child.call_deferred(instantiated)
-		

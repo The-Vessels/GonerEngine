@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5nrska6i801g"]
 
-[ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/textbox/please.gd" id="1_o60sd"]
+[ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/textbox/textbox.gd" id="1_o60sd"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/dark_box.tscn" id="2_1rgox"]
 [ext_resource type="PackedScene" uid="uid://d1tmmpanucxap" path="res://scenes/light_box.tscn" id="3_6occq"]
 [ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://assets/sprites/party/susie/sincere.png" id="3_g5d5p"]
@@ -72,7 +72,6 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Kris you should know this place since you're a [color=#FF0000]fucking traitor"
 scroll_active = false
-autowrap_mode = 2
 tab_size = 2
 visible_characters_behavior = 1
 
