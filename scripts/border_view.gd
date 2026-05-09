@@ -10,8 +10,7 @@ func _ready() -> void:
 	tween = get_tree().create_tween()
 	Global.border_texture = border_rect.texture
 	Global.changeBorder.connect(
-		func(border):
-			set_border(border)
+		set_border
 	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

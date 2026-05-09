@@ -95,11 +95,9 @@ func toggle_fullscreen():
 		else:
 			get_window().size = Vector2(960, 540)
 		is_fullscreen = false
-		print(get_window().position)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		if !border_enabled:
 			get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 		is_fullscreen = true
-		print(get_window().position)
