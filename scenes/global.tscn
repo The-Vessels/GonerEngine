@@ -10,8 +10,6 @@ font = ExtResource("2_nmxvb")
 [node name="Global" type="Node" unique_id=1753942826]
 script = ExtResource("1_4pk28")
 
-[node name="UIAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=54696501]
-
 [node name="FPS_COUNTER" type="Label" parent="." unique_id=1576897455]
 visible = false
 offset_left = 4.0
@@ -19,6 +17,8 @@ offset_right = 61.0
 offset_bottom = 23.0
 text = "greembus"
 label_settings = SubResource("LabelSettings_opebo")
+
+[node name="UIAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=54696501]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=183424215]
 script = ExtResource("3_opebo")

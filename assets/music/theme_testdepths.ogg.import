@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/theme_testdepths.ogg-ef8674f8dcda0e809e1b294e
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0.0
 bpm=110.0
 beat_count=0

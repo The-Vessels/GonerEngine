@@ -17,7 +17,7 @@ func set_frame(frame: int):
 	old_frame = frame
 
 func set_anim(anim: String):
-	var old_frame := sprite.frame
+	old_frame = sprite.frame
 	sprite.animation = anim
 	sprite.frame = old_frame
 
@@ -67,7 +67,6 @@ func _physics_process(_delta: float) -> void:
 		sprite.sprite_frames = happy_frames
 	elif Input.is_action_pressed('cancel'):
 		sprite.sprite_frames = unhappy_frames
-		sprite.speed_scale
 	
 	var walk := (move.x != 0.0) or (move.y != 0.0)
 	if walk:
@@ -85,7 +84,7 @@ func _physics_process(_delta: float) -> void:
 	if not facing_same(move) and move != Vector2.ZERO:
 		facing = facing_from_vec(move)
 	
-	var old_frame := sprite.frame
+	old_frame = sprite.frame
 	var old_progress := sprite.frame_progress
 	sprite.play('walk_' + facing)
 	sprite.set_frame_and_progress(old_frame, old_progress)

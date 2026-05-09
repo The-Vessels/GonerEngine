@@ -59,7 +59,7 @@ func toggle_border():
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 			else:
 				get_window().size = Vector2(640, 480)
-			get_window().position -= (get_window().size - prev_size) / 2
+			get_window().position -= (get_window().size - prev_size) / 2.0
 				
 			Global.border_enabled = false
 			Global.border_texture = null
@@ -70,6 +70,6 @@ func toggle_border():
 				
 			else:
 				get_window().size = Vector2(960, 540)
-			get_window().position += (prev_size - get_window().size) / 2
+			get_window().position += (prev_size - get_window().size) / 2.0
 			Global.border_enabled = true
 			set_border(Global.current_dynamic_border)

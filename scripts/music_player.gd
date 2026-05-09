@@ -7,12 +7,7 @@ func _ready() -> void:
 		set_music
 	)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 func set_music(music, pitch):
 	stream = music
 	pitch_scale = pitch
-	playing = true
+	play()

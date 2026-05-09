@@ -1,18 +1,18 @@
 extends Node2D
 @onready var room_manager: Node2D = $"."
 @onready var transition_player: AnimationPlayer = $"../TransitionScreen/AnimationPlayer"
-@onready var player: CharacterBody2D = $"../Player"
+@onready var Player: CharacterBody2D = $"../Player"
 @onready var camera_2d: Camera2D = $"../Camera2D"
 
 func _ready() -> void:
 	Global.changeRoom.connect(
 		func(room, target, facing):
-			player.nopress = true
+			Player.nopress = true
 			transition_player.play("fade_to_black")
 			await transition_player.animation_finished
 			goto_room(room, target, facing)
 			transition_player.play("fade_to_normal")
-			player.nopress = false
+			Player.nopress = false
 	)
 	for child in get_child(0).get_children():
 			print(child.get_class())
@@ -50,5 +50,5 @@ func goto_room(room, target, facing):
 			if child is TargetMarker:
 				if child.marker_id == target:
 					target_marker = child
-					player.position = target_marker.position
-		player.facing = facing if facing else player.facing
+					Player.position = target_marker.position
+		Player.facing = facing if facing else Player.facing
