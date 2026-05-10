@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 	
 	queue_redraw()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	slowerer += 1
 	sprite_2d.texture = texture_to_show
 	sprite_2d.global_position = Vector2(167, 169)
