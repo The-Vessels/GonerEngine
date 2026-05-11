@@ -46,7 +46,7 @@ func facing_same(move: Vector2):
 	return null
 
 func _init():
-	if Global.world_type == Global.WORLD_DARK:
+	if Global.world_type == Global.WorldTypes.WORLD_DARK:
 		speed = 90.0
 	else:
 		speed = 120.0

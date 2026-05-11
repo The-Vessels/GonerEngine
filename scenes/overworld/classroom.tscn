@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://assets/sprites/tiles/unused.png" id="1_gobvo"]
 [ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_qd6vq"]
+[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_xyi3q"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_165k2"]
 [ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="3_165k2"]
 [ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="5_lq7jd"]
@@ -14,6 +15,7 @@ size = Vector2(640, 480)
 size = Vector2(80, 79)
 
 [node name="Classroom" type="Node2D" unique_id=830096811]
+script = ExtResource("1_xyi3q")
 
 [node name="CameraBounds" type="Area2D" parent="." unique_id=729842976]
 script = ExtResource("1_qd6vq")

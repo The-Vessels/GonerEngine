@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://d2se1oi1rtnix"]
 
+[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_iowom"]
 [ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="1_q338v"]
 [ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_tcbqp"]
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="2_rhlg7"]
@@ -8,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="6_ekmrd"]
 [ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="7_t1b7b"]
 [ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="8_lmp26"]
-[ext_resource type="PackedScene" uid="uid://boofqcsryrrvt" path="res://dialogue_test.tscn" id="9_lmp26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -238,6 +238,8 @@ sources/1 = SubResource("TileSetAtlasSource_tcbqp")
 size = Vector2(79, 82)
 
 [node name="Hometown" type="Node2D" unique_id=2025934906]
+script = ExtResource("1_iowom")
+world_type = 1
 
 [node name="CameraBounds" type="Area2D" parent="." unique_id=858038086]
 script = ExtResource("1_tcbqp")
@@ -275,5 +277,3 @@ script = ExtResource("7_t1b7b")
 music = ExtResource("8_lmp26")
 pitch = 1.0
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
-
-[node name="DialogueTest" parent="." unique_id=633448277 instance=ExtResource("9_lmp26")]

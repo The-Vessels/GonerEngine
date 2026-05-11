@@ -51,11 +51,11 @@ func set_asterisks():
 
 func _ready():
 	match Global.world_type:
-		Global.WORLD_LIGHT:
+		Global.WorldTypes.WORLD_LIGHT:
 			dark_box.visible = false
 			light_box.visible = true
 			$TalkSprite.set_position(Vector2(64.0, 350.0))
-		Global.WORLD_DARK:
+		Global.WorldTypes.WORLD_DARK:
 			dark_box.visible = true
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
@@ -81,6 +81,19 @@ func animate_text():
 			$talkblip.play()
 		await get_tree().physics_frame
 	animating = false
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	match Global.world_type:
+		Global.WorldTypes.WORLD_LIGHT:
+			dark_box.visible = false
+			light_box.visible = true
+			$TalkSprite.set_position(Vector2(64.0, 350.0))
+		Global.WorldTypes.WORLD_DARK:
+			dark_box.visible = true
+			light_box.visible = false
+			$TalkSprite.set_position(Vector2(69.0, 350.0))
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)

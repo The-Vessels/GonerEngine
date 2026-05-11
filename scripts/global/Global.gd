@@ -25,8 +25,8 @@ var c_yellow = Color.html("#ffff00");
 
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
-enum {WORLD_LIGHT, WORLD_DARK}
-var world_type = WORLD_DARK
+enum WorldTypes {WORLD_LIGHT, WORLD_DARK}
+var world_type = WorldTypes.WORLD_DARK
 
 var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
