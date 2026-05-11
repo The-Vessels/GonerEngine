@@ -56,6 +56,7 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_constants/line_spacing = 8
 theme_override_fonts/font = ExtResource("4_c4wvf")
 theme_override_font_sizes/font_size = 32
 text = " "
