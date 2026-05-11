@@ -18,7 +18,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o60sd")
-text = "* Kris you should know this place since you're a fucking traitor"
 
 [node name="DarkBox" parent="." unique_id=619300672 instance=ExtResource("2_1rgox")]
 visible = false
@@ -59,7 +58,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("4_c4wvf")
 theme_override_font_sizes/font_size = 32
-text = "*"
+text = " "
 autowrap_mode = 1
 
 [node name="dialoguetext" type="RichTextLabel" parent="HBoxContainer" unique_id=973656905]
@@ -70,7 +69,6 @@ theme_override_constants/paragraph_separation = 4
 theme_override_fonts/normal_font = SubResource("FontVariation_o60sd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Kris you should know this place since you're a [color=#FF0000]fucking traitor"
 scroll_active = false
 tab_size = 2
 visible_characters_behavior = 1

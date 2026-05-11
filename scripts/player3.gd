@@ -1,8 +1,10 @@
 class_name player extends CharacterBody2D
 
 var speed := 90.0
+var runspeed := 180.0
 var facing = "down"
 var nopress := false
+var running := false
 
 var happy_frames   := preload("res://assets/sprites/party/susie/susie_animations.tres")
 var unhappy_frames := preload("res://assets/sprites/party/susie/susie_unhappy_animations.tres")
@@ -65,14 +67,17 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed('confirm'):
 		sprite.sprite_frames = happy_frames
-	elif Input.is_action_pressed('cancel'):
+	if Input.is_action_pressed('cancel'):
 		sprite.sprite_frames = unhappy_frames
+		running = true
+	else:
+		running = false
 	
 	var walk := (move.x != 0.0) or (move.y != 0.0)
 	if walk:
 		walkbuffer = 6.0
 	if walkbuffer > 3.0:
-		walktimer += 1.5
+		walktimer += 1.5 if !running else 2.5
 		walktimer = fposmod(walktimer, 40.0)
 		set_frame(int(walktimer / 10.0))
 	elif walkbuffer <= 0.0 && velocity == Vector2(0, 0):
@@ -90,7 +95,9 @@ func _physics_process(_delta: float) -> void:
 	sprite.set_frame_and_progress(old_frame, old_progress)
 	
 	if Input.is_action_pressed("cancel"):
-		velocity = move * speed * 2
+		if speed < runspeed:
+			speed += 5
 	else:
-		velocity = move * speed
+		speed = 90
+	velocity = move * speed
 	move_and_slide()

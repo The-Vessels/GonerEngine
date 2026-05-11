@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="6_ekmrd"]
 [ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="7_t1b7b"]
 [ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="8_lmp26"]
+[ext_resource type="PackedScene" uid="uid://boofqcsryrrvt" path="res://dialogue_test.tscn" id="9_lmp26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -274,3 +275,5 @@ script = ExtResource("7_t1b7b")
 music = ExtResource("8_lmp26")
 pitch = 1.0
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
+
+[node name="DialogueTest" parent="." unique_id=633448277 instance=ExtResource("9_lmp26")]

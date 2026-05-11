@@ -18,6 +18,7 @@ var animating := false
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
 var line_starts_with_asterisk: Array[bool] = []
+var has_asterisks: bool
 
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
@@ -35,12 +36,17 @@ func set_text(text: String):
 
 func set_asterisks():
 	var lineno = 0
+	ast.visible = false
 	ast.text = ''
 	for i in range(dia.get_paragraph_count()):
 		while dia.get_line_offset(lineno) < dia.get_paragraph_offset(i):
 			lineno += 1
 			ast.text += ' '
-		ast.text += '*' if line_starts_with_asterisk[i] else ' '
+		if line_starts_with_asterisk[i]:
+			ast.text += '*'
+			ast.visible = true
+		else:
+			ast.text += ' '
 		lineno += 1
 
 func _ready():
@@ -65,6 +71,10 @@ func animate_text():
 	print(text)
 	dia.visible_characters = 0
 	while dia.visible_characters < dia.get_total_character_count():
+		if Input.is_action_just_pressed("cancel"):
+			dia.visible_characters = dia.get_total_character_count()
+			animating = false
+			return
 		animating = true
 		dia.visible_characters += 1
 		if text[dia.visible_characters - 1] != ' ':
