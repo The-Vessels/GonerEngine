@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var text: Array[String]
+@export_multiline var text: Array[String]
 var text_progress := 0
 @onready var textbox: TextBox = $Textbox
 
