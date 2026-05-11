@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/global/Global.gd" id="1_4pk28"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="2_nmxvb"]
 [ext_resource type="Script" uid="uid://ukx5js8hgu0d" path="res://scripts/music_player.gd" id="3_opebo"]
-[ext_resource type="PackedScene" uid="uid://boofqcsryrrvt" path="res://dialogue_test.tscn" id="4_m3l3d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_opebo"]
 font = ExtResource("2_nmxvb")
@@ -23,7 +22,3 @@ label_settings = SubResource("LabelSettings_opebo")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=183424215]
 script = ExtResource("3_opebo")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=322309778]
-
-[node name="DialogueTest" parent="CanvasLayer" unique_id=633448277 instance=ExtResource("4_m3l3d")]

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brxkji0i88mft" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_1.png" id="10_4cbgx"]
 [ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_2.png" id="11_83t3m"]
 [ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_3.png" id="12_wb7gr"]
+[ext_resource type="PackedScene" uid="uid://boofqcsryrrvt" path="res://dialogue_test.tscn" id="13_65ftm"]
 [ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_4.png" id="13_oynbp"]
 
 [sub_resource type="Animation" id="Animation_jweab"]
@@ -182,5 +183,9 @@ position = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_gecxn")
 animation = &"quit_anim"
 centered = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=4587043]
+
+[node name="DialogueTest" parent="CenterContainer/GameView/SubViewport/Node2D/CanvasLayer2" unique_id=633448277 instance=ExtResource("13_65ftm")]
 
 [connection signal="animation_finished" from="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen/AnimationPlayer" to="CenterContainer/GameView/SubViewport/Node2D/TransitionScreen" method="_on_animation_player_animation_finished"]
