@@ -41,13 +41,14 @@ func set_asterisks():
 	for i in range(dia.get_paragraph_count()):
 		while dia.get_line_offset(lineno) < dia.get_paragraph_offset(i):
 			lineno += 1
-			ast.text += ' '
+			ast.text += ''
 		if line_starts_with_asterisk[i]:
 			ast.text += '*'
 			ast.visible = true
 		else:
 			ast.text += ' '
 		lineno += 1
+	ast.visible_characters = 0
 
 func _ready():
 	match Global.world_type:
@@ -62,7 +63,6 @@ func _ready():
 	
 	set_text(text)
 	set_asterisks()
-	
 	animate_text()
 
 
@@ -94,6 +94,7 @@ func _process(_delta: float) -> void:
 			dark_box.visible = true
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
+	ast.visible_characters = dia.get_visible_line_count()
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)
