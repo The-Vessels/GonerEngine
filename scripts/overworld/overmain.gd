@@ -11,7 +11,8 @@ func _process(_delta: float) -> void:
 	scale = Vector2(2.0, 2.0) if (Global.is_fullscreen and Global.border_enabled) else Vector2(1.0, 1.0)
 
 func _physics_process(_delta: float) -> void:
-	handle_quitting()
+	pass
+	# handle_quitting()
 
 func handle_quitting():
 	if Input.is_action_pressed("quit"):

@@ -3,9 +3,38 @@
 [ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/global/Global.gd" id="1_4pk28"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="2_nmxvb"]
 [ext_resource type="Script" uid="uid://ukx5js8hgu0d" path="res://scripts/music_player.gd" id="3_opebo"]
+[ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="4_unqd7"]
+[ext_resource type="Texture2D" uid="uid://brxkji0i88mft" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_1.png" id="5_x8cda"]
+[ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_2.png" id="6_bv183"]
+[ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_3.png" id="7_5rvs8"]
+[ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_4.png" id="8_wokaa"]
+[ext_resource type="Script" uid="uid://b5ff67pn52bp4" path="res://scripts/quit_sprite.gd" id="9_x8cda"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_opebo"]
 font = ExtResource("2_nmxvb")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2se67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_unqd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x8cda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bv183")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5rvs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wokaa")
+}],
+"loop": true,
+"name": &"quit_anim",
+"speed": 3.0
+}]
 
 [node name="Global" type="Node" unique_id=1753942826]
 script = ExtResource("1_4pk28")
@@ -22,3 +51,14 @@ label_settings = SubResource("LabelSettings_opebo")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=183424215]
 script = ExtResource("3_opebo")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1058793331]
+layer = 100
+
+[node name="QuitSprite" type="AnimatedSprite2D" parent="UILayer" unique_id=851346887]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_2se67")
+animation = &"quit_anim"
+centered = false
+script = ExtResource("9_x8cda")

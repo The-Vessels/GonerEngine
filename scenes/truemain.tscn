@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c1f1g0shpxbj8"]
+
+[ext_resource type="Script" uid="uid://bvdo15y1cge2e" path="res://scripts/border_view.gd" id="1_0ki81"]
+
+[node name="Truemain" type="Control" unique_id=1148396909]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BorderView" type="SubViewportContainer" parent="." unique_id=904550520]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ki81")
+
+[node name="SubViewport" type="SubViewport" parent="BorderView" unique_id=1018007712]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="BorderView/SubViewport" unique_id=981502842]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BorderTexture" type="TextureRect" parent="BorderView/SubViewport" unique_id=1447174181]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BorderPrevTexture" type="TextureRect" parent="BorderView/SubViewport" unique_id=1682402375]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1670223684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=479256001]
+layout_mode = 2
+color = Color(0, 1, 1, 1)
