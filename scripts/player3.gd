@@ -9,6 +9,7 @@ var running := false
 var happy_frames   := preload("res://assets/sprites/party/susie/susie_animations.tres")
 var unhappy_frames := preload("res://assets/sprites/party/susie/susie_unhappy_animations.tres")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var shape_cast: ShapeCast2D = $ShapeCast2D
 
 var old_frame := 0
 func set_frame(frame: int):
@@ -101,3 +102,16 @@ func _physics_process(_delta: float) -> void:
 		speed = 90
 	velocity = move * speed
 	move_and_slide()
+	if Input.is_action_just_pressed("confirm"):
+		match facing:
+			"left":
+				shape_cast.target_position = Vector2(-2, 0)
+			"up":
+				shape_cast.target_position = Vector2(0, -2)
+			"right":
+				shape_cast.target_position = Vector2(2, 0)
+			"down":
+				shape_cast.target_position = Vector2(0, 2)
+		for node in shape_cast.collision_result:
+			print(node.collider is TeleportArea)
+		shape_cast.target_position = Vector2(0, 0)

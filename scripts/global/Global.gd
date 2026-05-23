@@ -81,7 +81,7 @@ func setup_discord_rpc():
 	DiscordRPC.refresh()
 
 func play_ui_sound(sound_name: String):
-	$UIAudioPlayer.stream = load('res://assets/sfx/ui/' + sound_name + '.wav')
+	$UIAudioPlayer.stream = load('res://assets/sounds/ui/' + sound_name + '.wav')
 	$UIAudioPlayer.play()
 	
 func toggle_fullscreen():

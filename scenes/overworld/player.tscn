@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(20, 7)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eoyh"]
+size = Vector2(20, 7)
+
 [node name="Player" type="CharacterBody2D" unique_id=202223076]
 scale = Vector2(2, 2)
 script = ExtResource("1_g2els")
@@ -19,6 +22,12 @@ speed_scale = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=788098383]
 position = Vector2(0, 19.5)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=975069642]
+position = Vector2(0, 19.5)
+shape = SubResource("RectangleShape2D_5eoyh")
+target_position = Vector2(0, 0)
+collide_with_areas = true
 
 [node name="Footstep" type="AudioStreamPlayer" parent="." unique_id=626087075]
 stream = ExtResource("3_qhqgy")

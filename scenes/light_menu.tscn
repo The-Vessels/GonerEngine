@@ -1,0 +1,424 @@
+[gd_scene format=3 uid="uid://62fqxgg3ukrp"]
+
+[ext_resource type="Script" uid="uid://dy7x2tbt2l2l8" path="res://scripts/light_menu.gd" id="1_ubbul"]
+[ext_resource type="Texture2D" uid="uid://cnowdr4ip2iwx" path="res://lightmenureferenceup_item.png" id="2_e77re"]
+[ext_resource type="PackedScene" uid="uid://d1tmmpanucxap" path="res://scenes/light_box.tscn" id="2_ubbul"]
+[ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://assets/themes/buttontheme.tres" id="3_e77re"]
+[ext_resource type="FontFile" uid="uid://dcoufbraybtwl" path="res://assets/fonts/small.ttf" id="4_5omq7"]
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/menu_soul_button.gd" id="6_e77re"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e77re"]
+
+[node name="LightMenu" type="Control" unique_id=193413496]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ubbul")
+
+[node name="Referee" type="Sprite2D" parent="." unique_id=303061486]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("2_e77re")
+centered = false
+
+[node name="Main" type="VBoxContainer" parent="." unique_id=1586220931]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 52.0
+offset_right = 103.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 3
+
+[node name="Stats" parent="Main" unique_id=619300672 instance=ExtResource("2_ubbul")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Stats" unique_id=779311536]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 51.0
+
+[node name="Name" type="Label" parent="Main/Stats/VBoxContainer" unique_id=355191135]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "Kris"
+
+[node name="StatsContainer" type="VBoxContainer" parent="Main/Stats/VBoxContainer" unique_id=525892977]
+layout_mode = 2
+
+[node name="LV" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=2036249100]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/LV" unique_id=1229339172]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "LV"
+
+[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/LV" unique_id=1165085554]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="HP" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=1274849682]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/HP" unique_id=1744099822]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "HP"
+
+[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/HP" unique_id=359824068]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "20/20"
+
+[node name="MONEY" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=1722708460]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/MONEY" unique_id=1617192411]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "$"
+
+[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/MONEY" unique_id=401340063]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5omq7")
+theme_override_font_sizes/font_size = 8
+text = "2"
+
+[node name="Options" parent="Main" unique_id=1407223732 instance=ExtResource("2_ubbul")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Main/Options" unique_id=1293229965]
+layout_mode = 0
+offset_left = 25.5
+offset_top = 9.5
+offset_right = 65.5
+offset_bottom = 65.5
+theme_override_constants/separation = 2
+
+[node name="ITEM" type="Button" parent="Main/Options/OptionsContainer" unique_id=2121259629]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+button_mask = 0
+text = "ITEM"
+script = ExtResource("6_e77re")
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="STAT" type="Button" parent="Main/Options/OptionsContainer" unique_id=1877904085]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "STAT"
+script = ExtResource("6_e77re")
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="CELL" type="Button" parent="Main/Options/OptionsContainer" unique_id=33715663]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "CELL"
+script = ExtResource("6_e77re")
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="Submenus" type="Control" parent="." unique_id=1813142588]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ITEM" parent="Submenus" unique_id=606203879 instance=ExtResource("2_ubbul")]
+visible = false
+layout_mode = 0
+offset_left = 188.0
+offset_top = 52.0
+offset_right = 361.0
+offset_bottom = 233.0
+
+[node name="ItemList" type="VBoxContainer" parent="Submenus/ITEM" unique_id=760518398]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 14.0
+offset_right = 116.0
+offset_bottom = 46.0
+theme_override_constants/separation = 0
+
+[node name="Item1" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1383922325]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+button_mask = 0
+text = "Ball of Junk"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="Item2" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1859421663]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "Hot Chocolate"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="ItemActions" type="Panel" parent="Submenus/ITEM" unique_id=703692127]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e77re")
+
+[node name="USE" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=916139388]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 154.0
+offset_right = 43.0
+offset_bottom = 170.0
+size_flags_horizontal = 0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "USE"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="INFO" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=933814558]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 154.0
+offset_right = 98.0
+offset_bottom = 170.0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "INFO"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="DROP" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=1937169790]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 154.0
+offset_right = 155.0
+offset_bottom = 170.0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "DROP"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="STAT" parent="Submenus" unique_id=1500861125 instance=ExtResource("2_ubbul")]
+visible = false
+layout_mode = 0
+offset_left = 188.0
+offset_top = 52.0
+offset_right = 361.0
+offset_bottom = 261.0
+
+[node name="Name" type="Label" parent="Submenus/STAT" unique_id=1565640906]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 32.0
+theme = ExtResource("3_e77re")
+text = "\"Kris\""
+
+[node name="HealthStats" type="VBoxContainer" parent="Submenus/STAT" unique_id=903409616]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 46.0
+offset_right = 75.0
+offset_bottom = 86.0
+theme_override_constants/separation = 0
+
+[node name="LV" type="HBoxContainer" parent="Submenus/STAT/HealthStats" unique_id=1238634536]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Submenus/STAT/HealthStats/LV" unique_id=289497974]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "LV"
+
+[node name="Number" type="Label" parent="Submenus/STAT/HealthStats/LV" unique_id=484667755]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "1"
+
+[node name="HP" type="HBoxContainer" parent="Submenus/STAT/HealthStats" unique_id=1834946719]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Submenus/STAT/HealthStats/HP" unique_id=92398789]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "HP"
+
+[node name="Number" type="Label" parent="Submenus/STAT/HealthStats/HP" unique_id=2123482232]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "20 / 20"
+
+[node name="CombatStats" type="HBoxContainer" parent="Submenus/STAT" unique_id=780961079]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 93.5
+offset_right = 126.0
+offset_bottom = 133.5
+theme_override_constants/separation = 30
+
+[node name="GearStats" type="VBoxContainer" parent="Submenus/STAT/CombatStats" unique_id=1576276911]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AT" type="HBoxContainer" parent="Submenus/STAT/CombatStats/GearStats" unique_id=1774123963]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Submenus/STAT/CombatStats/GearStats/AT" unique_id=706735880]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "AT"
+
+[node name="Number" type="Label" parent="Submenus/STAT/CombatStats/GearStats/AT" unique_id=1343532725]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "10 (2)"
+
+[node name="DF" type="HBoxContainer" parent="Submenus/STAT/CombatStats/GearStats" unique_id=1168210342]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Submenus/STAT/CombatStats/GearStats/DF" unique_id=1702102506]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "DF"
+
+[node name="Number" type="Label" parent="Submenus/STAT/CombatStats/GearStats/DF" unique_id=1368903829]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "10 (0)"
+
+[node name="ExpStats" type="VBoxContainer" parent="Submenus/STAT/CombatStats" unique_id=1112971342]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="EXP" type="HBoxContainer" parent="Submenus/STAT/CombatStats/ExpStats" unique_id=1788819925]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Name" type="Label" parent="Submenus/STAT/CombatStats/ExpStats/EXP" unique_id=160794477]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "EXP:"
+
+[node name="Number" type="Label" parent="Submenus/STAT/CombatStats/ExpStats/EXP" unique_id=1453412322]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "0"
+
+[node name="NEXT" type="HBoxContainer" parent="Submenus/STAT/CombatStats/ExpStats" unique_id=502940066]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Name" type="Label" parent="Submenus/STAT/CombatStats/ExpStats/NEXT" unique_id=230133495]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "NEXT:"
+
+[node name="Number" type="Label" parent="Submenus/STAT/CombatStats/ExpStats/NEXT" unique_id=258906864]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "10"
+
+[node name="GearNames" type="VBoxContainer" parent="Submenus/STAT" unique_id=755406634]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 140.0
+offset_right = 75.0
+offset_bottom = 180.0
+theme_override_constants/separation = 0
+
+[node name="WEAPON" type="Label" parent="Submenus/STAT/GearNames" unique_id=2001194871]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "WEAPON: CactusNeedle"
+
+[node name="ARMOR" type="Label" parent="Submenus/STAT/GearNames" unique_id=842449775]
+layout_mode = 2
+theme = ExtResource("3_e77re")
+text = "ARMOR: Bandage"
+
+[node name="MONEY" type="Label" parent="Submenus/STAT" unique_id=1552753693]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 176.0
+offset_right = 63.0
+offset_bottom = 192.0
+theme = ExtResource("3_e77re")
+text = "MONEY: 2"
+
+[node name="CELL" parent="Submenus" unique_id=341211080 instance=ExtResource("2_ubbul")]
+visible = false
+layout_mode = 0
+offset_left = 188.0
+offset_top = 52.0
+offset_right = 361.0
+offset_bottom = 187.0
+
+[node name="MenuSoulButton" type="Button" parent="Submenus/CELL" unique_id=326642193]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 14.0
+offset_right = 82.0
+offset_bottom = 30.0
+theme = ExtResource("3_e77re")
+text = "Call Home"
+script = ExtResource("6_e77re")
+soul_offset = Vector2(-12, 4)
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

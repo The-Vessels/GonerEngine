@@ -80,7 +80,6 @@ volume_db = -10.0
 max_polyphony = 15
 
 [node name="References" type="Node2D" parent="." unique_id=1801481437]
-visible = false
 modulate = Color(1, 1, 1, 0.337255)
 
 [node name="Refdark" type="Sprite2D" parent="References" unique_id=1772832361]
