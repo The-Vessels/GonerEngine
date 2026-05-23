@@ -55,10 +55,6 @@ var asp := AudioStreamPlayer.new()
 
 var ui_menumove := preload('res://assets/sounds/ui/menumove.wav')
 
-var selectedDarkBtn := 0
-var darkMenuOpened := false
-var darkSubmenuOpened := false
-
 func _ready():
 	setup_discord_rpc()
 	

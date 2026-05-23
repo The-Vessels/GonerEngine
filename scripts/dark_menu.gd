@@ -13,6 +13,10 @@ const EQUIP = preload("uid://daa65pt526k5b")
 const POWER = preload("uid://grusm1sdsx3k")
 const CONFIG = preload("uid://bivrq4li071wj")
 
+var selectedDarkBtn := 0
+var darkMenuOpened := false
+var darkSubmenuOpened := false
+
 var DarkBtnImgs = [
 	ITEM,
 	EQUIP,
@@ -30,25 +34,25 @@ func _process(delta: float) -> void:
 			child.isCurrentHero = true
 		else:
 			child.isCurrentHero = false
-	dark_menu_desc.texture = DarkBtnImgs[Global.selectedDarkBtn]
+	dark_menu_desc.texture = DarkBtnImgs[selectedDarkBtn]
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("menu", false) && !Global.darkMenuOpened:
+	if event.is_action_pressed("menu", false) && !darkMenuOpened:
 		top_rect.position.y += top_rect.size.y
 		bottom_rect.position.y -= bottom_rect.size.y + 2 # +2 to account for charbox top line
 		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
-		dark_menu_btn_container.get_child(Global.selectedDarkBtn).grab_focus()
-		Global.darkMenuOpened = true
-	elif (event.is_action_pressed("menu", false) || event.is_action_pressed("cancel", false)) && Global.darkMenuOpened && !Global.darkSubmenuOpened:
+		dark_menu_btn_container.get_child(selectedDarkBtn).grab_focus()
+		darkMenuOpened = true
+	elif (event.is_action_pressed("menu", false) || event.is_action_pressed("cancel", false)) && darkMenuOpened && !darkSubmenuOpened:
 		top_rect.position.y -= top_rect.size.y
 		bottom_rect.position.y += bottom_rect.size.y + 2 # +2 to account for charbox top line
 		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
-		Global.darkMenuOpened = false
-	elif event.is_action_pressed("right") && Global.darkMenuOpened:
+		darkMenuOpened = false
+	elif event.is_action_pressed("right") && darkMenuOpened:
 		Global.currentHero += 1
 		if Global.currentHero >= bottom_rect.get_child_count(false):
 			Global.currentHero = 0
-	elif event.is_action_pressed("left") && Global.darkMenuOpened:
+	elif event.is_action_pressed("left") && darkMenuOpened:
 		Global.currentHero -= 1
 		if Global.currentHero < 0:
 			Global.currentHero = bottom_rect.get_child_count(false) - 1

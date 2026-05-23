@@ -65,8 +65,8 @@ func _ready() -> void:
 				)
 				item_list_button.pressed.connect(
 					func():
-						disable_buttons_focus(item_list_buttons)
-						enable_buttons_focus(item_action_buttons)
+						items_list.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+						item_actions.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
 						item_action_buttons[current_item_action].grab_focus()
 						in_item_actions = true
 				)
@@ -83,19 +83,19 @@ func _process(delta: float) -> void:
 		return
 	
 	if submenu_open:
-		disable_buttons_focus(menu_options)
+		options_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
 	
 	if Input.is_action_just_pressed("cancel"):
 		if submenu_open:
 			if in_item_actions:
-				enable_buttons_focus(item_list_buttons)
-				disable_buttons_focus(item_action_buttons)
+				items_list.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
+				item_actions.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
 				
 				item_list_buttons[current_option].grab_focus()
 				current_item_action = 0
 				in_item_actions = false
 			else:
-				enable_buttons_focus(menu_options)
+				options_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
 				
 				menu_options[current_submenu.get_index()].grab_focus.call_deferred()
 				current_submenu.visible = false
@@ -130,13 +130,3 @@ func handle_submenu(submenu) -> void:
 		current_submenu_buttons[0].grab_focus()
 	else:
 		current_option = 0
-
-func disable_buttons_focus(nodes_array: Array) -> void:
-	for node in nodes_array:
-		if node is Button:
-			node.focus_mode = Control.FOCUS_NONE
-
-func enable_buttons_focus(nodes_array: Array) -> void:
-	for node in nodes_array:
-		if node is Button:
-			node.focus_mode = Control.FOCUS_ALL
