@@ -18,7 +18,7 @@ var submenu_open := false
 var item_list_buttons: Array[Button]
 var item_action_buttons: Array[Button]
 var in_item_actions := false
-var current_item_action: int
+var current_item_action := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -67,7 +67,7 @@ func _ready() -> void:
 					func():
 						disable_buttons_focus(item_list_buttons)
 						enable_buttons_focus(item_action_buttons)
-						item_action_buttons[0].grab_focus()
+						item_action_buttons[current_item_action].grab_focus()
 						in_item_actions = true
 				)
 			for item_action_button: Button in item_action_buttons:
@@ -92,6 +92,7 @@ func _process(delta: float) -> void:
 				disable_buttons_focus(item_action_buttons)
 				
 				item_list_buttons[current_option].grab_focus()
+				current_item_action = 0
 				in_item_actions = false
 			else:
 				enable_buttons_focus(menu_options)
