@@ -4,55 +4,53 @@ extends Control
 @onready var dark_item_btn: TextureButton = $TopRect/DarkMenuBtnContainer/DarkItemBtn
 @onready var dark_item_menu: Control = $TopRect/DarkMenuBtnContainer/DarkItemBtn/DarkItemMenu
 @onready var top_rect: ColorRect = $TopRect
-@onready var bottom_rect: ColorRect = $BottomRect
-@onready var dark_menu_desc: Sprite2D = $TopRect/DarkMenuDescContainer/DarkMenuDesc
+@onready var bottom_panel: Panel = $BottomPanel
+@onready var dark_menu_desc: AnimatedSprite2D = $TopRect/DarkMenuDescContainer/DarkMenuDesc
 @onready var dark_submenu_container: Control = $DarkSubmenuContainer
 
-const ITEM = preload("uid://crc76dli0yory")
-const EQUIP = preload("uid://daa65pt526k5b")
-const POWER = preload("uid://grusm1sdsx3k")
-const CONFIG = preload("uid://bivrq4li071wj")
+var menutrans := 0.0
+var close := false
 
-var selectedDarkBtn := 0
-var darkMenuOpened := false
-var darkSubmenuOpened := false
+var current_option := 0
+var menu_open := false
+var submenu_open := false
 
-var DarkBtnImgs = [
-	ITEM,
-	EQUIP,
-	POWER,
-	CONFIG,
-]
-
-func _ready():
-	dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
-	dark_submenu_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+func _ready():	
+	for option_button: TextureButton in dark_menu_btn_container.get_children():
+		option_button.focus_entered.connect(
+			func():
+				if menu_open:
+					Global.play_ui_sound("menumove")
+				current_option = option_button.get_index()
+		)
+		option_button.pressed.connect(
+			func():
+				Global.play_ui_sound("select")
+		)
 
 func _process(delta: float) -> void:
-	for child in bottom_rect.get_children(false):
-		if child.get_index() == Global.currentHero:
-			child.isCurrentHero = true
+	dark_menu_desc.frame = current_option
+	
+	menutrans = lerpf(menutrans, (1.0 if menu_open else 0.0), 0.4)
+	var menuoffset = snappedf(menutrans, 0.01) * 80.0
+	
+	visible == true if menutrans == 1.0 else false
+	
+	top_rect.position.y = menuoffset - top_rect.size.y
+	bottom_panel.position.y = (480 + (top_rect.size.y - bottom_panel.size.y)) - menuoffset
+	
+	
+	if Input.is_action_just_pressed("cancel"):
+		if menu_open:
+			if !submenu_open:
+				menu_open = false
+			else:
+				pass
+	
+	if Input.is_action_just_pressed("menu"):
+		if menu_open:
+			if !submenu_open:
+				menu_open = false
 		else:
-			child.isCurrentHero = false
-	dark_menu_desc.texture = DarkBtnImgs[selectedDarkBtn]
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("menu", false) && !darkMenuOpened:
-		top_rect.position.y += top_rect.size.y
-		bottom_rect.position.y -= bottom_rect.size.y + 2 # +2 to account for charbox top line
-		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_ENABLED
-		dark_menu_btn_container.get_child(selectedDarkBtn).grab_focus()
-		darkMenuOpened = true
-	elif (event.is_action_pressed("menu", false) || event.is_action_pressed("cancel", false)) && darkMenuOpened && !darkSubmenuOpened:
-		top_rect.position.y -= top_rect.size.y
-		bottom_rect.position.y += bottom_rect.size.y + 2 # +2 to account for charbox top line
-		dark_menu_btn_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
-		darkMenuOpened = false
-	elif event.is_action_pressed("right") && darkMenuOpened:
-		Global.currentHero += 1
-		if Global.currentHero >= bottom_rect.get_child_count(false):
-			Global.currentHero = 0
-	elif event.is_action_pressed("left") && darkMenuOpened:
-		Global.currentHero -= 1
-		if Global.currentHero < 0:
-			Global.currentHero = bottom_rect.get_child_count(false) - 1
+			dark_menu_btn_container.get_child(current_option).grab_focus()
+			menu_open = true

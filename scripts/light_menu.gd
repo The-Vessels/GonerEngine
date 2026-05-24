@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 				visible = false
 		else:
 			visible = true
-	
+
 func _on_visibility_changed() -> void:
 	if visible and is_node_ready():
 		menu_options[current_option].grab_focus.call_deferred()
