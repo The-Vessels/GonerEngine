@@ -1,9 +1,9 @@
 extends Control
-@onready var dark_menu_btn_container: HBoxContainer = $TopRect/DarkMenuBtnContainer
-@onready var top_rect: ColorRect = $TopRect
+@onready var options_container: HBoxContainer = $TopPanel/OptionsContainer
+@onready var top_panel: Panel = $TopPanel
 @onready var bottom_panel: Panel = $BottomPanel
-@onready var dark_menu_desc: AnimatedSprite2D = $TopRect/DarkMenuDescContainer/DarkMenuDesc
-@onready var dark_submenu_container: Control = $DarkSubmenuContainer
+@onready var menu_desc: AnimatedSprite2D = $TopPanel/MenuDesc
+@onready var submenus: Control = $Submenus
 
 var menu_options: Array[Node]
 
@@ -15,10 +15,10 @@ var menu_open := false
 var submenu_open := false
 
 func _ready():
-	menu_options = dark_menu_btn_container.get_children()
+	menu_options = options_container.get_children()
 	menu_options[current_option].grab_focus()
 	
-	for option_button: TextureButton in dark_menu_btn_container.get_children():
+	for option_button: TextureButton in options_container.get_children():
 		option_button.focus_entered.connect(
 			func():
 				current_option = option_button.get_index()
@@ -33,7 +33,7 @@ func _ready():
 		)
 
 func _process(delta: float) -> void:
-	dark_menu_desc.frame = current_option
+	menu_desc.frame = current_option
 	
 	menutrans = lerpf(menutrans, (1.0 if menu_open else 0.0), (delta * 30) * 0.4)
 	var menuoffset = snappedf(menutrans, 0.01) * 80.0
@@ -41,8 +41,8 @@ func _process(delta: float) -> void:
 	if snappedf(menutrans, 0.01) == 0.0:
 		visible = false
 	
-	top_rect.position.y = menuoffset - top_rect.size.y
-	bottom_panel.position.y = (480 + (top_rect.size.y - bottom_panel.size.y)) - menuoffset
+	top_panel.position.y = menuoffset - top_panel.size.y
+	bottom_panel.position.y = (480 + (top_panel.size.y - bottom_panel.size.y)) - menuoffset
 	
 	if Input.is_action_just_pressed("cancel"):
 		if menu_open:
@@ -63,12 +63,12 @@ func _process(delta: float) -> void:
 			menu_open = true
 
 func disable_unfocused_options() -> void:
-	for button: TextureButton in dark_menu_btn_container.get_children():
+	for button: TextureButton in options_container.get_children():
 		if !button.has_focus():
 			button.focus_mode = Control.FOCUS_NONE
 
 func enable_all_options() -> void:
-	for button: TextureButton in dark_menu_btn_container.get_children():
+	for button: TextureButton in options_container.get_children():
 		button.focus_mode = Control.FOCUS_ALL
 
 func _on_visibility_changed() -> void:
