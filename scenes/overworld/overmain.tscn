@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
 [ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
+[ext_resource type="PackedScene" uid="uid://ngayfl0f6g57" path="res://scenes/dark_menu.tscn" id="8_4cbgx"]
 [ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="9_65ftm"]
 [ext_resource type="Texture2D" uid="uid://brxkji0i88mft" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_1.png" id="10_4cbgx"]
 [ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_2.png" id="11_83t3m"]
@@ -174,12 +175,13 @@ color = Color(0, 0, 0, 0)
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CenterContainer/GameView/SubViewport/Node2D" unique_id=535914796]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="DarkMenu" parent="CenterContainer/GameView/SubViewport/Node2D/CanvasLayer" unique_id=25315914 instance=ExtResource("8_4cbgx")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CenterContainer/GameView/SubViewport/Node2D/CanvasLayer" unique_id=689846216]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gecxn")
 animation = &"quit_anim"
 centered = false

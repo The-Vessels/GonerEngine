@@ -174,3 +174,5 @@ focus_behavior_recursive = 1
 visible = false
 position = Vector2(320, 240)
 texture = ExtResource("13_237v3")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
