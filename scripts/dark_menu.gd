@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	menutrans = lerpf(menutrans, (1.0 if menu_open else 0.0), (delta * 30) * 0.4)
 	var menuoffset = snappedf(menutrans, 0.01) * 80.0
 	
-	if snappedf(menutrans, 0.01) < 0.1:
+	if snappedf(menutrans, 0.01) == 0.0:
 		visible = false
 	
 	top_rect.position.y = menuoffset - top_rect.size.y
@@ -61,17 +61,15 @@ func _process(delta: float) -> void:
 			visible = true
 			enable_all_options()
 			menu_open = true
-			
-			
+
 func disable_unfocused_options() -> void:
 	for button: TextureButton in dark_menu_btn_container.get_children():
 		if !button.has_focus():
 			button.focus_mode = Control.FOCUS_NONE
-			
+
 func enable_all_options() -> void:
 	for button: TextureButton in dark_menu_btn_container.get_children():
 		button.focus_mode = Control.FOCUS_ALL
-
 
 func _on_visibility_changed() -> void:
 	if !is_node_ready():
