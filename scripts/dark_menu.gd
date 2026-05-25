@@ -1,8 +1,5 @@
 extends Control
-@onready var darkcontroller: Control = $"."
 @onready var dark_menu_btn_container: HBoxContainer = $TopRect/DarkMenuBtnContainer
-@onready var dark_item_btn: TextureButton = $TopRect/DarkMenuBtnContainer/DarkItemBtn
-@onready var dark_item_menu: Control = $TopRect/DarkMenuBtnContainer/DarkItemBtn/DarkItemMenu
 @onready var top_rect: ColorRect = $TopRect
 @onready var bottom_panel: Panel = $BottomPanel
 @onready var dark_menu_desc: AnimatedSprite2D = $TopRect/DarkMenuDescContainer/DarkMenuDesc
@@ -38,7 +35,7 @@ func _ready():
 func _process(delta: float) -> void:
 	dark_menu_desc.frame = current_option
 	
-	menutrans = lerpf(menutrans, (1.0 if menu_open else 0.0), 0.4)
+	menutrans = lerpf(menutrans, (1.0 if menu_open else 0.0), (delta * 30) * 0.4)
 	var menuoffset = snappedf(menutrans, 0.01) * 80.0
 	
 	if snappedf(menutrans, 0.01) < 0.1:
