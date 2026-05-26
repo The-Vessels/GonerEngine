@@ -1,4 +1,5 @@
-class_name player extends CharacterBody2D
+@icon("uid://ckhgwh7y265re")
+class_name Player extends CharacterBody2D
 
 var speed := 90.0
 var runspeed := 180.0

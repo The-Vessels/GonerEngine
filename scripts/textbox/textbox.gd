@@ -1,3 +1,4 @@
+@icon("uid://bw0iqumaar5ok")
 @tool
 class_name TextBox extends Control
 

@@ -1,3 +1,4 @@
+@icon("uid://dcjglqge85nyb")
 class_name TargetMarker extends Marker2D
 
 @export var marker_id: int

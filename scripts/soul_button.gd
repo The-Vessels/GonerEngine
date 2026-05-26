@@ -1,5 +1,6 @@
+@icon("uid://06bcfmflya6n")
 @tool
-class_name MenuSoulButton extends Button
+class_name SoulButton extends Button
 
 @export var soul_offset := Vector2(-14.0, 4.0)
 

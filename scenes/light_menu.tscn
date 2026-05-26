@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1tmmpanucxap" path="res://scenes/light_box.tscn" id="2_ubbul"]
 [ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://assets/themes/buttontheme.tres" id="3_e77re"]
 [ext_resource type="FontFile" uid="uid://dcoufbraybtwl" path="res://assets/fonts/small.ttf" id="4_5omq7"]
-[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/menu_soul_button.gd" id="6_e77re"]
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/soul_button.gd" id="6_e77re"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e77re"]
 

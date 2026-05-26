@@ -1,3 +1,4 @@
+@icon("uid://4nggui1prwda")
 class_name TeleportArea extends Area2D
 
 @export_file("*.tscn") var target_scene

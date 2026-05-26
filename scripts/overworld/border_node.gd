@@ -1,3 +1,4 @@
+@icon("uid://bxkrunfle6ybb")
 class_name BorderNode extends Node2D
 
 @export var border_texture: Texture2D

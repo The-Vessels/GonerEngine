@@ -1,3 +1,4 @@
+@icon("uid://b42f6y5ag6jo0")
 extends Area2D
 class_name Bullet
 @export var velocity := Vector2()
@@ -13,7 +14,7 @@ var damage = 17
 func _process(delta: float) -> void:
 	position += forwardsVelocity * delta
 	position += transform.x + (velocity * delta)
-	soulPosition = SoulRefrence.soulPosition
+	#soulPosition = SoulRefrence.soulPosition
 	look_at(soulPosition)
 
 func _on_area_entered(area: Area2D) -> void:

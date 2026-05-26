@@ -1,3 +1,4 @@
+@icon("uid://bhgevihtdcq37")
 class_name Room extends Node2D
 
 @export var world_type: Global.WorldTypes

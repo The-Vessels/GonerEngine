@@ -1,3 +1,4 @@
+@icon("uid://5gcwqgac5641")
 class_name CameraBounds extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 var tl_corner: Vector2

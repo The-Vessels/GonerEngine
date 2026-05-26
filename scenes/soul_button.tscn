@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://rgajy5qjuqlw"]
 
-[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/menu_soul_button.gd" id="1_hu3bf"]
-[ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://assets/themes/buttontheme.tres" id="1_sb3ap"]
+[ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://assets/themes/buttontheme.tres" id="1_spni4"]
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/soul_button.gd" id="2_2htj6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sb3ap"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rbjxi"]
 
-[node name="MenuSoulButton" type="Button" unique_id=1451879672]
+[node name="SoulButton" type="Button" unique_id=1451879672]
 offset_right = 77.0
 offset_bottom = 16.0
-theme = ExtResource("1_sb3ap")
+theme = ExtResource("1_spni4")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_sb3ap")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rbjxi")
 text = "Placeholder"
-script = ExtResource("1_hu3bf")
+script = ExtResource("2_2htj6")
