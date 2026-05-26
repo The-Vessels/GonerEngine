@@ -1,4 +1,4 @@
-@icon("uid://jpsx5hj4rrdp")
+@icon("uid://dedigvj6gn7wg")
 class_name MusicNode extends Node2D
 
 @export var music: AudioStream

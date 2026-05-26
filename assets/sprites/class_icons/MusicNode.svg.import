@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jpsx5hj4rrdp"
-path="res://.godot/imported/MusicNode.png-90bf2d43058d9d4a5f56f2a234066a6e.ctex"
+uid="uid://dedigvj6gn7wg"
+path="res://.godot/imported/MusicNode.svg-331d28e7e7a3053c0f1d05d4b13b4a4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/class_icons/MusicNode.png"
-dest_files=["res://.godot/imported/MusicNode.png-90bf2d43058d9d4a5f56f2a234066a6e.ctex"]
+source_file="res://assets/sprites/class_icons/MusicNode.svg"
+dest_files=["res://.godot/imported/MusicNode.svg-331d28e7e7a3053c0f1d05d4b13b4a4e.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
