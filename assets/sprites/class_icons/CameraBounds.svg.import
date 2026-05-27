@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5gcwqgac5641"
-path="res://.godot/imported/CameraBounds.png-f607505485eff8c2d577a4903b7f252f.ctex"
+uid="uid://hhm251yn12yd"
+path="res://.godot/imported/CameraBounds.svg-8878fbc65d7f246aed203faf5d518e3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/class_icons/CameraBounds.png"
-dest_files=["res://.godot/imported/CameraBounds.png-f607505485eff8c2d577a4903b7f252f.ctex"]
+source_file="res://assets/sprites/class_icons/CameraBounds.svg"
+dest_files=["res://.godot/imported/CameraBounds.svg-8878fbc65d7f246aed203faf5d518e3c.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

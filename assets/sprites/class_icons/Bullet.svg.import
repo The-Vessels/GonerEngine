@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkrunfle6ybb"
-path="res://.godot/imported/BorderNode.png-77b9577e1b70506a98f7df5f59d6ff30.ctex"
+uid="uid://do0tsq3aqwuy1"
+path="res://.godot/imported/Bullet.svg-7cb806a23d4309d512091e15a4ca3a45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/class_icons/BorderNode.png"
-dest_files=["res://.godot/imported/BorderNode.png-77b9577e1b70506a98f7df5f59d6ff30.ctex"]
+source_file="res://assets/sprites/class_icons/Bullet.svg"
+dest_files=["res://.godot/imported/Bullet.svg-7cb806a23d4309d512091e15a4ca3a45.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

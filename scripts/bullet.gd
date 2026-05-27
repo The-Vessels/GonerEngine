@@ -1,4 +1,4 @@
-@icon("uid://b42f6y5ag6jo0")
+@icon("uid://do0tsq3aqwuy1")
 extends Area2D
 class_name Bullet
 @export var velocity := Vector2()
