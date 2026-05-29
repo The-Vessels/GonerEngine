@@ -1,16 +1,16 @@
 [gd_scene format=4 uid="uid://cy8co0c6bkwdr"]
 
-[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_8is1o"]
-[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="1_lia7k"]
-[ext_resource type="AudioStream" uid="uid://bm8itkv0jj3mv" path="res://assets/sounds/example/happytown.ogg" id="5_fkyvp"]
-[ext_resource type="AudioStream" uid="uid://7cxlp5wcft1p" path="res://assets/sounds/example/troubledingle.ogg" id="6_e184d"]
-[ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://scripts/wingledingle.gd" id="6_qjxaj"]
-[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="8_bduoi"]
-[ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="8_lvsx0"]
-[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="9_bduoi"]
-[ext_resource type="Texture2D" uid="uid://ks4ukhf2yiv1" path="res://assets/sprites/ui/borders/border_dw_blue_0.png" id="9_lia7k"]
-[ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="10_lia7k"]
-[ext_resource type="Script" uid="uid://dixqt176beevg" path="res://scripts/overworld/target_marker.gd" id="11_ff0t0"]
+[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_5v1hx"]
+[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="2_whkfp"]
+[ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="3_h68ct"]
+[ext_resource type="AudioStream" uid="uid://bm8itkv0jj3mv" path="res://assets/sounds/example/happytown.ogg" id="4_begdy"]
+[ext_resource type="AudioStream" uid="uid://7cxlp5wcft1p" path="res://assets/sounds/example/troubledingle.ogg" id="5_ychsu"]
+[ext_resource type="Script" uid="uid://dfvdnqfgrp1qf" path="res://scripts/wingledingle.gd" id="6_mcjfm"]
+[ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/overworld/target_marker_dest.gd" id="7_duh61"]
+[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="8_bkvad"]
+[ext_resource type="Texture2D" uid="uid://ks4ukhf2yiv1" path="res://assets/sprites/ui/borders/border_dw_blue_0.png" id="9_7e7wp"]
+[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="10_roblw"]
+[ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://assets/music/theme_testdepths.ogg" id="11_1y312"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0t0"]
 size = Vector2(840, 680)
@@ -19,7 +19,7 @@ size = Vector2(840, 680)
 tile_data = PackedInt32Array(0, 0, 12, 65536, 0, 13, 131072, 0, 14, 1, 65536, 12, 65537, 65536, 13, 131073, 65536, 14, 2, 131072, 12, 65538, 131072, 13, 131074, 131072, 14, 3, 196608, 12, 65539, 196608, 13, 131075, 196608, 14, 4, 262144, 12, 65540, 262144, 13, 131076, 262144, 14)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bduoi"]
-texture = ExtResource("8_lvsx0")
+texture = ExtResource("3_h68ct")
 texture_region_size = Vector2i(20, 20)
 3:0/0 = 0
 4:0/0 = 0
@@ -252,12 +252,12 @@ size = Vector2(40, 480)
 
 [node name="Node2D" type="Node2D" unique_id=787519670]
 y_sort_enabled = true
-script = ExtResource("1_8is1o")
+script = ExtResource("1_5v1hx")
 world_type = 1
 
 [node name="CameraBounds" type="Area2D" parent="." unique_id=10365924]
 position = Vector2(200, 0)
-script = ExtResource("1_lia7k")
+script = ExtResource("2_whkfp")
 metadata/_custom_type_script = "uid://do8e6sp7047i0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=2141765927]
@@ -285,17 +285,17 @@ tile_set = SubResource("TileSet_lia7k")
 y_sort_origin = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1232484994]
-stream = ExtResource("5_fkyvp")
+stream = ExtResource("4_begdy")
 volume_db = 0.06
 pitch_scale = 0.13
 parameters/looping = true
 
 [node name="DinglePlayer" type="AudioStreamPlayer" parent="." unique_id=1647937311]
-stream = ExtResource("6_e184d")
+stream = ExtResource("5_ychsu")
 volume_db = -27.582
 pitch_scale = 3.02
 parameters/looping = true
-script = ExtResource("6_qjxaj")
+script = ExtResource("6_mcjfm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650034734]
 libraries/ = SubResource("AnimationLibrary_qjxaj")
@@ -367,21 +367,21 @@ shape = SubResource("WorldBoundaryShape2D_lvsx0")
 position = Vector2(620, 240)
 shape = SubResource("RectangleShape2D_lia7k")
 
-[node name="TargetMarker" type="Marker2D" parent="." unique_id=1149845914]
+[node name="TargetMarkerDest" type="Marker2D" parent="." unique_id=208352104]
 position = Vector2(64, 80)
-script = ExtResource("11_ff0t0")
-metadata/_custom_type_script = "uid://dixqt176beevg"
+script = ExtResource("7_duh61")
+metadata/_custom_type_script = "uid://cwiacpp0rgtxs"
 
-[node name="Sprite2D" type="Sprite2D" parent="TargetMarker" unique_id=1216532737]
+[node name="Sprite2D" type="Sprite2D" parent="TargetMarkerDest" unique_id=1216532737]
 
 [node name="BorderNode" type="Node2D" parent="." unique_id=804725700]
 position = Vector2(200, 0)
-script = ExtResource("8_bduoi")
-border_texture = ExtResource("9_lia7k")
+script = ExtResource("8_bkvad")
+border_texture = ExtResource("9_7e7wp")
 metadata/_custom_type_script = "uid://b6jsajndjvi2p"
 
 [node name="MusicNode" type="Node2D" parent="." unique_id=661316728]
 position = Vector2(200, 0)
-script = ExtResource("9_bduoi")
-music = ExtResource("10_lia7k")
+script = ExtResource("10_roblw")
+music = ExtResource("11_1y312")
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"

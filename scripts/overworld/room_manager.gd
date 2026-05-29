@@ -27,9 +27,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func goto_room(room, target, facing):
-	var facing_dir = facing
-	var target_marker: TargetMarker
-	print(facing_dir)
+	var destination: TargetMarkerDest
 	
 	if room_manager.get_child_count() == 1:
 		var ch = room_manager.get_child(0)
@@ -47,8 +45,8 @@ func goto_room(room, target, facing):
 				camera_2d.limit_top = child.tl_corner.y
 				camera_2d.limit_right = child.br_corner.x
 				camera_2d.limit_bottom = child.br_corner.y
-			if child is TargetMarker:
+			if child is TargetMarkerDest:
 				if child.marker_id == target:
-					target_marker = child
-					Player.position = target_marker.position
+					destination = child
+					Player.position = destination.position
 		Player.facing = facing if facing else Player.facing
