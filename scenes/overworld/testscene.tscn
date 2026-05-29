@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/testscene.gd" id="1_vnpm4"]
 [ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="2_7r376"]
+[ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://assets/sprites/references/buttonref.png" id="3_ivm7u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7r376"]
 viewport_path = NodePath("BorderAndGame")
@@ -54,4 +55,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameSubViewport" type="SubViewport" parent="BorderAndGame/GameViewportContainer" unique_id=1611777833]
+handle_input_locally = false
 size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="BorderAndGame/GameViewportContainer/GameSubViewport" unique_id=405891696]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ivm7u")
