@@ -15,9 +15,9 @@ func _process(_delta: float) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
 	if Input.is_key_pressed(KEY_C):
-		$BorderAndGame.size = Vector2i(640, 480)
+		$BorderAndGame.size = 2 * Vector2i(640, 480)
 		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
 	elif Input.is_key_pressed(KEY_V):
-		$BorderAndGame.size = Vector2i(960, 540)
+		$BorderAndGame.size = 2 * Vector2i(960, 540)
 		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
 	

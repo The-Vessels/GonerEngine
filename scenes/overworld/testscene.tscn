@@ -16,6 +16,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vnpm4")
 
+[node name="BlackBackground" type="ColorRect" parent="." unique_id=1036191694]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=150023662]
 layout_mode = 1
 anchors_preset = 15
@@ -28,17 +37,15 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="BorderAndGame" type="SubViewport" parent="." unique_id=170963936]
-size = Vector2i(960, 540)
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
 
 [node name="BorderTextureRect" type="TextureRect" parent="BorderAndGame" unique_id=1347509665]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 960.0
-offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_7r376")
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="BorderAndGame" unique_id=713744550]
@@ -53,9 +60,12 @@ offset_right = 320.0
 offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="GameSubViewport" type="SubViewport" parent="BorderAndGame/GameViewportContainer" unique_id=1611777833]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
