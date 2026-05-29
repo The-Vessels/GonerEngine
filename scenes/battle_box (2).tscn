@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d12o1emkighxd"]
 
 [ext_resource type="Script" uid="uid://rl2wfpkd8a0a" path="res://scripts/battle/charbox.gd" id="1_48j0o"]
-[ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/superdeltarune.png" id="2_qdfob"]
+[ext_resource type="Texture2D" uid="uid://c7od6phasxhq5" path="res://assets/sprites/references/superdeltarune.png" id="2_qdfob"]
 [ext_resource type="PackedScene" uid="uid://dlxhexfpx43vw" path="res://scenes/battle/battle_buttons.tscn" id="3_5xd7j"]
 [ext_resource type="Script" uid="uid://cr7k0hgil5iw1" path="res://scripts/battle/bbox.gd" id="4_wu1pj"]
 [ext_resource type="Texture2D" uid="uid://2xrf7d3rsof5" path="res://assets/sprites/kris/battle/head/spr_headkris_5.png" id="5_v8qlh"]
