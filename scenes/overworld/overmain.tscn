@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bvdo15y1cge2e" path="res://scripts/border_view.gd" id="1_crb4c"]
 [ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/overmain.gd" id="1_drpig"]
 [ext_resource type="Script" uid="uid://riofa83c0ggl" path="res://scripts/overworld/room_manager.gd" id="1_jimbh"]
-[ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/hometown.tscn" id="2_2n5go"]
+[ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/rooms/hometown.tscn" id="2_2n5go"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="4_jimbh"]
 [ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="5_feyxp"]
 [ext_resource type="PackedScene" uid="uid://ngayfl0f6g57" path="res://scenes/dark_menu.tscn" id="8_4cbgx"]

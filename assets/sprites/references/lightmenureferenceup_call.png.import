@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7od6phasxhq5"
-path="res://.godot/imported/superdeltarune.png-1446af4010b08658eda3e2fc20324452.ctex"
+uid="uid://brkjpqiecoxpl"
+path="res://.godot/imported/lightmenureferenceup_call.png-1db868fb8aed3156d5c35d5b63e5beca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/superdeltarune.png"
-dest_files=["res://.godot/imported/superdeltarune.png-1446af4010b08658eda3e2fc20324452.ctex"]
+source_file="res://assets/sprites/references/lightmenureferenceup_call.png"
+dest_files=["res://.godot/imported/lightmenureferenceup_call.png-1db868fb8aed3156d5c35d5b63e5beca.ctex"]
 
 [params]
 

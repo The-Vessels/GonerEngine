@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://assets/sprites/ui/menu/btn/config_hs.png" id="10_ljohi"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://assets/fonts/main.ttf" id="11_t63bh"]
 [ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="12_i8uc7"]
-[ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://assets/sprites/dcreference.png" id="13_237v3"]
+[ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://assets/sprites/references/dcreference.png" id="13_237v3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a442j"]
 
