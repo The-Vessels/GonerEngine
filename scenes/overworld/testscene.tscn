@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d4byrh7pgiy13"]
+
+[ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/testscene.gd" id="1_vnpm4"]
+[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="2_7r376"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7r376"]
+viewport_path = NodePath("BorderAndGame")
+
+[node name="Testscene" type="Control" unique_id=1234379774]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vnpm4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=150023662]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_7r376")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BorderAndGame" type="SubViewport" parent="." unique_id=170963936]
+size = Vector2i(960, 540)
+
+[node name="BorderTextureRect" type="TextureRect" parent="BorderAndGame" unique_id=1347509665]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7r376")
+
+[node name="GameViewportContainer" type="SubViewportContainer" parent="BorderAndGame" unique_id=713744550]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameSubViewport" type="SubViewport" parent="BorderAndGame/GameViewportContainer" unique_id=1611777833]
+size = Vector2i(640, 480)
