@@ -1,5 +1,8 @@
+# This is the root node of the main game.
+# For now it just handles quitting.
+
 extends Node2D
-@onready var quitting_sprite: AnimatedSprite2D = $CenterContainer/GameView/SubViewport/Node2D/CanvasLayer/AnimatedSprite2D
+@onready var quitting_sprite: AnimatedSprite2D = $UiLayer/Quitting
 var quitting_sprite_index := 0.0
 
 # Called when the node enters the scene tree for the first time.

@@ -1,3 +1,6 @@
+# Main camera of the entire game
+# TODO: add "camera target" logic
+
 extends Camera2D
 
 @onready var player: Player = $"../Player"

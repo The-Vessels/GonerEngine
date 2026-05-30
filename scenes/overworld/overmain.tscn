@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dp5p1tf3br3qs"]
 
 [ext_resource type="Script" uid="uid://bvdo15y1cge2e" path="res://scripts/border_view.gd" id="1_crb4c"]
-[ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/overmain.gd" id="1_drpig"]
+[ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/gameroot.gd" id="1_drpig"]
 [ext_resource type="PackedScene" uid="uid://ci5yb2l5q554j" path="res://scenes/game_root.tscn" id="3_2n5go"]
 
 [node name="Main" type="Node2D" unique_id=703671160]

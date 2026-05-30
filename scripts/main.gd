@@ -1,11 +1,12 @@
 # This is the root node of GonerEngine.
-# It manages borders, the "Quitting..." text,
-# and fullscreen.
+# It manages borders, fullscreen,
+# and anything else that might be outside GameRoot.
 
 extends Control
 
-@onready var border_rect: TextureRect = $BorderAndGame/BorderTextureRect
-@onready var border_prev_rect: TextureRect = $BorderAndGame/BorderPrevTextureRect
+@onready var border_rect: TextureRect = $BorderAndGame/BorderTexture
+@onready var border_prev_rect: TextureRect = $BorderAndGame/BorderPrevTexture
+@onready var game_renderer: TextureRect = $GameRenderer
 
 # Border variables
 const BORDER_NONE = preload("res://assets/sprites/ui/borders/border_none.png")
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 		set_border_texture(texture)
 
 func find_border_texture() -> Texture2D:
-	if not border_enabled:
+	if !border_enabled:
 		return BORDER_NONE
 	
 	match Global.border_mode:
@@ -89,10 +90,10 @@ func set_border():
 	$BorderAndGame.size = 2 * window_size
 	if border_enabled:
 		# letterbox if no border
-		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
+		game_renderer.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
 	else:
 		# fully cover the window if there is border
-		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
+		game_renderer.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
 	
 	# If the window is in windowed mode,
 	# keep the window's center in the same position

@@ -1,6 +1,10 @@
+# Like the name implies, the RoomManager node handles
+# everything related to our custom room logic.
+# Room switching, player placement, etc.
+
 extends Node2D
 @onready var room_manager: Node2D = $"."
-@onready var transition_player: AnimationPlayer = $"../TransitionScreen/AnimationPlayer"
+@onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
 @onready var Player: CharacterBody2D = $"../Player"
 @onready var camera_2d: Camera2D = $"../Camera2D"
 
