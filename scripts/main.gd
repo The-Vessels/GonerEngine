@@ -8,6 +8,7 @@ extends Control
 @onready var border_prev_rect: TextureRect = $BorderAndGame/BorderPrevTextureRect
 
 # Border variables
+const BORDER_NONE = preload("res://assets/sprites/ui/borders/border_none.png")
 const BORDER_SIMPLE = preload("res://assets/sprites/ui/borders/border_simple.png")
 var border_enabled: bool = false
 var border_tween: Tween
@@ -18,14 +19,11 @@ var border_tween: Tween
 var last_window_center: Vector2i
 var was_windowed: bool = false
 
+func _enter_tree() -> void:
+	print('main enter tree')
+
 func _ready() -> void:
-	#var window := get_window()
-	#window.size = Vector2i(960, 540)
-	#window.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-	#window.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
-	#window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-	#window.unresizable = false
-	border_rect.texture = BORDER_SIMPLE
+	border_rect.texture = find_border_texture()
 	border_tween = create_tween()
 	set_border()
 
@@ -37,10 +35,28 @@ func _input(event: InputEvent) -> void:
 		set_border()
 
 func _process(_delta: float) -> void:
-	print(border_enabled)
+	var texture := find_border_texture()
+	if border_rect.texture != texture:
+		set_border_texture(texture)
+
+func find_border_texture() -> Texture2D:
+	if not border_enabled:
+		return BORDER_NONE
+	
+	match Global.border_mode:
+		Global.BorderModes.NONE:
+			return BORDER_NONE
+		Global.BorderModes.SIMPLE:
+			return BORDER_SIMPLE
+		Global.BorderModes.DYNAMIC:
+			return Global.current_dynamic_border
+	
+	return BORDER_NONE
 
 # Uses an animation to set the border to `new_border`.
 func set_border_texture(new_border: Texture) -> void:
+	print('SET BORDER TEXTURE!!!')
+	
 	# Set the current texture to the previous texture
 	# and set the new texture.
 	border_prev_rect.texture = border_rect.texture
@@ -56,11 +72,11 @@ func set_border_texture(new_border: Texture) -> void:
 	border_tween.tween_property(border_rect, "modulate:a", 1.0, 1.0)
 	border_tween.tween_callback(func(): border_prev_rect.visible = false)
 
-# Get what the window size should be, which changes based on `enable_border`.
+# Get what the window size should be, which changes based on `border_enabled`.
 func calculate_window_size():
 	return Vector2i(960, 540) if border_enabled else Vector2i(640, 480)
 
-# Enable or disable the border, based on `enable_border`.
+# Enable or disable the border, based on `border_enabled`.
 func set_border():
 	# We use "double resolution" for the BorderAndGame viewport
 	# because the border image is 1920x1080. If we were to actually make

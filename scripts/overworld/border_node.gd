@@ -5,8 +5,10 @@ class_name BorderNode extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if border_texture == Global.border_texture:
-		return
-	Global.current_dynamic_border = border_texture
-	if Global.border_mode == Global.BorderModes.DYNAMIC:
-		Global.changeBorder.emit(border_texture)
+	#if border_texture == Global.border_texture:
+		#return
+	#Global.current_dynamic_border = border_texture
+	#if Global.border_mode == Global.BorderModes.sDYNAMIC:
+		#Global.changeBorder.emit(border_texture)
+	print('border ready')
+	Global.set_dynamic_border(border_texture)

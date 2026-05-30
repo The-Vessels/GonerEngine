@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://d4byrh7pgiy13"]
 
-[ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/testscene.gd" id="1_vnpm4"]
-[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="2_7r376"]
-[ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://assets/sprites/references/buttonref.png" id="3_ivm7u"]
+[ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://ci5yb2l5q554j" path="res://scenes/game_root.tscn" id="3_tbgi4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7r376"]
 viewport_path = NodePath("BorderAndGame")
 
-[node name="Testscene" type="Control" unique_id=1234379774]
+[node name="Main" type="Control" unique_id=1234379774]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vnpm4")
+script = ExtResource("1_sugp2")
 
 [node name="BlackBackground" type="ColorRect" parent="." unique_id=1036191694]
 layout_mode = 1
@@ -54,7 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7r376")
+texture = ExtResource("2_jyhfs")
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="BorderAndGame" unique_id=713744550]
 anchors_preset = 8
@@ -77,10 +77,4 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="BorderAndGame/GameViewportContainer/GameSubViewport" unique_id=405891696]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_ivm7u")
+[node name="GameRoot" parent="BorderAndGame/GameViewportContainer/GameSubViewport" unique_id=176435316 instance=ExtResource("3_tbgi4")]
