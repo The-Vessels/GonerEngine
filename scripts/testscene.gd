@@ -1,23 +1,109 @@
+# This is the root node of GonerEngine.
+# It manages borders, the "Quitting..." text,
+# and fullscreen.
+
 extends Control
 
+# Border variables
+var border_enabled: bool = false
+@onready var border_rect: TextureRect = $BorderAndGame/BorderTextureRect
+@onready var border_prev_rect: TextureRect = $BorderAndGame/BorderPrevTextureRect
+var border_tween: Tween
+const BORDER_SIMPLE = preload("res://assets/sprites/ui/borders/border_simple.png")
+
+# The last center position of the window, before it was fullscreened.
+# We use this to return the window's center to its original center,
+# when it is unfullscreened.
+var last_window_center: Vector2i
+var was_windowed: bool = false
+
 func _ready() -> void:
-	var window := get_window()
-	window.size = Vector2i(960, 540)
-	window.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-	window.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
-	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-	window.unresizable = false
+	#var window := get_window()
+	#window.size = Vector2i(960, 540)
+	#window.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+	#window.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+	#window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	#window.unresizable = false
+	border_rect.texture = BORDER_SIMPLE
+	border_tween = create_tween()
+	set_border(border_enabled)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		toggle_fullscreen()
+	if event.is_action_pressed("temporary_border_toggle"):
+		border_enabled = not border_enabled
+		set_border(border_enabled)
 
 func _process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_F):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	elif Input.is_key_pressed(KEY_R):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	print(border_enabled)
+
+# Uses an animation to set the border to `new_border`.
+func set_border_texture(new_border: Texture) -> void:
+	# Set the current texture to the previous texture
+	# and set the new texture.
+	border_prev_rect.texture = border_rect.texture
+	border_rect.texture = new_border
 	
-	if Input.is_key_pressed(KEY_C):
-		$BorderAndGame.size = 2 * Vector2i(640, 480)
-		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
-	elif Input.is_key_pressed(KEY_V):
-		$BorderAndGame.size = 2 * Vector2i(960, 540)
+	# We need to make the new border rect go from invisible to visible
+	# over a period of 1 second.
+	border_prev_rect.visible = true
+	border_rect.modulate.a = 0.0
+	
+	border_tween.kill()
+	border_tween = create_tween()
+	border_tween.tween_property(border_rect, "modulate:a", 1.0, 1.0)
+	border_tween.tween_callback(func(): border_prev_rect.visible = false)
+
+# Get what the window size should be, which changes based on `enable_border`.
+func calculate_window_size(enable_border: bool):
+	return Vector2i(960, 540) if border_enabled else Vector2i(640, 480)
+
+# Enable or disable the border, based on `enable_border`.
+func set_border(enable_border: bool):
+	# We use "double resolution" for the BorderAndGame viewport
+	# because the border image is 1920x1080. If we were to actually make
+	# the BorderAndGame viewport 960x540, it would downscale the border image.
+	# (We could make BorderAndGame 640x480 when border is not showing,
+	# but that would need the code to be slightly changed.)
+	
+	var window_size = calculate_window_size(enable_border)
+	
+	$BorderAndGame.size = 2 * window_size
+	if border_enabled:
+		# letterbox if no border
 		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
+	else:
+		# fully cover the window if there is border
+		$TextureRect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
 	
+	# If the window is in windowed mode,
+	# keep the window's center in the same position
+	# after resizing.
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		var center := get_window_center()
+		get_window().size = window_size
+		set_window_center(center)
+
+# Toggles between windows and fullscreen.
+# I think we should make this set_fullscreen(bool) instead
+func toggle_fullscreen():
+	var mode := DisplayServer.window_get_mode()
+	
+	if mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		was_windowed = true
+		last_window_center = get_window_center()
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		get_window().size = calculate_window_size(border_enabled)
+		if was_windowed:
+			set_window_center(last_window_center)
+
+func get_window_center() -> Vector2i:
+	var window := get_window()
+	return window.position + (window.size / 2)
+
+func set_window_center(center: Vector2i):
+	var window = get_window()
+	window.position = center - (window.size / 2)
