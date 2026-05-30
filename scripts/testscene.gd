@@ -4,12 +4,13 @@
 
 extends Control
 
-# Border variables
-var border_enabled: bool = false
 @onready var border_rect: TextureRect = $BorderAndGame/BorderTextureRect
 @onready var border_prev_rect: TextureRect = $BorderAndGame/BorderPrevTextureRect
-var border_tween: Tween
+
+# Border variables
 const BORDER_SIMPLE = preload("res://assets/sprites/ui/borders/border_simple.png")
+var border_enabled: bool = false
+var border_tween: Tween
 
 # The last center position of the window, before it was fullscreened.
 # We use this to return the window's center to its original center,
@@ -26,14 +27,14 @@ func _ready() -> void:
 	#window.unresizable = false
 	border_rect.texture = BORDER_SIMPLE
 	border_tween = create_tween()
-	set_border(border_enabled)
+	set_border()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen"):
 		toggle_fullscreen()
 	if event.is_action_pressed("temporary_border_toggle"):
 		border_enabled = not border_enabled
-		set_border(border_enabled)
+		set_border()
 
 func _process(_delta: float) -> void:
 	print(border_enabled)
@@ -56,18 +57,18 @@ func set_border_texture(new_border: Texture) -> void:
 	border_tween.tween_callback(func(): border_prev_rect.visible = false)
 
 # Get what the window size should be, which changes based on `enable_border`.
-func calculate_window_size(enable_border: bool):
+func calculate_window_size():
 	return Vector2i(960, 540) if border_enabled else Vector2i(640, 480)
 
 # Enable or disable the border, based on `enable_border`.
-func set_border(enable_border: bool):
+func set_border():
 	# We use "double resolution" for the BorderAndGame viewport
 	# because the border image is 1920x1080. If we were to actually make
 	# the BorderAndGame viewport 960x540, it would downscale the border image.
 	# (We could make BorderAndGame 640x480 when border is not showing,
 	# but that would need the code to be slightly changed.)
 	
-	var window_size = calculate_window_size(enable_border)
+	var window_size = calculate_window_size()
 	
 	$BorderAndGame.size = 2 * window_size
 	if border_enabled:
@@ -96,7 +97,7 @@ func toggle_fullscreen():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		get_window().size = calculate_window_size(border_enabled)
+		get_window().size = calculate_window_size()
 		if was_windowed:
 			set_window_center(last_window_center)
 
