@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://d2se1oi1rtnix"]
 
-[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_b2ck7"]
-[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="2_eflds"]
-[ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://assets/sprites/tiles/hometown.png" id="3_obw5g"]
-[ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="4_oqv75"]
-[ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/overworld/target_marker_dest.gd" id="5_j46a3"]
-[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="6_s20un"]
-[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="7_w3h1d"]
-[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/overworld/music_node.gd" id="8_hsx7m"]
-[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="9_1xjm1"]
+[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/classes/room.gd" id="1_b2ck7"]
+[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/classes/camera_bounds.gd" id="2_eflds"]
+[ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://sprites/tiles/hometown.png" id="3_obw5g"]
+[ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/classes/teleport_area.gd" id="4_oqv75"]
+[ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/classes/target_marker_dest.gd" id="5_j46a3"]
+[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/classes/border_node.gd" id="6_s20un"]
+[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://sprites/borders/border_lw_town_0.png" id="7_w3h1d"]
+[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/classes/music_node.gd" id="8_hsx7m"]
+[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://music/AUDIO_ANOTHERHIM.ogg" id="9_1xjm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)

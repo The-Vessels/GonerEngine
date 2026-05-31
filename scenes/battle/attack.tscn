@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d23jjh36jbrwm"]
+
+[ext_resource type="Script" uid="uid://kqfktbtjifed" path="res://scripts/attack.gd" id="1_sl8l1"]
+[ext_resource type="PackedScene" uid="uid://cidlskgw5vhag" path="res://scenes/battle/bullet.tscn" id="2_0l7m6"]
+[ext_resource type="PackedScene" uid="uid://d1q75mmscv56l" path="res://scenes/battle/soul.tscn" id="3_ylppx"]
+
+[node name="Attack" type="Node2D" unique_id=1908147580]
+script = ExtResource("1_sl8l1")
+attack_length = 10.0
+bullet = ExtResource("2_0l7m6")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=956901024]
+position = Vector2(260, 77)
+
+[node name="Node2D" parent="." unique_id=1685836740 instance=ExtResource("3_ylppx")]
+position = Vector2(260, 147)
+
+[node name="Bullet Interval" type="Timer" parent="." unique_id=1773911904]
+autostart = true
+
+[connection signal="timeout" from="Bullet Interval" to="." method="_on_bullet_interval_timeout"]

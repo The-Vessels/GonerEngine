@@ -37,7 +37,7 @@ enum BorderModes {
 	NONE
 }
 var border_mode := BorderModes.DYNAMIC
-var current_dynamic_border: Texture2D = preload("res://assets/sprites/ui/borders/border_none.png")
+var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_none.png")
 # signal changeBorder(border_texture)
 
 signal changeMusic(music, pitch)
@@ -52,7 +52,7 @@ var tension := 0
 var maxtension := 250
 var asp := AudioStreamPlayer.new()
 
-var ui_menumove := preload('res://assets/sounds/ui/menumove.wav')
+var ui_menumove := preload("res://sounds/ui/menumove.wav")
 
 func _ready():
 	setup_discord_rpc()

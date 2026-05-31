@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://tw5hkjn0a81b"]
+
+[ext_resource type="Texture2D" uid="uid://j7qqth7mvnst" path="res://sprites/ui/menu/boxes/dark/darktextbox1.png" id="1_06xid"]
+[ext_resource type="Texture2D" uid="uid://cs4mn4gjwhqtt" path="res://sprites/ui/menu/boxes/dark/darktextbox2.png" id="2_15lsm"]
+[ext_resource type="Texture2D" uid="uid://cf4oltvj3yacv" path="res://sprites/ui/menu/boxes/dark/darktextbox3.png" id="3_sqnrb"]
+[ext_resource type="Texture2D" uid="uid://beqmacfjuy86v" path="res://sprites/ui/menu/boxes/dark/darktextbox4.png" id="4_4duou"]
+[ext_resource type="Texture2D" uid="uid://dka0ivcx3t3sd" path="res://sprites/ui/menu/boxes/dark/darktextbox5.png" id="5_denfy"]
+[ext_resource type="Texture2D" uid="uid://ccjf2wyrmhw5r" path="res://sprites/ui/menu/boxes/dark/darktextbox6.png" id="6_6ye67"]
+[ext_resource type="Texture2D" uid="uid://bsnd4pgs2pdxg" path="res://sprites/ui/menu/boxes/dark/darktextbox7.png" id="7_yr05v"]
+[ext_resource type="Texture2D" uid="uid://x3370bg1p5mw" path="res://sprites/ui/menu/boxes/dark/darktextbox8.png" id="8_c2cam"]
+
+[sub_resource type="Animation" id="Animation_ctaco"]
+resource_name = "DarkBoxCornerAnimation"
+length = 2.6666667
+loop_mode = 1
+step = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667, 1, 1.3333334, 1.6666667, 2, 2.3333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_06xid"), ExtResource("2_15lsm"), ExtResource("3_sqnrb"), ExtResource("4_4duou"), ExtResource("5_denfy"), ExtResource("6_6ye67"), ExtResource("7_yr05v"), ExtResource("8_c2cam")]
+}
+
+[sub_resource type="Animation" id="Animation_i7qr1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_06xid")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsw8h"]
+_data = {
+&"DarkBoxCornerAnimation": SubResource("Animation_ctaco"),
+&"RESET": SubResource("Animation_i7qr1")
+}
+
+[node name="DarkBox" type="NinePatchRect" unique_id=619300672]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_06xid")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=427008337]
+libraries/ = SubResource("AnimationLibrary_qsw8h")
+autoplay = &"DarkBoxCornerAnimation"

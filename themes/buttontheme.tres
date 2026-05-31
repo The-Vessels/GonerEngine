@@ -1,0 +1,26 @@
+[gd_resource type="Theme" format=3 uid="uid://dlf02a788g6br"]
+
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="1_oltr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oltr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsdwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stv6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjiex"]
+
+[resource]
+default_font = ExtResource("1_oltr1")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 0
+Button/constants/line_spacing = 0
+Button/styles/focus = SubResource("StyleBoxEmpty_oltr1")
+Button/styles/hover = SubResource("StyleBoxEmpty_dsdwh")
+Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
+Button/styles/pressed = SubResource("StyleBoxEmpty_xjiex")
+VBoxContainer/constants/separation = 0

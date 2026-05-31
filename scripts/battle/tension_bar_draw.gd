@@ -5,7 +5,7 @@ var bottom_left_point := Vector2(3, size.y - 1)
 #var rect := Rect2(Vector2.ZERO, size)
 
 var c_orange := Color("ffa040")
-var tensionmarker := preload("res://assets/sprites/battle/tensionbar/marker.png")
+var tensionmarker := preload("res://sprites/battle/tensionbar/marker.png")
 
 # TODO Kristal makes these floats, but idk if we should
 var apparent_tp := float(Global.tension)

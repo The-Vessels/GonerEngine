@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://bjf0gy315rgvc"]
+
+[ext_resource type="Texture2D" uid="uid://cmpcgi5pe6o24" path="res://sprites/battle_buttons.png" id="1_uv73l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkogm"]
+atlas = ExtResource("1_uv73l")
+region = Rect2(10, 20, 30, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xceln"]
+texture = SubResource("AtlasTexture_gkogm")
+
+[resource]
+Button/styles/normal = SubResource("StyleBoxTexture_xceln")

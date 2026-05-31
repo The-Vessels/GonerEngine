@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://d2yg6qt8tbwr1"
+path="res://.godot/imported/smallnumbers.fnt-aa6539809f99d064f50497e810092521.fontdata"
+
+[deps]
+
+source_file="res://fonts/smallnumbers.fnt"
+dest_files=["res://.godot/imported/smallnumbers.fnt-aa6539809f99d064f50497e810092521.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

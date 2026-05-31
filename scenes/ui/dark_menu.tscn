@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://ngayfl0f6g57"]
+
+[ext_resource type="Script" uid="uid://jhy2lw5p26ao" path="res://scripts/dark_menu.gd" id="1_5xdo1"]
+[ext_resource type="Texture2D" uid="uid://crc76dli0yory" path="res://sprites/ui/menu/desc/item.png" id="2_lqp08"]
+[ext_resource type="Texture2D" uid="uid://u58xn3gdknf3" path="res://sprites/ui/menu/btn/item.png" id="3_835bm"]
+[ext_resource type="Texture2D" uid="uid://daa65pt526k5b" path="res://sprites/ui/menu/desc/equip.png" id="3_li2ee"]
+[ext_resource type="Texture2D" uid="uid://grusm1sdsx3k" path="res://sprites/ui/menu/desc/power.png" id="4_a442j"]
+[ext_resource type="Texture2D" uid="uid://bx1d4pspxmmk5" path="res://sprites/ui/menu/btn/item_hs.png" id="4_c4l2e"]
+[ext_resource type="Texture2D" uid="uid://bivrq4li071wj" path="res://sprites/ui/menu/desc/config.png" id="5_htwnd"]
+[ext_resource type="Texture2D" uid="uid://cjfgk428ue7j8" path="res://sprites/ui/menu/btn/equip.png" id="5_li2ee"]
+[ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://sprites/ui/menu/btn/equip_hs.png" id="6_a442j"]
+[ext_resource type="Texture2D" uid="uid://c34p6nwud253i" path="res://sprites/ui/menu/desc/talk.png" id="6_y8ym4"]
+[ext_resource type="Texture2D" uid="uid://cmo57frolnfk5" path="res://sprites/ui/menu/btn/power.png" id="7_htwnd"]
+[ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://sprites/ui/menu/btn/power_hs.png" id="8_y8ym4"]
+[ext_resource type="Texture2D" uid="uid://dhpj530ymx4dq" path="res://sprites/ui/menu/btn/config.png" id="9_sm6h8"]
+[ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://sprites/ui/menu/btn/config_hs.png" id="10_ljohi"]
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="11_t63bh"]
+[ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="12_i8uc7"]
+[ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://sprites/references/dcreference.png" id="13_237v3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a442j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm6h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lqp08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_li2ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a442j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_htwnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y8ym4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_53y5c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_li2ee"]
+
+[node name="DarkMenu" type="Control" unique_id=25315914]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5xdo1")
+
+[node name="TopPanel" type="Panel" parent="." unique_id=693148017]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a442j")
+
+[node name="TopRect" type="ColorRect" parent="TopPanel" unique_id=514284593]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+
+[node name="MenuDesc" type="AnimatedSprite2D" parent="TopPanel" unique_id=339064915]
+position = Vector2(20, 24)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sm6h8")
+centered = false
+
+[node name="OptionsContainer" type="HBoxContainer" parent="TopPanel" unique_id=993974646]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 486.0
+offset_bottom = 68.0
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="ITEM" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1858827102]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../CONFIG")
+theme = SubResource("Theme_53y5c")
+action_mode = 0
+texture_normal = ExtResource("3_835bm")
+texture_focused = ExtResource("4_c4l2e")
+stretch_mode = 6
+
+[node name="EQUIP" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1899990050]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+texture_normal = ExtResource("5_li2ee")
+texture_focused = ExtResource("6_a442j")
+stretch_mode = 6
+
+[node name="POWER" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1685726400]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+texture_normal = ExtResource("7_htwnd")
+texture_focused = ExtResource("8_y8ym4")
+stretch_mode = 6
+
+[node name="CONFIG" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1978195060]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../ITEM")
+action_mode = 0
+texture_normal = ExtResource("9_sm6h8")
+texture_focused = ExtResource("10_ljohi")
+stretch_mode = 6
+
+[node name="CurrencyLabel" type="Label" parent="TopPanel" unique_id=290528985]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 20.0
+offset_right = 568.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("11_t63bh")
+theme_override_font_sizes/font_size = 32
+text = "D$ 0"
+
+[node name="BottomPanel" type="Panel" parent="." unique_id=1698630198]
+layout_mode = 0
+offset_top = 417.0
+offset_right = 640.0
+offset_bottom = 480.0
+focus_behavior_recursive = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_li2ee")
+
+[node name="BottomRect" type="ColorRect" parent="BottomPanel" unique_id=1491312947]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 640.0
+offset_bottom = 63.0
+focus_behavior_recursive = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Charbox" parent="BottomPanel" unique_id=637116621 instance=ExtResource("12_i8uc7")]
+layout_mode = 0
+
+[node name="Charbox2" parent="BottomPanel" unique_id=625688750 instance=ExtResource("12_i8uc7")]
+layout_mode = 0
+offset_left = 213.0
+offset_right = 426.0
+
+[node name="Charbox3" parent="BottomPanel" unique_id=1525097512 instance=ExtResource("12_i8uc7")]
+layout_mode = 0
+offset_left = 426.0
+offset_right = 639.0
+
+[node name="Submenus" type="Control" parent="." unique_id=2016943390]
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+focus_behavior_recursive = 1
+
+[node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
+visible = false
+position = Vector2(320, 240)
+texture = ExtResource("13_237v3")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://csdsg4wiw05jy"]
+
+[ext_resource type="Script" uid="uid://bt4kljojuhcdm" path="res://scripts/ui/buttons.gd" id="1_0uuau"]
+[ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://sprites/references/buttonref.png" id="2_ch8a5"]
+[ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://themes/buttontheme.tres" id="3_wyflw"]
+[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://sprites/battle/soul.png" id="4_eij53"]
+
+[node name="Buttons" type="Node2D" unique_id=942591380]
+script = ExtResource("1_0uuau")
+
+[node name="Buttonref" type="Sprite2D" parent="." unique_id=320543188]
+visible = false
+texture = ExtResource("2_ch8a5")
+centered = false
+
+[node name="Control" type="Control" parent="." unique_id=2016269988]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 170.0
+offset_top = 150.0
+offset_right = 521.0
+offset_bottom = 434.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=15672073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1913604897]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_wyflw")
+
+[node name="FirstButton" type="Button" parent="Control/VBoxContainer" unique_id=1881761738]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_wyflw")
+text = "Master Volume"
+alignment = 0
+
+[node name="SecondButton" type="Button" parent="Control/VBoxContainer" unique_id=1438411343]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_wyflw")
+text = "Master Volume"
+alignment = 0
+
+[node name="Soul" type="Sprite2D" parent="." unique_id=978424445]
+visible = false
+position = Vector2(145, 160)
+texture = ExtResource("4_eij53")
+centered = false

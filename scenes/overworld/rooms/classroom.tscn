@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cbopyi6jxh138"]
 
-[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/room.gd" id="1_eqjh4"]
-[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/overworld/camera_bounds.gd" id="2_ml7xf"]
-[ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://assets/sprites/tiles/unused.png" id="3_g7jlk"]
-[ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/overworld/teleport_area.gd" id="4_jelid"]
-[ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/overworld/target_marker_dest.gd" id="5_ituqa"]
-[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/overworld/border_node.gd" id="6_8535x"]
-[ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://assets/sprites/ui/borders/device_border.png" id="7_l2lw5"]
+[ext_resource type="Script" uid="uid://bb8pql8fxg4kr" path="res://scripts/classes/room.gd" id="1_eqjh4"]
+[ext_resource type="Script" uid="uid://do8e6sp7047i0" path="res://scripts/classes/camera_bounds.gd" id="2_ml7xf"]
+[ext_resource type="Texture2D" uid="uid://dcprb6pm6e8n3" path="res://sprites/tiles/unused.png" id="3_g7jlk"]
+[ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/classes/teleport_area.gd" id="4_jelid"]
+[ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/classes/target_marker_dest.gd" id="5_ituqa"]
+[ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/classes/border_node.gd" id="6_8535x"]
+[ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://sprites/borders/device_border.png" id="7_l2lw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad1y3"]
 size = Vector2(640, 480)

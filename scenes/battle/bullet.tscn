@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cidlskgw5vhag"]
 
-[ext_resource type="Script" uid="uid://cvh72avhw238y" path="res://scripts/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Texture2D" uid="uid://br5syp4p6snfe" path="res://assets/sprites/battle/diamondbullet.png" id="2_y25gk"]
+[ext_resource type="Script" uid="uid://cvh72avhw238y" path="res://scripts/classes/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://br5syp4p6snfe" path="res://sprites/battle/diamondbullet.png" id="2_y25gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
 size = Vector2(36, 20)
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" unique_id=1643879659]
 collision_mask = 2
 script = ExtResource("1_mkf8s")
 
-[node name="BulletSprite" type="Sprite2D" parent="."]
+[node name="BulletSprite" type="Sprite2D" parent="." unique_id=542688205]
 texture = ExtResource("2_y25gk")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1681190256]
 shape = SubResource("RectangleShape2D_y25gk")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

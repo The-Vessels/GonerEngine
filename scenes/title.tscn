@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cdhhevl4avjx6"]
 
-[ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://assets/sprites/title/IMAGE_DEPTH.png" id="1_wosw1"]
-[ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://assets/sprites/title/titletext.png" id="2_p6dhs"]
+[ext_resource type="Texture2D" uid="uid://d2u6e10f6ejm" path="res://sprites/ui/menu/misc/title/IMAGE_DEPTH.png" id="1_wosw1"]
+[ext_resource type="Texture2D" uid="uid://dx0tgio1q8wvs" path="res://sprites/ui/menu/misc/title/titletext.png" id="2_p6dhs"]
 [ext_resource type="Script" uid="uid://xoes8x15g1bq" path="res://scripts/title/menu.gd" id="3_4rr2b"]
-[ext_resource type="Texture2D" uid="uid://dcgllram77pam" path="res://assets/sprites/title/IMAGE_SOUL_BLUR.png" id="3_b3w7a"]
-[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://assets/fonts/main_mono.ttf" id="5_yql1r"]
-[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://assets/music/AUDIO_ANOTHERHIM.ogg" id="6_yql1r"]
+[ext_resource type="Texture2D" uid="uid://dcgllram77pam" path="res://sprites/ui/menu/soul/IMAGE_SOUL_BLUR.png" id="3_b3w7a"]
+[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://fonts/main_mono.ttf" id="5_yql1r"]
+[ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://music/AUDIO_ANOTHERHIM.ogg" id="6_yql1r"]
 
 [sub_resource type="Animation" id="Animation_b3w7a"]
 length = 0.001

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4byrh7pgiy13"]
 
 [ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://assets/sprites/ui/borders/border_lw_town_0.png" id="2_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://sprites/borders/border_lw_town_0.png" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ci5yb2l5q554j" path="res://scenes/game_root.tscn" id="3_tbgi4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7r376"]

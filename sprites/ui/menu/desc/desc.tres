@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://d3412whkvai76"]
+
+[ext_resource type="Texture2D" uid="uid://crc76dli0yory" path="res://sprites/ui/menu/desc/item.png" id="1_plkcs"]
+[ext_resource type="Texture2D" uid="uid://daa65pt526k5b" path="res://sprites/ui/menu/desc/equip.png" id="2_ohw6o"]
+[ext_resource type="Texture2D" uid="uid://grusm1sdsx3k" path="res://sprites/ui/menu/desc/power.png" id="3_cgxrk"]
+[ext_resource type="Texture2D" uid="uid://bivrq4li071wj" path="res://sprites/ui/menu/desc/config.png" id="4_3l37i"]
+[ext_resource type="Texture2D" uid="uid://c34p6nwud253i" path="res://sprites/ui/menu/desc/talk.png" id="5_7s1ba"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_plkcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ohw6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cgxrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3l37i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7s1ba")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

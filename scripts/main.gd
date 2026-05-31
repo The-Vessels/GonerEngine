@@ -9,8 +9,8 @@ extends Control
 @onready var game_renderer: TextureRect = $GameRenderer
 
 # Border variables
-const BORDER_NONE = preload("res://assets/sprites/ui/borders/border_none.png")
-const BORDER_SIMPLE = preload("res://assets/sprites/ui/borders/border_simple.png")
+const BORDER_NONE = preload("res://sprites/borders/border_none.png")
+const BORDER_SIMPLE = preload("res://sprites/borders/border_simple.png")
 var border_enabled: bool = false
 var border_tween: Tween
 
