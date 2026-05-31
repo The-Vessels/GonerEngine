@@ -1,7 +1,7 @@
 # This is the CanvasLayer responsible for the
 # fade to black animation between switching rooms
-
 extends CanvasLayer
+
 @onready var transition_player: AnimationPlayer = $TransitionPlayer
 
 signal transitioned

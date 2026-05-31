@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://jbwxkfly0y7o" path="res://scripts/overworld/gameroot.gd" id="1_ywsqi"]
 [ext_resource type="PackedScene" uid="uid://d2se1oi1rtnix" path="res://scenes/overworld/rooms/hometown.tscn" id="2_ywsqi"]
 [ext_resource type="PackedScene" uid="uid://brd4vgwifopta" path="res://scenes/overworld/player.tscn" id="3_i7pw8"]
-[ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/camera_2d.gd" id="4_x5456"]
+[ext_resource type="Script" uid="uid://d2reu27iax8gp" path="res://scripts/overworld/world_camera.gd" id="4_x5456"]
 [ext_resource type="Script" uid="uid://dg5unmhrxyljt" path="res://scripts/transition_screen.gd" id="5_6puu6"]
 [ext_resource type="PackedScene" uid="uid://ngayfl0f6g57" path="res://scenes/dark_menu.tscn" id="6_k6861"]
 [ext_resource type="Texture2D" uid="uid://ct0m7l857cjk2" path="res://assets/sprites/ui/menu/misc/quitting/quitmessage_0.png" id="7_x42w8"]
@@ -102,11 +102,11 @@ script = ExtResource("1_5dyip")
 
 [node name="Hometown" parent="RoomManager" unique_id=2025934906 instance=ExtResource("2_ywsqi")]
 
-[node name="Player" parent="." unique_id=202223076 instance=ExtResource("3_i7pw8")]
+[node name="Player" parent="RoomManager" unique_id=202223076 instance=ExtResource("3_i7pw8")]
 y_sort_enabled = true
 position = Vector2(96, 72)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=617319159]
+[node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 position = Vector2(320, 240)
 script = ExtResource("4_x5456")
 
