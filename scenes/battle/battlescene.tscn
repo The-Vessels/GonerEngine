@@ -33,12 +33,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bm4ed"]
 shader = ExtResource("1_bm4ed")
-shader_parameter/grid_spacing = 50.0
-shader_parameter/border_proportion = 0.03
-shader_parameter/screen_resolution = Vector2(640, 480)
-shader_parameter/grid_color_1 = Color(0.520053, 0.000193341, 0.520049, 1)
-shader_parameter/grid_color_2 = Color(0.291373, 5.71071e-05, 0.291371, 1)
-shader_parameter/speed = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56eic"]
 
@@ -283,14 +277,14 @@ _data = {
 &"box_popup": SubResource("Animation_smdh1")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=2020620128]
 script = ExtResource("1_fbgux")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=683378805]
 layer = -100
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1053156448]
 material = SubResource("ShaderMaterial_bm4ed")
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,62 +294,62 @@ grow_vertical = 2
 pivot_offset = Vector2(665, 653)
 script = ExtResource("2_kr7th")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=162114113]
 position = Vector2(300, 200)
 script = ExtResource("1_56eic")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1511518896]
 shape = SubResource("RectangleShape2D_56eic")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=823132104]
 z_index = 1
 script = ExtResource("2_30i1k")
 box_size = Vector2(200, 200)
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=932570972]
 offset_left = 84.0
 offset_top = 105.0
 offset_right = 182.0
 offset_bottom = 136.0
 text = "Increment"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Button2" type="Button" parent="." unique_id=202034247]
 offset_left = 84.0
 offset_top = 146.0
 offset_right = 182.0
 offset_bottom = 177.0
 text = "Decrement"
 
-[node name="QuitLabel" type="Label" parent="."]
+[node name="QuitLabel" type="Label" parent="." unique_id=1556504229]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 100.0
 offset_bottom = 32.0
 text = "QUITTING"
 
-[node name="Battle" type="Sprite2D" parent="."]
+[node name="Battle" type="Sprite2D" parent="." unique_id=888570493]
 visible = false
 position = Vector2(805, 916)
 texture = ExtResource("6_wj8kd")
 
-[node name="TensionBar" type="Sprite2D" parent="."]
+[node name="TensionBar" type="Sprite2D" parent="." unique_id=345689133]
 clip_children = 1
 position = Vector2(38, 41)
 texture = ExtResource("7_jfvy1")
 centered = false
 
-[node name="Redbar" type="Sprite2D" parent="TensionBar"]
+[node name="Redbar" type="Sprite2D" parent="TensionBar" unique_id=1236666278]
 texture = ExtResource("8_6yt3o")
 centered = false
 
-[node name="Draw" type="Sprite2D" parent="TensionBar"]
+[node name="Draw" type="Sprite2D" parent="TensionBar" unique_id=718223563]
 script = ExtResource("7_jh60p")
 
-[node name="Blackbar" type="Sprite2D" parent="TensionBar"]
+[node name="Blackbar" type="Sprite2D" parent="TensionBar" unique_id=1474348691]
 texture = ExtResource("8_jfvy1")
 centered = false
 
-[node name="BattleText" type="Label" parent="."]
+[node name="BattleText" type="Label" parent="." unique_id=1965219728]
 offset_left = 30.0
 offset_top = 375.0
 offset_right = 592.0
@@ -367,57 +361,57 @@ autowrap_mode = 2
 tab_stops = PackedFloat32Array(32)
 visible_characters_behavior = 2
 
-[node name="Node" type="Node2D" parent="."]
+[node name="Node" type="Node2D" parent="." unique_id=362520409]
 script = ExtResource("8_jh60p")
 
-[node name="BattleButtons" type="Node2D" parent="Node"]
+[node name="BattleButtons" type="Node2D" parent="Node" unique_id=1106901508]
 z_index = 1
 position = Vector2(426, 257.002)
 script = ExtResource("7_bg738")
 
-[node name="Fight" type="AnimatedSprite2D" parent="Node/BattleButtons"]
+[node name="Fight" type="AnimatedSprite2D" parent="Node/BattleButtons" unique_id=1904517830]
 sprite_frames = SubResource("SpriteFrames_jh60p")
 centered = false
 
-[node name="ActMagic" type="AnimatedSprite2D" parent="Node/BattleButtons"]
+[node name="ActMagic" type="AnimatedSprite2D" parent="Node/BattleButtons" unique_id=1014247318]
 position = Vector2(35, 0)
 sprite_frames = SubResource("SpriteFrames_jh60p")
 frame = 1
 centered = false
 
-[node name="Item" type="AnimatedSprite2D" parent="Node/BattleButtons"]
+[node name="Item" type="AnimatedSprite2D" parent="Node/BattleButtons" unique_id=829722990]
 position = Vector2(70, 0)
 sprite_frames = SubResource("SpriteFrames_jh60p")
 frame = 2
 centered = false
 
-[node name="Spare" type="AnimatedSprite2D" parent="Node/BattleButtons"]
+[node name="Spare" type="AnimatedSprite2D" parent="Node/BattleButtons" unique_id=1251717412]
 position = Vector2(105, 0)
 sprite_frames = SubResource("SpriteFrames_jh60p")
 frame = 3
 centered = false
 
-[node name="Defend" type="AnimatedSprite2D" parent="Node/BattleButtons"]
+[node name="Defend" type="AnimatedSprite2D" parent="Node/BattleButtons" unique_id=1497340617]
 position = Vector2(140, 0)
 sprite_frames = SubResource("SpriteFrames_jh60p")
 frame = 4
 centered = false
 
-[node name="BottomRect" type="ColorRect" parent="Node"]
+[node name="BottomRect" type="ColorRect" parent="Node" unique_id=143825291]
 offset_left = 411.0
 offset_top = 288.001
 offset_right = 624.0
 offset_bottom = 291.001
 color = Color(0.2, 0.12549, 0.2, 1)
 
-[node name="BottomRect2" type="ColorRect" parent="Node"]
+[node name="BottomRect2" type="ColorRect" parent="Node" unique_id=484931674]
 offset_left = 411.0
 offset_top = 256.0
 offset_right = 624.0
 offset_bottom = 291.0
 color = Color(1, 0.184314, 0.501961, 1)
 
-[node name="BorderRect" type="ColorRect" parent="Node"]
+[node name="BorderRect" type="ColorRect" parent="Node" unique_id=1970204784]
 clip_contents = true
 offset_left = 669.0
 offset_top = 249.0
@@ -425,7 +419,7 @@ offset_right = 882.0
 offset_bottom = 287.0
 color = Color(1, 0.184218, 0.502832, 1)
 
-[node name="TopBlackRect" type="ColorRect" parent="Node/BorderRect"]
+[node name="TopBlackRect" type="ColorRect" parent="Node/BorderRect" unique_id=1596726152]
 z_index = 1
 layout_mode = 0
 offset_left = 2.0
@@ -434,7 +428,7 @@ offset_right = 211.0
 offset_bottom = 36.0
 color = Color(0, 0, 0, 1)
 
-[node name="HPBar" type="ColorRect" parent="Node/BorderRect/TopBlackRect"]
+[node name="HPBar" type="ColorRect" parent="Node/BorderRect/TopBlackRect" unique_id=1445567759]
 layout_mode = 0
 offset_left = 126.0
 offset_top = 19.0
@@ -442,22 +436,22 @@ offset_right = 202.0
 offset_bottom = 28.0
 color = Color(0.788235, 1, 0, 1)
 
-[node name="HPLetters" type="Sprite2D" parent="Node/BorderRect/TopBlackRect"]
+[node name="HPLetters" type="Sprite2D" parent="Node/BorderRect/TopBlackRect" unique_id=1392051578]
 position = Vector2(107, 19)
 texture = ExtResource("11_7lfwp")
 centered = false
 
-[node name="Head" type="AnimatedSprite2D" parent="Node/BorderRect/TopBlackRect"]
+[node name="Head" type="AnimatedSprite2D" parent="Node/BorderRect/TopBlackRect" unique_id=1468263408]
 position = Vector2(11, 8)
 sprite_frames = SubResource("SpriteFrames_jtcnv")
 centered = false
 
-[node name="Name" type="Sprite2D" parent="Node/BorderRect/TopBlackRect"]
+[node name="Name" type="Sprite2D" parent="Node/BorderRect/TopBlackRect" unique_id=491517674]
 position = Vector2(49, 11)
 texture = ExtResource("23_5qs4g")
 centered = false
 
-[node name="HPLabel1" type="Label" parent="Node/BorderRect/TopBlackRect"]
+[node name="HPLabel1" type="Label" parent="Node/BorderRect/TopBlackRect" unique_id=37910995]
 layout_mode = 0
 offset_left = 126.0
 offset_top = 6.0
@@ -468,12 +462,12 @@ theme_override_font_sizes/font_size = 10
 text = "90"
 horizontal_alignment = 2
 
-[node name="Hpslash" type="Sprite2D" parent="Node/BorderRect/TopBlackRect"]
+[node name="Hpslash" type="Sprite2D" parent="Node/BorderRect/TopBlackRect" unique_id=1520752907]
 position = Vector2(157, 4)
 texture = ExtResource("24_t13wt")
 centered = false
 
-[node name="HPLabel2" type="Label" parent="Node/BorderRect/TopBlackRect"]
+[node name="HPLabel2" type="Label" parent="Node/BorderRect/TopBlackRect" unique_id=1360519500]
 layout_mode = 0
 offset_left = 171.0
 offset_top = 6.0
@@ -484,7 +478,7 @@ theme_override_font_sizes/font_size = 10
 text = "90"
 horizontal_alignment = 2
 
-[node name="BottomBlackRect" type="ColorRect" parent="Node"]
+[node name="BottomBlackRect" type="ColorRect" parent="Node" unique_id=1277835241]
 material = SubResource("ShaderMaterial_jh60p")
 offset_left = 413.0
 offset_top = 257.0
@@ -492,13 +486,13 @@ offset_right = 622.0
 offset_bottom = 291.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
-libraries = {
-&"": SubResource("AnimationLibrary_cn621")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node" unique_id=1801119435]
+libraries/ = SubResource("AnimationLibrary_cn621")
 
-[node name="Camera2D" type="Camera2D" parent="Node"]
+[node name="Camera2D" type="Camera2D" parent="Node" unique_id=1307987634]
 enabled = false
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="StaticBody2D" method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="StaticBody2D" method="_on_button_2_pressed"]

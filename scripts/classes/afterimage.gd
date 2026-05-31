@@ -3,13 +3,17 @@ class_name Afterimage extends Sprite2D
 var opacity_rate: float
 var velocity: Vector2
 
-func _init(starting_opacity: float, time_until_delete: float, vel: Vector2 = Vector2.ZERO):
+static func with_fade_time(fade_time: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO) -> Afterimage:
+	var fade_rate := starting_opacity / fade_time
+	return new(fade_rate, starting_opacity, vel)
+
+func _init(fade_rate: float, starting_opacity: float, vel: Vector2 = Vector2.ZERO):
 	# texture = tex
 	z_as_relative = true
 	z_index = -1
 	
 	modulate.a = starting_opacity
-	opacity_rate = starting_opacity / time_until_delete
+	opacity_rate = fade_rate
 	velocity = vel
 
 func _process(delta: float) -> void:
@@ -18,3 +22,9 @@ func _process(delta: float) -> void:
 	#modulate -= Color(1.25, 1.25, 1.25, 0.0) * delta
 	if modulate.a <= 0.0:
 		queue_free()
+
+func duplicate_node(node: Node2D):
+	node.position = self.position
+	print(node)
+	self.add_child(node)
+	print(get_children())

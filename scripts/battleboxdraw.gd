@@ -41,12 +41,24 @@ func _physics_process(_delta: float) -> void:
 	# is your tween running?
 	# then you better go catch it!
 	if tween != null and tween.is_running():
-		var afterimage: Sprite2D = $Sprite2D.duplicate()
-		afterimage.is_afterimage = true
-		afterimage.z_index = z_index + 1
-		var alpha = 0.6 - (0.5 * tween.get_total_elapsed_time() * 2)
-		afterimage.modulate.a = alpha
+		#var afterimage: Sprite2D = $Sprite2D.duplicate()
+		var alpha: float = 0.6 - (0.5 * tween.get_total_elapsed_time() * 2)
+		var afterimage: Afterimage = Afterimage.new(0.04, alpha)
+		afterimage.z_index = self.z_index + 1
 		#var after_tween = afterimage.create_tween()
 		#after_tween.tween_property(afterimage, 'modulate:a', 0.0, 0.5).from(0.6 - (0.5 * tween.get_total_elapsed_time() * 2))
 		#after_tween.tween_callback(afterimage.queue_free)
 		add_child(afterimage)
+
+func _on_button_pressed() -> void:
+	tween = create_tween()
+	tween.tween_property($Sprite2D, 'rotation', 0.0, 0.5).from(PI)
+	tween.parallel().tween_property($Sprite2D, 'scale:x', 1.0, 0.5).from(0.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:y', 1.0, 0.5).from(0.0)
+
+
+func _on_button_2_pressed() -> void:
+	tween = create_tween()
+	tween.tween_property($Sprite2D, 'rotation', PI, 0.5).from(0.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:x', 0.0, 0.5).from(1.0)
+	tween.parallel().tween_property($Sprite2D, 'scale:y', 0.0, 0.5).from(1.0)
