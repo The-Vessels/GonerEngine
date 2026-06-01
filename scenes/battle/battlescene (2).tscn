@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="2_rlls0"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://scripts/background.gd" id="3_y4p8x"]
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="4_tekiq"]
-[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/sprite_2d.gd" id="5_fhd0e"]
+[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/growtangle.gd" id="5_fhd0e"]
 [ext_resource type="Texture2D" uid="uid://baqom7q1ahs4l" path="res://sprites/battle.png" id="6_itvxs"]
 [ext_resource type="Texture2D" uid="uid://r5m0aamh52ih" path="res://sprites/battle/tensionbar/cutout_inverted.png" id="7_t4pss"]
 [ext_resource type="Texture2D" uid="uid://cxus3u4wbd8y4" path="res://sprites/battle/tensionbar/redbar.png" id="8_a02y6"]

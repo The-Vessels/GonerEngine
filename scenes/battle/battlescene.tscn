@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f5up85sxenns" path="res://scripts/battleboxdraw.gd" id="1_56eic"]
 [ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="1_bm4ed"]
 [ext_resource type="Script" uid="uid://b8wefaw5rbtb3" path="res://scripts/exit_handler.gd" id="1_fbgux"]
-[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/sprite_2d.gd" id="2_30i1k"]
+[ext_resource type="Script" uid="uid://30luryew0pnd" path="res://scripts/growtangle.gd" id="2_30i1k"]
 [ext_resource type="Script" uid="uid://d0ie62okwjhwy" path="res://scripts/background.gd" id="2_kr7th"]
 [ext_resource type="Texture2D" uid="uid://baqom7q1ahs4l" path="res://sprites/battle.png" id="6_wj8kd"]
 [ext_resource type="Script" uid="uid://ce11gerslunn8" path="res://scripts/battle/battle_buttons_OLD.gd" id="7_bg738"]
@@ -301,7 +301,7 @@ script = ExtResource("1_56eic")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1511518896]
 shape = SubResource("RectangleShape2D_56eic")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=823132104]
+[node name="Growtangle" type="Sprite2D" parent="StaticBody2D" unique_id=823132104]
 z_index = 1
 script = ExtResource("2_30i1k")
 box_size = Vector2(200, 200)

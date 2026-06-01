@@ -1,5 +1,7 @@
 @tool
 extends Sprite2D
+## A growtangle is the box that
+## the SOUL is in.
 
 @export var box_size := Vector2(50,50):
 	set(new):
