@@ -41,13 +41,14 @@ func _physics_process(_delta: float) -> void:
 	# is your tween running?
 	# then you better go catch it!
 	if tween != null and tween.is_running():
-		#var afterimage: Sprite2D = $Sprite2D.duplicate()
 		var alpha: float = 0.6 - (0.5 * tween.get_total_elapsed_time() * 2)
-		var afterimage: Afterimage = Afterimage.new(0.04, alpha)
+		
+		var sprite_dup := $Sprite2D.duplicate()
+		sprite_dup.is_afterimage = true
+		var afterimage: Afterimage = Afterimage.new(0.04 * 30.0, 1.0)
+		afterimage.add_child(sprite_dup)
 		afterimage.z_index = self.z_index + 1
-		#var after_tween = afterimage.create_tween()
-		#after_tween.tween_property(afterimage, 'modulate:a', 0.0, 0.5).from(0.6 - (0.5 * tween.get_total_elapsed_time() * 2))
-		#after_tween.tween_callback(afterimage.queue_free)
+
 		add_child(afterimage)
 
 func _on_button_pressed() -> void:
