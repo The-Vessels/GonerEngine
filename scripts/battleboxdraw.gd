@@ -45,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 		
 		var box_dup := $Growtangle.duplicate()
 		box_dup.is_afterimage = true
-		var afterimage: Afterimage = Afterimage.new(0.04 * 30.0, 1.0)
+		var afterimage: Afterimage = Afterimage.new(0.04 * 30.0, alpha)
 		afterimage.add_child(box_dup)
 		afterimage.z_index = self.z_index + 1
 

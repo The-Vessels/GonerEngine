@@ -7,7 +7,7 @@ static func with_fade_time(fade_time: float, starting_opacity: float = 1.0, vel:
 	var fade_rate := starting_opacity / fade_time
 	return new(fade_rate, starting_opacity, vel)
 
-func _init(fade_rate: float, starting_opacity: float, vel: Vector2 = Vector2.ZERO):
+func _init(fade_rate: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO):
 	# texture = tex
 	z_as_relative = true
 	z_index = -1
