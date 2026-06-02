@@ -4,5 +4,4 @@ class_name Actor extends Resource
 ## In Deltarune, examples of Actors include Kris, Susie, Ralsei, and Noelle.
 
 @export var name: String
-@export var xoffset: float
-@export var yoffset: float
+@export var offset: Vector2
