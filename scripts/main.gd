@@ -34,6 +34,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("temporary_border_toggle"):
 		border_enabled = not border_enabled
 		set_border()
+	
+	# This passes keyboard events to the BorderAndGame viewport.
+	# This has to be done manually because Godot does not automatically
+	# send input events to the SubViewport.
+	# This makes GUI elements in the SubViewport respond to keyboard input.
+	if event is InputEventKey:
+		$BorderAndGame.push_input(event)
 
 func _process(_delta: float) -> void:
 	var texture := find_border_texture()

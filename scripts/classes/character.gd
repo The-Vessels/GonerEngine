@@ -5,13 +5,18 @@ var playable: bool
 
 # FOR PLAYABLE CHARACTER
 var running: bool
-var runtimer: float # Frames since we started running
+var runtimer: float = 0.0 # Frames since we started running
 
 func _process(delta: float) -> void:
 	var dtmult := delta * 30.0
 	
-	# TODO only increment this if we are running
-	runtimer += dtmult
+	# Cancel is same button as sprint
+	if Input.is_action_pressed("cancel"):
+		running = true
+		runtimer += dtmult
+	else:
+		running = false
+		runtimer = 0.0
 
 # Retrieves the walk speed (pixels per 30fps frame).
 func get_walk_speed() -> int:

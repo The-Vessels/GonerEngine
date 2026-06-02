@@ -25,6 +25,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="GameRenderer" type="TextureRect" parent="." unique_id=150023662]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_7r376")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="BorderAndGame" type="SubViewport" parent="." unique_id=170963936]
 canvas_item_default_texture_filter = 0
 size = Vector2i(1920, 1080)
@@ -67,14 +80,3 @@ size = Vector2i(640, 480)
 render_target_update_mode = 4
 
 [node name="GameRoot" parent="BorderAndGame/GameViewportContainer/GameSubViewport" unique_id=176435316 instance=ExtResource("3_tbgi4")]
-
-[node name="GameRenderer" type="TextureRect" parent="." unique_id=150023662]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_7r376")
-expand_mode = 1
-stretch_mode = 6

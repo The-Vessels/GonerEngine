@@ -10,10 +10,11 @@ func _physics_process(delta: float) -> void:
 	var Ymovement = Input.get_axis("up","down") * SPEED
 	velocity = Vector2(Xmovement,Ymovement)
 	position += velocity * delta
-	SoulRefrence.soulPosition = position
+	# SoulRefrence.soulPosition = position
 
 func _ready() -> void:
-	SoulRefrence.soulPosition = position
+	# SoulRefrence.soulPosition = position
+	pass
 	
 	
 func _damage(damage) -> void:

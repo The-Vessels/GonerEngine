@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://nnoa3rerbaut"]
+
+[ext_resource type="Script" uid="uid://b5pi0hr7b4kob" path="res://scenes/testing/button_navigation_test.gd" id="1_05yf1"]
+
+[node name="ButtonNavigationTest" type="Control" unique_id=521997091]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=857963390]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_05yf1")
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=894110067]
+layout_mode = 2
+text = "Button A"
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=67716733]
+layout_mode = 2
+text = "Button B"
+
+[node name="Button3" type="Button" parent="HBoxContainer" unique_id=354031394]
+layout_mode = 2
+text = "Button C"
