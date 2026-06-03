@@ -167,31 +167,6 @@ offset_right = 109.0
 offset_bottom = 46.0
 theme_override_constants/separation = 0
 
-[node name="Item1" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1383922325]
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("3_e77re")
-theme_override_font_sizes/font_size = 16
-action_mode = 0
-button_mask = 0
-text = "Ball of Junk"
-alignment = 0
-script = ExtResource("6_e77re")
-soul_offset = Vector2(-12, 4)
-metadata/_custom_type_script = "uid://b4chsr82apf1m"
-
-[node name="Item2" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1859421663]
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("3_e77re")
-action_mode = 0
-button_mask = 0
-text = "Hot Chocolate"
-alignment = 0
-script = ExtResource("6_e77re")
-soul_offset = Vector2(-12, 4)
-metadata/_custom_type_script = "uid://b4chsr82apf1m"
-
 [node name="ItemActions" type="Panel" parent="Submenus/ITEM" unique_id=703692127]
 layout_mode = 0
 offset_right = 40.0

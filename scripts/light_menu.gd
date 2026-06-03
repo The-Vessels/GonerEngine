@@ -26,13 +26,18 @@ func _ready() -> void:
 	submenu_list = submenus.get_children()
 	
 	# Setup option buttons
-	for option_button: Button in menu_options:
+	for option_button: SoulButton in menu_options:
+		if option_button.name == "ITEM":
+			if items_list.get_child_count() == 0:
+				option_button.disabled = true
+		
 		option_button.pressed.connect(
 			func():
 				current_submenu = submenu_list[option_button.get_index()]
 				handle_submenu(current_submenu)
 				submenu_open = true
 		)
+		
 		option_button.focus_entered.connect(
 			func():
 				if current_option != option_button.get_index():

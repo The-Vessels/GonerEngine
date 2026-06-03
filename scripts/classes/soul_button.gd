@@ -21,4 +21,8 @@ func _ready() -> void:
 	
 	focus_entered.connect(func(): soul_node.visible = true)
 	focus_exited.connect(func(): soul_node.visible = false)
-	pressed.connect(func(): Global.play_ui_sound("select"))
+	pressed.connect(
+		func():
+			if !disabled:
+				Global.play_ui_sound("select")
+	)

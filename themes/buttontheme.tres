@@ -2,6 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="1_oltr1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7jrl"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oltr1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsdwh"]
@@ -13,12 +15,14 @@
 [resource]
 default_font = ExtResource("1_oltr1")
 Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 0
 Button/constants/line_spacing = 0
+Button/styles/disabled = SubResource("StyleBoxEmpty_s7jrl")
 Button/styles/focus = SubResource("StyleBoxEmpty_oltr1")
 Button/styles/hover = SubResource("StyleBoxEmpty_dsdwh")
 Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
