@@ -1,5 +1,6 @@
 extends Node
 @onready var fps_counter: Label = $FPS_COUNTER
+@onready var ui_audio_player: AudioStreamPlayer = $UIAudioPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 # Maybe figure out how to get these to be const
@@ -76,9 +77,17 @@ func setup_discord_rpc():
 	DiscordRPC.refresh()
 
 func play_ui_sound(sound_name: String):
-	$UIAudioPlayer.stream = load('res://sounds/ui/' + sound_name + '.wav')
-	$UIAudioPlayer.play()
-
+	var stream = load('res://sounds/ui/' + sound_name + '.wav')
+	var temp_sound_player = AudioStreamPlayer.new()
+	temp_sound_player.name = "StupidAudioPlayer"
+	temp_sound_player.finished.connect(
+		func():
+			temp_sound_player.queue_free()
+	)
+	temp_sound_player.stream = stream
+	add_child(temp_sound_player)
+	temp_sound_player.play()
+	
 # Used for a room's border node to set the dynamic border.
 func set_dynamic_border(texture: Texture2D):
 	current_dynamic_border = texture

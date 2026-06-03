@@ -7,6 +7,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_opebo"]
 font = ExtResource("2_nmxvb")
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_opebo"]
+
 [node name="Global" type="Node" unique_id=1753942826]
 script = ExtResource("1_4pk28")
 
@@ -19,6 +21,7 @@ text = "greembus"
 label_settings = SubResource("LabelSettings_opebo")
 
 [node name="UIAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=54696501]
+stream = SubResource("AudioStreamPolyphonic_opebo")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=183424215]
 script = ExtResource("3_opebo")
