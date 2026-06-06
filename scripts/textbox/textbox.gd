@@ -14,6 +14,12 @@ class_name TextBox extends Control
 @onready var dark_box: NinePatchRect = $DarkBox
 @onready var light_box: NinePatchRect = $LightBox
 
+@export_group("Talking Sound")
+@export var talk_sounds: Array[AudioStream]
+@export_subgroup("Random Pitch Range")
+@export_range(-1, 0, 0.1) var lower_range: float = 0.0
+@export_range(0, 1, 0.1) var upper_range: float = 0.0
+
 var animating := false
 
 # this is actually called a `paragraph` in `RichTextLabel`
@@ -79,9 +85,23 @@ func animate_text():
 		animating = true
 		dia.visible_characters += 1
 		if text[dia.visible_characters - 1] != ' ':
-			$talkblip.play()
+			play_talk_sound()
 		await get_tree().physics_frame
 	animating = false
+
+func play_talk_sound():
+	var sound = talk_sounds.pick_random()
+	var pitch_offset = randf_range(lower_range, upper_range)
+	var player = AudioStreamPlayer.new()
+	player.stream = sound
+	player.pitch_scale += pitch_offset
+	player.finished.connect(
+		func():
+			player.queue_free()
+	)
+	add_child(player)
+	player.play()
+	
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
