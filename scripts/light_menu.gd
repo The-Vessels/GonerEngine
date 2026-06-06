@@ -135,3 +135,9 @@ func handle_submenu(submenu) -> void:
 		current_submenu_buttons[0].grab_focus()
 	else:
 		current_option = 0
+
+# Disable echoing of input events
+# so you can't hold down arrow keys to navigate
+func _input(event: InputEvent) -> void:
+	if event.is_echo():
+		get_viewport().set_input_as_handled()

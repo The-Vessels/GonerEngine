@@ -8,7 +8,7 @@ extends Control
 var menu_options: Array[Node]
 
 var menutrans := 0.0
-var close := false
+var animating := false
 
 var current_option := 0
 var menu_open := false
@@ -41,6 +41,11 @@ func _process(delta: float) -> void:
 	if snappedf(menutrans, 0.01) == 0.0:
 		visible = false
 	
+	if snappedf(menutrans, 0.01) < 0.1 or snappedf(menutrans, 0.01) > 0.9:
+		animating = false
+	else:
+		animating = true
+	
 	top_panel.position.y = menuoffset - top_panel.size.y
 	bottom_panel.position.y = (480 + (top_panel.size.y - bottom_panel.size.y)) - menuoffset
 	
@@ -52,7 +57,7 @@ func _process(delta: float) -> void:
 			else:
 				pass
 	
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("menu") and !animating:
 		if menu_open:
 			if !submenu_open:
 				disable_unfocused_options()
@@ -80,3 +85,9 @@ func _on_visibility_changed() -> void:
 		menu_options[current_option].grab_focus()
 	else:
 		disable_unfocused_options()
+
+# Disable echoing of input events
+# so you can't hold down arrow keys to navigate
+func _input(event: InputEvent) -> void:
+	if event.is_echo():
+		get_viewport().set_input_as_handled()

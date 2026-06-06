@@ -32,6 +32,7 @@ window/size/viewport_height=480
 window/size/resizable=false
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -44,6 +45,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [gui]
 
+theme/default_font_antialiasing=0
 theme/custom_font="uid://e8d4ah3nxtnm"
 
 [input]
