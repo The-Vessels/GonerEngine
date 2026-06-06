@@ -110,6 +110,10 @@ position = Vector2(96, 72)
 position = Vector2(320, 240)
 script = ExtResource("4_x5456")
 
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
+
+[node name="DarkMenu" parent="MenuLayer" unique_id=25315914 instance=ExtResource("6_k6861")]
+
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1020140058]
 follow_viewport_enabled = true
 script = ExtResource("5_6puu6")
@@ -125,11 +129,7 @@ color = Color(0, 0, 0, 0)
 [node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionLayer" unique_id=77294238]
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
-[node name="UiLayer" type="CanvasLayer" parent="." unique_id=273678583]
-
-[node name="DarkMenu" parent="UiLayer" unique_id=25315914 instance=ExtResource("6_k6861")]
-
-[node name="Quitting" type="AnimatedSprite2D" parent="UiLayer" unique_id=221779437]
+[node name="Quitting" type="AnimatedSprite2D" parent="." unique_id=221779437]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
 scale = Vector2(2, 2)

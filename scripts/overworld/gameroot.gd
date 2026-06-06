@@ -2,7 +2,7 @@
 # For now it just handles quitting.
 
 extends Node2D
-@onready var quitting_sprite: AnimatedSprite2D = $UiLayer/Quitting
+@onready var quitting_sprite: AnimatedSprite2D = $Quitting
 var quitting_sprite_index := 0.0
 
 # Called when the node enters the scene tree for the first time.

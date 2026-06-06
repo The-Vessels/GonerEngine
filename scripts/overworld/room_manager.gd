@@ -6,6 +6,7 @@ extends Node2D
 @onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
 @onready var player: Player = $Player
 @onready var world_camera: Camera2D = $"../WorldCamera"
+@onready var menu_layer: CanvasLayer = $"../MenuLayer"
 
 func _ready() -> void:
 	Global.changeRoom.connect(
@@ -46,7 +47,16 @@ func goto_room(room, target, facing):
 		return
 	
 	var room_scene: PackedScene = load(room)
-	var room_instantiated := room_scene.instantiate()
+	var room_instantiated: Room = room_scene.instantiate()
+
+	menu_layer.get_child(0).queue_free()
+	match room_instantiated.world_type:
+		Global.WorldTypes.WORLD_LIGHT:
+			var menu_scene: PackedScene = load("res://scenes/ui/light_menu.tscn")
+			menu_layer.add_child(menu_scene.instantiate())
+		Global.WorldTypes.WORLD_DARK:
+			var menu_scene: PackedScene = load("res://scenes/ui/dark_menu.tscn")
+			menu_layer.add_child(menu_scene.instantiate())
 	
 	add_child(room_instantiated)
 	move_child(room_instantiated, 0)
