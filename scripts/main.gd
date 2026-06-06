@@ -24,6 +24,10 @@ func _enter_tree() -> void:
 	print('main enter tree')
 
 func _ready() -> void:
+	# Override project settings
+	# so that the window does what it's supposed to.
+	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+	
 	border_rect.texture = find_border_texture()
 	border_tween = create_tween()
 	set_border()

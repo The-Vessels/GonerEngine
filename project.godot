@@ -31,7 +31,7 @@ window/size/viewport_width=640
 window/size/viewport_height=480
 window/size/resizable=false
 window/size/maximize_disabled=true
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [dotnet]

@@ -37,8 +37,10 @@ advance_mode = 2
 advance_expression = "velocity"
 
 [resource]
+states/End/position = Vector2(900.5, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_wicgm")
-states/Idle/position = Vector2(367, 169)
+states/Idle/position = Vector2(367.1543, 169)
 states/Walk/node = ExtResource("1_sw5rj")
-states/Walk/position = Vector2(367, 46)
+states/Walk/position = Vector2(367.1836, 46.5)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_a67oh"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_khriw"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_vmh5e")]
+graph_offset = Vector2(73.55005, -15.090009)

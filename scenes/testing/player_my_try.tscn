@@ -24,14 +24,13 @@
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_71bjh"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wicgm"]
-graph_offset = Vector2(-409.65057, 31.32431)
-nodes/output/position = Vector2(440, 100)
+nodes/output/position = Vector2(320, 130)
 nodes/PlayerStates/node = ExtResource("3_71bjh")
-nodes/PlayerStates/position = Vector2(-320, 160)
+nodes/PlayerStates/position = Vector2(-300, 130)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_71bjh")
-nodes/TimeScale/position = Vector2(220, 100)
+nodes/TimeScale/position = Vector2(160, 120)
 nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_71bjh")
-nodes/TimeSeek/position = Vector2(-20, 120)
+nodes/TimeSeek/position = Vector2(-20, 150)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"TimeSeek", &"TimeSeek", 0, &"PlayerStates"]
 
 [sub_resource type="Animation" id="Animation_rtrxn"]
