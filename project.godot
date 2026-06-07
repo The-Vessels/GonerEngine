@@ -24,6 +24,8 @@ config/icon="res://icon.svg"
 
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Global="*res://scenes/global.tscn"
+Colors="*uid://bc4tqibect2pp"
+Signals="*uid://dlrt4nnik2trb"
 
 [display]
 

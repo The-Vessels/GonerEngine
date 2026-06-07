@@ -4,7 +4,6 @@ var size := Vector2(25, 196)
 var bottom_left_point := Vector2(3, size.y - 1)
 #var rect := Rect2(Vector2.ZERO, size)
 
-var c_orange := Color("ffa040")
 var tensionmarker := preload("res://sprites/battle/tensionbar/marker.png")
 
 # TODO Kristal makes these floats, but idk if we should
@@ -69,12 +68,12 @@ func _draw():
 	
 	if apparent_tp < current_tp:
 		draw_bar_rect(Color.RED, current_px)
-		draw_bar_rect(c_orange,  apparent_px)
+		draw_bar_rect(Colors.c_orange,  apparent_px)
 	elif apparent_tp > current_tp:
 		draw_bar_rect(Color.WHITE, apparent_px)
-		draw_bar_rect(c_orange,    current_px)
+		draw_bar_rect(Colors.c_orange,    current_px)
 	else:
-		draw_bar_rect(c_orange, current_px)
+		draw_bar_rect(Colors.c_orange, current_px)
 	
 	if apparent_tp > 20 and apparent_tp < Global.maxtension:
 		draw_texture(tensionmarker, Vector2(3, size.y - current_px))

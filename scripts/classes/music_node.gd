@@ -10,4 +10,4 @@ class_name MusicNode extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Global.music_player.stream != music:
-		Global.changeMusic.emit(music, pitch)
+		Signals.changeMusic.emit(music, pitch)

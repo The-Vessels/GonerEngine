@@ -3,27 +3,6 @@ extends Node
 @onready var ui_audio_player: AudioStreamPlayer = $UIAudioPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
-# Maybe figure out how to get these to be const
-var c_white = Color.html("#FFFFFF")
-var c_black = Color.html("#000000")
-var c_aqua = Color.html("#00ffff");
-var c_blue = Color.html("#0000ff");
-var c_dkgray = Color.html("#404040");
-var c_fuchsia = Color.html("#ff00ff");
-var c_gray = Color.html("#808080");
-var c_green = Color.html("#008000");
-var c_lime = Color.html("#00ff00");
-var c_ltgray = Color.html("#c0c0c0");
-var c_maroon = Color.html("#800000");
-var c_navy = Color.html("#000080");
-var c_olive = Color.html("#808000");
-var c_orange = Color.html("#ffa040");
-var c_purple = Color.html("#800080");
-var c_red = Color.html("#ff0000");
-var c_silver = Color.html("#c0c0c0");
-var c_teal = Color.html("#008080");
-var c_yellow = Color.html("#ffff00");
-
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
 enum WorldTypes {WORLD_LIGHT, WORLD_DARK}

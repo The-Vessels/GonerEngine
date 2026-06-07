@@ -9,7 +9,7 @@ extends Node2D
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
 
 func _ready() -> void:
-	Global.changeRoom.connect(
+	Signals.changeRoom.connect(
 		func(room, target, facing):
 			player.nopress = true
 			transition_player.play("fade_to_black")

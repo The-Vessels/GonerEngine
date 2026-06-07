@@ -17,4 +17,4 @@ func _ready():
 	print('HIIIIII ', scene_container)
 
 func _on_body_entered(_body: Node2D) -> void:
-	Global.changeRoom.emit(target_scene, target_marker_id, player_facing)
+	Signals.changeRoom.emit(target_scene, target_marker_id, player_facing)

@@ -15,6 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if isCurrentHero:
 		# TODO: Character Colors
-		color_rect_2.color = Global.c_aqua
+		color_rect_2.color = Colors.c_aqua
 	else:
 		color_rect_2.color = Color.html("#332033")
