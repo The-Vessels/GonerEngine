@@ -1,6 +1,7 @@
 @icon("uid://06bcfmflya6n")
 @tool
 class_name SoulButton extends Button
+## A button that reveals a soul sprite when focused on
 
 @export var soul_offset := Vector2(-14.0, 4.0)
 

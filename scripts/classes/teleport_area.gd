@@ -1,7 +1,12 @@
 @icon("uid://4nggui1prwda")
 class_name TeleportArea extends Area2D
+## An Area2D for teleporting to another room.
+##
+## [b]Note:[/b] Use with [TargetMarkerDest] to set destination position of the player
 
+# Room to teleport to
 @export_file("*.tscn") var target_scene
+# ID of the TargetMarkerDest to position the player at
 @export var target_marker_id: int
 @export_enum("up", "down", "left", "right") var player_facing: String
 

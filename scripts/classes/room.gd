@@ -1,5 +1,8 @@
 @icon("uid://cxowetj4sjjhk")
 class_name Room extends Node2D
+## Base class for creating rooms in GonerEngine's custom room system
+## 
+## When making a new room scene, set a [b]Room[/b] node as the root node.
 
 @export var world_type: Global.WorldTypes
 

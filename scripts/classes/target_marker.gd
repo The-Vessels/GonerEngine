@@ -1,5 +1,9 @@
 @icon("uid://dcjglqge85nyb")
 class_name TargetMarker extends Marker2D
+## A generic position marker with an ID system.
+##
+## [b]Note:[/b] Use more specialized [b]TargetMarker[/b] classes
+## with their own isolated ID systems for more specific funcionalities
 
 @export var marker_id: int
 

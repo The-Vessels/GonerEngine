@@ -1,5 +1,6 @@
 
 class_name TargetMarkerDest extends TargetMarker
+## A [TargetMarker] used for positioning the player when entering a new room.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
