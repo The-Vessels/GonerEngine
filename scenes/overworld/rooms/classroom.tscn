@@ -34,7 +34,6 @@ centered = false
 script = ExtResource("4_jelid")
 target_scene = "uid://d2se1oi1rtnix"
 target_marker_id = 1
-player_facing = "down"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=542609714]

@@ -3,7 +3,7 @@ class_name TeleportArea extends Area2D
 
 @export_file("*.tscn") var target_scene
 @export var target_marker_id: int
-@export var player_facing: String
+@export_enum("up", "down", "left", "right") var player_facing: String
 
 @onready var scene_container: Node = get_tree().root.get_child(-1).get_node("RoomManager")
 

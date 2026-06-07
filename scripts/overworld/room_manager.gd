@@ -46,9 +46,11 @@ func goto_room(room, target, facing):
 		print("There is no starting room in RoomManager")
 		return
 	
+	# Fetch and instantiate the new room to go to
 	var room_scene: PackedScene = load(room)
 	var room_instantiated: Room = room_scene.instantiate()
 
+	# Add the correct menu for the new room's world type
 	menu_layer.get_child(0).queue_free()
 	match room_instantiated.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
@@ -61,13 +63,16 @@ func goto_room(room, target, facing):
 	add_child(room_instantiated)
 	move_child(room_instantiated, 0)
 	
+	# Get the necessary data from the new room to:
 	for child in room_instantiated.get_children():
 		print(child.get_class())
+		# Set the camera limits provided in the new room
 		if child is CameraBounds:
 			world_camera.limit_left = child.tl_corner.x
 			world_camera.limit_top = child.tl_corner.y
 			world_camera.limit_right = child.br_corner.x
 			world_camera.limit_bottom = child.br_corner.y
+		# Set the player in the correct marker position
 		if child is TargetMarkerDest:
 			if child.marker_id == target:
 				destination = child
