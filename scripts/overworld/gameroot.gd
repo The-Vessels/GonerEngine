@@ -1,13 +1,23 @@
 # This is the root node of the main game.
-# For now it just handles quitting.
+# For now it just handles quitting
+# and switching the menu based on the global world type.
 
 extends Node2D
+
 @onready var quitting_sprite: AnimatedSprite2D = $Quitting
+@onready var menu_layer: CanvasLayer = $MenuLayer
+
 var quitting_sprite_index := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	match Global.world_type:
+		Global.WorldTypes.WORLD_LIGHT:
+			var menu_scene: PackedScene = load("res://scenes/ui/light_menu.tscn")
+			menu_layer.add_child(menu_scene.instantiate())
+		Global.WorldTypes.WORLD_DARK:
+			var menu_scene: PackedScene = load("res://scenes/ui/dark_menu.tscn")
+			menu_layer.add_child(menu_scene.instantiate())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
