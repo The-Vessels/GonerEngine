@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bt4kljojuhcdm" path="res://scripts/ui/buttons.gd" id="1_0uuau"]
 [ext_resource type="Texture2D" uid="uid://b3fecni77upt2" path="res://sprites/references/buttonref.png" id="2_ch8a5"]
 [ext_resource type="Theme" uid="uid://dlf02a788g6br" path="res://themes/global.tres" id="3_wyflw"]
-[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://sprites/battle/soul.png" id="4_eij53"]
+[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://sprites/souls/soul.png" id="4_eij53"]
 
 [node name="Buttons" type="Node2D" unique_id=942591380]
 script = ExtResource("1_0uuau")

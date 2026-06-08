@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg4vwijkofrrx"
-path="res://.godot/imported/damagedsoul.png-258c1f70a9b4b21411d590c76c003b15.ctex"
+path="res://.godot/imported/damagedsoul.png-e698018510866e4bfdb2a3e4a03d6292.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/battle/damagedsoul.png"
-dest_files=["res://.godot/imported/damagedsoul.png-258c1f70a9b4b21411d590c76c003b15.ctex"]
+source_file="res://sprites/souls/damagedsoul.png"
+dest_files=["res://.godot/imported/damagedsoul.png-e698018510866e4bfdb2a3e4a03d6292.ctex"]
 
 [params]
 

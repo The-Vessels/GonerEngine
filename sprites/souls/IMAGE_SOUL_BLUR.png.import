@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0gvyfnxs5o8w"
-path="res://.godot/imported/menu_soul.png-f3886dc43d37394adb085fd525a4dc44.ctex"
+uid="uid://dcgllram77pam"
+path="res://.godot/imported/IMAGE_SOUL_BLUR.png-99d9587a9c6363a2d0d34bdd11c189ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/menu/soul/menu_soul.png"
-dest_files=["res://.godot/imported/menu_soul.png-f3886dc43d37394adb085fd525a4dc44.ctex"]
+source_file="res://sprites/souls/IMAGE_SOUL_BLUR.png"
+dest_files=["res://.godot/imported/IMAGE_SOUL_BLUR.png-99d9587a9c6363a2d0d34bdd11c189ac.ctex"]
 
 [params]
 
