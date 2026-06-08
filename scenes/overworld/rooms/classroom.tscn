@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://sprites/borders/device_border.png" id="7_l2lw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad1y3"]
-size = Vector2(640, 480)
+size = Vector2(320, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gobvo"]
-size = Vector2(80, 79)
+size = Vector2(40, 40)
 
 [node name="Classroom" type="Node2D" unique_id=830096811]
 script = ExtResource("1_eqjh4")
@@ -22,11 +22,10 @@ script = ExtResource("2_ml7xf")
 metadata/_custom_type_script = "uid://do8e6sp7047i0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=976175003]
-position = Vector2(320, 240)
+position = Vector2(160, 120)
 shape = SubResource("RectangleShape2D_ad1y3")
 
 [node name="Unused" type="Sprite2D" parent="." unique_id=1010266825]
-scale = Vector2(2, 2)
 texture = ExtResource("3_g7jlk")
 centered = false
 
@@ -37,7 +36,7 @@ target_marker_id = 1
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=542609714]
-position = Vector2(320, 410)
+position = Vector2(160, 188)
 shape = SubResource("RectangleShape2D_gobvo")
 
 [node name="TeleportArea2" type="Area2D" parent="." unique_id=2123993654]
@@ -48,11 +47,11 @@ player_facing = "down"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea2" unique_id=2088458932]
-position = Vector2(320, 410)
+position = Vector2(284, 300)
 shape = SubResource("RectangleShape2D_gobvo")
 
 [node name="TargetMarkerDest" type="Marker2D" parent="." unique_id=786140519]
-position = Vector2(321, 293)
+position = Vector2(160, 144)
 script = ExtResource("5_ituqa")
 metadata/_custom_type_script = "uid://cwiacpp0rgtxs"
 

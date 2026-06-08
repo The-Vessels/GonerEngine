@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="1_oltr1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7jrl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjn5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oltr1"]
 
@@ -22,9 +22,8 @@ Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 0
 Button/constants/line_spacing = 0
-Button/styles/disabled = SubResource("StyleBoxEmpty_s7jrl")
+Button/styles/disabled = SubResource("StyleBoxEmpty_tjn5q")
 Button/styles/focus = SubResource("StyleBoxEmpty_oltr1")
 Button/styles/hover = SubResource("StyleBoxEmpty_dsdwh")
 Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
 Button/styles/pressed = SubResource("StyleBoxEmpty_xjiex")
-VBoxContainer/constants/separation = 0

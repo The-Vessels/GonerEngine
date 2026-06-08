@@ -104,9 +104,11 @@ script = ExtResource("1_5dyip")
 [node name="Player" parent="RoomManager" unique_id=202223076 instance=ExtResource("3_i7pw8")]
 y_sort_enabled = true
 position = Vector2(96, 72)
+scale = Vector2(1, 1)
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 position = Vector2(320, 240)
+zoom = Vector2(2, 2)
 script = ExtResource("4_x5456")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
@@ -126,7 +128,9 @@ color = Color(0, 0, 0, 0)
 [node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionLayer" unique_id=77294238]
 libraries/ = SubResource("AnimationLibrary_8adi8")
 
-[node name="Quitting" type="AnimatedSprite2D" parent="." unique_id=221779437]
+[node name="QuittingLayer" type="CanvasLayer" parent="." unique_id=1415601680]
+
+[node name="Quitting" type="AnimatedSprite2D" parent="QuittingLayer" unique_id=221779437]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
 scale = Vector2(2, 2)

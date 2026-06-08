@@ -6,13 +6,9 @@ class_name SoulButton extends Button
 @export var soul_offset := Vector2(-14.0, 4.0)
 
 const soul_img: CompressedTexture2D = preload("res://sprites/ui/menu/soul/menu_soul.png")
-const button_theme = preload("res://themes/buttontheme.tres")
-
 var soul_node: TextureRect
 
 func _ready() -> void:
-	theme = button_theme
-	
 	soul_node = TextureRect.new()
 	soul_node.texture = soul_img
 	soul_node.position += soul_offset

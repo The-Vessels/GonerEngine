@@ -4,7 +4,7 @@
 
 extends Node2D
 
-@onready var quitting_sprite: AnimatedSprite2D = $Quitting
+@onready var quitting_sprite: AnimatedSprite2D = $QuittingLayer/Quitting
 @onready var menu_layer: CanvasLayer = $MenuLayer
 
 var quitting_sprite_index := 0.0

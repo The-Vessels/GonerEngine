@@ -58,6 +58,7 @@ offset_bottom = 453.0
 theme_override_constants/separation = 16
 
 [node name="asterisks" type="Label" parent="HBoxContainer" unique_id=1751368151]
+visible = false
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -66,12 +67,13 @@ theme_override_fonts/font = ExtResource("5_okh7m")
 theme_override_font_sizes/font_size = 32
 text = " "
 autowrap_mode = 1
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="dialoguetext" type="RichTextLabel" parent="HBoxContainer" unique_id=973656905]
 custom_minimum_size = Vector2(400, 96)
 layout_mode = 2
 theme_override_constants/line_separation = 4
-theme_override_constants/paragraph_separation = 4
 theme_override_fonts/normal_font = SubResource("FontVariation_o60sd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true

@@ -5,7 +5,7 @@
 
 [node name="DialogueTest" type="Node2D" unique_id=633448277]
 script = ExtResource("1_4v4bv")
-text = Array[String](["* A and then B then there's C D e F G and H and J and i wait", "* jk lol", "Where is my asterick", "* ive got many askerisks?
+text = Array[String](["* A and then B then there's C D e F G and H and J and i wait [color=green]test[/color]", "* jk lol", "Where is my asterick", "* ive got many askerisks?
 * yes
 * maybe too many"])
 
