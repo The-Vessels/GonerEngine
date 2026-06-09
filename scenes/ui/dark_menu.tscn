@@ -173,10 +173,12 @@ offset_left = 426.0
 offset_right = 639.0
 
 [node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
+visible = false
 position = Vector2(320, 240)
 texture = ExtResource("13_237v3")
 
 [node name="Submenus" type="Control" parent="." unique_id=2016943390]
+visible = false
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
