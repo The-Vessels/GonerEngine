@@ -11,12 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://3f68f8t6ddcs" path="res://sprites/ui/menu/btn/equip_hs.png" id="6_a442j"]
 [ext_resource type="Texture2D" uid="uid://c34p6nwud253i" path="res://sprites/ui/menu/desc/talk.png" id="6_y8ym4"]
 [ext_resource type="Texture2D" uid="uid://cmo57frolnfk5" path="res://sprites/ui/menu/btn/power.png" id="7_htwnd"]
+[ext_resource type="Texture2D" uid="uid://c2nde7vvrdj7" path="res://sprites/ui/menu/btn/item_h.png" id="8_21tsx"]
 [ext_resource type="Texture2D" uid="uid://ce4dhvx8dh6o8" path="res://sprites/ui/menu/btn/power_hs.png" id="8_y8ym4"]
 [ext_resource type="Texture2D" uid="uid://dhpj530ymx4dq" path="res://sprites/ui/menu/btn/config.png" id="9_sm6h8"]
 [ext_resource type="Texture2D" uid="uid://cqqhvkp08ugmx" path="res://sprites/ui/menu/btn/config_hs.png" id="10_ljohi"]
+[ext_resource type="Texture2D" uid="uid://dwmjf78vy4tcs" path="res://sprites/ui/menu/btn/equip_h.png" id="11_635oi"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="11_t63bh"]
 [ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="12_i8uc7"]
 [ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://sprites/references/dcreference.png" id="13_237v3"]
+[ext_resource type="Texture2D" uid="uid://cifm5ht1b8v6d" path="res://sprites/ui/menu/btn/power_h.png" id="14_jranp"]
+[ext_resource type="Texture2D" uid="uid://c7xa7pmx162nx" path="res://sprites/ui/menu/btn/config_h.png" id="17_bw7va"]
+[ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="21_jranp"]
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_bw7va"]
+[ext_resource type="Script" uid="uid://cenyqxe8moiaa" path="res://scripts/classes/soul_progress_bar.gd" id="24_2nrtt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a442j"]
 
@@ -88,24 +95,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../CONFIG")
 theme = SubResource("Theme_53y5c")
+toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("3_835bm")
+texture_pressed = ExtResource("8_21tsx")
 texture_focused = ExtResource("4_c4l2e")
 stretch_mode = 6
 
 [node name="EQUIP" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1899990050]
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("5_li2ee")
+texture_pressed = ExtResource("11_635oi")
 texture_focused = ExtResource("6_a442j")
 stretch_mode = 6
 
 [node name="POWER" type="TextureButton" parent="TopPanel/OptionsContainer" unique_id=1685726400]
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("7_htwnd")
+texture_pressed = ExtResource("14_jranp")
 texture_focused = ExtResource("8_y8ym4")
 stretch_mode = 6
 
@@ -113,8 +126,10 @@ stretch_mode = 6
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../ITEM")
+toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("9_sm6h8")
+texture_pressed = ExtResource("17_bw7va")
 texture_focused = ExtResource("10_ljohi")
 stretch_mode = 6
 
@@ -157,15 +172,55 @@ layout_mode = 0
 offset_left = 426.0
 offset_right = 639.0
 
+[node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
+position = Vector2(320, 240)
+texture = ExtResource("13_237v3")
+
 [node name="Submenus" type="Control" parent="." unique_id=2016943390]
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
-focus_behavior_recursive = 1
 
-[node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
-visible = false
-position = Vector2(320, 240)
-texture = ExtResource("13_237v3")
+[node name="CONFIG" parent="Submenus" unique_id=619300672 instance=ExtResource("21_jranp")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 80.0
+offset_right = 320.5
+offset_bottom = 250.5
+
+[node name="Header" type="Label" parent="Submenus/CONFIG" unique_id=1479202549]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 152.0
+offset_bottom = 26.0
+text = "CONFIG"
+
+[node name="ConfigsContainer" type="VBoxContainer" parent="Submenus/CONFIG" unique_id=722702392]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 33.0
+offset_right = 203.0
+offset_bottom = 127.0
+
+[node name="MasterVolume" type="HBoxContainer" parent="Submenus/CONFIG/ConfigsContainer" unique_id=531479373]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Submenus/CONFIG/ConfigsContainer/MasterVolume" unique_id=2104958742]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master Volume"
+alignment = 0
+script = ExtResource("23_bw7va")
+soul_offset = Vector2(-13, 6)
+soul_override = 2
+force_soul = true
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="ProgressBar" type="ProgressBar" parent="Submenus/CONFIG/ConfigsContainer/MasterVolume" unique_id=1151536531]
+layout_mode = 2
+size_flags_horizontal = 8
+value = 60.0
+script = ExtResource("24_2nrtt")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

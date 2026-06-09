@@ -18,6 +18,7 @@ func _ready():
 	menu_options = options_container.get_children()
 	menu_options[current_option].grab_focus()
 	
+	# Set up option buttons
 	for option_button: TextureButton in options_container.get_children():
 		option_button.focus_entered.connect(
 			func():
@@ -31,6 +32,8 @@ func _ready():
 					return
 				Global.play_ui_sound("select")
 		)
+	
+	# Set up submenus
 
 func _process(delta: float) -> void:
 	menu_desc.frame = current_option
