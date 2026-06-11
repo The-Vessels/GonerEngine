@@ -24,18 +24,60 @@ var runtimer: float = 0.0 # Frames since we started running
 var time_since_walk: float
 var facing: Facing = Facing.DOWN
 var walking: bool = false
-var last_walking: bool = false
 var anim_state: float = 0.0
 var walk_frame: int
 var walk_progress: float
 
+# Stores last positions, only for main character
+var last_positions: CircularQueue
+
+var playable_chara: Character
+
 func _ready():
 	$AnimatedSprite2D.sprite_frames = actor.animations
 	$AnimatedSprite2D.play()
+	
+	if playable:
+		last_positions = CircularQueue.new(100)
+	else:
+		collision_layer = 0 # Do not collide!
+		playable_chara = find_playable_character()
 
 func _process(delta: float) -> void:
 	var dtmult := delta * 30.0
 	
+	if playable:
+		move_playable_character(dtmult)
+	else:
+		follow_main_character()
+	
+	# TODO I need to make this animation logic better.
+	var speed_scale := 2.0 if running else 1.0
+	if $AnimatedSprite2D.speed_scale != speed_scale:
+		$AnimatedSprite2D.speed_scale = speed_scale
+	
+	var walk_anim := "walk_" + calc_animation_from_facing(facing)
+	
+	if walking and $AnimatedSprite2D.animation != walk_anim:
+		play_animation_preserve(walk_anim)
+	
+	process_anim_state(dtmult)
+
+# I made this a function because I thought it might get more
+# involved.
+# For example, if Susie is far away from Kris at the start,
+# moving will cause her to teleport near to Kris, with this logic,
+# and I'm wondering if that is okay or not.
+func follow_main_character():
+	var value = playable_chara.last_positions.get_val(10)
+	if value != null:
+		var info: CaterpillarInfo = value
+		position = info.pos
+		facing = info.facing
+		walking = info.walking
+		running = info.running
+
+func move_playable_character(dtmult: float):
 	# Cancel is same button as sprint
 	if Input.is_action_pressed("cancel"):
 		running = true
@@ -53,21 +95,12 @@ func _process(delta: float) -> void:
 	velocity = walk_speed * dir
 	move_and_slide()
 	
-	# TODO I need to make this animation logic better.
+	if walking:
+		var info := CaterpillarInfo.new(position, facing, walking, running)
+		last_positions.add(info)
 	
 	if not facing_same(dir) and dir != Vector2.ZERO:
 		facing = calc_facing_from_dir(dir)
-	
-	var speed_scale := 2.0 if running else 1.0
-	if $AnimatedSprite2D.speed_scale != speed_scale:
-		$AnimatedSprite2D.speed_scale = speed_scale
-	
-	var walk_anim := "walk_" + calc_animation_from_facing(facing)
-	
-	if walking and $AnimatedSprite2D.animation != walk_anim:
-		play_animation_preserve(walk_anim)
-	
-	process_anim_state(dtmult)
 
 func process_anim_state(dtmult: float):
 	print(anim_state)
@@ -174,3 +207,20 @@ func play_animation_face(animation: StringName):
 	walk_frame = $AnimatedSprite2D.frame
 	walk_progress = 1.0
 	$AnimatedSprite2D.play(animation)
+
+class CaterpillarInfo:
+	var pos: Vector2
+	var facing: Facing
+	var walking: bool
+	var running: bool
+	func _init(p: Vector2, f: Facing, w: bool, r: bool):
+		pos = p
+		facing = f
+		walking = w
+		running = r
+
+func find_playable_character() -> Character:
+	for node in get_parent().get_children():
+		if node is Character and node.playable:
+			return node
+	return null
