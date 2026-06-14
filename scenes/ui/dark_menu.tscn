@@ -106,6 +106,7 @@ func _ready() -> void:
 			auto_run_label.text = \"ON\" if Settings.auto_run else \"OFF\"
 	)
 	
+	border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
 	border_button.toggled.connect(
 		func(toggled_on):
 			border_option_selected = toggled_on
@@ -152,6 +153,33 @@ func _physics_process(delta: float) -> void:
 				change_master_volume(0.02)
 			play_volume_change_sound()
 		volume_level.text = str(linear_to_percentage(Settings.master_volume)) + \"%\"
+		
+	if border_option_selected:
+		if Input.is_action_just_pressed(\"left\"):
+			Settings.border_mode -= 1
+		if Input.is_action_just_pressed(\"right\"):
+			Settings.border_mode += 1
+		
+			
+		Settings.border_mode = clamp(Settings.border_mode, 0, Settings.BorderModes.size()-1)
+		
+		print(Settings.border_mode)
+		if Settings.border_mode == Settings.BorderModes.OFF and Settings.border_enabled:
+			Signals.ToggleBorder.emit(false)
+		elif Settings.border_mode != Settings.BorderModes.OFF and !Settings.border_enabled:
+			Signals.ToggleBorder.emit(true)
+			
+		match Settings.border_mode:
+			Settings.BorderModes.DYNAMIC:
+				Signals.changeBorder.emit(Global.current_dynamic_border, 0)
+			Settings.BorderModes.SIMPLE:
+				Signals.changeBorder.emit(Global.BORDER_SIMPLE, 0)
+			Settings.BorderModes.NONE:
+				Signals.changeBorder.emit(Global.BORDER_NONE, 0)
+		
+		border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
+		if Settings.border_mode != Settings.BorderModes.OFF:
+			border_label.text = border_label.text.capitalize()
 
 func get_submenu_buttons() -> Array[Button]:
 	var submenu_buttons: Array[Button]
@@ -421,8 +449,8 @@ layout_mode = 2
 [node name="BorderButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border" unique_id=1157147039]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath(".")
-focus_neighbor_right = NodePath(".")
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 action_mode = 0

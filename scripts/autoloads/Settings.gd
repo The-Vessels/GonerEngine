@@ -9,8 +9,9 @@ var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MOD
 
 var border_enabled := false
 enum BorderModes {
-	DYNAMIC,
-	SIMPLE,
-	NONE
+	OFF = 0,
+	DYNAMIC = 1,
+	SIMPLE = 2,
+	NONE = 3
 }
-var border_mode := BorderModes.DYNAMIC
+var border_mode := BorderModes.OFF

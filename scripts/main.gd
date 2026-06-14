@@ -9,8 +9,6 @@ extends Control
 @onready var game_renderer: TextureRect = $GameRenderer
 
 # Border variables
-const BORDER_NONE = preload("res://sprites/borders/border_none.png")
-const BORDER_SIMPLE = preload("res://sprites/borders/border_simple.png")
 var border_tween: Tween
 
 # The last center position of the window, before it was fullscreened.
@@ -30,13 +28,24 @@ func _ready() -> void:
 	border_rect.texture = find_border_texture()
 	border_tween = create_tween()
 	set_border()
+	
+	Signals.changeBorder.connect(
+		func(border_texture, fade_frames):
+			if border_rect.texture != border_texture:
+				set_border_texture(border_texture, fade_frames)
+	)
+	Signals.ToggleBorder.connect(
+		func(enable):
+			Settings.border_enabled = enable
+			set_border()
+	)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen"):
 		toggle_fullscreen()
-	if event.is_action_pressed("temporary_border_toggle"):
-		Settings.border_enabled = !Settings.border_enabled
-		set_border()
+	#if event.is_action_pressed("temporary_border_toggle"):
+		#Settings.border_enabled = !Settings.border_enabled
+		#set_border()
 	
 	# This passes keyboard events to the BorderAndGame viewport.
 	# This has to be done manually because Godot does not automatically
@@ -46,26 +55,27 @@ func _input(event: InputEvent) -> void:
 		$BorderAndGame.push_input(event)
 
 func _process(_delta: float) -> void:
-	var texture := find_border_texture()
-	if border_rect.texture != texture:
-		set_border_texture(texture)
+	#var texture := find_border_texture()
+	#if border_rect.texture != texture:
+		#set_border_texture(texture, 0)
+	pass
 
 func find_border_texture() -> Texture2D:
 	if !Settings.border_enabled:
-		return BORDER_NONE
+		return Global.BORDER_NONE
 	
 	match Global.border_mode:
 		Settings.BorderModes.NONE:
-			return BORDER_NONE
+			return Global.BORDER_NONE
 		Settings.BorderModes.SIMPLE:
-			return BORDER_SIMPLE
+			return Global.BORDER_SIMPLE
 		Settings.BorderModes.DYNAMIC:
 			return Global.current_dynamic_border
 	
-	return BORDER_NONE
+	return Global.BORDER_NONE
 
 # Uses an animation to set the border to `new_border`.
-func set_border_texture(new_border: Texture) -> void:
+func set_border_texture(new_border: Texture, duration: float) -> void:
 	print('SET BORDER TEXTURE!!!')
 	
 	# Set the current texture to the previous texture
@@ -80,7 +90,7 @@ func set_border_texture(new_border: Texture) -> void:
 	
 	border_tween.kill()
 	border_tween = create_tween()
-	border_tween.tween_property(border_rect, "modulate:a", 1.0, 1.0)
+	border_tween.tween_property(border_rect, "modulate:a", 1.0, (duration / 30))
 	border_tween.tween_callback(func(): border_prev_rect.visible = false)
 
 # Get what the window size should be, which changes based on `Settings.border_enabled`.

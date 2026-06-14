@@ -17,6 +17,8 @@ var world_type = WorldTypes.WORLD_DARK
 	#NONE
 #}
 #var border_mode := BorderModes.DYNAMIC
+const BORDER_NONE = preload("res://sprites/borders/border_none.png")
+const BORDER_SIMPLE = preload("res://sprites/borders/border_simple.png")
 var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_none.png")
 # signal changeBorder(border_texture)
 
