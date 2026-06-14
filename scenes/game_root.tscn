@@ -144,5 +144,9 @@ centered = false
 [node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
 
 [node name="DialogueTest" parent="DialogueLayer" unique_id=633448277 instance=ExtResource("12_6y7e7")]
+text = Array[String](["* That's right fuckers, I'm the [img=32x16]res://sprites/example/tennatime.png[/img] [img]res://libraries/glowing text/glow_viewport_texture.tres[/img]! ", "* [shake rate=50.0 level=10 connected=1]wait what the fuck[/shake]", "Where is my asterick", "* ive got many askerisks?
+* yes
+* maybe too many", "* funnytext test
+* [img=350x70]res://sprites/souls/soul.png[/img]"])
 
 [connection signal="animation_finished" from="TransitionLayer/TransitionPlayer" to="TransitionLayer" method="_on_transition_player_animation_finished"]

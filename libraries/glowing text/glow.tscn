@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bgeaehw11aoq0"]
+
+[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://fonts/main_mono.ttf" id="1_euh0j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ul6bl"]
+font = ExtResource("1_euh0j")
+font_size = 64
+font_color = Color(1.8247963, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_rd2iq"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 1.0
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 0.0
+
+[node name="GlowingText" type="SubViewport" unique_id=1077934833]
+disable_3d = true
+own_world_3d = true
+use_hdr_2d = true
+canvas_item_default_texture_filter = 0
+
+[node name="Label" type="Label" parent="." unique_id=890037648]
+offset_left = 3.0
+offset_right = 131.0
+offset_bottom = 64.0
+text = "Roaring Knight"
+label_settings = SubResource("LabelSettings_ul6bl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=801525902]
+environment = SubResource("Environment_rd2iq")
