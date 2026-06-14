@@ -8,15 +8,15 @@ extends Node
 enum WorldTypes {WORLD_LIGHT, WORLD_DARK}
 var world_type = WorldTypes.WORLD_DARK
 
-var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+#var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
 # var border_enabled := false
-enum BorderModes {
-	DYNAMIC,
-	SIMPLE,
-	NONE
-}
-var border_mode := BorderModes.DYNAMIC
+#enum BorderModes {
+	#DYNAMIC,
+	#SIMPLE,
+	#NONE
+#}
+#var border_mode := BorderModes.DYNAMIC
 var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_none.png")
 # signal changeBorder(border_texture)
 

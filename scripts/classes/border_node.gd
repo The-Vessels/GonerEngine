@@ -11,7 +11,7 @@ func _ready() -> void:
 	#if border_texture == Global.border_texture:
 		#return
 	#Global.current_dynamic_border = border_texture
-	#if Global.border_mode == Global.BorderModes.sDYNAMIC:
+	#if Global.border_mode == Settings.BorderModes.sDYNAMIC:
 		#Global.changeBorder.emit(border_texture)
 	print('border ready')
 	Global.set_dynamic_border(border_texture)
