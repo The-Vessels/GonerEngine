@@ -70,8 +70,10 @@ func play_ui_sound(sound_name: String):
 	temp_sound_player.play()
 	
 # Used for a room's border node to set the dynamic border.
-func set_dynamic_border(texture: Texture2D):
+func set_dynamic_border(texture: Texture2D, frames_length: float):
 	current_dynamic_border = texture
+	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
+		Signals.changeBorder.emit(current_dynamic_border, frames_length)
 
 #func toggle_fullscreen():
 	#if is_fullscreen:
