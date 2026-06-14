@@ -5,13 +5,14 @@ class_name BorderNode extends Node2D
 ## [b]Note:[/b] This doesn't need to be set in every room. The dynamic border set by a [b]BorderNode[/b] will stay until it is overridden by another [b]BorderNode[/b].
 
 @export var border_texture: Texture2D
+@export var frames_length: float = 30.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#if border_texture == Global.border_texture:
 		#return
 	#Global.current_dynamic_border = border_texture
-	#if Global.border_mode == Global.BorderModes.sDYNAMIC:
+	#if Global.border_mode == Settings.BorderModes.sDYNAMIC:
 		#Global.changeBorder.emit(border_texture)
 	print('border ready')
-	Global.set_dynamic_border(border_texture)
+	Global.set_dynamic_border(border_texture, frames_length)

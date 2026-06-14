@@ -22,10 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cifm5ht1b8v6d" path="res://sprites/ui/menu/btn/power_h.png" id="14_jranp"]
 [ext_resource type="Texture2D" uid="uid://c7xa7pmx162nx" path="res://sprites/ui/menu/btn/config_h.png" id="17_bw7va"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="21_jranp"]
-[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_bw7va"]
-[ext_resource type="Script" uid="uid://cenyqxe8moiaa" path="res://scripts/classes/soul_progress_bar.gd" id="24_2nrtt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a442j"]
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_2nrtt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sm6h8"]
 animations = [{
@@ -52,7 +49,157 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_53y5c"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_li2ee"]
+[sub_resource type="GDScript" id="GDScript_2nrtt"]
+script/source = "extends NinePatchRect
+# I will probably have to move a lot of this logic
+# specifically into the MainConfigMenu control node because
+# the controls menu has some functionality differences
+
+@onready var master_volume_container: HBoxContainer = $MainConfigMenu/ConfigsContainer/MasterVolume
+@onready var volume_button: SoulButton = $MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton
+@onready var volume_level: Label = $MainConfigMenu/ConfigsContainer/MasterVolume/VolumeLevel
+@onready var back_button: SoulButton = $MainConfigMenu/ConfigsContainer/Back
+@onready var vfx_button: SoulButton = $MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton
+@onready var auto_run_button: SoulButton = $MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton
+@onready var vfx_label: Label = $MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXLabel
+@onready var auto_run_label: Label = $MainConfigMenu/ConfigsContainer/AutoRun/AutoRunLabel
+@onready var border_option_container: HBoxContainer = $MainConfigMenu/ConfigsContainer/Border
+@onready var border_button: SoulButton = $MainConfigMenu/ConfigsContainer/Border/BorderButton
+@onready var border_label: Label = $MainConfigMenu/ConfigsContainer/Border/BorderLabel
+
+var master_volume_selected := false
+var sound_buffer := 0
+
+var border_option_selected := false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var submenu_buttons := get_submenu_buttons()
+	
+	visibility_changed.connect(
+		func():
+			if visible:
+				submenu_buttons[0].grab_focus()
+	)
+	
+	volume_level.text = str(linear_to_percentage(Settings.master_volume)) + \"%\"
+	volume_button.toggled.connect(
+		func(toggled_on):
+			master_volume_selected = toggled_on
+			master_volume_container.modulate = Colors.c_yellow if toggled_on else Colors.c_white
+			for button in submenu_buttons:
+				if button != volume_button:
+					button.focus_mode = Control.FOCUS_NONE if toggled_on else Control.FOCUS_ALL
+	)
+	
+	vfx_label.text = \"ON\" if Settings.simplify_vxf else \"OFF\"
+	vfx_button.pressed.connect(
+		func():
+			Settings.simplify_vxf = !Settings.simplify_vxf
+			vfx_label.text = \"ON\" if Settings.simplify_vxf else \"OFF\"
+	)
+	
+	auto_run_label.text = \"ON\" if Settings.auto_run else \"OFF\"
+	auto_run_button.pressed.connect(
+		func():
+			Settings.auto_run = !Settings.auto_run
+			auto_run_label.text = \"ON\" if Settings.auto_run else \"OFF\"
+	)
+	
+	border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
+	border_button.toggled.connect(
+		func(toggled_on):
+			border_option_selected = toggled_on
+			border_option_container.modulate = Colors.c_yellow if toggled_on else Colors.c_white
+			for button in submenu_buttons:
+				if button != border_button:
+					button.focus_mode = Control.FOCUS_NONE if toggled_on else Control.FOCUS_ALL
+	)
+	
+	back_button.pressed.connect(
+		func():
+			visible = false
+	)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	# Handle closing logic of config menu
+	if Input.is_action_just_pressed(\"cancel\"):
+		if !master_volume_selected and !border_option_selected:
+			visible = false
+		else:
+			if master_volume_selected:
+				volume_button.button_pressed = false
+			if border_option_selected:
+				border_button.button_pressed = false
+			Global.play_ui_sound(\"select\")
+	
+	# Handle menumove sound playing logic of config menu
+	if Input.is_action_just_pressed(\"down\") or Input.is_action_just_pressed(\"up\"):
+		if !master_volume_selected and !border_option_selected:
+			Global.play_ui_sound(\"menumove\")
+
+func _physics_process(delta: float) -> void:
+	if sound_buffer > 0:
+		sound_buffer -= 1
+	
+	if master_volume_selected:
+		if Input.is_action_pressed(\"left\"):
+			if Settings.master_volume > 0.0 and Settings.master_volume <= 1.0:
+				change_master_volume(-0.02)
+			play_volume_change_sound()
+		if Input.is_action_pressed(\"right\"):
+			if Settings.master_volume >= 0.0 and Settings.master_volume < 1.0:
+				change_master_volume(0.02)
+			play_volume_change_sound()
+		volume_level.text = str(linear_to_percentage(Settings.master_volume)) + \"%\"
+		
+	if border_option_selected:
+		if Input.is_action_just_pressed(\"left\"):
+			Settings.border_mode -= 1
+		if Input.is_action_just_pressed(\"right\"):
+			Settings.border_mode += 1
+		
+			
+		Settings.border_mode = clamp(Settings.border_mode, 0, Settings.BorderModes.size()-1)
+		
+		print(Settings.border_mode)
+		if Settings.border_mode == Settings.BorderModes.OFF and Settings.border_enabled:
+			Signals.ToggleBorder.emit(false)
+		elif Settings.border_mode != Settings.BorderModes.OFF and !Settings.border_enabled:
+			Signals.ToggleBorder.emit(true)
+			
+		match Settings.border_mode:
+			Settings.BorderModes.DYNAMIC:
+				Signals.changeBorder.emit(Global.current_dynamic_border, 0)
+			Settings.BorderModes.SIMPLE:
+				Signals.changeBorder.emit(Global.BORDER_SIMPLE, 0)
+			Settings.BorderModes.NONE:
+				Signals.changeBorder.emit(Global.BORDER_NONE, 0)
+		
+		border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
+		if Settings.border_mode != Settings.BorderModes.OFF:
+			border_label.text = border_label.text.capitalize()
+
+func get_submenu_buttons() -> Array[Button]:
+	var submenu_buttons: Array[Button]
+	for child in find_children(\"*\", \"Button\"):
+		submenu_buttons.append(child)
+	return submenu_buttons
+
+func play_volume_change_sound():
+	if sound_buffer <= 0:
+			Global.play_ui_sound(\"noise\")
+			sound_buffer = 3
+
+func change_master_volume(amount: float):
+	Settings.master_volume += amount
+	Settings.master_volume = clampf(Settings.master_volume, 0.0, 1.0)
+	AudioServer.set_bus_volume_linear(0, Settings.master_volume)
+
+func linear_to_percentage(linear_value: float) -> int:
+	return int(roundf(linear_value * 100.0))
+"
 
 [node name="DarkMenu" type="Control" unique_id=25315914]
 layout_mode = 3
@@ -67,7 +214,6 @@ script = ExtResource("1_5xdo1")
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 80.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_a442j")
 
 [node name="TopRect" type="ColorRect" parent="TopPanel" unique_id=514284593]
 layout_mode = 0
@@ -149,7 +295,6 @@ offset_top = 417.0
 offset_right = 640.0
 offset_bottom = 480.0
 focus_behavior_recursive = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_li2ee")
 
 [node name="BottomRect" type="ColorRect" parent="BottomPanel" unique_id=1491312947]
 layout_mode = 0
@@ -178,19 +323,23 @@ position = Vector2(320, 240)
 texture = ExtResource("13_237v3")
 
 [node name="Submenus" type="Control" parent="." unique_id=2016943390]
-visible = false
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 
 [node name="CONFIG" parent="Submenus" unique_id=619300672 instance=ExtResource("21_jranp")]
+visible = false
 layout_mode = 0
 offset_left = 50.0
 offset_top = 80.0
 offset_right = 320.5
 offset_bottom = 250.5
+script = SubResource("GDScript_2nrtt")
 
-[node name="Header" type="Label" parent="Submenus/CONFIG" unique_id=1479202549]
+[node name="MainConfigMenu" type="Control" parent="Submenus/CONFIG" unique_id=2064801587]
+anchors_preset = 0
+
+[node name="Header" type="Label" parent="Submenus/CONFIG/MainConfigMenu" unique_id=1479202549]
 layout_mode = 0
 offset_left = 110.0
 offset_top = 10.0
@@ -198,31 +347,159 @@ offset_right = 152.0
 offset_bottom = 26.0
 text = "CONFIG"
 
-[node name="ConfigsContainer" type="VBoxContainer" parent="Submenus/CONFIG" unique_id=722702392]
+[node name="ConfigsContainer" type="VBoxContainer" parent="Submenus/CONFIG/MainConfigMenu" unique_id=722702392]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 33.0
-offset_right = 203.0
-offset_bottom = 127.0
+offset_top = 35.0
+offset_right = 420.0
+offset_bottom = 277.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 3
 
-[node name="MasterVolume" type="HBoxContainer" parent="Submenus/CONFIG/ConfigsContainer" unique_id=531479373]
+[node name="MasterVolume" type="HBoxContainer" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=531479373]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Submenus/CONFIG/ConfigsContainer/MasterVolume" unique_id=2104958742]
+[node name="VolumeButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume" unique_id=1674426202]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
 text = "Master Volume"
 alignment = 0
-script = ExtResource("23_bw7va")
-soul_offset = Vector2(-13, 6)
-soul_override = 2
-force_soul = true
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
-[node name="ProgressBar" type="ProgressBar" parent="Submenus/CONFIG/ConfigsContainer/MasterVolume" unique_id=1151536531]
+[node name="VolumeLevel" type="Label" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume" unique_id=1949402129]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-value = 60.0
-script = ExtResource("24_2nrtt")
+theme_override_font_sizes/font_size = 32
+text = "50%"
+
+[node name="Controls" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=1412031578]
+layout_mode = 2
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Controls"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="SimplifyVFX" type="HBoxContainer" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=1281184371]
+layout_mode = 2
+
+[node name="VFXButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX" unique_id=448110990]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Simplify VFX"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="VFXLabel" type="Label" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX" unique_id=570543171]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "OFF"
+
+[node name="AutoRun" type="HBoxContainer" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=1289695245]
+layout_mode = 2
+
+[node name="AutoRunButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun" unique_id=1976297052]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Auto-Run"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="AutoRunLabel" type="Label" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun" unique_id=1749366686]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "OFF"
+
+[node name="Border" type="HBoxContainer" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=330351663]
+layout_mode = 2
+
+[node name="BorderButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border" unique_id=1157147039]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "Border"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="BorderLabel" type="Label" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border" unique_id=1825920859]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Dynamic"
+
+[node name="ReturnToTitle" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=769087236]
+layout_mode = 2
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Return to Title"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="Back" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=629944325]
+layout_mode = 2
+focus_neighbor_left = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
+focus_neighbor_right = NodePath("/root/@EditorNode@18065/@Panel@14/@VBoxContainer@15/DockHSplitMain/@VBoxContainer@28/DockVSplitCenter/@VSplitContainer@70/@VBoxContainer@71/@EditorMainScreen@125/MainScreen/@CanvasItemEditor@9318/@VSplitContainer@9101/@HSplitContainer@9103/@HSplitContainer@9105/@Control@9106/@SubViewportContainer@9107/@SubViewport@9108/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Back"
+alignment = 0
+script = ExtResource("23_2nrtt")
+soul_offset = Vector2(-25, 10)
+soul_image = 1
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="ControlsConfigMenu" type="Control" parent="Submenus/CONFIG" unique_id=2001848568]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

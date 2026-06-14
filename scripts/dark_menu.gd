@@ -23,7 +23,7 @@ func _ready():
 		option_button.focus_entered.connect(
 			func():
 				current_option = option_button.get_index()
-				if menu_open:
+				if menu_open and !submenu_open:
 					Global.play_ui_sound("menumove")
 		)
 		option_button.pressed.connect(
@@ -31,9 +31,26 @@ func _ready():
 				if !menu_open:
 					return
 				Global.play_ui_sound("select")
+				var option_submenu: Control = submenus.find_child(option_button.name)
+				option_submenu.visible = true
 		)
 	
 	# Set up submenus
+	for submenu: Control in submenus.get_children():
+		submenu.visibility_changed.connect(
+			func():
+				if submenu.visible:
+					disable_all_options()
+					submenu_open = true
+					return
+				else:
+					Global.play_ui_sound("smallswing")
+					enable_all_options()
+					var option: TextureButton = options_container.find_child(submenu.name)
+					option.grab_focus()
+					option.button_pressed = false
+					submenu_open = false
+		)
 
 func _process(delta: float) -> void:
 	menu_desc.frame = current_option
@@ -70,10 +87,17 @@ func _process(delta: float) -> void:
 			enable_all_options()
 			menu_open = true
 
+# This is literally just needed so that the selected button is
+# still focused when the menu is sliding out of view
+# tldr: i hate this
 func disable_unfocused_options() -> void:
 	for button: TextureButton in options_container.get_children():
 		if !button.has_focus():
 			button.focus_mode = Control.FOCUS_NONE
+
+func disable_all_options() -> void:
+	for button: TextureButton in options_container.get_children():
+		button.focus_mode = Control.FOCUS_NONE
 
 func enable_all_options() -> void:
 	for button: TextureButton in options_container.get_children():

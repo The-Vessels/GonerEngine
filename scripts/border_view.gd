@@ -21,11 +21,11 @@ func _process(_delta: float) -> void:
 	visible = true if Global.border_enabled else false
 	
 	match Global.border_mode:
-		Global.BorderModes.NONE:
+		Settings.BorderModes.NONE:
 			border_rect.texture = null
-		Global.BorderModes.SIMPLE:
+		Settings.BorderModes.SIMPLE:
 			border_rect.texture = BORDER_SIMPLE
-		Global.BorderModes.DYNAMIC:
+		Settings.BorderModes.DYNAMIC:
 			border_rect.texture = Global.border_texture
 			
 	if Global.border_trans < 1.0:
@@ -54,7 +54,7 @@ func toggle_border():
 		var prev_size := get_window().size
 		print(get_window().position)
 		if Global.border_enabled:
-			if Global.is_fullscreen:
+			if Settings.is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 			else:
@@ -64,7 +64,7 @@ func toggle_border():
 			Global.border_enabled = false
 			Global.border_texture = null
 		else:
-			if Global.is_fullscreen:
+			if Settings.is_fullscreen:
 				get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 				get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
 				
