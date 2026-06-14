@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://cop321u56a4me"]
 
 [ext_resource type="PackedScene" uid="uid://d376k0qo4m4bd" path="res://scenes/overworld/character.tscn" id="1_p0jn2"]
-[ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_actor.tres" id="2_ni4j3"]
+[ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_character.tres" id="2_5wkh0"]
+[ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_character.tres" id="3_uao6i"]
 
 [node name="CharacterTest" type="Node2D" unique_id=608805020]
 y_sort_enabled = true
 
 [node name="Kris" parent="." unique_id=1462347025 instance=ExtResource("1_p0jn2")]
 position = Vector2(233, 79)
+chara = ExtResource("2_5wkh0")
 
 [node name="Susie" parent="." unique_id=2076439375 instance=ExtResource("1_p0jn2")]
 position = Vector2(122, 91)
-actor = ExtResource("2_ni4j3")
+chara = ExtResource("3_uao6i")
 playable = false
