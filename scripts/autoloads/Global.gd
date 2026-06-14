@@ -8,15 +8,17 @@ extends Node
 enum WorldTypes {WORLD_LIGHT, WORLD_DARK}
 var world_type = WorldTypes.WORLD_DARK
 
-var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+#var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
 # var border_enabled := false
-enum BorderModes {
-	DYNAMIC,
-	SIMPLE,
-	NONE
-}
-var border_mode := BorderModes.DYNAMIC
+#enum BorderModes {
+	#DYNAMIC,
+	#SIMPLE,
+	#NONE
+#}
+#var border_mode := BorderModes.DYNAMIC
+const BORDER_NONE = preload("res://sprites/borders/border_none.png")
+const BORDER_SIMPLE = preload("res://sprites/borders/border_simple.png")
 var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_none.png")
 # signal changeBorder(border_texture)
 
@@ -68,8 +70,10 @@ func play_ui_sound(sound_name: String):
 	temp_sound_player.play()
 	
 # Used for a room's border node to set the dynamic border.
-func set_dynamic_border(texture: Texture2D):
+func set_dynamic_border(texture: Texture2D, frames_length: float):
 	current_dynamic_border = texture
+	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
+		Signals.changeBorder.emit(current_dynamic_border, frames_length)
 
 #func toggle_fullscreen():
 	#if is_fullscreen:

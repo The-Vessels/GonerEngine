@@ -12,6 +12,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjiex"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33ktg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_polhv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vf2ln"]
+
 [resource]
 default_font = ExtResource("1_oltr1")
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -27,3 +33,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_oltr1")
 Button/styles/hover = SubResource("StyleBoxEmpty_dsdwh")
 Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
 Button/styles/pressed = SubResource("StyleBoxEmpty_xjiex")
+Panel/styles/panel = SubResource("StyleBoxEmpty_33ktg")
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_polhv")
+ProgressBar/styles/fill = SubResource("StyleBoxEmpty_vf2ln")

@@ -124,6 +124,7 @@ action_mode = 0
 button_mask = 0
 text = "ITEM"
 script = ExtResource("6_e77re")
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="STAT" type="Button" parent="Main/Options/OptionsContainer" unique_id=1877904085]
@@ -134,6 +135,7 @@ action_mode = 0
 button_mask = 0
 text = "STAT"
 script = ExtResource("6_e77re")
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="CELL" type="Button" parent="Main/Options/OptionsContainer" unique_id=33715663]
@@ -144,6 +146,7 @@ action_mode = 0
 button_mask = 0
 text = "CELL"
 script = ExtResource("6_e77re")
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="Submenus" type="Control" parent="." unique_id=1813142588]
@@ -167,6 +170,41 @@ offset_right = 109.0
 offset_bottom = 46.0
 theme_override_constants/separation = 0
 
+[node name="ITEM" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1806538345]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+button_mask = 0
+text = "ITEM"
+script = ExtResource("6_e77re")
+soul_image = 2
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="STAT" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1543811841]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "STAT"
+script = ExtResource("6_e77re")
+soul_image = 2
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="CELL" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1335965771]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_e77re")
+action_mode = 0
+button_mask = 0
+text = "CELL"
+script = ExtResource("6_e77re")
+soul_image = 2
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
 [node name="ItemActions" type="Panel" parent="Submenus/ITEM" unique_id=703692127]
 layout_mode = 0
 offset_right = 40.0
@@ -188,6 +226,7 @@ button_mask = 0
 text = "USE"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="INFO" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=933814558]
@@ -203,6 +242,7 @@ button_mask = 0
 text = "INFO"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="DROP" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=1937169790]
@@ -218,6 +258,7 @@ button_mask = 0
 text = "DROP"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="STAT" parent="Submenus" unique_id=1500861125 instance=ExtResource("2_ubbul")]
@@ -390,6 +431,7 @@ theme = ExtResource("3_e77re")
 text = "Call Home"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
+soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

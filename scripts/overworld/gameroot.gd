@@ -21,7 +21,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	scale = Vector2(2.0, 2.0) if (Global.is_fullscreen and Global.border_enabled) else Vector2(1.0, 1.0)
+	scale = Vector2(2.0, 2.0) if (Settings.is_fullscreen and Global.border_enabled) else Vector2(1.0, 1.0)
 
 func _physics_process(_delta: float) -> void:
 	handle_quitting()
