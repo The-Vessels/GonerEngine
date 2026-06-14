@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d376k0qo4m4bd"]
 
 [ext_resource type="Script" uid="uid://b6dka1arygbab" path="res://scripts/classes/character.gd" id="1_qox20"]
-[ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_actor.tres" id="2_5n0wd"]
+[ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_actor.tres" id="2_5n0wd"]
 [ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_animations.tres" id="2_n2hw7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qox20"]
