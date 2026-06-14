@@ -83,7 +83,9 @@ tab_size = 2
 visible_characters_behavior = 1
 
 [node name="GlowingText" parent="HBoxContainer/dialoguetext" unique_id=1077934833 instance=ExtResource("9_hdjaa")]
-size = Vector2i(512, 64)
+size = Vector2i(520, 70)
+size_2d_override = Vector2i(0, 32)
+size_2d_override_stretch = true
 
 [node name="talkblip" type="AudioStreamPlayer" parent="." unique_id=36271857]
 stream = ExtResource("6_k71a8")
