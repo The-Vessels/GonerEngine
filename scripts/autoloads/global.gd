@@ -3,6 +3,8 @@ extends Node
 @onready var ui_audio_player: AudioStreamPlayer = $UIAudioPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
+var moveable := true
+
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
 enum WorldTypes {WORLD_LIGHT, WORLD_DARK}

@@ -4,7 +4,6 @@ class_name Player extends CharacterBody2D
 var speed := 90.0
 var runspeed := 180.0
 var facing = "down"
-var nopress := false
 var running := false
 
 var happy_frames   := preload("res://sprites/actors/susie/susie_animations.tres")
@@ -57,7 +56,7 @@ var walkbuffer := 0.0
 var walktimer := 0.0
 func _physics_process(_delta: float) -> void:
 	var move := Vector2.ZERO
-	if !nopress:
+	if Global.moveable:
 		if Input.is_action_pressed('left'):
 			move.x = -1.0
 		elif Input.is_action_pressed('right'):
