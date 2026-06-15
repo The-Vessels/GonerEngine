@@ -1,5 +1,5 @@
 class_name Actor extends CharacterBody2D
-## An Actor is anyone who can be controlled
+## Anyone who can be controlled
 ## by a cutscene.
 
 @export var chara: Character

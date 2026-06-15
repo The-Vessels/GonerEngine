@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://06qrpkls3ofa"]
 
-[ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/autoloads/Global.gd" id="1_4pk28"]
+[ext_resource type="Script" uid="uid://mnattbln7dyr" path="res://scripts/autoloads/global.gd" id="1_4pk28"]
 [ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="2_nmxvb"]
 [ext_resource type="Script" uid="uid://ukx5js8hgu0d" path="res://scripts/music_player.gd" id="3_opebo"]
 
