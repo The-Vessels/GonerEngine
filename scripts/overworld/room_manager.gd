@@ -11,12 +11,12 @@ extends Node2D
 func _ready() -> void:
 	Signals.changeRoom.connect(
 		func(room, target, facing):
-			player.nopress = true
+			Global.moveable = false
 			transition_player.play("fade_to_black")
 			await transition_player.animation_finished
 			goto_room(room, target, facing)
 			transition_player.play("fade_to_normal")
-			player.nopress = false
+			Global.moveable = true
 	)
 	for child in get_child(0).get_children():
 			print(child.get_class())

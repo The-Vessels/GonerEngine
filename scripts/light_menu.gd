@@ -116,9 +116,15 @@ func _process(delta: float) -> void:
 			visible = true
 
 func _on_visibility_changed() -> void:
-	if visible and is_node_ready():
+	if !is_node_ready():
+		return
+	
+	if visible:
 		menu_options[current_option].grab_focus.call_deferred()
 		Global.play_ui_sound("menumove")
+		Global.moveable = false
+	else:
+		Global.moveable = true
 
 func get_submenu_buttons(submenu) -> Array[Button]:
 	var submenu_buttons: Array[Button]

@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm") and !textbox.animating:
+	if Input.is_action_just_pressed("confirm") and !textbox.animating and Global.moveable:
 		if text_progress < text.size():
 			spawn_textbox(text[text_progress])
 			text_progress += 1
