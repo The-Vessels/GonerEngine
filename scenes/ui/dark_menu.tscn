@@ -123,6 +123,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !visible: return
+	
 	# Handle closing logic of config menu
 	if Input.is_action_just_pressed(\"cancel\"):
 		if !master_volume_selected and !border_option_selected:
@@ -163,7 +165,6 @@ func _physics_process(delta: float) -> void:
 			
 		Settings.border_mode = clamp(Settings.border_mode, 0, Settings.BorderModes.size()-1)
 		
-		print(Settings.border_mode)
 		if Settings.border_mode == Settings.BorderModes.OFF and Settings.border_enabled:
 			Signals.ToggleBorder.emit(false)
 		elif Settings.border_mode != Settings.BorderModes.OFF and !Settings.border_enabled:
