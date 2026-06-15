@@ -1,21 +1,26 @@
 [gd_scene format=3 uid="uid://kmkroppugjvj"]
 
 [ext_resource type="Script" uid="uid://co3uj7cjy1mdl" path="res://scripts/classes/actor.gd" id="1_4tt88"]
+[ext_resource type="Script" uid="uid://bv7bxbw5xkjfs" path="res://scenes/testing/actor_test.gd" id="1_7qx52"]
 [ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_animations.tres" id="2_vetpv"]
 [ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="3_7qx52"]
 
 [sub_resource type="Resource" id="Resource_r7558"]
 script = ExtResource("3_7qx52")
+name = "susie"
 animations = ExtResource("2_vetpv")
 metadata/_custom_type_script = "uid://coio6dxiiw8m7"
 
 [node name="ActorTest" type="Node2D" unique_id=231228869]
+script = ExtResource("1_7qx52")
 
 [node name="Actor" type="CharacterBody2D" parent="." unique_id=474286282]
+position = Vector2(99, 82)
 script = ExtResource("1_4tt88")
 chara = SubResource("Resource_r7558")
 metadata/_custom_type_script = "uid://co3uj7cjy1mdl"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Actor" unique_id=852125935]
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_vetpv")
 animation = &"face_down"
