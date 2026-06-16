@@ -4,12 +4,6 @@ class_name PartyMember extends CharacterBody2D
 @export var chara: Character
 @export var playable: bool
 
-enum Facing {
-	RIGHT,
-	UP,
-	LEFT,
-	DOWN
-}
 
 enum AnimState {
 	WALKRUN,
@@ -22,7 +16,7 @@ enum AnimState {
 var running: bool
 var runtimer: float = 0.0 # Frames since we started running
 var time_since_walk: float
-var facing: Facing = Facing.DOWN
+var facing: Enums.Facing = Enums.Facing.DOWN
 var walking: bool = false
 var anim_state: float = 0.0
 var walk_frame: int
@@ -153,38 +147,38 @@ func get_walk_speed() -> int:
 
 func facing_same(dir: Vector2) -> bool:
 	match facing:
-		Facing.RIGHT:
+		Enums.Facing.RIGHT:
 			return dir.x == 1.0
-		Facing.UP:
+		Enums.Facing.UP:
 			return dir.y == -1.0
-		Facing.LEFT:
+		Enums.Facing.LEFT:
 			return dir.x == -1.0
-		Facing.DOWN:
+		Enums.Facing.DOWN:
 			return dir.y == 1.0
 	return false
 
-func calc_facing_from_dir(dir: Vector2) -> Facing:
+func calc_facing_from_dir(dir: Vector2) -> Enums.Facing:
 	if dir.x == 1.0:
-		return Facing.RIGHT
+		return Enums.Facing.RIGHT
 	if dir.y == 1.0:
-		return Facing.DOWN
+		return Enums.Facing.DOWN
 	if dir.x == -1.0:
-		return Facing.LEFT
+		return Enums.Facing.LEFT
 	if dir.y == -1.0:
-		return Facing.UP
+		return Enums.Facing.UP
 	
 	assert(false)
-	return Facing.DOWN
+	return Enums.Facing.DOWN
 
-func calc_animation_from_facing(facing: Facing) -> String:
+func calc_animation_from_facing(facing: Enums.Facing) -> String:
 	match facing:
-		Facing.RIGHT:
+		Enums.Facing.RIGHT:
 			return "right"
-		Facing.UP:
+		Enums.Facing.UP:
 			return "up"
-		Facing.LEFT:
+		Enums.Facing.LEFT:
 			return "left"
-		Facing.DOWN:
+		Enums.Facing.DOWN:
 			return "down"
 	return ""
 
@@ -210,10 +204,10 @@ func play_animation_face(animation: StringName):
 
 class CaterpillarInfo:
 	var pos: Vector2
-	var facing: Facing
+	var facing: Enums.Facing
 	var walking: bool
 	var running: bool
-	func _init(p: Vector2, f: Facing, w: bool, r: bool):
+	func _init(p: Vector2, f: Enums.Facing, w: bool, r: bool):
 		pos = p
 		facing = f
 		walking = w

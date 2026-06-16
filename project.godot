@@ -27,6 +27,7 @@ Global="*res://scenes/global.tscn"
 Settings="*uid://dkqo1utsrhq80"
 Colors="*uid://bc4tqibect2pp"
 Signals="*uid://dlrt4nnik2trb"
+Enums="*uid://bybddc0o85f3b"
 
 [display]
 
