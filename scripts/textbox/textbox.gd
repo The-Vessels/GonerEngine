@@ -2,11 +2,11 @@
 @tool
 class_name TextBox extends Control
 
-@export_multiline var text: String = '':
+@export_multiline var text: Array[String] = [""]:
 	set(new):
 		text = new
 		if Engine.is_editor_hint():
-			set_text(text)
+			set_text(text[text_index])
 			set_asterisks()
 
 @onready var ast = $HBoxContainer/asterisks
@@ -21,6 +21,7 @@ class_name TextBox extends Control
 @export_range(0, 1, 0.1) var upper_range: float = 0.0
 
 var animating := false
+var text_index := 0
 
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
@@ -58,6 +59,8 @@ func set_asterisks():
 	ast.visible_characters = 0
 
 func _ready():
+	Global.has_textbox = true
+	
 	match Global.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
 			dark_box.visible = false
@@ -68,7 +71,7 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
-	set_text(text)
+	set_text(text[text_index])
 	set_asterisks()
 	animate_text()
 
@@ -116,6 +119,16 @@ func _process(_delta: float) -> void:
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	ast.visible_characters = dia.get_visible_line_count()
+	if Input.is_action_just_pressed("confirm") and !animating:
+		text_index += 1
+		if text_index >= text.size():
+			queue_free()
+			Global.has_textbox = false
+			return
+		
+		set_text(text[text_index])
+		set_asterisks()
+		animate_text()
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)

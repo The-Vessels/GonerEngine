@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://boofqcsryrrvt"]
 
 [ext_resource type="Script" uid="uid://vagyeqvtubnc" path="res://scripts/dialogue_test.gd" id="1_4v4bv"]
-[ext_resource type="PackedScene" uid="uid://c5nrska6i801g" path="res://scenes/ui/textbox.tscn" id="2_nq3y2"]
 
 [node name="DialogueTest" type="Node2D" unique_id=633448277]
 script = ExtResource("1_4v4bv")
@@ -9,7 +8,3 @@ text = Array[String](["* That's right fuckers, I'm the [shake rate=50.0 level=10
 * yes
 * maybe too many", "* funnytext test
 * [img=350x70]res://sprites/souls/soul.png[/img]"])
-
-[node name="Textbox" parent="." unique_id=810857812 instance=ExtResource("2_nq3y2")]
-visible = false
-z_index = 1

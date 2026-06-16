@@ -1,29 +1,21 @@
 extends Node2D
 
 @export_multiline var text: Array[String]
-var text_progress := 0
-@onready var textbox: TextBox = $Textbox
+const TEXTBOX = preload("uid://c5nrska6i801g")
+var textbox_inst: TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	textbox.visible = false
-	textbox.text = ""
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm") and !textbox.animating and Global.moveable:
-		if text_progress < text.size():
-			spawn_textbox(text[text_progress])
-			text_progress += 1
-		else:
-			text_progress = 0
-			textbox.visible = false
-			textbox.text = ""
+	if Input.is_action_just_pressed("confirm") and !Global.has_textbox and Global.moveable:
+		spawn_textbox(text)
+		print("yo")
 	
 func spawn_textbox(text):
-	textbox.visible = true
-	textbox.text = text
-	textbox.set_text(text)
-	textbox.set_asterisks()
-	textbox.animate_text()
+	var textbox_inst = TEXTBOX.instantiate()
+	textbox_inst.text = text
+	add_child(textbox_inst)

@@ -4,6 +4,7 @@ extends Node
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 var moveable := true
+var has_textbox := false
 
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
