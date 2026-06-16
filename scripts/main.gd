@@ -64,7 +64,7 @@ func find_border_texture() -> Texture2D:
 	if !Settings.border_enabled:
 		return Global.BORDER_NONE
 	
-	match Global.border_mode:
+	match Settings.border_mode:
 		Settings.BorderModes.NONE:
 			return Global.BORDER_NONE
 		Settings.BorderModes.SIMPLE:

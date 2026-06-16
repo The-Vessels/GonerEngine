@@ -105,8 +105,11 @@ func _on_visibility_changed() -> void:
 	if visible:
 		enable_all_options()
 		menu_options[current_option].grab_focus()
+		Global.moveable = false
 	else:
 		disable_unfocused_options()
+		Global.moveable = true
+		
 
 # Disable echoing of input events
 # so you can't hold down arrow keys to navigate
