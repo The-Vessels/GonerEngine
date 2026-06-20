@@ -28,3 +28,9 @@ func wait_frames_exact(n_frames: int):
 
 func wait_seconds(seconds: float):
 	await Global.get_tree().create_timer(seconds).timeout
+
+# Set whether or not all party members can move independently
+func set_party_movement(can_move: bool):
+	for actor in Actor.get_all():
+		if actor is PartyMember:
+			(actor as PartyMember).can_move = can_move

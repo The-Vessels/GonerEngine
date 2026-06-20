@@ -19,6 +19,9 @@ func _ready() -> void:
 static func get_by_name(actor_name: String) -> Actor:
 	return actor_dict.get(actor_name)
 
+static func get_all() -> Array[Actor]:
+	return actor_dict.values()
+
 static func exists(actor_name: String) -> bool:
 	return actor_dict.has(actor_name)
 
@@ -44,8 +47,8 @@ func set_fps(fps: float):
 
 func walk_to_point(point: Vector2, time: float):
 	var direction := point - position
-	var facing := Enums.facing_from_dir(direction)
-	var anim_name := "walk_" + Enums.facing_to_string(facing)
+	var facing: Enums.Facing = Enums.facing_from_dir(direction)
+	var anim_name: String = "walk_" + Enums.facing_to_string(facing)
 	$AnimatedSprite2D.play(anim_name)
 	set_fps(calc_walk_fps(point, time))
 	# $AnimatedSprite2D.speed_scale

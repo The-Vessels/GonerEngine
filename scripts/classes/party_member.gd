@@ -1,9 +1,7 @@
-class_name PartyMember extends CharacterBody2D
+class_name PartyMember extends Actor
 ## A party member. May be a playable character.
 
-@export var chara: Character
-@export var playable: bool
-
+static var party_list: Array[PartyMember] = [null, null, null]
 
 enum AnimState {
 	WALKRUN,
@@ -22,25 +20,38 @@ var anim_state: float = 0.0
 var walk_frame: int
 var walk_progress: float
 
+# Can this party member move independently from being an actor?
+var can_move: bool = true
+
 # Stores last positions, only for main character
 var last_positions: CircularQueue
 
-var playable_chara: PartyMember
+#TODO we HAVE to figure out better party logic here
+func _enter_tree() -> void:
+	party_list[get_index()] = self
+func _exit_tree() -> void:
+	party_list[get_index()] = null
+
+func is_playable() -> bool:
+	return get_index() == 0
 
 func _ready():
 	$AnimatedSprite2D.sprite_frames = chara.animations
 	$AnimatedSprite2D.play()
 	
-	if playable:
+	if is_playable():
 		last_positions = CircularQueue.new(100)
 	else:
 		collision_layer = 0 # Do not collide!
-		playable_chara = find_playable_character()
 
 func _process(delta: float) -> void:
+	if can_move:
+		party_member_process(delta)
+
+func party_member_process(delta: float) -> void:
 	var dtmult := delta * 30.0
 	
-	if playable:
+	if is_playable():
 		move_playable_character(dtmult)
 	else:
 		follow_main_character()
@@ -63,7 +74,7 @@ func _process(delta: float) -> void:
 # moving will cause her to teleport near to Kris, with this logic,
 # and I'm wondering if that is okay or not.
 func follow_main_character():
-	var value = playable_chara.last_positions.get_val(10)
+	var value = party_list[0].last_positions.get_val(10)
 	if value != null:
 		var info: CaterpillarInfo = value
 		position = info.pos

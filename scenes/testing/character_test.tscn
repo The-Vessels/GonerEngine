@@ -14,4 +14,7 @@ chara = ExtResource("2_5wkh0")
 [node name="Susie" parent="." unique_id=2076439375 instance=ExtResource("1_p0jn2")]
 position = Vector2(122, 91)
 chara = ExtResource("3_uao6i")
-playable = false
+
+[node name="CutsceneArea" type="Area2D" parent="." unique_id=262084539]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneArea" unique_id=1289743862]
