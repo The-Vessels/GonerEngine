@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ci5yb2l5q554j" path="res://scenes/game_root.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://d10bc5qiaefee" path="res://scenes/TouchscreenControls.tscn" id="4_jyhfs"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d6o5y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jyhfs"]
 viewport_path = NodePath("BorderAndGame")
 
 [node name="Main" type="Control" unique_id=1234379774]
@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 mouse_filter = 2
-texture = SubResource("ViewportTexture_d6o5y")
+texture = SubResource("ViewportTexture_jyhfs")
 expand_mode = 1
 stretch_mode = 6
 

@@ -1,11 +1,15 @@
 extends Control
 
+@onready var virtual_joystick: VirtualJoystick = $VirtualJoystick
+
 var subviewport: SubViewport
 var last_pressed_arr: Array[bool] = [false, false, false, false]
 var action_names: Array[StringName] = ["up", "down", "right", "left"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if !OS.has_feature("mobile"):
+		virtual_joystick.visible = false
 	subviewport = get_node('../../BorderAndGame')
 
 # Meant for correctly processing the joystick.

@@ -119,7 +119,8 @@ func set_border():
 	$BorderAndGame.size = 2 * window_size
 	if Settings.border_enabled:
 		# letterbox if no border
-		game_renderer.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
+		if OS.has_feature("mobile"):
+			game_renderer.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_COVERED
 	else:
 		# fully cover the window if there is border
 		game_renderer.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED

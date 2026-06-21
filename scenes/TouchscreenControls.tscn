@@ -25,7 +25,7 @@ offset_right = 171.0
 offset_bottom = -247.0
 grow_vertical = 0
 scale = Vector2(4, 4)
-deadzone_ratio = 0.3
+deadzone_ratio = 0.15
 action_left = &"joy_left"
 action_right = &"joy_right"
 action_up = &"joy_up"
@@ -46,19 +46,20 @@ scale = Vector2(8, 8)
 position = Vector2(-70, -30)
 texture_normal = ExtResource("1_3t8c4")
 action = "menu"
+visibility_mode = 1
 
 [node name="CancelButton" type="TouchScreenButton" parent="ActionButtons" unique_id=1760753609]
 position = Vector2(-30, -30)
 texture_normal = ExtResource("3_3b20s")
 action = "cancel"
+visibility_mode = 1
 
 [node name="ConfirmButton" type="TouchScreenButton" parent="ActionButtons" unique_id=597489684]
 position = Vector2(-50, -50)
 texture_normal = ExtResource("2_ljlf1")
 action = "confirm"
+visibility_mode = 1
 
-[connection signal="pressed" from="ActionButtons/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="released" from="ActionButtons/MenuButton" to="." method="_on_menu_button_released"]
 [connection signal="pressed" from="ActionButtons/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="released" from="ActionButtons/CancelButton" to="." method="_on_cancel_button_released"]
 [connection signal="pressed" from="ActionButtons/ConfirmButton" to="." method="_on_confirm_button_pressed"]
