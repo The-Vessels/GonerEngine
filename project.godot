@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="ENGINE_GONER"
 run/main_scene="uid://d4byrh7pgiy13"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"
 
@@ -129,6 +129,10 @@ temporary_border_toggle={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [physics]
 
 common/physics_ticks_per_second=30
@@ -136,3 +140,4 @@ common/physics_ticks_per_second=30
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true

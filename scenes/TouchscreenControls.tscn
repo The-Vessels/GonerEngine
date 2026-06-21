@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://d10bc5qiaefee"]
+
+[ext_resource type="Texture2D" uid="uid://b7efuyh03tmnl" path="res://sprites/ui/menu/mobile/touchpad_button_c.png" id="1_3t8c4"]
+[ext_resource type="Texture2D" uid="uid://mokwhaihjyf4" path="res://sprites/ui/menu/mobile/touchpad_button_z.png" id="2_ljlf1"]
+[ext_resource type="Texture2D" uid="uid://8hypx2si1map" path="res://sprites/ui/menu/mobile/touchpad_button_x.png" id="3_3b20s"]
+
+[sub_resource type="GDScript" id="GDScript_ljlf1"]
+script/source = "extends VirtualJoystick
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="TouchscreenControls" type="Control" unique_id=1326673454]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="." unique_id=1220202878]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -287.0
+offset_right = 171.0
+offset_bottom = -247.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+script = SubResource("GDScript_ljlf1")
+
+[node name="ActionButtons" type="Control" parent="." unique_id=918771687]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(8, 8)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="ActionButtons" unique_id=422600327]
+position = Vector2(-70, -30)
+texture_normal = ExtResource("1_3t8c4")
+action = "menu"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="ActionButtons" unique_id=1760753609]
+position = Vector2(-30, -30)
+texture_normal = ExtResource("3_3b20s")
+action = "cancel"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="ActionButtons" unique_id=597489684]
+position = Vector2(-50, -50)
+texture_normal = ExtResource("2_ljlf1")
+action = "confirm"

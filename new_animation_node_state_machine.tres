@@ -15,15 +15,19 @@ animation = &"idle_left"
 animation = &"idle_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wicgm"]
+blend_mode = 2
 blend_point_0/node = SubResource("AnimationNodeAnimation_71bjh")
 blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_wicgm")
 blend_point_1/pos = Vector2(1, 0)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_a67oh")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_qpklc")
 blend_point_3/pos = Vector2(0, -1)
-blend_mode = 2
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a67oh"]
 advance_mode = 2

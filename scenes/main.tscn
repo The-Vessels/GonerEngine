@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://g3fe0tn1xavh" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://ctj6uatyx3xoh" path="res://sprites/borders/border_lw_town_0.png" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ci5yb2l5q554j" path="res://scenes/game_root.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://d10bc5qiaefee" path="res://scenes/TouchscreenControls.tscn" id="4_jyhfs"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7r376"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d6o5y"]
 viewport_path = NodePath("BorderAndGame")
 
 [node name="Main" type="Control" unique_id=1234379774]
@@ -34,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 mouse_filter = 2
-texture = SubResource("ViewportTexture_7r376")
+texture = SubResource("ViewportTexture_d6o5y")
 expand_mode = 1
 stretch_mode = 6
 
@@ -80,3 +81,7 @@ size = Vector2i(640, 480)
 render_target_update_mode = 4
 
 [node name="GameRoot" parent="BorderAndGame/GameViewportContainer/GameSubViewport" unique_id=176435316 instance=ExtResource("3_tbgi4")]
+
+[node name="TouchscreenLayer" type="CanvasLayer" parent="." unique_id=1223825455]
+
+[node name="TouchscreenControls" parent="TouchscreenLayer" unique_id=1326673454 instance=ExtResource("4_jyhfs")]

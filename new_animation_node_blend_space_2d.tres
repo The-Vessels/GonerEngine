@@ -13,12 +13,16 @@ animation = &"walk_right"
 animation = &"walk_down"
 
 [resource]
+blend_mode = 2
 blend_point_0/node = SubResource("AnimationNodeAnimation_jgvyt")
 blend_point_0/pos = Vector2(-1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_71bjh")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_wicgm")
 blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_a67oh")
 blend_point_3/pos = Vector2(0, 1)
-blend_mode = 2
+blend_point_3/name = &"3"

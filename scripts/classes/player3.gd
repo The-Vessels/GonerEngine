@@ -57,14 +57,22 @@ var walktimer := 0.0
 func _physics_process(_delta: float) -> void:
 	var move := Vector2.ZERO
 	if Global.moveable:
-		if Input.is_action_pressed('left'):
-			move.x = -1.0
-		elif Input.is_action_pressed('right'):
-			move.x = 1.0
-		if Input.is_action_pressed('up'):
-			move.y = -1.0
-		elif Input.is_action_pressed('down'):
-			move.y = 1.0
+		if OS.has_feature("mobile"):
+			var dir = Input.get_vector("left", "right", "up", "down")
+			move = Vector2(snappedf(dir.x, 1.0), snappedf(dir.y, 1.0))
+		else:
+			if Input.is_action_pressed('left'):
+				move.x = -1.0
+				print("left")
+			elif Input.is_action_pressed('right'):
+				move.x = 1.0
+				print("right")
+			if Input.is_action_pressed('up'):
+				move.y = -1.0
+				print("up")
+			elif Input.is_action_pressed('down'):
+				move.y = 1.0
+				print("down")
 	
 	if Input.is_action_pressed('confirm'):
 		sprite.sprite_frames = happy_frames

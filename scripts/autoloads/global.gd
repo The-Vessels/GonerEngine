@@ -52,13 +52,14 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 
 func setup_discord_rpc():
-	DiscordRPC.app_id = 1416858009635913738
-	DiscordRPC.details = 'Playing GonerEngine'
-	DiscordRPC.state = 'Somewhere in GonerEngine'
-	DiscordRPC.large_image = 'gonerenginelogo'
-	DiscordRPC.large_image_text = 'Gaster!!!'
-	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
-	DiscordRPC.refresh()
+	pass
+	#DiscordRPC.app_id = 1416858009635913738
+	#DiscordRPC.details = 'Playing GonerEngine'
+	#DiscordRPC.state = 'Somewhere in GonerEngine'
+	#DiscordRPC.large_image = 'gonerenginelogo'
+	#DiscordRPC.large_image_text = 'Gaster!!!'
+	#DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	#DiscordRPC.refresh()
 
 func play_ui_sound(sound_name: String):
 	var stream = load('res://sounds/ui/' + sound_name + '.wav')
