@@ -40,6 +40,8 @@ func _ready() -> void:
 			set_border()
 	)
 
+var x := true
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen"):
 		toggle_fullscreen()
@@ -54,10 +56,17 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		$BorderAndGame.push_input(event)
 
+
 func _process(_delta: float) -> void:
 	#var texture := find_border_texture()
 	#if border_rect.texture != texture:
 		#set_border_texture(texture, 0)
+		
+	#var press := InputEventAction.new()
+	#press.action = "ui_right"
+	#press.pressed = x
+	#x = not x
+	#$BorderAndGame.push_input(press)
 	pass
 
 func find_border_texture() -> Texture2D:
