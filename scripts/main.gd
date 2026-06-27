@@ -1,5 +1,5 @@
 # This is the root node of GonerEngine.
-# It manages borders, fullscreen,
+# It manages initializing, borders, fullscreen,
 # and anything else that might be outside GameRoot.
 
 extends Control
@@ -19,6 +19,10 @@ var was_windowed: bool = false
 
 func _enter_tree() -> void:
 	print('main enter tree')
+
+func _init() -> void:
+	# Set the correct master volume from settings
+	AudioServer.set_bus_volume_linear(0, Settings.master_volume)
 
 func _ready() -> void:
 	# Override project settings

@@ -1,6 +1,6 @@
 extends Node
 
-var master_volume := 0.5
+var master_volume := 0.6
 
 var simplify_vxf := false
 var auto_run := false
