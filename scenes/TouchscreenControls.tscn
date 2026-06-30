@@ -3,7 +3,21 @@
 [ext_resource type="Script" uid="uid://bfe07vnmr5r4v" path="res://scripts/ui/touchscreen_controls.gd" id="1_3b20s"]
 [ext_resource type="Texture2D" uid="uid://b7efuyh03tmnl" path="res://sprites/ui/menu/mobile/touchpad_button_c.png" id="1_3t8c4"]
 [ext_resource type="Texture2D" uid="uid://mokwhaihjyf4" path="res://sprites/ui/menu/mobile/touchpad_button_z.png" id="2_ljlf1"]
+[ext_resource type="Texture2D" uid="uid://bpu8nmy5vcqnl" path="res://sprites/ui/menu/mobile/touchpad_joystick_area.png" id="2_y7xql"]
 [ext_resource type="Texture2D" uid="uid://8hypx2si1map" path="res://sprites/ui/menu/mobile/touchpad_button_x.png" id="3_3b20s"]
+[ext_resource type="Texture2D" uid="uid://4on3ku882t7s" path="res://sprites/ui/menu/mobile/touchpad_joystick_tip.png" id="3_wjihs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loat6"]
+texture = ExtResource("2_y7xql")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odhy6"]
+texture = ExtResource("3_wjihs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_51ar8"]
+texture = ExtResource("2_y7xql")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vh6ks"]
+texture = ExtResource("3_wjihs")
 
 [node name="TouchscreenControls" type="Control" unique_id=1326673454]
 layout_mode = 3
@@ -25,7 +39,14 @@ offset_right = 171.0
 offset_bottom = -247.0
 grow_vertical = 0
 scale = Vector2(4, 4)
-deadzone_ratio = 0.15
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_styles/normal_joystick = SubResource("StyleBoxTexture_loat6")
+theme_override_styles/normal_tip = SubResource("StyleBoxTexture_odhy6")
+theme_override_styles/pressed_joystick = SubResource("StyleBoxTexture_51ar8")
+theme_override_styles/pressed_tip = SubResource("StyleBoxTexture_vh6ks")
+tip_size = 40.0
+deadzone_ratio = 0.1
 action_left = &"joy_left"
 action_right = &"joy_right"
 action_up = &"joy_up"
@@ -41,6 +62,8 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(8, 8)
+offset_transform_enabled = true
+offset_transform_position = Vector2(-5, -5)
 
 [node name="MenuButton" type="TouchScreenButton" parent="ActionButtons" unique_id=422600327]
 position = Vector2(-70, -30)
