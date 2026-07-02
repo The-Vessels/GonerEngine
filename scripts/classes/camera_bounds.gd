@@ -19,6 +19,3 @@ func _ready() -> void:
 	
 	tl_corner = rect.position + (rect.size / 2)
 	br_corner = rect.end + (rect.size / 2)
-	
-	print(tl_corner)
-	print(br_corner)

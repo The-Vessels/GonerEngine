@@ -51,6 +51,21 @@ func _ready():
 					option.button_pressed = false
 					submenu_open = false
 		)
+		
+	Signals.toggleMenu.connect(
+		func():
+			if !animating:
+				if menu_open:
+					if !submenu_open:
+						disable_unfocused_options()
+						menu_open = false
+						Global.moveable = true
+				else:
+					visible = true
+					enable_all_options()
+					menu_open = true
+					Global.moveable = false
+	)
 
 func _process(delta: float) -> void:
 	menu_desc.frame = current_option
@@ -69,18 +84,11 @@ func _process(delta: float) -> void:
 	top_panel.position.y = menuoffset - top_panel.size.y
 	bottom_panel.position.y = (480 + (top_panel.size.y - bottom_panel.size.y)) - menuoffset
 	
-	if (Input.is_action_just_pressed("menu") or Input.is_action_just_pressed("cancel")) and !animating:
-		if menu_open:
-			if !submenu_open:
-				disable_unfocused_options()
-				menu_open = false
-				Global.moveable = true
-		else:
-			if Input.is_action_just_pressed("menu"):
-				visible = true
-				enable_all_options()
-				menu_open = true
-				Global.moveable = false
+	if Input.is_action_just_pressed("cancel") and !animating:
+		if menu_open and !submenu_open:
+			disable_unfocused_options()
+			menu_open = false
+			Global.moveable = true
 
 # This is literally just needed so that the selected button is
 # still focused when the menu is sliding out of view

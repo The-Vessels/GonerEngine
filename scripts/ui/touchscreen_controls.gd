@@ -8,8 +8,8 @@ var action_names: Array[StringName] = ["up", "down", "right", "left"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !OS.has_feature("mobile"):
-		virtual_joystick.visible = false
+	if OS.has_feature("mobile"):
+		visible = true
 	subviewport = get_node('../../BorderAndGame')
 
 # Meant for correctly processing the joystick.

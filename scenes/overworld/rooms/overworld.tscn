@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ks4ukhf2yiv1" path="res://sprites/borders/border_dw_blue_0.png" id="9_7e7wp"]
 [ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/classes/music_node.gd" id="10_roblw"]
 [ext_resource type="AudioStream" uid="uid://cwoa1uijsk85l" path="res://music/theme_testdepths.ogg" id="11_1y312"]
+[ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="12_whkfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0t0"]
 size = Vector2(420, 340)
@@ -155,3 +156,8 @@ position = Vector2(200, 0)
 script = ExtResource("10_roblw")
 music = ExtResource("11_1y312")
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
+
+[node name="PlayerMarker" type="Marker2D" parent="." unique_id=882938642]
+position = Vector2(220, 140)
+script = ExtResource("12_whkfp")
+metadata/_custom_type_script = "uid://br8uupftjxwuh"

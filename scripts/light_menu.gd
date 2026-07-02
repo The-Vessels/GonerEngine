@@ -82,6 +82,15 @@ func _ready() -> void:
 							Global.play_ui_sound("menumove")
 						current_item_action = item_action_buttons.find(item_action_button)
 				)
+				
+	Signals.toggleMenu.connect(
+		func():
+			if visible:
+				if !submenu_open:
+					visible = false
+			else:
+				visible = true
+	)
 
 func _process(delta: float) -> void:
 	if !is_node_ready():
@@ -107,13 +116,6 @@ func _process(delta: float) -> void:
 				submenu_open = false
 		else:
 			visible = false
-	
-	if Input.is_action_just_pressed("menu"):
-		if visible:
-			if !submenu_open:
-				visible = false
-		else:
-			visible = true
 
 func _on_visibility_changed() -> void:
 	if !is_node_ready():

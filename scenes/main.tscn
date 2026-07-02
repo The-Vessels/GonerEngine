@@ -85,3 +85,4 @@ render_target_update_mode = 4
 [node name="TouchscreenLayer" type="CanvasLayer" parent="." unique_id=1223825455]
 
 [node name="TouchscreenControls" parent="TouchscreenLayer" unique_id=1326673454 instance=ExtResource("4_jyhfs")]
+visible = false

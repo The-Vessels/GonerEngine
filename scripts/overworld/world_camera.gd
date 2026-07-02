@@ -1,16 +1,20 @@
 # Main camera of the entire game
 extends Camera2D
 
-@onready var player: Player = $"../RoomManager/Player"
-
 @export var target: Node
 
 func _ready() -> void:
 	# Set the player to be the target of the camera by default
-	if !target:
-		target = player
+	#if !target:
+		#target = player
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if is_node_ready():
-		self.position = target.position
+		if target:
+			anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
+			self.position = target.position
+		else:
+			anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+			self.position = Vector2(0.0, 0.0)

@@ -1,6 +1,6 @@
 # This is the root node of the main game.
-# For now it just handles quitting
-# and switching the menu based on the global world type.
+# It handles: game scaling, quitting,
+# switching the menu based on starting world type
 
 extends Node2D
 

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://duh6xy2jy7dh"]
+
+[ext_resource type="Script" uid="uid://dmnm38seq07sq" path="res://scenes/overworld/rooms/intro.gd" id="1_vx6y5"]
+[ext_resource type="Script" uid="uid://c1gf4tb6hioe0" path="res://scripts/classes/music_node.gd" id="2_vx6y5"]
+[ext_resource type="AudioStream" uid="uid://g74i2qdbt2iy" path="res://music/mus_intro_test.ogg" id="3_phvki"]
+
+[node name="Intro" type="Node2D" unique_id=1264599970]
+script = ExtResource("1_vx6y5")
+metadata/_custom_type_script = "uid://bb8pql8fxg4kr"
+
+[node name="MusicNode" type="Node2D" parent="." unique_id=1776149500]
+script = ExtResource("2_vx6y5")
+music = ExtResource("3_phvki")
+metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=330594535]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=933639900]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 99.0
+offset_right = 232.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DELTARUNE
+gonerengine edition yo"
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248638253]

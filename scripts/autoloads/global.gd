@@ -3,6 +3,8 @@ extends Node
 @onready var ui_audio_player: AudioStreamPlayer = $UIAudioPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
+var mus_track_position: float
+
 var moveable := true
 var has_textbox := false
 
@@ -27,8 +29,7 @@ var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_no
 
 signal changeMusic(music, pitch)
 
-var currentRoom: PackedScene
-signal changeRoom(room, target, facing)
+var currentRoom: Node
 
 # change this to undefined later its 0 for testing pur's
 var currentHero = 0
@@ -50,6 +51,7 @@ func _process(_delta: float) -> void:
 		#toggle_fullscreen()
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
+	mus_track_position = music_player.get_playback_position()
 
 func setup_discord_rpc():
 	pass
