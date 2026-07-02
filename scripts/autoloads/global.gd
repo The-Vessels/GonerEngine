@@ -27,8 +27,6 @@ const BORDER_SIMPLE = preload("res://sprites/borders/border_simple.png")
 var current_dynamic_border: Texture2D = preload("res://sprites/borders/border_none.png")
 # signal changeBorder(border_texture)
 
-signal changeMusic(music, pitch)
-
 var currentRoom: Node
 
 # change this to undefined later its 0 for testing pur's
