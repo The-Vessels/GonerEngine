@@ -28,8 +28,10 @@ var last_positions: CircularQueue
 
 #TODO we HAVE to figure out better party logic here
 func _enter_tree() -> void:
+	super._enter_tree()
 	party_list[get_index()] = self
 func _exit_tree() -> void:
+	super._exit_tree()
 	party_list[get_index()] = null
 
 func is_playable() -> bool:
@@ -48,11 +50,17 @@ func _process(delta: float) -> void:
 	if can_move:
 		party_member_process(delta)
 
+func _physics_process(_delta: float) -> void:
+	if can_move and is_playable() and Input.is_action_just_pressed("confirm"):
+		do_interact()
+
 func party_member_process(delta: float) -> void:
 	var dtmult := delta * 30.0
 	
 	if is_playable():
 		move_playable_character(dtmult)
+		#if Input.is_action_just_pressed("confirm"):
+			#do_interact()
 	else:
 		follow_main_character()
 	
@@ -108,13 +116,13 @@ func move_playable_character(dtmult: float):
 		facing = calc_facing_from_dir(dir)
 
 func process_anim_state(dtmult: float):
-	print(anim_state)
+	# print(anim_state)
 	if walking:
 		anim_state = 8.0
 	elif anim_state > 0.0:
 		var last_anim_state = anim_state
 		anim_state -= dtmult
-		print('new anim_state: ', anim_state)
+		# print('new anim_state: ', anim_state)
 		
 		if last_anim_state > 4.0 and anim_state <= 4.0:
 			$AnimatedSprite2D.pause()
@@ -192,6 +200,17 @@ func calc_animation_from_facing(facing: Enums.Facing) -> String:
 		Enums.Facing.DOWN:
 			return "down"
 	return ""
+
+func do_interact():
+	var shape_cast: ShapeCast2D = get_node("ShapeCast2D")
+	shape_cast.target_position = 100.0 * Enums.facing_to_vec(facing)
+	shape_cast.force_shapecast_update()
+	if shape_cast.is_colliding():
+		for i in range(shape_cast.get_collision_count()):
+			var collided_node: Node = shape_cast.get_collider(0)
+			if collided_node.has_method("interact"):
+				collided_node.interact()
+				break
 
 # Plays an animation, while preserving
 # the frame and frame progress of the previous animation.

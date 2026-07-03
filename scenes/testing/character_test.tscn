@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://d376k0qo4m4bd" path="res://scenes/overworld/character.tscn" id="1_p0jn2"]
 [ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_character.tres" id="2_5wkh0"]
 [ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_character.tres" id="3_uao6i"]
+[ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="4_uao6i"]
+[ext_resource type="Script" uid="uid://b5lfffij7eg0b" path="res://scenes/testing/character_test.gd" id="5_lol26"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocjv1"]
 
 [node name="CharacterTest" type="Node2D" unique_id=608805020]
 y_sort_enabled = true
@@ -15,6 +19,14 @@ chara = ExtResource("2_5wkh0")
 position = Vector2(122, 91)
 chara = ExtResource("3_uao6i")
 
-[node name="CutsceneArea" type="Area2D" parent="." unique_id=262084539]
+[node name="Room" type="Area2D" parent="." unique_id=591016664]
+position = Vector2(359, 95)
+scale = Vector2(2.5, 2.5)
+script = ExtResource("5_lol26")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneArea" unique_id=1289743862]
+[node name="Room" type="Sprite2D" parent="Room" unique_id=931587606]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_uao6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room" unique_id=1167341254]
+shape = SubResource("RectangleShape2D_ocjv1")
