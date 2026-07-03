@@ -239,6 +239,9 @@ sources/1 = SubResource("TileSetAtlasSource_tcbqp")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewgd1"]
 size = Vector2(79, 82)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1qa5v"]
+b = Vector2(0, 480)
+
 [node name="Hometown" type="Node2D" unique_id=2025934906]
 script = ExtResource("1_b2ck7")
 world_type = 1
@@ -277,7 +280,6 @@ border_texture = ExtResource("7_w3h1d")
 [node name="MusicNode" type="Node2D" parent="." unique_id=256684731]
 script = ExtResource("8_hsx7m")
 music = ExtResource("9_1xjm1")
-pitch = 1.0
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=509112503]
@@ -288,3 +290,13 @@ texture = ExtResource("10_eflds")
 [node name="PlayerMarker" type="Marker2D" parent="." unique_id=1179772198]
 position = Vector2(70, 70)
 script = ExtResource("11_obw5g")
+
+[node name="Hitboxes" type="Node2D" parent="." unique_id=335960273]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hitboxes" unique_id=1686924339]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitboxes/StaticBody2D" unique_id=1524817408]
+polygon = PackedVector2Array(0, 60, 60, 0, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/StaticBody2D" unique_id=1593266360]
+shape = SubResource("SegmentShape2D_1qa5v")
