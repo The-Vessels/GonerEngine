@@ -20,6 +20,8 @@ class_name TextBox extends Control
 @export_range(-1, 0, 0.1) var lower_range: float = 0.0
 @export_range(0, 1, 0.1) var upper_range: float = 0.0
 
+const textbox_scene: PackedScene = preload("uid://c5nrska6i801g")
+
 var animating := false
 var text_index := 0
 
@@ -31,6 +33,12 @@ var has_asterisks: bool
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
 		or (line.substr(0,2) == '* ')
+
+# Creates a new textbox.
+static func create(text: Array[String]) -> TextBox:
+	var textbox_inst: TextBox = textbox_scene.instantiate()
+	textbox_inst.text = text
+	return textbox_inst
 
 func set_text(text: String):
 	line_starts_with_asterisk.clear()

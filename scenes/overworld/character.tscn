@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://d376k0qo4m4bd"]
 
 [ext_resource type="Script" uid="uid://b6dka1arygbab" path="res://scripts/classes/party_member.gd" id="1_qox20"]
-[ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_character.tres" id="2_5n0wd"]
 [ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_animations.tres" id="2_n2hw7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qox20"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocjv1"]
+
 [node name="Character" type="CharacterBody2D" unique_id=1462347025]
 script = ExtResource("1_qox20")
-actor = ExtResource("2_5n0wd")
-playable = true
 metadata/_custom_type_script = "uid://b6dka1arygbab"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671423951]
@@ -19,3 +18,8 @@ shape = SubResource("RectangleShape2D_qox20")
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_n2hw7")
 animation = &"walk_down"
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=2054636149]
+shape = SubResource("RectangleShape2D_ocjv1")
+target_position = Vector2(0, 0)
+collide_with_areas = true

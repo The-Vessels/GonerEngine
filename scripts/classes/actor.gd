@@ -17,6 +17,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("face_down")
 
 static func get_by_name(actor_name: String) -> Actor:
+	print(actor_dict)
 	return actor_dict.get(actor_name)
 
 static func get_all() -> Array[Actor]:
