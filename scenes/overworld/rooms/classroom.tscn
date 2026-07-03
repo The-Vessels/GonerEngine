@@ -6,9 +6,10 @@
 [ext_resource type="Script" uid="uid://cnspaa06cvy5v" path="res://scripts/classes/teleport_area.gd" id="4_jelid"]
 [ext_resource type="Script" uid="uid://cwiacpp0rgtxs" path="res://scripts/classes/target_marker_dest.gd" id="5_ituqa"]
 [ext_resource type="Script" uid="uid://b6jsajndjvi2p" path="res://scripts/classes/border_node.gd" id="6_8535x"]
+[ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="7_eqjh4"]
 [ext_resource type="Texture2D" uid="uid://d0ds4a61il7l1" path="res://sprites/borders/device_border.png" id="7_l2lw5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ad1y3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
 size = Vector2(320, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gobvo"]
@@ -17,13 +18,13 @@ size = Vector2(40, 40)
 [node name="Classroom" type="Node2D" unique_id=830096811]
 script = ExtResource("1_eqjh4")
 
-[node name="CameraBounds" type="Area2D" parent="." unique_id=729842976]
+[node name="CameraBounds" type="Area2D" parent="." unique_id=111864463]
 script = ExtResource("2_ml7xf")
 metadata/_custom_type_script = "uid://do8e6sp7047i0"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=976175003]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=49612193]
 position = Vector2(160, 120)
-shape = SubResource("RectangleShape2D_ad1y3")
+shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="Unused" type="Sprite2D" parent="." unique_id=1010266825]
 texture = ExtResource("3_g7jlk")
@@ -59,3 +60,8 @@ metadata/_custom_type_script = "uid://cwiacpp0rgtxs"
 script = ExtResource("6_8535x")
 border_texture = ExtResource("7_l2lw5")
 metadata/_custom_type_script = "uid://b6jsajndjvi2p"
+
+[node name="PlayerMarker" type="Marker2D" parent="." unique_id=2052546970]
+position = Vector2(161, 112)
+script = ExtResource("7_eqjh4")
+metadata/_custom_type_script = "uid://br8uupftjxwuh"

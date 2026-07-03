@@ -63,16 +63,15 @@ func _physics_process(_delta: float) -> void:
 		else:
 			if Input.is_action_pressed('left'):
 				move.x = -1.0
-				print("left")
 			elif Input.is_action_pressed('right'):
 				move.x = 1.0
-				print("right")
 			if Input.is_action_pressed('up'):
 				move.y = -1.0
-				print("up")
 			elif Input.is_action_pressed('down'):
 				move.y = 1.0
-				print("down")
+	
+	if Input.is_action_just_pressed('menu'):
+		Signals.toggleMenu.emit()
 	
 	if Input.is_action_pressed('confirm'):
 		sprite.sprite_frames = happy_frames

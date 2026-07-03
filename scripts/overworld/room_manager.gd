@@ -4,47 +4,51 @@
 extends Node2D
 
 @onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
-@onready var player: Player = $Player
 @onready var world_camera: Camera2D = $"../WorldCamera"
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
+const PLAYER = preload("uid://brd4vgwifopta")
+var player: Player
+
+signal room_change_finished
 
 func _ready() -> void:
 	Signals.changeRoom.connect(
-		func(room, target, facing):
+		func(room):
 			Global.moveable = false
 			transition_player.play("fade_to_black")
 			await transition_player.animation_finished
-			goto_room(room, target, facing)
+			goto_room(room)
 			transition_player.play("fade_to_normal")
 			Global.moveable = true
 	)
-	for child in get_child(0).get_children():
-			print(child.get_class())
-			if child is CameraBounds:
-				world_camera.limit_left = child.tl_corner.x
-				world_camera.limit_top = child.tl_corner.y
-				world_camera.limit_right = child.br_corner.x
-				world_camera.limit_bottom = child.br_corner.y
+	Signals.warpParty.connect(
+		warp_to_marker
+	)
+	
+	var starting_room = get_child(0)
+	if starting_room != null:
+		for child in starting_room.get_children():
+				if child is CameraBounds:
+					world_camera.limit_left = child.tl_corner.x
+					world_camera.limit_top = child.tl_corner.y
+					world_camera.limit_right = child.br_corner.x
+					world_camera.limit_bottom = child.br_corner.y
+				if child is PlayerMarker:
+					player = PLAYER.instantiate()
+					starting_room.add_child(player)
+					player.position = child.position
+					print("tped to playermarker")
+					world_camera.target = player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
-func goto_room(room, target, facing):
-	var destination: TargetMarkerDest
-	
+func goto_room(room):
+	print("STARTING ROOM SWAP")
 	# Find and remove the current room from the scene
-	var current_room: Room
 	for child in get_children():
-		if child is Room:
-			current_room = child
-			break
-			
-	if current_room:
-		current_room.queue_free()
-	else:
-		print("There is no starting room in RoomManager")
-		return
+		child.queue_free()
 	
 	# Fetch and instantiate the new room to go to
 	var room_scene: PackedScene = load(room)
@@ -61,11 +65,34 @@ func goto_room(room, target, facing):
 			menu_layer.add_child(menu_scene.instantiate())
 	
 	add_child(room_instantiated)
-	move_child(room_instantiated, 0)
+	Global.currentRoom = room_instantiated
 	
 	# Get the necessary data from the new room to:
 	for child in room_instantiated.get_children():
-		print(child.get_class())
+		# Set the camera limits provided in the new room
+		if child is CameraBounds:
+			world_camera.limit_left = child.tl_corner.x
+			world_camera.limit_top = child.tl_corner.y
+			world_camera.limit_right = child.br_corner.x
+			world_camera.limit_bottom = child.br_corner.y
+		if child is PlayerMarker:
+			player = PLAYER.instantiate()
+			room_instantiated.add_child(player)
+			player.position = child.position
+			print("tped to playermarker")
+			world_camera.target = player
+		# Set the player in the correct marker position
+		#if child is TargetMarkerDest:
+			#if child.marker_id == target:
+				#destination = child
+				#player.position = destination.position
+	#player.facing = facing if facing else player.facing
+	room_change_finished.emit()
+	print("FINISHED ROOM SWAP")
+
+func warp_to_marker(marker_id, facing):
+	await room_change_finished
+	for child in Global.currentRoom.get_children():
 		# Set the camera limits provided in the new room
 		if child is CameraBounds:
 			world_camera.limit_left = child.tl_corner.x
@@ -74,7 +101,7 @@ func goto_room(room, target, facing):
 			world_camera.limit_bottom = child.br_corner.y
 		# Set the player in the correct marker position
 		if child is TargetMarkerDest:
-			if child.marker_id == target:
-				destination = child
-				player.position = destination.position
-	player.facing = facing if facing else player.facing
+			if child.marker_id == marker_id:
+				player.position = child.position
+				player.facing = facing if facing else player.facing
+	print("tped to marker")

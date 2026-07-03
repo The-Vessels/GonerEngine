@@ -11,7 +11,6 @@ size = Vector2(20, 7)
 size = Vector2(20, 7)
 
 [node name="Player" type="CharacterBody2D" unique_id=202223076]
-scale = Vector2(2, 2)
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=19773548]

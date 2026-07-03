@@ -5,9 +5,11 @@ class_name MusicNode extends Node2D
 ## [b]Note:[/b] This doesn't need to be set in every room. The music track set by a [b]MusicNode[/b] will stay until it is overridden by another [b]MusicNode[/b].
 
 @export var music: AudioStream
-@export var pitch: float
+@export_range(0.01, 4.00) var pitch: float = 1.00
+# This is linear btw
+@export_range(0.0, 4.0) var gain: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Global.music_player.stream != music:
-		Signals.changeMusic.emit(music, pitch)
+		Signals.changeMusic.emit(music, gain, pitch)
