@@ -22,6 +22,8 @@ class_name TextBox extends Control
 
 const textbox_scene: PackedScene = preload("uid://c5nrska6i801g")
 
+static var has_textbox := false
+
 var animating := false
 var text_index := 0
 
@@ -67,7 +69,7 @@ func set_asterisks():
 	ast.visible_characters = 0
 
 func _ready():
-	Global.has_textbox = true
+	has_textbox = true
 	
 	match Global.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
@@ -131,7 +133,7 @@ func _process(_delta: float) -> void:
 		text_index += 1
 		if text_index >= text.size():
 			queue_free()
-			Global.has_textbox = false
+			has_textbox = false
 			return
 		
 		set_text(text[text_index])

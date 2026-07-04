@@ -11,8 +11,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm") and !Global.has_textbox and Global.moveable:
-		spawn_textbox(text)
+	if Input.is_action_just_pressed("confirm") and !TextBox.has_textbox and Global.moveable:
+		var textbox = TextBox.create(text)
+		add_child(textbox)
 		print("yo")
 	
 func spawn_textbox(text):

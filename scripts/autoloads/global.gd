@@ -6,7 +6,6 @@ extends Node
 var mus_track_position: float
 
 var moveable := true
-var has_textbox := false
 
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
