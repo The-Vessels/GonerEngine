@@ -7,7 +7,7 @@ extends Node2D
 @onready var world_camera: Camera2D = $"../WorldCamera"
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
 
-const PARTY_MEMBERS = preload("uid://dw4u4k5xprkb0")
+const PARTY_MEMBERS_SCENE = preload("uid://dw4u4k5xprkb0")
 var pm_node: Node
 var player: Node
 
@@ -36,7 +36,7 @@ func _ready() -> void:
 					world_camera.limit_right = child.br_corner.x
 					world_camera.limit_bottom = child.br_corner.y
 				if child is PlayerMarker:
-					pm_node = PARTY_MEMBERS.instantiate()
+					pm_node = PARTY_MEMBERS_SCENE.instantiate()
 					player = pm_node.get_child(0)
 					starting_room.add_child(pm_node)
 					player.position = child.position
@@ -79,7 +79,7 @@ func goto_room(room):
 			world_camera.limit_right = child.br_corner.x
 			world_camera.limit_bottom = child.br_corner.y
 		if child is PlayerMarker:
-			pm_node = PARTY_MEMBERS.instantiate()
+			pm_node = PARTY_MEMBERS_SCENE.instantiate()
 			player = pm_node.get_child(0)
 			room_instantiated.add_child(pm_node)
 			player.position = child.position

@@ -28,11 +28,14 @@ var last_positions: CircularQueue
 
 #TODO we HAVE to figure out better party logic here
 func _enter_tree() -> void:
+	# print("CHARACTER " + chara.name + " ENTERED")
 	super._enter_tree()
 	party_list[get_index()] = self
 func _exit_tree() -> void:
+	# print("CHARACTER " + chara.name + " EXITED")
 	super._exit_tree()
-	party_list[get_index()] = null
+	if party_list[get_index()] == self:
+		party_list[get_index()] = null
 
 func is_playable() -> bool:
 	return get_index() == 0
@@ -82,7 +85,11 @@ func party_member_process(delta: float) -> void:
 # moving will cause her to teleport near to Kris, with this logic,
 # and I'm wondering if that is okay or not.
 func follow_main_character():
-	var value = party_list[0].last_positions.get_val(10)
+	var leader := party_list[0]
+	# if leader == null:
+	# 	return
+	
+	var value = leader.last_positions.get_val(10)
 	if value != null:
 		var info: CaterpillarInfo = value
 		position = info.pos
@@ -207,7 +214,7 @@ func do_interact():
 	shape_cast.force_shapecast_update()
 	if shape_cast.is_colliding():
 		for i in range(shape_cast.get_collision_count()):
-			var collided_node: Node = shape_cast.get_collider(0)
+			var collided_node: Node = shape_cast.get_collider(i)
 			if collided_node.has_method("interact"):
 				collided_node.interact()
 				break

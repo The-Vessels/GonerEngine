@@ -11,7 +11,8 @@ func _enter_tree() -> void:
 	actor_dict[chara.name] = self
 
 func _exit_tree() -> void:
-	actor_dict[chara.name] = null
+	if actor_dict[chara.name] == self:
+		actor_dict[chara.name] = null
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("face_down")
