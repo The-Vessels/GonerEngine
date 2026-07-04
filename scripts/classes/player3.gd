@@ -120,5 +120,6 @@ func _physics_process(_delta: float) -> void:
 			"down":
 				shape_cast.target_position = Vector2(0, 2)
 		for node in shape_cast.collision_result:
-			print(node.collider is TeleportArea)
+			#print(node.collider is TeleportArea)
+			pass
 		shape_cast.target_position = Vector2(0, 0)

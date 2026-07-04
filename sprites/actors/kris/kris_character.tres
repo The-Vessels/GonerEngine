@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Actor" format=3 uid="uid://cltnesrsbhr1t"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://cltnesrsbhr1t"]
 
 [ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_bw3nd"]
 [ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_animations.tres" id="1_ehkif"]

@@ -23,7 +23,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_f3icv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_down",
 "speed": 5.0
 }, {
@@ -31,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_l7wpt")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_left",
 "speed": 5.0
 }, {
@@ -39,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_lji4b")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_right",
 "speed": 5.0
 }, {
@@ -47,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_m1vc0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_up",
 "speed": 5.0
 }, {
@@ -64,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_jhs0h")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 5.0
 }, {
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_6viby")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -98,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_o2eyb")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }, {
@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_qqdme")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 5.0
 }]

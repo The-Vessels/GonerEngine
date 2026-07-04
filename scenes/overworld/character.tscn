@@ -15,7 +15,6 @@ metadata/_custom_type_script = "uid://b6dka1arygbab"
 shape = SubResource("RectangleShape2D_qox20")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=789151799]
-scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_n2hw7")
 animation = &"walk_down"
 
