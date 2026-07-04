@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://3yamkdr6hijg" path="res://sprites/ui/menu/misc/quitting/quitmessage_2.png" id="9_0aloa"]
 [ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://sprites/ui/menu/misc/quitting/quitmessage_3.png" id="10_35vvr"]
 [ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://sprites/ui/menu/misc/quitting/quitmessage_4.png" id="11_so1mv"]
-[ext_resource type="PackedScene" uid="uid://boofqcsryrrvt" path="res://scenes/testing/dialogue_test.tscn" id="12_6y7e7"]
 
 [sub_resource type="Animation" id="Animation_jweab"]
 length = 0.001
@@ -92,6 +91,21 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_1brn0"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Signals.startDialogue.connect(
+		func(text):
+			
+			if !TextBox.has_textbox and Global.moveable:
+				var textbox := TextBox.create(text)
+				add_child(textbox)
+	)
+"
+
 [node name="GameRoot" type="Node2D" unique_id=176435316]
 y_sort_enabled = true
 script = ExtResource("1_ywsqi")
@@ -136,7 +150,6 @@ animation = &"quit_anim"
 centered = false
 
 [node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
-
-[node name="DialogueTest" parent="DialogueLayer" unique_id=633448277 instance=ExtResource("12_6y7e7")]
+script = SubResource("GDScript_1brn0")
 
 [connection signal="animation_finished" from="TransitionLayer/TransitionPlayer" to="TransitionLayer" method="_on_transition_player_animation_finished"]

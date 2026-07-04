@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dx7y2rn2shks4" path="res://music/AUDIO_ANOTHERHIM.ogg" id="9_1xjm1"]
 [ext_resource type="Texture2D" uid="uid://c28d5srx86v0u" path="res://sprites/gonerengine.png" id="10_eflds"]
 [ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="11_obw5g"]
+[ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="12_oqv75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -239,6 +240,22 @@ sources/1 = SubResource("TileSetAtlasSource_tcbqp")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewgd1"]
 size = Vector2(80, 80)
 
+[sub_resource type="GDScript" id="GDScript_n2hw7"]
+script/source = "extends StaticBody2D
+
+func interact() -> void:
+	var text = [
+		\"* That's right fuckers, I'm the [shake rate=50.0 level=10 connected=1][color=red][img=x32]res://sprites/example/tennatime.png[/img] Roaring Knight[/color][/shake]!\",
+		\"* wait what the fuck\",
+		\"Where is my asterick\",
+		\"* ive got many askerisks?\\n* yes\\n* maybe too many\",
+		\"* funnytext test\\n* [img=350x70]res://sprites/souls/soul.png[/img]\"
+	]
+	Signals.startDialogue.emit(text)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]
+
 [node name="Hometown" type="Node2D" unique_id=2025934906]
 script = ExtResource("1_b2ck7")
 world_type = 1
@@ -313,3 +330,15 @@ texture = ExtResource("10_eflds")
 [node name="PlayerMarker" type="Marker2D" parent="." unique_id=1179772198]
 position = Vector2(70, 70)
 script = ExtResource("11_obw5g")
+
+[node name="Room" type="StaticBody2D" parent="." unique_id=1944634033]
+position = Vector2(139.00003, 155)
+script = SubResource("GDScript_n2hw7")
+
+[node name="Room" type="Sprite2D" parent="Room" unique_id=125079961]
+position = Vector2(0.9999695, 5)
+texture = ExtResource("12_oqv75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room" unique_id=1351192506]
+position = Vector2(0.9999695, 5)
+shape = SubResource("RectangleShape2D_j46a3")

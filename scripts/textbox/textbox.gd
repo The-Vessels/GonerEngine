@@ -37,9 +37,11 @@ func line_asterisk(line: String) -> bool:
 		or (line.substr(0,2) == '* ')
 
 # Creates a new textbox.
-static func create(text: Array[String]) -> TextBox:
+static func create(text: Array) -> TextBox:
 	var textbox_inst: TextBox = textbox_scene.instantiate()
-	textbox_inst.text = text
+	#textbox_inst.text = text
+	# append_array needed otherwise godot is weird
+	textbox_inst.text.append_array(text)
 	return textbox_inst
 
 func set_text(text: String):
