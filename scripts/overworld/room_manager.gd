@@ -28,20 +28,7 @@ func _ready() -> void:
 	)
 	
 	var starting_room = get_child(0)
-	if starting_room != null:
-		for child in starting_room.get_children():
-				if child is CameraBounds:
-					world_camera.limit_left = child.tl_corner.x
-					world_camera.limit_top = child.tl_corner.y
-					world_camera.limit_right = child.br_corner.x
-					world_camera.limit_bottom = child.br_corner.y
-				if child is PlayerMarker:
-					pm_node = PARTY_MEMBERS_SCENE.instantiate()
-					player = pm_node.get_child(0)
-					starting_room.add_child(pm_node)
-					player.position = child.position
-					print("tped to playermarker")
-					world_camera.target = player
+	prepare_room(starting_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -70,21 +57,8 @@ func goto_room(room):
 	add_child(room_instantiated)
 	Global.currentRoom = room_instantiated
 	
-	# Get the necessary data from the new room to:
-	for child in room_instantiated.get_children():
-		# Set the camera limits provided in the new room
-		if child is CameraBounds:
-			world_camera.limit_left = child.tl_corner.x
-			world_camera.limit_top = child.tl_corner.y
-			world_camera.limit_right = child.br_corner.x
-			world_camera.limit_bottom = child.br_corner.y
-		if child is PlayerMarker:
-			pm_node = PARTY_MEMBERS_SCENE.instantiate()
-			player = pm_node.get_child(0)
-			room_instantiated.add_child(pm_node)
-			player.position = child.position
-			print("tped to playermarker")
-			world_camera.target = player
+	prepare_room(room_instantiated)
+	
 	room_change_finished.emit()
 	print("FINISHED ROOM SWAP")
 
@@ -103,3 +77,21 @@ func warp_to_marker(marker_id, facing):
 				player.position = child.position
 				player.facing = facing if facing else player.facing
 	print("tped to marker")
+
+func prepare_room(room):
+	# Get the necessary data from the new room to:
+	for child in room.get_children():
+		# Set the camera limits provided in the new room
+		if child is CameraBounds:
+			world_camera.limit_left = child.tl_corner.x
+			world_camera.limit_top = child.tl_corner.y
+			world_camera.limit_right = child.br_corner.x
+			world_camera.limit_bottom = child.br_corner.y
+		# Create the party and teleport the player to the PlayerMarker
+		if child is PlayerMarker:
+			pm_node = PARTY_MEMBERS_SCENE.instantiate()
+			player = pm_node.get_child(0)
+			room.add_child(pm_node)
+			player.position = child.position
+			print("tped to playermarker")
+			world_camera.target = player
