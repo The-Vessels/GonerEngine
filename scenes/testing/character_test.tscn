@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cop321u56a4me"]
 
-[ext_resource type="PackedScene" uid="uid://d376k0qo4m4bd" path="res://scenes/overworld/character.tscn" id="1_p0jn2"]
+[ext_resource type="PackedScene" uid="uid://d376k0qo4m4bd" path="res://scenes/overworld/party_member.tscn" id="1_p0jn2"]
 [ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_character.tres" id="2_5wkh0"]
 [ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_character.tres" id="3_uao6i"]
 [ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="4_uao6i"]

@@ -54,8 +54,11 @@ func _process(delta: float) -> void:
 		party_member_process(delta)
 
 func _physics_process(_delta: float) -> void:
-	if can_move and is_playable() and Input.is_action_just_pressed("confirm"):
-		do_interact()
+	if can_move and is_playable():
+		if Input.is_action_just_pressed("confirm"):
+			do_interact()
+		if Input.is_action_just_pressed('menu'):
+			Signals.toggleMenu.emit()
 
 func party_member_process(delta: float) -> void:
 	var dtmult := delta * 30.0
@@ -210,7 +213,7 @@ func calc_animation_from_facing(facing: Enums.Facing) -> String:
 
 func do_interact():
 	var shape_cast: ShapeCast2D = get_node("ShapeCast2D")
-	shape_cast.target_position = 100.0 * Enums.facing_to_vec(facing)
+	shape_cast.target_position = 15.0 * Enums.facing_to_vec(facing)
 	shape_cast.force_shapecast_update()
 	if shape_cast.is_colliding():
 		for i in range(shape_cast.get_collision_count()):
@@ -218,6 +221,7 @@ func do_interact():
 			if collided_node.has_method("interact"):
 				collided_node.interact()
 				break
+	shape_cast.target_position = Vector2(0.0, 0.0)
 
 # Plays an animation, while preserving
 # the frame and frame progress of the previous animation.
