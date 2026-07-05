@@ -4,5 +4,5 @@ class_name Character extends Resource
 ## In Deltarune, examples of Actors include Kris, Susie, Ralsei, and Noelle.
 
 @export var name: String
-@export var offset: Vector2
+@export var caterpillar_offset: Vector2
 @export var animations: SpriteFrames

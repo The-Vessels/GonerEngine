@@ -5,9 +5,11 @@
 [ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_character.tres" id="3_3brok"]
 
 [node name="PartyMemberList" type="Node2D" unique_id=1142586290]
+y_sort_enabled = true
 
 [node name="Kris" parent="." unique_id=1462347025 instance=ExtResource("1_1ixd1")]
 chara = ExtResource("2_l805s")
 
 [node name="Susie" parent="." unique_id=428523818 instance=ExtResource("1_1ixd1")]
+position = Vector2(34, 0)
 chara = ExtResource("3_3brok")

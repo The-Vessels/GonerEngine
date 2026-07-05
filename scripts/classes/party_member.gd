@@ -41,8 +41,7 @@ func is_playable() -> bool:
 	return get_index() == 0
 
 func _ready():
-	$AnimatedSprite2D.sprite_frames = chara.animations
-	$AnimatedSprite2D.play()
+	super._ready()
 	
 	if is_playable():
 		last_positions = CircularQueue.new(100)
@@ -97,8 +96,8 @@ func follow_main_character():
 		var info: CaterpillarInfo = value
 		position = info.pos
 		facing = info.facing
-		walking = info.walking
-		running = info.running
+		walking = leader.walking
+		running = leader.running
 
 func move_playable_character(dtmult: float):
 	# Cancel is same button as sprint
@@ -124,6 +123,7 @@ func move_playable_character(dtmult: float):
 	
 	if not facing_same(dir) and dir != Vector2.ZERO:
 		facing = calc_facing_from_dir(dir)
+
 
 func process_anim_state(dtmult: float):
 	# print(anim_state)
