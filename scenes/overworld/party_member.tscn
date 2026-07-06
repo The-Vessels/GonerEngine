@@ -1,28 +1,29 @@
 [gd_scene format=3 uid="uid://d376k0qo4m4bd"]
 
 [ext_resource type="Script" uid="uid://b6dka1arygbab" path="res://scripts/classes/party_member.gd" id="1_eraik"]
-[ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_animations.tres" id="2_kxwid"]
+[ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_animations.tres" id="2_eraik"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2hw7"]
-size = Vector2(20, 7)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifcbi"]
+size = Vector2(19, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocjv1"]
-size = Vector2(20, 7)
+size = Vector2(19, 20)
 
 [node name="PartyMember" type="CharacterBody2D" unique_id=1462347025]
 script = ExtResource("1_eraik")
 metadata/_custom_type_script = "uid://b6dka1arygbab"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1673399250]
-position = Vector2(0, 20)
-shape = SubResource("RectangleShape2D_n2hw7")
+position = Vector2(9.5, 31.5)
+shape = SubResource("RectangleShape2D_ifcbi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=789151799]
-sprite_frames = ExtResource("2_kxwid")
+sprite_frames = ExtResource("2_eraik")
 animation = &"walk_down"
+centered = false
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=2054636149]
-position = Vector2(0, 20)
+position = Vector2(9.5, 20)
 shape = SubResource("RectangleShape2D_ocjv1")
 target_position = Vector2(0, 0)
 collide_with_areas = true

@@ -15,7 +15,9 @@ func _exit_tree() -> void:
 		actor_dict[chara.name] = null
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("face_down")
+	$AnimatedSprite2D.offset = chara.caterpillar_offset
+	$AnimatedSprite2D.sprite_frames = chara.animations
+	$AnimatedSprite2D.play()
 
 static func get_by_name(actor_name: String) -> Actor:
 	print(actor_dict)
