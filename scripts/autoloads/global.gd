@@ -53,6 +53,9 @@ func _process(_delta: float) -> void:
 func fader_fade(start, end, time, time_unit):
 	Signals.fadeFader.emit(start, end, time, time_unit)
 	await Signals.fadeEnd
+	
+func fade_music(gain, time):
+	Signals.fadeMusic.emit(gain, time)
 
 func setup_discord_rpc():
 	pass

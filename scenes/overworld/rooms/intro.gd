@@ -3,7 +3,7 @@ extends Room
 @onready var label: Label = $Label
 
 var intro_activated := false
-var room_changed := false
+var room_change := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,17 +13,19 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("confirm"):
-		if intro_activated and !room_changed:
-			room_changed = true
-			Signals.fadeMusic.emit(0.0, 20)
+		if intro_activated and !room_change:
+			room_change = true
+			Global.fade_music(0.0, 20)
 			await Global.fader_fade(0.0, 1.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
-			Signals.changeRoom.emit("res://scenes/overworld/rooms/hometown.tscn")
+			Room.goto("res://scenes/overworld/rooms/hometown.tscn")
 			await Global.fader_fade(1.0, 0.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
 	
 	if Global.mus_track_position == 0.0:
-		if intro_activated and !room_changed:
-			Signals.changeRoom.emit("res://scenes/overworld/rooms/hometown.tscn")
-			room_changed = true
+		if intro_activated and !room_change:
+			room_change = true
+			await Global.fader_fade(0.0, 1.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			Room.goto("res://scenes/overworld/rooms/hometown.tscn")
+			await Global.fader_fade(1.0, 0.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
 		label.visible_characters = 0
 	if Global.mus_track_position > 0.0:
 		label.visible_characters = 1
