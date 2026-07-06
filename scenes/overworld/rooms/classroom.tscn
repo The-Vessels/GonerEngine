@@ -44,7 +44,6 @@ shape = SubResource("RectangleShape2D_gobvo")
 position = Vector2(-224, -192)
 script = ExtResource("4_jelid")
 target_scene = "uid://cy8co0c6bkwdr"
-player_facing = "down"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea2" unique_id=2088458932]

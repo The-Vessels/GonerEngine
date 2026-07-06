@@ -3,8 +3,13 @@ class_name Afterimage extends Sprite2D
 var opacity_rate: float
 var velocity: Vector2
 
-static func with_fade_time(fade_time: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO) -> Afterimage:
-	var fade_rate := starting_opacity / fade_time
+static func with_fade_time(time_unit: Enums.TimeUnits, fade_time: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO) -> Afterimage:
+	var fade_rate: float
+	
+	fade_rate = starting_opacity / fade_time
+	if time_unit == Enums.TimeUnits.PHYSICS_FRAME:
+		fade_rate = starting_opacity / (fade_time / 30.0)
+	
 	return new(fade_rate, starting_opacity, vel)
 
 func _init(fade_rate: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO):

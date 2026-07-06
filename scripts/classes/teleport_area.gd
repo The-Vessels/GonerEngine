@@ -8,7 +8,7 @@ class_name TeleportArea extends Area2D
 @export_file("*.tscn") var target_scene
 # ID of the TargetMarkerDest to position the player at
 @export var target_marker_id: int
-@export_enum("up", "down", "left", "right") var player_facing: String
+@export var player_facing: Enums.Facing = Enums.Facing.DOWN
 
 #@onready var scene_container: Node = get_tree().root.get_child(-1).get_node("RoomManager")
 
@@ -17,5 +17,11 @@ func _ready():
 	#print('HIIIIII ', scene_container)
 
 func _on_body_entered(_body: Node2D) -> void:
-	Signals.changeRoom.emit(target_scene)
+	Global.moveable = false
+	await Global.fader_fade(0.0, 1.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+	
 	Signals.warpParty.emit(target_marker_id, player_facing)
+	Signals.changeRoom.emit(target_scene)
+	
+	await Global.fader_fade(1.0, 0.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+	Global.moveable = true

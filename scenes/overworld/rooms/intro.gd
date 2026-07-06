@@ -14,9 +14,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("confirm"):
 		if intro_activated and !room_changed:
-			Signals.changeRoom.emit("res://scenes/overworld/rooms/hometown.tscn")
-			Signals.fadeMusic.emit(0.0, 20)
 			room_changed = true
+			Signals.fadeMusic.emit(0.0, 20)
+			await Global.fader_fade(0.0, 1.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			Signals.changeRoom.emit("res://scenes/overworld/rooms/hometown.tscn")
+			await Global.fader_fade(1.0, 0.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
 	
 	if Global.mus_track_position == 0.0:
 		if intro_activated and !room_changed:

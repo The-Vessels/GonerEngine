@@ -8,20 +8,13 @@ extends Node2D
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
 
 const PARTY_MEMBERS_SCENE = preload("uid://dw4u4k5xprkb0")
+
 var pm_node: Node
 var player: Node
 
-signal room_change_finished
-
 func _ready() -> void:
 	Signals.changeRoom.connect(
-		func(room):
-			Global.moveable = false
-			transition_player.play("fade_to_black")
-			await transition_player.animation_finished
-			goto_room(room)
-			transition_player.play("fade_to_normal")
-			Global.moveable = true
+		goto_room
 	)
 	Signals.warpParty.connect(
 		warp_to_marker
@@ -59,23 +52,16 @@ func goto_room(room):
 	
 	prepare_room(room_instantiated)
 	
-	room_change_finished.emit()
+	Signals.room_change_finished.emit()
 	print("FINISHED ROOM SWAP")
 
 func warp_to_marker(marker_id, facing):
-	await room_change_finished
+	await Signals.room_change_finished
 	for child in Global.currentRoom.get_children():
-		# Set the camera limits provided in the new room
-		if child is CameraBounds:
-			world_camera.limit_left = child.tl_corner.x
-			world_camera.limit_top = child.tl_corner.y
-			world_camera.limit_right = child.br_corner.x
-			world_camera.limit_bottom = child.br_corner.y
-		# Set the player in the correct marker position
 		if child is TargetMarkerDest:
 			if child.marker_id == marker_id:
 				player.position = child.position
-				player.facing = facing if facing else player.facing
+				player.facing = facing
 	print("tped to marker")
 
 func prepare_room(room):

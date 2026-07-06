@@ -2,14 +2,19 @@
 # fade to black animation between switching rooms
 extends CanvasLayer
 
-@onready var transition_player: AnimationPlayer = $TransitionPlayer
+@onready var transition_rect: ColorRect = $TransitionRect
 
-signal transitioned
-
-func transition():
-	transition_player.play("fade_to_black")
-
-func _on_transition_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "fade_to_black":
-		transitioned.emit()
-		transition_player.play("fade_to_normal")
+func _ready() -> void:
+	Signals.fadeFader.connect(
+		func(start, end, time, time_unit):
+			var tween = create_tween()
+			
+			var duration = time
+			if time_unit == Enums.TimeUnits.PHYSICS_FRAME:
+				duration = time / 30.0
+			
+			transition_rect.color.a = start
+			tween.tween_property(transition_rect, "color", Color(0, 0, 0, end), duration)
+			await tween.finished
+			Signals.fadeEnd.emit()
+	)

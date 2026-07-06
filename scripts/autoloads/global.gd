@@ -39,7 +39,7 @@ var ui_menumove := preload("res://sounds/ui/menumove.wav")
 
 func _ready():
 	setup_discord_rpc()
-	
+
 func _physics_process(_delta: float) -> void:
 	fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
 
@@ -49,6 +49,10 @@ func _process(_delta: float) -> void:
 	if Input.is_key_pressed(KEY_F2):
 		get_tree().reload_current_scene()
 	mus_track_position = music_player.get_playback_position()
+
+func fader_fade(start, end, time, time_unit):
+	Signals.fadeFader.emit(start, end, time, time_unit)
+	await Signals.fadeEnd
 
 func setup_discord_rpc():
 	pass
