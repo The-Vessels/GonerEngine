@@ -10,7 +10,7 @@ extends Node2D
 const PARTY_MEMBERS_SCENE = preload("uid://dw4u4k5xprkb0")
 
 var pm_node: Node
-var player: Node
+var player: PartyMember
 
 func _ready() -> void:
 	Signals.changeRoom.connect(
@@ -57,11 +57,17 @@ func goto_room(room):
 
 func warp_to_marker(marker_id, facing):
 	await Signals.room_change_finished
-	for child in Global.currentRoom.get_children():
-		if child is TargetMarkerDest:
-			if child.marker_id == marker_id:
-				player.position = child.position
-				player.facing = facing
+	for child in Global.currentRoom.find_children("*", "TargetMarkerDest"):
+		if child.marker_id == marker_id:
+			var sprite: AnimatedSprite2D = player.find_children("*", "AnimatedSprite2D")[0]
+			var sprite_size: Vector2 =\
+			sprite.sprite_frames.get_frame_texture(sprite.animation, 0).get_size()
+			
+			var adjusted_pos: Vector2 =\
+			Vector2(child.position.x - (sprite_size.x/2.0), child.position.y - sprite_size.y)
+			
+			player.facing = facing
+			player.position = adjusted_pos
 	print("tped to marker")
 
 func prepare_room(room):

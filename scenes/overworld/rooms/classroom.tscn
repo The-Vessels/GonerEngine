@@ -51,7 +51,7 @@ position = Vector2(284, 300)
 shape = SubResource("RectangleShape2D_gobvo")
 
 [node name="TargetMarkerDest" type="Marker2D" parent="." unique_id=786140519]
-position = Vector2(160, 144)
+position = Vector2(160, 160)
 script = ExtResource("5_ituqa")
 metadata/_custom_type_script = "uid://cwiacpp0rgtxs"
 
