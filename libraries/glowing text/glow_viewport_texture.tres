@@ -1,4 +1,4 @@
 [gd_resource type="ViewportTexture" format=3 uid="uid://dkvnr8mla0y5o"]
 
 [resource]
-viewport_path = NodePath("HBoxContainer/dialoguetext/GlowingText")
+viewport_path = NodePath(".")

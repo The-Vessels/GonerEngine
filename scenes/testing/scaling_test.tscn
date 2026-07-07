@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bf5o5friopaek"]
+
+[ext_resource type="Texture2D" uid="uid://d0gvyfnxs5o8w" path="res://sprites/souls/small_soul.png" id="1_bjilf"]
+[ext_resource type="Texture2D" uid="uid://cyo5wtt55ny5t" path="res://sprites/tiles/hometown.png" id="2_ybgmu"]
+
+[sub_resource type="GDScript" id="GDScript_ocjv1"]
+script/source = "extends CharacterBody2D
+
+func _ready() -> void:
+	pass
+
+func _physics_process(delta: float) -> void:
+	global_position.x += 10.0
+"
+
+[node name="ScalingTest" type="Node2D" unique_id=1707821903]
+scale = Vector2(4, 4)
+
+[node name="SmallSoul2" type="Sprite2D" parent="." unique_id=384620156]
+position = Vector2(477, 237)
+texture = ExtResource("1_bjilf")
+
+[node name="Hometown" type="Sprite2D" parent="." unique_id=818144798]
+position = Vector2(0, 0.5)
+texture = ExtResource("2_ybgmu")
+centered = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1004441750]
+position = Vector2(9.5, 5.5)
+script = SubResource("GDScript_ocjv1")
+
+[node name="SmallSoul" type="Sprite2D" parent="CharacterBody2D" unique_id=895363666]
+texture = ExtResource("1_bjilf")
+centered = false

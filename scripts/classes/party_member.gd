@@ -31,6 +31,8 @@ func _enter_tree() -> void:
 	# print("CHARACTER " + chara.name + " ENTERED")
 	super._enter_tree()
 	party_list[get_index()] = self
+	process_priority = get_index()
+	
 func _exit_tree() -> void:
 	# print("CHARACTER " + chara.name + " EXITED")
 	super._exit_tree()
@@ -74,10 +76,11 @@ func party_member_process(delta: float) -> void:
 	if $AnimatedSprite2D.speed_scale != speed_scale:
 		$AnimatedSprite2D.speed_scale = speed_scale
 	
-	var walk_anim := "walk_" + calc_animation_from_facing(facing)
-	
-	if walking and $AnimatedSprite2D.animation != walk_anim:
-		play_animation_preserve(walk_anim)
+	var anim_suffix :=  calc_animation_from_facing(facing)
+	if walking and $AnimatedSprite2D.animation != "walk_" + anim_suffix:
+		play_animation_preserve("walk_" + anim_suffix)
+	#if not walking and $AnimatedSprite2D.animation != "face_" + anim_suffix:
+		#play_animation_preserve("face_" + anim_suffix)
 	
 	process_anim_state(dtmult)
 
@@ -90,14 +93,25 @@ func follow_main_character():
 	var leader := party_list[0]
 	# if leader == null:
 	# 	return
+
+	var info: CaterpillarInfo = leader.last_positions.get_val(10)
+	if info == null:
+		return
+	var main_last_frame_info: CaterpillarInfo = leader.last_positions.get_val(1)
 	
-	var value = leader.last_positions.get_val(10)
-	if value != null:
-		var info: CaterpillarInfo = value
+	walking = leader.position != main_last_frame_info.pos
+	
+	if walking:
 		position = info.pos
 		facing = info.facing
-		walking = leader.walking
-		running = leader.running
+		
+		var run_thresh := 4.0 if Global.isdark() else 8.0
+		var follower_last_frame_info: CaterpillarInfo = leader.last_positions.get_val(11)
+		var pos_diff := (follower_last_frame_info.pos - info.pos).abs()
+		running = (pos_diff.x > run_thresh) or (pos_diff.y > run_thresh)
+	
+	#walking = leader.walking
+	#running = leader.running
 
 func move_playable_character(dtmult: float):
 	# Cancel is same button as sprint
@@ -111,13 +125,14 @@ func move_playable_character(dtmult: float):
 		runtimer = 0.0
 	
 	var dir := get_walk_direction()
+	var old_walking := walking
 	walking = dir.x != 0.0 or dir.y != 0.0
 	var walk_speed := 30.0 * get_walk_speed()
 
 	velocity = walk_speed * dir
 	move_and_slide()
 	
-	if walking:
+	if old_walking:
 		var info := CaterpillarInfo.new(position, facing, walking, running)
 		last_positions.add(info)
 	
@@ -126,9 +141,14 @@ func move_playable_character(dtmult: float):
 
 
 func process_anim_state(dtmult: float):
+	if chara.name == "Susie":
+		print("Susie walking = ", walking, " animstate = ", anim_state)
+	
 	# print(anim_state)
 	if walking:
 		anim_state = 8.0
+		# walk_frame = $AnimatedSprite2D.frame
+		# walk_progress = $AnimatedSprite2D.frame_progress
 	elif anim_state > 0.0:
 		var last_anim_state = anim_state
 		anim_state -= dtmult
