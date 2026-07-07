@@ -16,6 +16,7 @@ size = Vector2(320, 240)
 size = Vector2(40, 40)
 
 [node name="Classroom" type="Node2D" unique_id=830096811]
+scale = Vector2(2, 2)
 script = ExtResource("1_eqjh4")
 
 [node name="CameraBounds" type="Area2D" parent="." unique_id=111864463]

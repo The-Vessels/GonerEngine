@@ -27,6 +27,7 @@ size = Vector2(20, 240)
 
 [node name="Node2D" type="Node2D" unique_id=787519670]
 y_sort_enabled = true
+scale = Vector2(2, 2)
 script = ExtResource("1_5v1hx")
 world_type = 1
 
