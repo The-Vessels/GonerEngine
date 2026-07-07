@@ -1,4 +1,5 @@
 extends Node
+@warning_ignore_start("unused_signal")
 
 # Custom global signals for GonerEngine
 signal changeMusic(music, gain, pitch)

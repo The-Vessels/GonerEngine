@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d376k0qo4m4bd"]
 
 [ext_resource type="Script" uid="uid://b6dka1arygbab" path="res://scripts/classes/party_member.gd" id="1_eraik"]
-[ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_animations.tres" id="2_eraik"]
+[ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_lw_animations.tres" id="2_eraik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifcbi"]
 size = Vector2(19, 13)
@@ -10,6 +10,7 @@ size = Vector2(19, 13)
 size = Vector2(19, 20)
 
 [node name="PartyMember" type="CharacterBody2D" unique_id=1462347025]
+scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_eraik")
 metadata/_custom_type_script = "uid://b6dka1arygbab"
@@ -20,7 +21,7 @@ shape = SubResource("RectangleShape2D_ifcbi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=789151799]
 sprite_frames = ExtResource("2_eraik")
-animation = &"walk_down"
+animation = &"walk_right"
 centered = false
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=2054636149]

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dikw7v5ni7q8q"]
+[gd_resource type="Resource" script_class="LightDarkCharacter" format=3 uid="uid://cso70uyedr7dl"]
 
-[ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_animations.tres" id="1_q1nt4"]
-[ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_yfuhb"]
+[ext_resource type="SpriteFrames" uid="uid://djkn6hdw6v6my" path="res://sprites/actors/susie/susie_dw_animations.tres" id="1_dkh4m"]
+[ext_resource type="Script" uid="uid://dw10gbdy6gu1l" path="res://scripts/classes/light_dark_character.gd" id="1_ifq0d"]
+[ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_lw_animations.tres" id="2_xwwpk"]
 
 [resource]
-script = ExtResource("1_yfuhb")
+script = ExtResource("1_ifq0d")
+dark_animations = ExtResource("1_dkh4m")
+light_animations = ExtResource("2_xwwpk")
 name = "Susie"
 caterpillar_offset = Vector2(-3, -6)
-animations = ExtResource("1_q1nt4")
-metadata/_custom_type_script = "uid://coio6dxiiw8m7"
+metadata/_custom_type_script = "uid://dw10gbdy6gu1l"

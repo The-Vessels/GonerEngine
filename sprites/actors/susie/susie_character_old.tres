@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dikw7v5ni7q8q"]
+
+[ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_lw_animations.tres" id="1_q1nt4"]
+[ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_yfuhb"]
+
+[resource]
+script = ExtResource("1_yfuhb")
+name = "Susie"
+caterpillar_offset = Vector2(-3, -6)
+animations = ExtResource("1_q1nt4")
+metadata/_custom_type_script = "uid://coio6dxiiw8m7"

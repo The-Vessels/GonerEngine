@@ -5,4 +5,7 @@ class_name Character extends Resource
 
 @export var name: String
 @export var caterpillar_offset: Vector2
-@export var animations: SpriteFrames
+@export var animation: SpriteFrames
+
+func get_animation() -> SpriteFrames:
+	return animation

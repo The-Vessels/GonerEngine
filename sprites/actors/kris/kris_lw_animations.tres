@@ -100,7 +100,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 4.5
 }, {
 "frames": [{
 "duration": 1.0,

@@ -85,7 +85,7 @@ func set_dynamic_border(texture: Texture2D, frames_length: float):
 	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
 		Signals.changeBorder.emit(current_dynamic_border, frames_length)
 
-func isdark() -> bool:
+func is_dark() -> bool:
 	return world_type == WorldTypes.WORLD_DARK
 
 #func toggle_fullscreen():

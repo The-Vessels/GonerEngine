@@ -62,7 +62,6 @@ script = ExtResource("1_5dyip")
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 anchor_mode = 0
-zoom = Vector2(2, 2)
 script = ExtResource("4_x5456")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]

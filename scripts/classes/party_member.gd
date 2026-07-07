@@ -20,6 +20,8 @@ var anim_state: float = 0.0
 var walk_frame: int
 var walk_progress: float
 
+var follow_target := 12
+
 # Can this party member move independently from being an actor?
 var can_move: bool = true
 
@@ -76,8 +78,8 @@ func party_member_process(delta: float) -> void:
 	if $AnimatedSprite2D.speed_scale != speed_scale:
 		$AnimatedSprite2D.speed_scale = speed_scale
 	
-	var anim_suffix :=  calc_animation_from_facing(facing)
-	if walking and $AnimatedSprite2D.animation != "walk_" + anim_suffix:
+	var anim_suffix := calc_animation_from_facing(facing)
+	if walking:
 		play_animation_preserve("walk_" + anim_suffix)
 	#if not walking and $AnimatedSprite2D.animation != "face_" + anim_suffix:
 		#play_animation_preserve("face_" + anim_suffix)
@@ -94,7 +96,7 @@ func follow_main_character():
 	# if leader == null:
 	# 	return
 
-	var info: CaterpillarInfo = leader.last_positions.get_val(10)
+	var info: CaterpillarInfo = leader.last_positions.get_val(follow_target)
 	if info == null:
 		return
 	var main_last_frame_info: CaterpillarInfo = leader.last_positions.get_val(1)
@@ -105,8 +107,9 @@ func follow_main_character():
 		position = info.pos
 		facing = info.facing
 		
-		var run_thresh := 4.0 if Global.isdark() else 8.0
-		var follower_last_frame_info: CaterpillarInfo = leader.last_positions.get_val(11)
+		var run_thresh := 4.0 if Global.is_dark() else 8.0
+		var follower_last_frame_info: CaterpillarInfo = \
+			leader.last_positions.get_val(follow_target + 1)
 		var pos_diff := (follower_last_frame_info.pos - info.pos).abs()
 		running = (pos_diff.x > run_thresh) or (pos_diff.y > run_thresh)
 	
@@ -141,9 +144,6 @@ func move_playable_character(dtmult: float):
 
 
 func process_anim_state(dtmult: float):
-	if chara.name == "Susie":
-		print("Susie walking = ", walking, " animstate = ", anim_state)
-	
 	# print(anim_state)
 	if walking:
 		anim_state = 8.0
@@ -175,9 +175,7 @@ func get_walk_direction() -> Vector2:
 
 # Retrieves the walk speed (pixels per 30fps frame).
 func get_walk_speed() -> int:
-	var darkworld: bool = Global.world_type == Global.WorldTypes.WORLD_DARK
-	
-	var bwspeed := 4 if darkworld else 3
+	var bwspeed := 4 if Global.is_dark() else 6
 	
 	if running:
 		var add: int
@@ -188,7 +186,7 @@ func get_walk_speed() -> int:
 		else:
 			add = 1
 		
-		var mul := 1.8 if darkworld else 1.0
+		var mul := 1.8 if Global.is_dark() else 1.0
 		return bwspeed + round(add * mul)
 		
 	else:
@@ -246,6 +244,9 @@ func do_interact():
 # Plays an animation, while preserving
 # the frame and frame progress of the previous animation.
 func play_animation_preserve(animation: StringName):
+	if $AnimatedSprite2D.animation == animation and $AnimatedSprite2D.is_playing():
+		return
+	
 	var face := String(animation).begins_with("face_")
 	var frame: int = walk_frame if face else $AnimatedSprite2D.frame
 	var prog: float = walk_progress if face else $AnimatedSprite2D.frame_progress

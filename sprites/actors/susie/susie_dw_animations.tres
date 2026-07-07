@@ -1,0 +1,121 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://djkn6hdw6v6my"]
+
+[ext_resource type="Texture2D" uid="uid://cl7wlg8rqls5v" path="res://sprites/actors/susie/dark/walk/down_0.png" id="1_eug5e"]
+[ext_resource type="Texture2D" uid="uid://clnwnrbl1t7a0" path="res://sprites/actors/susie/dark/walk/left_0.png" id="2_gy7dl"]
+[ext_resource type="Texture2D" uid="uid://bbymik77xyhvi" path="res://sprites/actors/susie/dark/walk/right_0.png" id="3_wj7uc"]
+[ext_resource type="Texture2D" uid="uid://0ngiiy7m3701" path="res://sprites/actors/susie/dark/walk/up_0.png" id="4_d785h"]
+[ext_resource type="Texture2D" uid="uid://fgx6bklgr577" path="res://sprites/actors/susie/dark/walk/down_1.png" id="5_3qsy1"]
+[ext_resource type="Texture2D" uid="uid://bpqt7rw7a0uw8" path="res://sprites/actors/susie/dark/walk/down_2.png" id="6_nk4cu"]
+[ext_resource type="Texture2D" uid="uid://ci46u8foctlfl" path="res://sprites/actors/susie/dark/walk/down_3.png" id="7_21tfs"]
+[ext_resource type="Texture2D" uid="uid://btlufkce3lpst" path="res://sprites/actors/susie/dark/walk/left_1.png" id="8_cieap"]
+[ext_resource type="Texture2D" uid="uid://dju7a5gap2bmo" path="res://sprites/actors/susie/dark/walk/left_2.png" id="9_dh0bs"]
+[ext_resource type="Texture2D" uid="uid://bu81xduug6r7q" path="res://sprites/actors/susie/dark/walk/left_3.png" id="10_oy6wy"]
+[ext_resource type="Texture2D" uid="uid://cw1fhodckl3yb" path="res://sprites/actors/susie/dark/walk/right_1.png" id="11_rhe87"]
+[ext_resource type="Texture2D" uid="uid://d0rk12hpyykl0" path="res://sprites/actors/susie/dark/walk/right_2.png" id="12_xveu4"]
+[ext_resource type="Texture2D" uid="uid://d1mc1so7ibccq" path="res://sprites/actors/susie/dark/walk/right_3.png" id="13_ec21b"]
+[ext_resource type="Texture2D" uid="uid://q20t3tnrv1lj" path="res://sprites/actors/susie/dark/walk/up_1.png" id="14_vvq2n"]
+[ext_resource type="Texture2D" uid="uid://3e1ynb3g3q1h" path="res://sprites/actors/susie/dark/walk/up_2.png" id="15_kcffn"]
+[ext_resource type="Texture2D" uid="uid://bsv6dnyqpwlnq" path="res://sprites/actors/susie/dark/walk/up_3.png" id="16_86a5i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eug5e")
+}],
+"loop": 1,
+"name": &"face_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gy7dl")
+}],
+"loop": 1,
+"name": &"face_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wj7uc")
+}],
+"loop": 1,
+"name": &"face_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_d785h")
+}],
+"loop": 1,
+"name": &"face_up",
+"speed": 4.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eug5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3qsy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nk4cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_21tfs")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gy7dl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cieap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dh0bs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oy6wy")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wj7uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rhe87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xveu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ec21b")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_d785h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vvq2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kcffn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_86a5i")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
