@@ -300,7 +300,7 @@ tile_set = SubResource("TileSet_ijgb4")
 [node name="TeleportArea" type="Area2D" parent="." unique_id=1869891425]
 script = ExtResource("4_oqv75")
 target_scene = "uid://cbopyi6jxh138"
-player_facing = "up"
+player_facing = 1
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=591842712]

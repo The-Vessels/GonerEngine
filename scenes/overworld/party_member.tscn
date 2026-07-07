@@ -10,6 +10,7 @@ size = Vector2(19, 13)
 size = Vector2(19, 20)
 
 [node name="PartyMember" type="CharacterBody2D" unique_id=1462347025]
+motion_mode = 1
 script = ExtResource("1_eraik")
 metadata/_custom_type_script = "uid://b6dka1arygbab"
 

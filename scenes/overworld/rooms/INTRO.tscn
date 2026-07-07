@@ -33,5 +33,3 @@ gonerengine edition yo"
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248638253]

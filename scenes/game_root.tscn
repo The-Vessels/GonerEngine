@@ -11,63 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://sprites/ui/menu/misc/quitting/quitmessage_3.png" id="10_35vvr"]
 [ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://sprites/ui/menu/misc/quitting/quitmessage_4.png" id="11_so1mv"]
 
-[sub_resource type="Animation" id="Animation_jweab"]
-length = 0.001
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jrk67"]
-resource_name = "fade_to_black"
-length = 0.41666666
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.41666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_qj1lb"]
-resource_name = "fade_to_normal"
-length = 0.41666666
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.41666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8adi8"]
-_data = {
-&"RESET": SubResource("Animation_jweab"),
-&"fade_to_black": SubResource("Animation_jrk67"),
-&"fade_to_normal": SubResource("Animation_qj1lb")
-}
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_gecxn"]
 animations = [{
 "frames": [{
@@ -136,9 +79,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionLayer" unique_id=77294238]
-libraries/ = SubResource("AnimationLibrary_8adi8")
-
 [node name="QuittingLayer" type="CanvasLayer" parent="." unique_id=1415601680]
 
 [node name="Quitting" type="AnimatedSprite2D" parent="QuittingLayer" unique_id=221779437]
@@ -151,5 +91,3 @@ centered = false
 
 [node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
 script = SubResource("GDScript_1brn0")
-
-[connection signal="animation_finished" from="TransitionLayer/TransitionPlayer" to="TransitionLayer" method="_on_transition_player_animation_finished"]

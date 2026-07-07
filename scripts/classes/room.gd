@@ -6,6 +6,12 @@ class_name Room extends Node2D
 
 @export var world_type: Global.WorldTypes
 
+static func goto(room):
+	Signals.changeRoom.emit(room)
+
+static func warp_party(target_marker_id, player_facing):
+	Signals.warpParty.emit(target_marker_id, player_facing)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.world_type = world_type
