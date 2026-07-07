@@ -72,13 +72,14 @@ func warp_to_marker(marker_id, facing):
 
 func prepare_room(room):
 	# Get the necessary data from the new room to:
+	print(room.scale)
 	for child in room.get_children():
 		# Set the camera limits provided in the new room
 		if child is CameraBounds:
-			world_camera.limit_left = child.tl_corner.x
-			world_camera.limit_top = child.tl_corner.y
-			world_camera.limit_right = child.br_corner.x
-			world_camera.limit_bottom = child.br_corner.y
+			world_camera.limit_left = child.tl_corner.x * room.scale.x
+			world_camera.limit_top = child.tl_corner.y * room.scale.y
+			world_camera.limit_right = child.br_corner.x * room.scale.x
+			world_camera.limit_bottom = child.br_corner.y * room.scale.y
 		# Create the party and teleport the player to the PlayerMarker
 		if child is PlayerMarker:
 			pm_node = PARTY_MEMBERS_SCENE.instantiate()
