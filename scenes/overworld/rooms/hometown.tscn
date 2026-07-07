@@ -257,6 +257,7 @@ func interact() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]
 
 [node name="Hometown" type="Node2D" unique_id=2025934906]
+scale = Vector2(2, 2)
 script = ExtResource("1_b2ck7")
 world_type = 1
 

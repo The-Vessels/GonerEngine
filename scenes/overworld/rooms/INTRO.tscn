@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://g74i2qdbt2iy" path="res://music/mus_intro_test.ogg" id="3_phvki"]
 
 [node name="Intro" type="Node2D" unique_id=1264599970]
+scale = Vector2(2, 2)
 script = ExtResource("1_vx6y5")
 metadata/_custom_type_script = "uid://bb8pql8fxg4kr"
 
