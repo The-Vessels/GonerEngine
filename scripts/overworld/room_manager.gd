@@ -59,15 +59,9 @@ func warp_to_marker(marker_id, facing):
 	await Signals.room_change_finished
 	for child in Global.currentRoom.find_children("*", "TargetMarkerDest"):
 		if child.marker_id == marker_id:
-			var sprite: AnimatedSprite2D = player.find_children("*", "AnimatedSprite2D")[0]
-			var sprite_size: Vector2 =\
-			sprite.sprite_frames.get_frame_texture(sprite.animation, 0).get_size()
-			
-			var adjusted_pos: Vector2 =\
-			Vector2(child.position.x - (sprite_size.x/2.0), child.position.y - sprite_size.y)
-			
+			var pos_adjusted = get_bottom_middle_tp_pos(player, child)
+			player.position = pos_adjusted
 			player.facing = facing
-			player.position = adjusted_pos
 	print("tped to marker")
 
 func prepare_room(room):
@@ -85,6 +79,19 @@ func prepare_room(room):
 			pm_node = PARTY_MEMBERS_SCENE.instantiate()
 			player = pm_node.get_child(0)
 			room.add_child(pm_node)
-			player.position = child.position
-			print("tped to playermarker")
+			
+			var pos_adjusted = get_bottom_middle_tp_pos(player, child)
+			player.position = pos_adjusted
+			
 			world_camera.target = player
+			print("tped to playermarker")
+
+func get_bottom_middle_tp_pos(player, marker):
+	var sprite: AnimatedSprite2D = player.find_children("*", "AnimatedSprite2D")[0]
+	var sprite_size: Vector2 =\
+	sprite.sprite_frames.get_frame_texture(sprite.animation, 0).get_size()
+	
+	var adjusted_pos: Vector2 =\
+	Vector2(marker.position.x - (sprite_size.x/2.0), marker.position.y - sprite_size.y)
+	
+	return adjusted_pos
