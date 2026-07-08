@@ -41,6 +41,7 @@ static func create(text: Array) -> TextBox:
 	var textbox_inst: TextBox = textbox_scene.instantiate()
 	#textbox_inst.text = text
 	# append_array needed otherwise godot is weird
+	textbox_inst.text.clear()
 	textbox_inst.text.append_array(text)
 	return textbox_inst
 

@@ -11,6 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://sprites/ui/menu/misc/quitting/quitmessage_3.png" id="10_35vvr"]
 [ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://sprites/ui/menu/misc/quitting/quitmessage_4.png" id="11_so1mv"]
 
+[sub_resource type="GDScript" id="GDScript_1brn0"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Signals.startDialogue.connect(
+		func(text):
+			if !TextBox.has_textbox and Global.moveable:
+				var textbox := TextBox.create(text)
+				add_child(textbox)
+	)
+"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gecxn"]
 animations = [{
 "frames": [{
@@ -34,21 +48,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_1brn0"]
-script/source = "extends CanvasLayer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Signals.startDialogue.connect(
-		func(text):
-			
-			if !TextBox.has_textbox and Global.moveable:
-				var textbox := TextBox.create(text)
-				add_child(textbox)
-	)
-"
-
 [node name="GameRoot" type="Node2D" unique_id=176435316]
 y_sort_enabled = true
 script = ExtResource("1_ywsqi")
@@ -63,6 +62,9 @@ script = ExtResource("1_5dyip")
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 anchor_mode = 0
 script = ExtResource("4_x5456")
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
+script = SubResource("GDScript_1brn0")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
 
@@ -88,6 +90,3 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gecxn")
 animation = &"quit_anim"
 centered = false
-
-[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
-script = SubResource("GDScript_1brn0")
