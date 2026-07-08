@@ -50,11 +50,11 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 	mus_track_position = music_player.get_playback_position()
 
-func fader_fade(start, end, time, time_unit):
+func fader_fade(start: float, end: float, time: float, time_unit: Enums.TimeUnits) -> void:
 	Signals.fadeFader.emit(start, end, time, time_unit)
 	await Signals.fadeEnd
 	
-func fade_music(gain, time):
+func fade_music(gain: float, time: float):
 	Signals.fadeMusic.emit(gain, time)
 
 func setup_discord_rpc():

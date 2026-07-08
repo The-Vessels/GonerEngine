@@ -9,7 +9,7 @@ class_name MusicNode extends Node2D
 # This is linear btw
 @export_range(0.0, 4.0) var gain: float = 1.0
 
-static func change_music(music, gain, pitch):
+static func change_music(music: AudioStream, gain: float, pitch: float) -> void:
 	Signals.changeMusic.emit(music, gain, pitch)
 
 # Called when the node enters the scene tree for the first time.

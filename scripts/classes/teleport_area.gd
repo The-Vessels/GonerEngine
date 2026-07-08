@@ -5,7 +5,7 @@ class_name TeleportArea extends Area2D
 ## [b]Note:[/b] Use with [TargetMarkerDest] to set destination position of the player
 
 # Room to teleport to
-@export_file("*.tscn") var target_scene
+@export_file("*.tscn") var target_scene: String
 # ID of the TargetMarkerDest to position the player at
 @export var target_marker_id: int
 @export var player_facing: Enums.Facing = Enums.Facing.DOWN
