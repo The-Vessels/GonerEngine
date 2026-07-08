@@ -43,6 +43,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="ENGINE_GONER"
 
+[editor]
+
+script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn")
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
