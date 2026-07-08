@@ -33,9 +33,8 @@ func goto_room(room):
 	for child in get_children():
 		child.queue_free()
 	
-	# Fetch and instantiate the new room to go to
-	var room_scene: PackedScene = load(room)
-	var room_instantiated: Room = room_scene.instantiate()
+	# Instantiate the new room to go to
+	var room_instantiated: Room = room.instantiate()
 
 	# Add the correct menu for the new room's world type
 	menu_layer.get_child(0).queue_free()
@@ -97,6 +96,3 @@ func get_bottom_middle_tp_pos(player: PartyMember, marker: Marker2D) -> Vector2:
 	Vector2(marker.position.x - (sprite_size.x/2.0), marker.position.y - sprite_size.y)
 	
 	return adjusted_pos
-
-func teleport_party():
-	pass

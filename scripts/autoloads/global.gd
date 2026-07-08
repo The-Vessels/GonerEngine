@@ -50,10 +50,25 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 	mus_track_position = music_player.get_playback_position()
 
+## Fades the opacity of the black transition screen from [param start] opacity to [param end] opacity
+## in a given [param time].
+## [br][br]
+## [b]Note:[/b] You can use [code]await[/code] to wait for the fader to finish before the code proceeds.
+## [codeblock]
+## await Global.fader_fade(0.0, 1.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+##
+## Global.fader_fade(1.0, 0.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+## [/codeblock]
 func fader_fade(start: float, end: float, time: float, time_unit: Enums.TimeUnits) -> void:
 	Signals.fadeFader.emit(start, end, time, time_unit)
 	await Signals.fadeEnd
-	
+
+## Fades the global music to a given [param gain] in a provided [param time]frame.
+## [br][br]
+## [b]Note:[/b] [param gain] is in linear energy.
+## [codeblock]
+## Global.fade_music(0.0, 20)
+## [/codeblock]
 func fade_music(gain: float, time: float):
 	Signals.fadeMusic.emit(gain, time)
 
@@ -67,6 +82,11 @@ func setup_discord_rpc():
 	#DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 	#DiscordRPC.refresh()
 
+## Plays a ui sound from the 'res://sounds/ui/' directory of a given [param sound_name],
+## which is provided as the file name without the file extension.
+## [codeblock]
+## Global.play_ui_sound("menumove")
+## [/codeblock]
 func play_ui_sound(sound_name: String):
 	var stream = load('res://sounds/ui/' + sound_name + '.wav')
 	var temp_sound_player = AudioStreamPlayer.new()
@@ -80,11 +100,24 @@ func play_ui_sound(sound_name: String):
 	temp_sound_player.play()
 	
 # Used for a room's border node to set the dynamic border.
-func set_dynamic_border(texture: Texture2D, frames_length: float):
+## Sets the current dynamic border to a given loaded [param texture] resource
+## and fades to it in a given [param time].
+## [codeblock]
+## Global.set_dynamic_border(load("res://sprites/borders/border_simple.png"), 30)
+## [/codeblock]
+func set_dynamic_border(texture: Texture2D, time: float):
 	current_dynamic_border = texture
 	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
-		Signals.changeBorder.emit(current_dynamic_border, frames_length)
+		Signals.changeBorder.emit(current_dynamic_border, time)
 
+## Returns whether the current global world type defined in [member Global.world_type]
+## is the dark world or not. If [member Global.world_type] is not equal to
+## [member Global.WorldTypes.WORLD_DARK] (for example, it might be equal to [member Global.WorldTypes.WORLD_LIGHT]), this method will then return [code]false[/code].
+## If [member Global.world_type] IS equal to [member Global.WorldTypes.WORLD_DARK], it will then
+## finally return [code]true[/code], confirming that, indeed, [member Global.world_type] is currently the dark world.
+## [codeblock]
+## Global.is_dark()
+## [/codeblock]
 func is_dark() -> bool:
 	return world_type == WorldTypes.WORLD_DARK
 
