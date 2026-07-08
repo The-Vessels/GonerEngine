@@ -16,7 +16,11 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	#print('HIIIIII ', scene_container)
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
+	# Don't do anything if the body entered isn't the player
+	if !(body is PartyMember and body.is_playable()):
+		return
+	
 	Global.moveable = false
 	await Global.fader_fade(0.0, 1.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
 	
