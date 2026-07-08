@@ -13,6 +13,9 @@ func _physics_process(delta: float) -> void:
 	global_position.x += 10.0
 "
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ocjv1"]
+viewport_path = NodePath("CharacterBody2D/SubViewportContainer/SubViewport")
+
 [node name="ScalingTest" type="Node2D" unique_id=1707821903]
 scale = Vector2(4, 4)
 
@@ -29,6 +32,21 @@ centered = false
 position = Vector2(9.5, 5.5)
 script = SubResource("GDScript_ocjv1")
 
-[node name="SmallSoul" type="Sprite2D" parent="CharacterBody2D" unique_id=895363666]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CharacterBody2D" unique_id=309800209]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody2D/SubViewportContainer" unique_id=189731210]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="SmallSoul" type="Sprite2D" parent="CharacterBody2D/SubViewportContainer/SubViewport" unique_id=895363666]
 texture = ExtResource("1_bjilf")
 centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1797812900]
+modulate = Color(1, 1, 1, 0.44705883)
+position = Vector2(1.5, 6.25)
+texture = SubResource("ViewportTexture_ocjv1")
+centered = false
+region_rect = Rect2(0, 0, 16, 16)

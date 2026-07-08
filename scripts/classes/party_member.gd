@@ -159,6 +159,8 @@ func process_anim_state(dtmult: float):
 		elif last_anim_state > 0.0 and anim_state <= 0.0:
 			var animation := "face_" + calc_animation_from_facing(facing)
 			play_animation_face(animation)
+	else:
+		play_animation_preserve("face_" + calc_animation_from_facing(facing))
 
 
 func get_walk_direction() -> Vector2:
