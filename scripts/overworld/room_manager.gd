@@ -20,7 +20,7 @@ func _ready() -> void:
 		warp_to_marker
 	)
 	
-	var starting_room = get_child(0)
+	var starting_room: Room = get_child(0)
 	prepare_room(starting_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,16 +55,17 @@ func goto_room(room):
 	Signals.room_change_finished.emit()
 	print("FINISHED ROOM SWAP")
 
-func warp_to_marker(marker_id, facing):
+func warp_to_marker(marker_id: int, facing: Enums.Facing) -> void:
 	await Signals.room_change_finished
 	for child in Global.currentRoom.find_children("*", "TargetMarkerDest"):
 		if child.marker_id == marker_id:
-			var pos_adjusted = get_bottom_middle_tp_pos(player, child)
-			player.position = pos_adjusted
-			player.facing = facing
+			for pm in pm_node.get_children():
+				var pos_adjusted = get_bottom_middle_tp_pos(pm, child)
+				pm.position = pos_adjusted
+				pm.facing = facing
 	print("tped to marker")
 
-func prepare_room(room):
+func prepare_room(room: Room) -> void:
 	# Get the necessary data from the new room to:
 	print(room.scale)
 	for child in room.get_children():
@@ -80,13 +81,14 @@ func prepare_room(room):
 			player = pm_node.get_child(0)
 			room.add_child(pm_node)
 			
-			var pos_adjusted = get_bottom_middle_tp_pos(player, child)
-			player.position = pos_adjusted
+			for pm in pm_node.get_children():
+				var pos_adjusted = get_bottom_middle_tp_pos(pm, child)
+				pm.position = pos_adjusted
 			
 			world_camera.target = player
 			print("tped to playermarker")
 
-func get_bottom_middle_tp_pos(player, marker):
+func get_bottom_middle_tp_pos(player: PartyMember, marker: Marker2D) -> Vector2:
 	var sprite: AnimatedSprite2D = player.find_children("*", "AnimatedSprite2D")[0]
 	var sprite_size: Vector2 =\
 	sprite.sprite_frames.get_frame_texture(sprite.animation, 0).get_size()
@@ -95,3 +97,6 @@ func get_bottom_middle_tp_pos(player, marker):
 	Vector2(marker.position.x - (sprite_size.x/2.0), marker.position.y - sprite_size.y)
 	
 	return adjusted_pos
+
+func teleport_party():
+	pass
