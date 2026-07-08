@@ -23,7 +23,7 @@ var walk_progress: float
 var follow_target := 12
 
 # Can this party member move independently from being an actor?
-var can_move: bool = true
+# var can_move: bool = true
 
 # Stores last positions, only for main character
 var last_positions: CircularQueue
@@ -53,11 +53,11 @@ func _ready():
 		collision_layer = 0 # Do not collide!
 
 func _process(delta: float) -> void:
-	if can_move:
+	if Global.moveable:
 		party_member_process(delta)
 
 func _physics_process(_delta: float) -> void:
-	if can_move and is_playable():
+	if Global.moveable and is_playable():
 		if Input.is_action_just_pressed("confirm"):
 			do_interact()
 		if Input.is_action_just_pressed('menu'):
