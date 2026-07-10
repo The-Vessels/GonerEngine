@@ -1,7 +1,7 @@
 @icon("uid://bw0iqumaar5ok")
 @tool
 class_name TextBox extends Control
-## A DELTARUNE dialogue box
+## A Control node for a DELTARUNE dialogue box.
 ## 
 ## [b]Note:[/b] Not meant to be instantiated directly.
 ## [br]
