@@ -1,7 +1,6 @@
 extends Node
 @onready var fps_counter: Label = $FPS_COUNTER
-@onready var ui_audio_player: AudioStreamPlayer = $UIAudioPlayer
-@onready var music_player: AudioStreamPlayer = $MusicPlayer
+var music_player: AudioStreamPlayer
 
 var mus_track_position: float
 
@@ -37,11 +36,18 @@ var asp := AudioStreamPlayer.new()
 
 var ui_menumove := preload("res://sounds/ui/menumove.wav")
 
+func _init() -> void:
+	# Set up the music player before game is ready
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+	music_player.set_script(load("res://scripts/music_player.gd"))
+
 func _ready():
 	setup_discord_rpc()
 
 func _physics_process(_delta: float) -> void:
-	fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
+	#fps_counter.text = "FPS: " + str(int(Engine.get_frames_per_second()))
+	pass
 
 func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed("fullscreen"):
