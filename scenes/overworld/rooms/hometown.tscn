@@ -251,7 +251,7 @@ func interact() -> void:
 		\"* ive got many askerisks?\\n* yes\\n* maybe too many\",
 		\"* funnytext test\\n* [img=350x70]res://sprites/souls/soul.png[/img]\"
 	]
-	Signals.startDialogue.emit(text)
+	TextBox.start_dialogue(text)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]
@@ -265,7 +265,7 @@ func _on_body_entered(body: Node2D) -> void:
 		\"* $#!&-stains on the wall\",
 		\"yo\"
 	]
-	Signals.startDialogue.emit(text)
+	TextBox.start_dialogue(text)
 "
 
 [node name="Hometown" type="Node2D" unique_id=2025934906]
