@@ -41,6 +41,7 @@ var has_asterisks: bool
 
 static func start_dialogue(text: Array, faces: Array) -> void:
 	Signals.startDialogue.emit(text, faces)
+	Global.moveable = false
 
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
@@ -107,7 +108,7 @@ func animate_text():
 	print(text)
 	dia.visible_characters = 0
 	while dia.visible_characters < dia.get_total_character_count():
-		if Input.is_action_just_pressed("cancel"):
+		if Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu"):
 			dia.visible_characters = dia.get_total_character_count()
 			animating = false
 			return
@@ -148,10 +149,11 @@ func _process(_delta: float) -> void:
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
 	ast.visible_characters = dia.get_visible_line_count()
-	if Input.is_action_just_pressed("confirm") and !animating:
+	if (Input.is_action_just_pressed("confirm") or Input.is_action_pressed("menu")) and !animating:
 		text_index += 1
 		
 		if text_index >= text.size():
+			Global.moveable = true
 			queue_free()
 			has_textbox = false
 			return
