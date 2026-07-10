@@ -7,6 +7,7 @@ extends CanvasLayer
 var fade_tween: Tween
 
 func _ready() -> void:
+	#print('PPPPPP')
 	Signals.fadeFader.connect(
 		func(start, end, time, time_unit):
 			if fade_tween and fade_tween.is_running():

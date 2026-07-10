@@ -3,7 +3,7 @@
 # Room switching, player placement, etc.
 extends Node2D
 
-@onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
+# @onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
 @onready var world_camera: Camera2D = $"../WorldCamera"
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
 

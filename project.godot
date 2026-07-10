@@ -55,7 +55,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 theme/default_font_antialiasing=0
 theme/custom="uid://dlf02a788g6br"
-theme/custom_font="uid://e8d4ah3nxtnm"
+theme/custom_font="uid://vfpydrrva5km"
 
 [input]
 
