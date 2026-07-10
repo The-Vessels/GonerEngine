@@ -8,3 +8,5 @@ Though you are more than welcome to look around and possibly contribute too.
 Be sure to join our [Discord Server](https://discord.gg/2Ea2bpQGq5) for the latest news and updates about "GonerEngine"!
 
 Also check out our [documentation](https://thevessels.github.io/gonerengine-docs)! You can contribute to it in the [GitHub repository](https://github.com/TheVessels/gonerengine-docs)!
+
+<sub>we have a [youtube](https://www.youtube.com/@vesseldevs) by the way</sub>
