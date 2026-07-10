@@ -4,3 +4,5 @@ GonerEngine is a [DELTARUNE](https://deltarune.com) fangame engine built on top 
 Though you are more than welcome to look around and possibly contribute too.
 
 Be sure to join our [Discord Server](https://discord.gg/2Ea2bpQGq5) for the latest news and updates about "GonerEngine"!
+
+Also check out our [Documentation](https://thevessels.github.io/gonerengine-docs)!
