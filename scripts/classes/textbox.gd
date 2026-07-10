@@ -96,6 +96,7 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
+	$TalkSprite.texture = load(faces[text_index])
 	set_text(text[text_index])
 	set_asterisks()
 	animate_text()
@@ -146,14 +147,16 @@ func _process(_delta: float) -> void:
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
-	$TalkSprite.texture = load(faces[text_index])
 	ast.visible_characters = dia.get_visible_line_count()
 	if Input.is_action_just_pressed("confirm") and !animating:
 		text_index += 1
+		
 		if text_index >= text.size():
 			queue_free()
 			has_textbox = false
 			return
+		else:
+			$TalkSprite.texture = load(faces[text_index])
 		
 		set_text(text[text_index])
 		set_asterisks()
