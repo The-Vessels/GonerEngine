@@ -14,6 +14,8 @@ class_name TextBox extends Control
 			set_text(text[text_index])
 			set_asterisks()
 
+@export var faces: Array[String] = [""]
+
 @onready var ast = $HBoxContainer/asterisks
 @onready var dia = $HBoxContainer/dialoguetext
 @onready var dark_box: NinePatchRect = $DarkBox
@@ -37,20 +39,22 @@ var text_index := 0
 var line_starts_with_asterisk: Array[bool] = []
 var has_asterisks: bool
 
-static func start_dialogue(text: Array) -> void:
-	Signals.startDialogue.emit(text)
+static func start_dialogue(text: Array, faces: Array) -> void:
+	Signals.startDialogue.emit(text, faces)
 
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
 		or (line.substr(0,2) == '* ')
 
 # Creates a new textbox.
-static func create(text: Array) -> TextBox:
+static func create(text: Array, faces: Array) -> TextBox:
 	var textbox_inst: TextBox = textbox_scene.instantiate()
 	#textbox_inst.text = text
 	# append_array needed otherwise godot is weird
 	textbox_inst.text.clear()
 	textbox_inst.text.append_array(text)
+	textbox_inst.faces.clear()
+	textbox_inst.faces.append_array(faces)
 	return textbox_inst
 
 func set_text(text: String):
@@ -130,6 +134,8 @@ func play_talk_sound():
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
+	
+	#Set box style
 	match Global.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
 			dark_box.visible = false
@@ -139,6 +145,8 @@ func _process(_delta: float) -> void:
 			dark_box.visible = true
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
+	
+	$TalkSprite.texture = load(faces[text_index])
 	ast.visible_characters = dia.get_visible_line_count()
 	if Input.is_action_just_pressed("confirm") and !animating:
 		text_index += 1

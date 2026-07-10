@@ -245,28 +245,17 @@ script/source = "extends StaticBody2D
 
 func interact() -> void:
 	var text = [
-		\"* That's right fuckers, I'm the [shake rate=50.0 level=10 connected=1][color=red][img=x32]res://sprites/example/tennatime.png[/img] Roaring Knight[/color][/shake]!\",
-		\"* wait what the fuck\",
-		\"Where is my asterick\",
-		\"* ive got many askerisks?\\n* yes\\n* maybe too many\",
-		\"* funnytext test\\n* [img=350x70]res://sprites/souls/soul.png[/img]\"
+		\"* Face test 1\",
+		\"* Face Test 2\"
 	]
-	TextBox.start_dialogue(text)
+	var faces = [
+		\"res://sprites/face_portraits/susie_grin.png\",
+		\"res://sprites/face_portraits/susie_sincere.png\"
+	]
+	TextBox.start_dialogue(text, faces)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]
-
-[sub_resource type="GDScript" id="GDScript_oqv75"]
-script/source = "extends Area2D
-
-func _on_body_entered(body: Node2D) -> void:
-	var text = [
-		\"* $#!&-stains\",
-		\"* $#!&-stains on the wall\",
-		\"yo\"
-	]
-	TextBox.start_dialogue(text)
-"
 
 [node name="Hometown" type="Node2D" unique_id=2025934906]
 scale = Vector2(2, 2)
@@ -344,28 +333,14 @@ texture = ExtResource("10_eflds")
 position = Vector2(70, 70)
 script = ExtResource("11_obw5g")
 
-[node name="Room" type="StaticBody2D" parent="." unique_id=1944634033]
+[node name="Face Test" type="StaticBody2D" parent="." unique_id=1944634033]
 position = Vector2(139.00003, 155)
 script = SubResource("GDScript_n2hw7")
 
-[node name="Room" type="Sprite2D" parent="Room" unique_id=125079961]
+[node name="Room" type="Sprite2D" parent="Face Test" unique_id=125079961]
 position = Vector2(0.9999695, 5)
 texture = ExtResource("12_oqv75")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room" unique_id=1351192506]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Face Test" unique_id=1351192506]
 position = Vector2(0.9999695, 5)
 shape = SubResource("RectangleShape2D_j46a3")
-
-[node name="Room2" type="Area2D" parent="." unique_id=436147738]
-position = Vector2(184.00003, 155)
-script = SubResource("GDScript_oqv75")
-
-[node name="Room" type="Sprite2D" parent="Room2" unique_id=523366664]
-position = Vector2(0.9999695, 5)
-texture = ExtResource("12_oqv75")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2" unique_id=1049520239]
-position = Vector2(0.9999695, 5)
-shape = SubResource("RectangleShape2D_j46a3")
-
-[connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bu708k77nhnyg"
-path="res://.godot/imported/sincere.png-de7b266b6f18a4819a5f671cd6e04540.ctex"
+path="res://.godot/imported/susie_sincere.png-47060bd7f5475616a66fbbd507fed1ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/actors/susie/faces/sincere.png"
-dest_files=["res://.godot/imported/sincere.png-de7b266b6f18a4819a5f671cd6e04540.ctex"]
+source_file="res://sprites/face_portraits/susie_sincere.png"
+dest_files=["res://.godot/imported/susie_sincere.png-47060bd7f5475616a66fbbd507fed1ac.ctex"]
 
 [params]
 

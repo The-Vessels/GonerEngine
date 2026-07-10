@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cx1nqx718bnfa" path="res://scripts/classes/textbox.gd" id="1_hyn88"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="2_fto3e"]
-[ext_resource type="AudioStream" uid="uid://b73flekf0aj0h" path="res://sounds/ui/select.wav" id="3_fto3e"]
 [ext_resource type="PackedScene" uid="uid://d1tmmpanucxap" path="res://scenes/ui/light_box.tscn" id="3_seire"]
-[ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://sprites/actors/susie/faces/sincere.png" id="4_hdjaa"]
-[ext_resource type="AudioStream" uid="uid://cp7rxhw17v65x" path="res://sounds/ui/menumove.wav" id="4_seire"]
+[ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://sprites/face_portraits/susie_sincere.png" id="5_hyn88"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://fonts/main_mono.ttf" id="5_okh7m"]
 [ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://sounds/voice/susie.wav" id="6_k71a8"]
 
@@ -20,9 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hyn88")
-talk_sounds = Array[AudioStream]([ExtResource("6_k71a8"), ExtResource("3_fto3e"), ExtResource("4_seire")])
-lower_range = -0.09999999999999964
-upper_range = 0.1
+talk_sounds = Array[AudioStream]([ExtResource("6_k71a8")])
 
 [node name="DarkBox" parent="." unique_id=619300672 instance=ExtResource("2_fto3e")]
 visible = false
@@ -47,7 +43,7 @@ offset_top = 350.0
 offset_right = 114.0
 offset_bottom = 401.0
 scale = Vector2(2, 2)
-texture = ExtResource("4_hdjaa")
+texture = ExtResource("5_hyn88")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1309665849]
 layout_mode = 0
