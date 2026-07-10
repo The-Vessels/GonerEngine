@@ -1,5 +1,7 @@
 extends Node
+
 # @onready var fps_counter: Label = $FPS_COUNTER
+
 var music_player: AudioStreamPlayer
 
 var mus_track_position: float

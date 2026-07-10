@@ -1,6 +1,11 @@
 @icon("uid://bw0iqumaar5ok")
 @tool
 class_name TextBox extends Control
+## A Control node for a DELTARUNE dialogue box.
+## 
+## [b]Note:[/b] Not meant to be instantiated directly.
+## [br]
+## Instead, use [method TextBox.start_dialogue] (or [method TextBox.create] if you only need a [b]TextBox[/b] node).
 
 @export_multiline var text: Array[String] = [""]:
 	set(new):
@@ -31,6 +36,9 @@ var text_index := 0
 # because each line here means includes wrapped lines
 var line_starts_with_asterisk: Array[bool] = []
 var has_asterisks: bool
+
+static func start_dialogue(text: Array) -> void:
+	Signals.startDialogue.emit(text)
 
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
