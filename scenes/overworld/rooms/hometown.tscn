@@ -245,24 +245,12 @@ script/source = "extends StaticBody2D
 
 func interact() -> void:
 	var text = [
-		\"* Autoskip Test 1\",
-		\"* Autoskip Test 2\",
-		\"* Autoskip Test 3\",
-		\"* Autoskip Test 4\",
-		\"* Autoskip Test 5\",
-		\"* Autoskip Test 6\",
-		\"* Autoskip Test 7\",
-		\"* Autoskip Test 8\",
+		\"* Susie\",
+		\"* Ralsei\",
 	]
 	var faces = [
 		\"res://sprites/face_portraits/susie_grin.png\",
-		\"res://sprites/face_portraits/susie_sincere.png\",
-		\"res://sprites/face_portraits/susie_grin.png\",
-		\"res://sprites/face_portraits/susie_sincere.png\",
-		\"res://sprites/face_portraits/susie_grin.png\",
-		\"res://sprites/face_portraits/susie_sincere.png\",
-		\"res://sprites/face_portraits/susie_grin.png\",
-		\"res://sprites/face_portraits/susie_sincere.png\",
+		\"res://sprites/face_portraits/ralsei_smile.png\"
 	]
 	TextBox.start_dialogue(text, faces)
 "
