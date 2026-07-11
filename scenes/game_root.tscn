@@ -18,9 +18,9 @@ script/source = "extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Signals.startDialogue.connect(
-		func(text):
+		func(text, faces, sounds):
 			if !TextBox.has_textbox and Global.moveable:
-				var textbox := TextBox.create(text)
+				var textbox := TextBox.create(text, faces, sounds)
 				add_child(textbox)
 	)
 "

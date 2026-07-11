@@ -14,13 +14,17 @@ class_name TextBox extends Control
 			set_text(text[text_index])
 			set_asterisks()
 
+@export var faces: Array[String] = [""]
+var is_face := false
+
 @onready var ast = $HBoxContainer/asterisks
 @onready var dia = $HBoxContainer/dialoguetext
 @onready var dark_box: NinePatchRect = $DarkBox
 @onready var light_box: NinePatchRect = $LightBox
 
 @export_group("Talking Sound")
-@export var talk_sounds: Array[AudioStream]
+@export var sounds: Array = [""]
+@export var talk_sounds: Array = [""]
 @export_subgroup("Random Pitch Range")
 @export_range(-1, 0, 0.1) var lower_range: float = 0.0
 @export_range(0, 1, 0.1) var upper_range: float = 0.0
@@ -32,25 +36,34 @@ static var has_textbox := false
 var animating := false
 var text_index := 0
 
+@export var fast_text_skip := false
+var can_advance := true
+var can_skip := true
+
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
 var line_starts_with_asterisk: Array[bool] = []
 var has_asterisks: bool
 
-static func start_dialogue(text: Array) -> void:
-	Signals.startDialogue.emit(text)
+static func start_dialogue(text: Array, faces: Array, sounds: Array) -> void:
+	Signals.startDialogue.emit(text, faces, sounds)
+	Global.moveable = false
 
 func line_asterisk(line: String) -> bool:
 	return (len(line) == 1 and line[0] == '*') \
 		or (line.substr(0,2) == '* ')
 
 # Creates a new textbox.
-static func create(text: Array) -> TextBox:
+static func create(text: Array, faces: Array, sounds: Array) -> TextBox:
 	var textbox_inst: TextBox = textbox_scene.instantiate()
 	#textbox_inst.text = text
 	# append_array needed otherwise godot is weird
 	textbox_inst.text.clear()
 	textbox_inst.text.append_array(text)
+	textbox_inst.faces.clear()
+	textbox_inst.faces.append_array(faces)
+	textbox_inst.sounds.clear()
+	textbox_inst.sounds.append_array(sounds)
 	return textbox_inst
 
 func set_text(text: String):
@@ -79,6 +92,19 @@ func set_asterisks():
 		lineno += 1
 	ast.visible_characters = 0
 
+func set_face():
+	is_face = faces[text_index] != "none"
+	if is_face:
+		$TalkSprite.texture = load(faces[text_index])
+		$HBoxContainer.position = Vector2(174, 340)
+		$HBoxContainer.size = Vector2(400, 113)
+	else:
+		$TalkSprite.texture = null
+		$HBoxContainer.position = Vector2(62, 340)
+		$HBoxContainer.size = Vector2(512, 113)
+	$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
+	$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
+
 func _ready():
 	has_textbox = true
 	
@@ -92,6 +118,8 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
+	set_face()
+	talk_sounds = sounds[text_index]
 	set_text(text[text_index])
 	set_asterisks()
 	animate_text()
@@ -102,8 +130,10 @@ func animate_text():
 	print(text)
 	dia.visible_characters = 0
 	while dia.visible_characters < dia.get_total_character_count():
-		if Input.is_action_just_pressed("cancel"):
+		if (Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu")) and can_skip:
 			dia.visible_characters = dia.get_total_character_count()
+			play_talk_sound()
+			can_advance = !fast_text_skip
 			animating = false
 			return
 		animating = true
@@ -117,7 +147,7 @@ func play_talk_sound():
 	var sound = talk_sounds.pick_random()
 	var pitch_offset = randf_range(lower_range, upper_range)
 	var player = AudioStreamPlayer.new()
-	player.stream = sound
+	player.stream = load(sound)
 	player.pitch_scale += pitch_offset
 	player.finished.connect(
 		func():
@@ -130,6 +160,8 @@ func play_talk_sound():
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
+	
+	#Set box style
 	match Global.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
 			dark_box.visible = false
@@ -139,17 +171,26 @@ func _process(_delta: float) -> void:
 			dark_box.visible = true
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
+	
 	ast.visible_characters = dia.get_visible_line_count()
-	if Input.is_action_just_pressed("confirm") and !animating:
+	if (Input.is_action_just_pressed("confirm") or Input.is_action_pressed("menu")) and !animating and can_advance:
 		text_index += 1
+		
 		if text_index >= text.size():
+			Global.moveable = true
 			queue_free()
 			has_textbox = false
 			return
+		else:
+			set_face()
+			talk_sounds = sounds[text_index]
 		
 		set_text(text[text_index])
 		set_asterisks()
 		animate_text()
+	
+	if !can_advance:
+		can_advance = true
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)
