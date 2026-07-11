@@ -18,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hyn88")
+sounds = null
 talk_sounds = Array[AudioStream]([ExtResource("6_k71a8")])
 
 [node name="DarkBox" parent="." unique_id=619300672 instance=ExtResource("2_fto3e")]
@@ -47,9 +48,9 @@ texture = ExtResource("5_hyn88")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1309665849]
 layout_mode = 0
-offset_left = 174.0
+offset_left = 62.0
 offset_top = 340.0
-offset_right = 590.0
+offset_right = 577.0
 offset_bottom = 453.0
 theme_override_constants/separation = 16
 

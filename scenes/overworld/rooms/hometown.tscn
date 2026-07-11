@@ -245,14 +245,14 @@ script/source = "extends StaticBody2D
 
 func interact() -> void:
 	var text = [
-		\"* Susie\",
+		\"* I am Susie and I am yapping a lot to test wrapping with portraits\",
 		\"* Ralsei\",
-		\"* Tenna but not his face portrait :'(\"
+		\"* I am Tenna and I'm yapping a lot to test face-portrait-less text wrapping\"
 	]
 	var faces = [
 		\"res://sprites/face_portraits/susie_grin.png\",
 		\"res://sprites/face_portraits/ralsei_smile.png\",
-		\"res://sprites/face_portraits/ralsei_smile.png\"
+		\"none\"
 	]
 	var sounds = [
 		[\"res://sounds/voice/susie.wav\"],

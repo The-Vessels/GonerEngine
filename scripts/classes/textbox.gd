@@ -15,6 +15,7 @@ class_name TextBox extends Control
 			set_asterisks()
 
 @export var faces: Array[String] = [""]
+var is_face := false
 
 @onready var ast = $HBoxContainer/asterisks
 @onready var dia = $HBoxContainer/dialoguetext
@@ -100,7 +101,17 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
-	$TalkSprite.texture = load(faces[text_index])
+	is_face = faces[text_index] != "none"
+	if is_face:
+		$TalkSprite.texture = load(faces[text_index])
+		$HBoxContainer.position = Vector2(174, 340)
+		$HBoxContainer.size = Vector2(400, 113)
+	else:
+		$TalkSprite.texture = null
+		$HBoxContainer.position = Vector2(62, 340)
+		$HBoxContainer.size = Vector2(512, 113)
+	$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
+	$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
 	talk_sounds = sounds[text_index]
 	set_text(text[text_index])
 	set_asterisks()
@@ -162,9 +173,18 @@ func _process(_delta: float) -> void:
 			has_textbox = false
 			return
 		else:
-			$TalkSprite.texture = load(faces[text_index])
+			is_face = faces[text_index] != "none"
+			if is_face:
+				$TalkSprite.texture = load(faces[text_index])
+				$HBoxContainer.position = Vector2(174, 340)
+				$HBoxContainer.size = Vector2(400, 113)
+			else:
+				$TalkSprite.texture = null
+				$HBoxContainer.position = Vector2(62, 340)
+				$HBoxContainer.size = Vector2(512, 113)
+			$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
+			$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
 			talk_sounds = sounds[text_index]
-			print(talk_sounds)
 		
 		set_text(text[text_index])
 		set_asterisks()
