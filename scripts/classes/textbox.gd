@@ -88,6 +88,19 @@ func set_asterisks():
 		lineno += 1
 	ast.visible_characters = 0
 
+func set_face():
+	is_face = faces[text_index] != "none"
+	if is_face:
+		$TalkSprite.texture = load(faces[text_index])
+		$HBoxContainer.position = Vector2(174, 340)
+		$HBoxContainer.size = Vector2(400, 113)
+	else:
+		$TalkSprite.texture = null
+		$HBoxContainer.position = Vector2(62, 340)
+		$HBoxContainer.size = Vector2(512, 113)
+	$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
+	$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
+
 func _ready():
 	has_textbox = true
 	
@@ -101,17 +114,7 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
-	is_face = faces[text_index] != "none"
-	if is_face:
-		$TalkSprite.texture = load(faces[text_index])
-		$HBoxContainer.position = Vector2(174, 340)
-		$HBoxContainer.size = Vector2(400, 113)
-	else:
-		$TalkSprite.texture = null
-		$HBoxContainer.position = Vector2(62, 340)
-		$HBoxContainer.size = Vector2(512, 113)
-	$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
-	$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
+	set_face()
 	talk_sounds = sounds[text_index]
 	set_text(text[text_index])
 	set_asterisks()
@@ -173,17 +176,7 @@ func _process(_delta: float) -> void:
 			has_textbox = false
 			return
 		else:
-			is_face = faces[text_index] != "none"
-			if is_face:
-				$TalkSprite.texture = load(faces[text_index])
-				$HBoxContainer.position = Vector2(174, 340)
-				$HBoxContainer.size = Vector2(400, 113)
-			else:
-				$TalkSprite.texture = null
-				$HBoxContainer.position = Vector2(62, 340)
-				$HBoxContainer.size = Vector2(512, 113)
-			$HBoxContainer/dialoguetext.custom_minimum_size = $HBoxContainer.size
-			$HBoxContainer/dialoguetext.custom_maximum_size = $HBoxContainer.size
+			set_face()
 			talk_sounds = sounds[text_index]
 		
 		set_text(text[text_index])
