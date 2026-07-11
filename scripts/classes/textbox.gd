@@ -36,6 +36,10 @@ static var has_textbox := false
 var animating := false
 var text_index := 0
 
+@export var fast_text_skip := false
+var text_skip_delay := true
+var can_skip := true
+
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
 var line_starts_with_asterisk: Array[bool] = []
@@ -126,10 +130,11 @@ func animate_text():
 	print(text)
 	dia.visible_characters = 0
 	while dia.visible_characters < dia.get_total_character_count():
-		if Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu"):
+		if (Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu")) and can_skip and !text_skip_delay:
 			dia.visible_characters = dia.get_total_character_count()
 			animating = false
 			return
+		text_skip_delay = false
 		animating = true
 		dia.visible_characters += 1
 		if text[dia.visible_characters - 1] != ' ':
@@ -169,6 +174,7 @@ func _process(_delta: float) -> void:
 	ast.visible_characters = dia.get_visible_line_count()
 	if (Input.is_action_just_pressed("confirm") or Input.is_action_pressed("menu")) and !animating:
 		text_index += 1
+		text_skip_delay = !fast_text_skip
 		
 		if text_index >= text.size():
 			Global.moveable = true

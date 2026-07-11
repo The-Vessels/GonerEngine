@@ -51,7 +51,7 @@ func _ready():
 					option.button_pressed = false
 					submenu_open = false
 		)
-		
+
 	Signals.toggleMenu.connect(
 		func():
 			if !animating:

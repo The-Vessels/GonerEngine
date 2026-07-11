@@ -246,7 +246,7 @@ script/source = "extends StaticBody2D
 func interact() -> void:
 	var text = [
 		\"* I am Susie and I am yapping a lot to test wrapping with portraits\",
-		\"* Ralsei\",
+		\"* I am Ralsei (Quiet)\",
 		\"* I am Tenna and I'm yapping a lot to test face-portrait-less text wrapping\"
 	]
 	var faces = [
