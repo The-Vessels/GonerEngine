@@ -63,12 +63,12 @@ func _process(_delta: float) -> void:
 ## [br][br]
 ## [b]Note:[/b] You can use [code]await[/code] to wait for the fader to finish before the code proceeds.
 ## [codeblock]
-## await Global.fader_fade(0.0, 1.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+## await Global.fader_fade(0.0, 1.0, 10)
 ##
-## Global.fader_fade(1.0, 0.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+## Global.fader_fade(1.0, 0.0, 10)
 ## [/codeblock]
-func fader_fade(start: float, end: float, time: float, time_unit: Enums.TimeUnits) -> void:
-	Signals.fadeFader.emit(start, end, time, time_unit)
+func fader_fade(start: float, end: float, time: float) -> void:
+	Signals.fadeFader.emit(start, end, time)
 	await Signals.fadeEnd
 
 ## Fades the global music to a given [param gain] in a provided [param time]frame.
@@ -77,7 +77,7 @@ func fader_fade(start: float, end: float, time: float, time_unit: Enums.TimeUnit
 ## [codeblock]
 ## Global.fade_music(0.0, 20)
 ## [/codeblock]
-func fade_music(gain: float, time: float):
+func fade_music(gain: float, time: float) -> void:
 	Signals.fadeMusic.emit(gain, time)
 
 func setup_discord_rpc():
@@ -95,7 +95,7 @@ func setup_discord_rpc():
 ## [codeblock]
 ## Global.play_ui_sound("menumove")
 ## [/codeblock]
-func play_ui_sound(sound_name: String):
+func play_ui_sound(sound_name: String) -> void:
 	var stream = load('res://sounds/ui/' + sound_name + '.wav')
 	var temp_sound_player = AudioStreamPlayer.new()
 	temp_sound_player.name = "StupidAudioPlayer"
@@ -106,17 +106,6 @@ func play_ui_sound(sound_name: String):
 	temp_sound_player.stream = stream
 	add_child(temp_sound_player)
 	temp_sound_player.play()
-	
-# Used for a room's border node to set the dynamic border.
-## Sets the current dynamic border to a given loaded [param texture] resource
-## and fades to it in a given [param time].
-## [codeblock]
-## Global.set_dynamic_border(load("res://sprites/borders/border_simple.png"), 30)
-## [/codeblock]
-func set_dynamic_border(texture: Texture2D, time: float):
-	current_dynamic_border = texture
-	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
-		Signals.changeBorder.emit(current_dynamic_border, time)
 
 ## Returns whether the current global world type defined in [member Global.world_type]
 ## is the dark world or not. If [member Global.world_type] is not equal to
@@ -128,6 +117,20 @@ func set_dynamic_border(texture: Texture2D, time: float):
 ## [/codeblock]
 func is_dark() -> bool:
 	return world_type == WorldTypes.WORLD_DARK
+
+## Converts seconds to physics frames (1/30th of a second)
+## [codeblock]
+## Global.sec_to_frames(2.5) #returns 75.0
+## [/codeblock]
+func sec_to_frames(seconds: float) -> float:
+	return seconds * 30.0
+
+## Converts physics frames (1/30th of a second) to seconds
+## [codeblock]
+## Global.frames_to_sec(75.0) #returns 2.5
+## [/codeblock]
+func frames_to_sec(frames: float) -> float:
+	return frames / 30.0
 
 #func toggle_fullscreen():
 	#if is_fullscreen:
