@@ -252,7 +252,11 @@ func interact() -> void:
 		\"res://sprites/face_portraits/susie_grin.png\",
 		\"res://sprites/face_portraits/ralsei_smile.png\"
 	]
-	TextBox.start_dialogue(text, faces)
+	var sounds = [
+		\"res://sounds/voice/susie.wav\",
+		\"res://sounds/voice/snd_txtral.wav\"
+	]
+	TextBox.start_dialogue(text, faces, sounds)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]

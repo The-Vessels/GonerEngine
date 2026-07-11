@@ -22,6 +22,7 @@ class_name TextBox extends Control
 @onready var light_box: NinePatchRect = $LightBox
 
 @export_group("Talking Sound")
+@export var sounds: Array = [""]
 @export var talk_sounds: Array[AudioStream]
 @export_subgroup("Random Pitch Range")
 @export_range(-1, 0, 0.1) var lower_range: float = 0.0
@@ -39,8 +40,8 @@ var text_index := 0
 var line_starts_with_asterisk: Array[bool] = []
 var has_asterisks: bool
 
-static func start_dialogue(text: Array, faces: Array) -> void:
-	Signals.startDialogue.emit(text, faces)
+static func start_dialogue(text: Array, faces: Array, sounds: Array) -> void:
+	Signals.startDialogue.emit(text, faces, sounds)
 	Global.moveable = false
 
 func line_asterisk(line: String) -> bool:
@@ -48,7 +49,7 @@ func line_asterisk(line: String) -> bool:
 		or (line.substr(0,2) == '* ')
 
 # Creates a new textbox.
-static func create(text: Array, faces: Array) -> TextBox:
+static func create(text: Array, faces: Array, sounds: Array) -> TextBox:
 	var textbox_inst: TextBox = textbox_scene.instantiate()
 	#textbox_inst.text = text
 	# append_array needed otherwise godot is weird
@@ -56,6 +57,8 @@ static func create(text: Array, faces: Array) -> TextBox:
 	textbox_inst.text.append_array(text)
 	textbox_inst.faces.clear()
 	textbox_inst.faces.append_array(faces)
+	textbox_inst.sounds.clear()
+	textbox_inst.sounds.append_array(sounds)
 	return textbox_inst
 
 func set_text(text: String):
@@ -98,6 +101,7 @@ func _ready():
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
 	$TalkSprite.texture = load(faces[text_index])
+	talk_sounds = [load(sounds[text_index])]
 	set_text(text[text_index])
 	set_asterisks()
 	animate_text()
@@ -159,6 +163,7 @@ func _process(_delta: float) -> void:
 			return
 		else:
 			$TalkSprite.texture = load(faces[text_index])
+			talk_sounds = [load(sounds[text_index])]
 		
 		set_text(text[text_index])
 		set_asterisks()
