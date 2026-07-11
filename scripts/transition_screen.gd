@@ -14,12 +14,10 @@ func _ready() -> void:
 				fade_tween.kill()
 			fade_tween = create_tween()
 			
-			var duration = time
-			if time_unit == Enums.TimeUnits.PHYSICS_FRAME:
-				duration = time / 30.0
+			var tween_duration = time / 30.0
 			
 			transition_rect.color.a = start
-			fade_tween.tween_property(transition_rect, "color", Color(0, 0, 0, end), duration)
+			fade_tween.tween_property(transition_rect, "color", Color(0, 0, 0, end), tween_duration)
 			await fade_tween.finished
 			Signals.fadeEnd.emit()
 	)

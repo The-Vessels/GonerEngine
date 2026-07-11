@@ -16,16 +16,16 @@ func _process(delta: float) -> void:
 		if intro_activated and !room_change:
 			room_change = true
 			Global.fade_music(0.0, 20)
-			await Global.fader_fade(0.0, 1.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			await Global.fader_fade(0.0, 1.0, 20)
 			Room.goto(load("res://scenes/overworld/rooms/hometown.tscn"))
-			await Global.fader_fade(1.0, 0.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			await Global.fader_fade(1.0, 0.0, 20)
 	
 	if Global.mus_track_position == 0.0:
 		if intro_activated and !room_change:
 			room_change = true
-			await Global.fader_fade(0.0, 1.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			await Global.fader_fade(0.0, 1.0, 20)
 			Room.goto(load("res://scenes/overworld/rooms/hometown.tscn"))
-			await Global.fader_fade(1.0, 0.0, 20, Enums.TimeUnits.PHYSICS_FRAME)
+			await Global.fader_fade(1.0, 0.0, 20)
 		label.visible_characters = 0
 	if Global.mus_track_position > 0.0:
 		label.visible_characters = 1

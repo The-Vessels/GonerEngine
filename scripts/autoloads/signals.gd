@@ -11,5 +11,5 @@ signal ToggleBorder(enable)
 signal toggleMenu()
 signal fadeMusic(gain, time)
 signal startDialogue(text)
-signal fadeFader(start, end, time, time_unit)
+signal fadeFader(start, end, time)
 signal fadeEnd

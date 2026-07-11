@@ -22,10 +22,10 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	Global.moveable = false
-	await Global.fader_fade(0.0, 1.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+	await Global.fader_fade(0.0, 1.0, 10)
 	
 	Room.warp_party(target_marker_id, player_facing)
 	Room.goto(load(target_scene))
 	
-	Global.fader_fade(1.0, 0.0, 10, Enums.TimeUnits.PHYSICS_FRAME)
+	Global.fader_fade(1.0, 0.0, 10)
 	Global.moveable = true

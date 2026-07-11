@@ -1,10 +1,5 @@
 extends Node
 
-enum TimeUnits {
-	PHYSICS_FRAME,
-	SECOND
-}
-
 enum Facing {
 	RIGHT,
 	UP,
