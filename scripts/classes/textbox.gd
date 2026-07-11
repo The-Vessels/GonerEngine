@@ -37,7 +37,7 @@ var animating := false
 var text_index := 0
 
 @export var fast_text_skip := false
-var text_skip_delay := true
+var can_advance := true
 var can_skip := true
 
 # this is actually called a `paragraph` in `RichTextLabel`
@@ -130,11 +130,12 @@ func animate_text():
 	print(text)
 	dia.visible_characters = 0
 	while dia.visible_characters < dia.get_total_character_count():
-		if (Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu")) and can_skip and !text_skip_delay:
+		if (Input.is_action_just_pressed("cancel") or Input.is_action_pressed("menu")) and can_skip:
 			dia.visible_characters = dia.get_total_character_count()
+			play_talk_sound()
+			can_advance = !fast_text_skip
 			animating = false
 			return
-		text_skip_delay = false
 		animating = true
 		dia.visible_characters += 1
 		if text[dia.visible_characters - 1] != ' ':
@@ -172,9 +173,8 @@ func _process(_delta: float) -> void:
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
 	ast.visible_characters = dia.get_visible_line_count()
-	if (Input.is_action_just_pressed("confirm") or Input.is_action_pressed("menu")) and !animating:
+	if (Input.is_action_just_pressed("confirm") or Input.is_action_pressed("menu")) and !animating and can_advance:
 		text_index += 1
-		text_skip_delay = !fast_text_skip
 		
 		if text_index >= text.size():
 			Global.moveable = true
@@ -188,6 +188,9 @@ func _process(_delta: float) -> void:
 		set_text(text[text_index])
 		set_asterisks()
 		animate_text()
+	
+	if !can_advance:
+		can_advance = true
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)
