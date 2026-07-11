@@ -247,14 +247,29 @@ func interact() -> void:
 	var text = [
 		\"* Susie\",
 		\"* Ralsei\",
+		\"* Tenna\"
 	]
 	var faces = [
 		\"res://sprites/face_portraits/susie_grin.png\",
+		\"res://sprites/face_portraits/ralsei_smile.png\",
 		\"res://sprites/face_portraits/ralsei_smile.png\"
 	]
 	var sounds = [
 		\"res://sounds/voice/susie.wav\",
-		\"res://sounds/voice/snd_txtral.wav\"
+		\"res://sounds/voice/snd_txtral.wav\",
+		[
+			\"res://sounds/voice/snd_tv_voice_short.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_2.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_3.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_4.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_5.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_6.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_7.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_8.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_9.wav\",
+			\"res://sounds/voice/snd_tv_voice_short_10.wav\"
+			
+		]
 	]
 	TextBox.start_dialogue(text, faces, sounds)
 "
