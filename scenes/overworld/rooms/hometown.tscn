@@ -247,7 +247,7 @@ func interact() -> void:
 	var text = [
 		\"* Susie\",
 		\"* Ralsei\",
-		\"* Tenna\"
+		\"* Tenna but not his face portrait :'(\"
 	]
 	var faces = [
 		\"res://sprites/face_portraits/susie_grin.png\",
@@ -255,8 +255,8 @@ func interact() -> void:
 		\"res://sprites/face_portraits/ralsei_smile.png\"
 	]
 	var sounds = [
-		\"res://sounds/voice/susie.wav\",
-		\"res://sounds/voice/snd_txtral.wav\",
+		[\"res://sounds/voice/susie.wav\"],
+		[\"res://sounds/voice/snd_txtral.wav\"],
 		[
 			\"res://sounds/voice/snd_tv_voice_short.wav\",
 			\"res://sounds/voice/snd_tv_voice_short_2.wav\",

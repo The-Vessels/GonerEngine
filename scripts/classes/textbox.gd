@@ -23,7 +23,7 @@ class_name TextBox extends Control
 
 @export_group("Talking Sound")
 @export var sounds: Array = [""]
-@export var talk_sounds: Array[AudioStream]
+@export var talk_sounds: Array = [""]
 @export_subgroup("Random Pitch Range")
 @export_range(-1, 0, 0.1) var lower_range: float = 0.0
 @export_range(0, 1, 0.1) var upper_range: float = 0.0
@@ -101,7 +101,7 @@ func _ready():
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
 	$TalkSprite.texture = load(faces[text_index])
-	talk_sounds = [load(sounds[text_index])]
+	talk_sounds = sounds[text_index]
 	set_text(text[text_index])
 	set_asterisks()
 	animate_text()
@@ -127,7 +127,7 @@ func play_talk_sound():
 	var sound = talk_sounds.pick_random()
 	var pitch_offset = randf_range(lower_range, upper_range)
 	var player = AudioStreamPlayer.new()
-	player.stream = sound
+	player.stream = load(sound)
 	player.pitch_scale += pitch_offset
 	player.finished.connect(
 		func():
@@ -163,7 +163,8 @@ func _process(_delta: float) -> void:
 			return
 		else:
 			$TalkSprite.texture = load(faces[text_index])
-			talk_sounds = [load(sounds[text_index])]
+			talk_sounds = sounds[text_index]
+			print(talk_sounds)
 		
 		set_text(text[text_index])
 		set_asterisks()
