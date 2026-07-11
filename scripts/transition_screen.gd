@@ -9,7 +9,7 @@ var fade_tween: Tween
 func _ready() -> void:
 	#print('PPPPPP')
 	Signals.fadeFader.connect(
-		func(start, end, time, time_unit):
+		func(start, end, time):
 			if fade_tween and fade_tween.is_running():
 				fade_tween.kill()
 			fade_tween = create_tween()
