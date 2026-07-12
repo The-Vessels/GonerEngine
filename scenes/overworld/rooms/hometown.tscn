@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c28d5srx86v0u" path="res://sprites/gonerengine.png" id="10_eflds"]
 [ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="11_obw5g"]
 [ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="12_oqv75"]
+[ext_resource type="PackedScene" uid="uid://bsn3lnx86eo3e" path="res://scenes/battle/battle_controller.tscn" id="13_j46a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -367,5 +368,7 @@ texture = ExtResource("12_oqv75")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2" unique_id=1049520239]
 position = Vector2(0.9999695, 5)
 shape = SubResource("RectangleShape2D_j46a3")
+
+[node name="BattleController" parent="." unique_id=1920008302 instance=ExtResource("13_j46a3")]
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]
