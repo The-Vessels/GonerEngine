@@ -25,6 +25,36 @@ func _ready() -> void:
 	)
 "
 
+[sub_resource type="GDScript" id="GDScript_melsq"]
+script/source = "extends CanvasLayer
+
+@onready var quitting_sprite: AnimatedSprite2D = $Quitting
+
+var quitting_sprite_index := 0.0
+
+func _physics_process(_delta: float) -> void:
+	handle_quitting()
+
+func handle_quitting():
+	if Input.is_action_pressed(\"quit\"):
+		if quitting_sprite_index >= 5.0:
+			get_tree().quit()
+		
+		quitting_sprite.modulate.a += 0.05
+		quitting_sprite_index += 0.1
+	elif quitting_sprite.modulate.a > 0:
+			quitting_sprite_index -= 0.5
+			quitting_sprite_index = max(0, quitting_sprite_index)
+			
+			quitting_sprite.modulate.a -= 0.1
+	else:
+		quitting_sprite_index = 0.0
+			
+	quitting_sprite.modulate.a = clampf(quitting_sprite.modulate.a, 0.0, 1.0)
+	#print(\"hi: \" + str(quitting_sprite_index) + \" becomes \" + str(quitting_sprite.frame))
+	quitting_sprite.frame = int(quitting_sprite_index)
+"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gecxn"]
 animations = [{
 "frames": [{
@@ -61,12 +91,13 @@ script = ExtResource("1_5dyip")
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 anchor_mode = 0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("4_x5456")
-
-[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
-script = SubResource("GDScript_1brn0")
-
-[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1020140058]
 follow_viewport_enabled = true
@@ -81,9 +112,15 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 color = Color(0, 0, 0, 0)
 
-[node name="QuittingLayer" type="CanvasLayer" parent="." unique_id=1415601680]
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
+script = SubResource("GDScript_1brn0")
 
-[node name="Quitting" type="AnimatedSprite2D" parent="QuittingLayer" unique_id=221779437]
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
+
+[node name="DeviceLayer" type="CanvasLayer" parent="." unique_id=1415601680]
+script = SubResource("GDScript_melsq")
+
+[node name="Quitting" type="AnimatedSprite2D" parent="DeviceLayer" unique_id=221779437]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
 scale = Vector2(2, 2)
