@@ -370,5 +370,6 @@ position = Vector2(0.9999695, 5)
 shape = SubResource("RectangleShape2D_j46a3")
 
 [node name="BattleController" parent="." unique_id=1920008302 instance=ExtResource("13_j46a3")]
+visible = false
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]
