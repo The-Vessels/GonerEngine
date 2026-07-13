@@ -25,6 +25,21 @@ func _ready() -> void:
 	)
 "
 
+[sub_resource type="GDScript" id="GDScript_1qa5v"]
+script/source = "extends CanvasLayer
+
+func _ready() -> void:
+	var menu_scene: PackedScene
+	if Global.is_dark():
+		menu_scene = load(\"res://scenes/ui/dark_menu.tscn\")
+	else:
+		menu_scene = load(\"res://scenes/ui/light_menu.tscn\")
+	
+	var menu_node: Control = menu_scene.instantiate()
+	menu_node.visible = false
+	add_child(menu_node)
+"
+
 [sub_resource type="GDScript" id="GDScript_melsq"]
 script/source = "extends CanvasLayer
 
@@ -116,6 +131,7 @@ color = Color(0, 0, 0, 0)
 script = SubResource("GDScript_1brn0")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
+script = SubResource("GDScript_1qa5v")
 
 [node name="DeviceLayer" type="CanvasLayer" parent="." unique_id=1415601680]
 script = SubResource("GDScript_melsq")
