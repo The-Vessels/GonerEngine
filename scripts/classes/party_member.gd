@@ -57,11 +57,12 @@ func _process(delta: float) -> void:
 		party_member_process(delta)
 
 func _physics_process(_delta: float) -> void:
-	if Global.moveable and is_playable():
-		if Input.is_action_just_pressed("confirm"):
-			do_interact()
+	if is_playable():
 		if Input.is_action_just_pressed('menu'):
 			Signals.toggleMenu.emit()
+		if Global.moveable:
+			if Input.is_action_just_pressed("confirm"):
+				do_interact()
 
 func party_member_process(delta: float) -> void:
 	var dtmult := delta * 30.0
