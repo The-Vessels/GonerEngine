@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://c7xa7pmx162nx" path="res://sprites/ui/menu/btn/config_h.png" id="17_bw7va"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="21_jranp"]
 [ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_2nrtt"]
-[ext_resource type="Script" uid="uid://bovnwydii0nn3" path="res://scripts/classes/nav_soul.gd" id="25_2mtpm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sm6h8"]
 animations = [{
@@ -378,6 +377,9 @@ text = "Master Volume"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -397,6 +399,9 @@ text = "Controls"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -414,6 +419,9 @@ text = "Simplify VFX"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -437,6 +445,9 @@ text = "Auto-Run"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -461,6 +472,9 @@ text = "Border"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -480,6 +494,9 @@ text = "Return to Title"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -493,6 +510,9 @@ text = "Back"
 alignment = 0
 script = ExtResource("23_2nrtt")
 soul_offset = Vector2(-25, 10)
+soul_image = null
+lerp_weight = null
+force_soul = null
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -501,14 +521,5 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="NavSoul" type="TextureRect" parent="Submenus/CONFIG" unique_id=12970845]
-layout_mode = 0
-offset_left = 81.0
-offset_top = 73.0
-offset_right = 97.0
-offset_bottom = 89.0
-script = ExtResource("25_2mtpm")
-metadata/_custom_type_script = "uid://bovnwydii0nn3"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

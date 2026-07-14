@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://dlqme37rjvfdb"]
 
 [ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="1_8fv6u"]
-[ext_resource type="Texture2D" uid="uid://dfv5tvlj53h6v" path="res://sprites/souls/soul.png" id="2_s8wd4"]
-[ext_resource type="Script" uid="uid://bovnwydii0nn3" path="res://scripts/classes/nav_soul.gd" id="3_7ihet"]
 
 [sub_resource type="GDScript" id="GDScript_s8wd4"]
 script/source = "extends Control
@@ -37,7 +35,8 @@ theme_override_font_sizes/font_size = 32
 text = "Dickbutton"
 script = ExtResource("1_8fv6u")
 soul_offset = Vector2(-24, 8)
-soul_image = 1
+lerp_weight = 0.15
+force_soul = false
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="SoulButton2" type="Button" parent="." unique_id=470825345]
@@ -50,7 +49,8 @@ theme_override_font_sizes/font_size = 32
 text = "Dickbutton2"
 script = ExtResource("1_8fv6u")
 soul_offset = Vector2(-25, 8)
-soul_image = 1
+lerp_weight = 0.15
+force_soul = false
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="SoulButton3" type="Button" parent="." unique_id=179747612]
@@ -63,14 +63,6 @@ theme_override_font_sizes/font_size = 32
 text = "Dickbutton1225"
 script = ExtResource("1_8fv6u")
 soul_offset = Vector2(-24, 8)
-soul_image = 1
+lerp_weight = 0.15
+force_soul = false
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
-
-[node name="NavSoul" type="TextureRect" parent="." unique_id=709775058]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 12.0
-offset_right = 44.0
-offset_bottom = 28.0
-texture = ExtResource("2_s8wd4")
-script = ExtResource("3_7ihet")

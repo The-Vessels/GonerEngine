@@ -1,22 +1,32 @@
 @icon("uid://06bcfmflya6n")
 @tool
 class_name SoulButton extends Button
-## A button that reveals a soul sprite when focused on
+## A button that uses a soul sprite for navigation
 
 @export var soul_offset := Vector2(-14.0, 4.0)
 
-#enum SoulImages {NONE, NORMAL_SOUL, SMALL_SOUL}
-#@export var soul_image: SoulImages
-#
+const soul_img: CompressedTexture2D = preload("uid://dfv5tvlj53h6v")
+const small_soul_img: CompressedTexture2D = preload("uid://d0gvyfnxs5o8w")
+
+const soul_images: Dictionary = {
+	"normal": soul_img,
+	"small": small_soul_img,
+	"none": null
+}
+@export_enum("normal", "small", "none") var soul_image: String = "normal"
+
+## How fast the soul moves to the targetted button (1.0 is instant)
+@export_range(0.0, 1.0, 0.01) var lerp_weight: float = 1.0
+
 #@export var force_soul: bool = false
 
 enum NavDirs {BOTH, UP_AND_DOWN, LEFT_AND_RIGHT}
 @export var navigation_direction: NavDirs = NavDirs.BOTH
 
-#const soul_img: CompressedTexture2D = preload("uid://dfv5tvlj53h6v")
-#const small_soul_img: CompressedTexture2D = preload("uid://d0gvyfnxs5o8w")
-#
-#var soul_node: TextureRect
+static var soul_node: TextureRect
+
+static var soul_pos: Vector2
+static var target_pos: Vector2
 
 func _ready() -> void:
 	#soul_node = TextureRect.new()
@@ -25,10 +35,22 @@ func _ready() -> void:
 	#add_child(soul_node)
 	
 	focus_entered.connect(func():
-		#soul_node.visible = false
-		NavSoul.target_position = global_position + soul_offset
+		soul_node = TextureRect.new()
+		soul_node.texture = soul_images.get(soul_image)
+		
+		add_child(soul_node)
+		if !soul_pos:
+			soul_node.global_position = self.global_position + soul_offset
+		else:
+			soul_node.global_position = soul_pos
+		target_pos = global_position + soul_offset
+		
+		#NavSoul.target_position = global_position + soul_offset
 	)
-	#focus_exited.connect(func(): soul_node.visible = false)
+	focus_exited.connect(func():
+		soul_pos = soul_node.global_position
+		remove_child.call_deferred(soul_node)
+	)
 	pressed.connect(
 		func():
 			if !disabled:
@@ -46,6 +68,8 @@ func _ready() -> void:
 			focus_neighbor_bottom = get_path()
 
 func _process(delta: float) -> void:
+	if soul_node:
+		soul_node.global_position = lerp(soul_node.global_position, target_pos, lerp_weight)
 	#match soul_image:
 		#SoulImages.NONE:
 			#soul_node.texture = null
