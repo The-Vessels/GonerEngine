@@ -25,88 +25,87 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_e77re")
 centered = false
 
-[node name="Main" type="VBoxContainer" parent="." unique_id=1586220931]
+[node name="Stats" parent="." unique_id=619300672 instance=ExtResource("2_ubbul")]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 52.0
 offset_right = 103.0
-offset_bottom = 184.0
-scale = Vector2(2, 2)
-theme_override_constants/separation = 3
-
-[node name="Stats" parent="Main" unique_id=619300672 instance=ExtResource("2_ubbul")]
-layout_mode = 2
+offset_bottom = 107.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.75
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main/Stats" unique_id=779311536]
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats" unique_id=779311536]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 4.0
 offset_right = 68.0
 offset_bottom = 51.0
 
-[node name="Name" type="Label" parent="Main/Stats/VBoxContainer" unique_id=355191135]
+[node name="Name" type="Label" parent="Stats/VBoxContainer" unique_id=355191135]
 layout_mode = 2
 theme = ExtResource("3_e77re")
 text = "Kris"
 
-[node name="StatsContainer" type="VBoxContainer" parent="Main/Stats/VBoxContainer" unique_id=525892977]
+[node name="StatsContainer" type="VBoxContainer" parent="Stats/VBoxContainer" unique_id=525892977]
 layout_mode = 2
 
-[node name="LV" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=2036249100]
+[node name="LV" type="HBoxContainer" parent="Stats/VBoxContainer/StatsContainer" unique_id=2036249100]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/LV" unique_id=1229339172]
+[node name="Name" type="Label" parent="Stats/VBoxContainer/StatsContainer/LV" unique_id=1229339172]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "LV"
 
-[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/LV" unique_id=1165085554]
+[node name="Number" type="Label" parent="Stats/VBoxContainer/StatsContainer/LV" unique_id=1165085554]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "1"
 
-[node name="HP" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=1274849682]
+[node name="HP" type="HBoxContainer" parent="Stats/VBoxContainer/StatsContainer" unique_id=1274849682]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/HP" unique_id=1744099822]
+[node name="Name" type="Label" parent="Stats/VBoxContainer/StatsContainer/HP" unique_id=1744099822]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "HP"
 
-[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/HP" unique_id=359824068]
+[node name="Number" type="Label" parent="Stats/VBoxContainer/StatsContainer/HP" unique_id=359824068]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "20/20"
 
-[node name="MONEY" type="HBoxContainer" parent="Main/Stats/VBoxContainer/StatsContainer" unique_id=1722708460]
+[node name="MONEY" type="HBoxContainer" parent="Stats/VBoxContainer/StatsContainer" unique_id=1722708460]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Name" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/MONEY" unique_id=1617192411]
+[node name="Name" type="Label" parent="Stats/VBoxContainer/StatsContainer/MONEY" unique_id=1617192411]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "$"
 
-[node name="Number" type="Label" parent="Main/Stats/VBoxContainer/StatsContainer/MONEY" unique_id=401340063]
+[node name="Number" type="Label" parent="Stats/VBoxContainer/StatsContainer/MONEY" unique_id=401340063]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_5omq7")
 theme_override_font_sizes/font_size = 8
 text = "2"
 
-[node name="Options" parent="Main" unique_id=1407223732 instance=ExtResource("2_ubbul")]
-layout_mode = 2
+[node name="Options" parent="." unique_id=1407223732 instance=ExtResource("2_ubbul")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 168.0
+offset_right = 103.0
+offset_bottom = 242.0
 size_flags_vertical = 3
 
-[node name="OptionsContainer" type="VBoxContainer" parent="Main/Options" unique_id=1293229965]
+[node name="OptionsContainer" type="VBoxContainer" parent="Options" unique_id=1293229965]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 10.0
@@ -114,7 +113,7 @@ offset_right = 55.0
 offset_bottom = 66.0
 theme_override_constants/separation = 2
 
-[node name="ITEM" type="Button" parent="Main/Options/OptionsContainer" unique_id=2121259629]
+[node name="ITEM" type="Button" parent="Options/OptionsContainer" unique_id=2121259629]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
@@ -124,10 +123,9 @@ action_mode = 0
 button_mask = 0
 text = "ITEM"
 script = ExtResource("6_e77re")
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
-[node name="STAT" type="Button" parent="Main/Options/OptionsContainer" unique_id=1877904085]
+[node name="STAT" type="Button" parent="Options/OptionsContainer" unique_id=1877904085]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("3_e77re")
@@ -135,10 +133,9 @@ action_mode = 0
 button_mask = 0
 text = "STAT"
 script = ExtResource("6_e77re")
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
-[node name="CELL" type="Button" parent="Main/Options/OptionsContainer" unique_id=33715663]
+[node name="CELL" type="Button" parent="Options/OptionsContainer" unique_id=33715663]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("3_e77re")
@@ -146,7 +143,6 @@ action_mode = 0
 button_mask = 0
 text = "CELL"
 script = ExtResource("6_e77re")
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="Submenus" type="Control" parent="." unique_id=1813142588]
@@ -181,7 +177,6 @@ text = "ITEM"
 alignment = 0
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="STAT" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1543811841]
@@ -194,7 +189,6 @@ text = "STAT"
 alignment = 0
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="CELL" type="Button" parent="Submenus/ITEM/ItemList" unique_id=1335965771]
@@ -207,7 +201,6 @@ text = "CELL"
 alignment = 0
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="ItemActions" type="Panel" parent="Submenus/ITEM" unique_id=703692127]
@@ -231,7 +224,6 @@ button_mask = 0
 text = "USE"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="INFO" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=933814558]
@@ -247,7 +239,6 @@ button_mask = 0
 text = "INFO"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="DROP" type="Button" parent="Submenus/ITEM/ItemActions" unique_id=1937169790]
@@ -263,7 +254,6 @@ button_mask = 0
 text = "DROP"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="STAT" parent="Submenus" unique_id=1500861125 instance=ExtResource("2_ubbul")]
@@ -436,7 +426,6 @@ theme = ExtResource("3_e77re")
 text = "Call Home"
 script = ExtResource("6_e77re")
 soul_offset = Vector2(-12, 4)
-soul_image = 2
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

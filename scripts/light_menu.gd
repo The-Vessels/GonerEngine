@@ -1,6 +1,7 @@
 extends Control
 
-@onready var options_container: VBoxContainer = $Main/Options/OptionsContainer
+@onready var stats_box: NinePatchRect = $Stats
+@onready var options_container: VBoxContainer = $Options/OptionsContainer
 @onready var submenus: Control = $Submenus
 @onready var items_list: VBoxContainer = $Submenus/ITEM/ItemList
 @onready var item_actions: Panel = $Submenus/ITEM/ItemActions
@@ -95,6 +96,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !is_node_ready():
 		return
+	
+	if PartyMember.party_list[0]:
+		var stats_pos: Vector2
+		if PartyMember.party_list[0].global_position.y - WorldCamera.get_pos().y > 320.0:
+			stats_pos = Vector2(32.0, 52.0 + 270.0)
+		else:
+			stats_pos = Vector2(32.0, 52.0)
+		stats_box.global_position = stats_pos
+		
 	
 	if submenu_open:
 		options_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
