@@ -53,10 +53,14 @@ func _ready():
 		collision_layer = 0 # Do not collide!
 
 func _process(delta: float) -> void:
+	#if Global.moveable:
+		#party_member_process(delta)
+	pass
+
+func _physics_process(delta: float) -> void:
 	if Global.moveable:
 		party_member_process(delta)
-
-func _physics_process(_delta: float) -> void:
+	
 	if is_playable():
 		if Input.is_action_just_pressed('menu'):
 			Signals.toggleMenu.emit()

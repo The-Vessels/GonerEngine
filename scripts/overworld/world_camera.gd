@@ -34,11 +34,11 @@ func get_rect() -> Rect2:
 	return Rect2(pos, size)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_node_ready():
 		if target:
 			anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
-			self.position = target.global_position
+			self.global_position = target.global_position
 		else:
 			anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
-			self.position = Vector2(0.0, 0.0)
+			self.global_position = Vector2(0.0, 0.0)
