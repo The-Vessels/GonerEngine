@@ -29,16 +29,16 @@ visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 312.0
-offset_right = 321.0
-offset_bottom = 396.0
+offset_right = 618.0
+offset_bottom = 480.0
 
 [node name="LightBox" parent="." unique_id=1111038318 instance=ExtResource("3_seire")]
 visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 320.0
-offset_right = 321.0
-offset_bottom = 396.0
+offset_right = 610.0
+offset_bottom = 472.0
 
 [node name="TalkSprite" type="TextureRect" parent="." unique_id=1788532552]
 layout_mode = 0

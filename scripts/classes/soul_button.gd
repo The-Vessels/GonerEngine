@@ -3,7 +3,7 @@
 class_name SoulButton extends Button
 ## A button that uses a soul sprite for navigation
 
-@export var soul_offset := Vector2(-14.0, 4.0)
+@export var soul_offset: Vector2 = Vector2(0.0, 0.0)
 
 const soul_img: CompressedTexture2D = preload("uid://dfv5tvlj53h6v")
 const small_soul_img: CompressedTexture2D = preload("uid://d0gvyfnxs5o8w")
@@ -14,9 +14,12 @@ const soul_images: Dictionary = {
 	"none": null
 }
 @export_enum("normal", "small", "none") var soul_image: String = "normal"
+@export_range(0.50, 2.00, 0.25) var soul_scale: float = 1.00
 
 ## How fast the soul moves to the targetted button (1.0 is instant)
-@export_range(0.0, 1.0, 0.01) var lerp_weight: float = 1.0
+@export_range(0.0, 1.0, 0.01) var move_speed: float = 1.0
+
+static var lerp_weight: float
 
 #@export var force_soul: bool = false
 
@@ -38,12 +41,24 @@ func _ready() -> void:
 		soul_node = TextureRect.new()
 		soul_node.texture = soul_images.get(soul_image)
 		
+		if soul_image == "normal":
+			soul_node.size = Vector2(16.0, 16.0)
+		else:
+			soul_node.size = Vector2(9.0, 9.0)
+		soul_node.size *= Vector2(soul_scale, soul_scale)
+			
 		add_child(soul_node)
+		
 		if !soul_pos:
 			soul_node.global_position = self.global_position + soul_offset
 		else:
 			soul_node.global_position = soul_pos
-		target_pos = global_position + soul_offset
+		
+		var soul_to_right_x = self.global_position.x - soul_node.size.x
+		var center_y = self.global_position.y + (self.size.y / 2) - (soul_node.size.y / 2)
+		target_pos = Vector2(soul_to_right_x, center_y) + soul_offset
+		
+		lerp_weight = self.move_speed
 		
 		#NavSoul.target_position = global_position + soul_offset
 	)
