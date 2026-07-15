@@ -3,22 +3,33 @@
 class_name SoulButton extends Button
 ## A button that uses a soul sprite for navigation
 
+## The offset of the soul node in pixels from it's default position.
 @export var soul_offset: Vector2 = Vector2(0.0, 0.0)
 
 const soul_img: CompressedTexture2D = preload("uid://dfv5tvlj53h6v")
 const small_soul_img: CompressedTexture2D = preload("uid://d0gvyfnxs5o8w")
-
 const soul_images: Dictionary = {
 	"normal": soul_img,
 	"small": small_soul_img,
 	"none": null
 }
+## Which soul sprite to use for the button.
+## "normal" is the one usually used in the dark world,
+## and "small" is the usually used in the light world.
+## [br][br]
+## [b]Note:[/b] the small soul is almost half the size of the normal soul sprite,
+## so you might find yourself needing to also change the [member SoulButton.soul_scale].
 @export_enum("normal", "small", "none") var soul_image: String = "normal"
+static var soul_node: TextureRect
+
+## The scale of the [member SoulButton.soul_image] node created for the SoulButton.
+## [br][br]
+## [b]Note:[/b] Doesn't actually set the [member Control.scale] property of the soul node.
+## Rather, it is used as a multiplier for the [member Control.size] of the node.
 @export_range(0.50, 2.00, 0.25) var soul_scale: float = 1.00
 
 ## How fast the soul moves to the targetted button (1.0 is instant)
 @export_range(0.0, 1.0, 0.01) var move_speed: float = 1.0
-
 static var lerp_weight: float
 
 #@export var force_soul: bool = false
@@ -26,7 +37,6 @@ static var lerp_weight: float
 enum NavDirs {BOTH, UP_AND_DOWN, LEFT_AND_RIGHT}
 @export var navigation_direction: NavDirs = NavDirs.BOTH
 
-static var soul_node: TextureRect
 
 static var soul_pos: Vector2
 static var target_pos: Vector2
