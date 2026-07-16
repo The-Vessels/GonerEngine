@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://c7xa7pmx162nx" path="res://sprites/ui/menu/btn/config_h.png" id="17_bw7va"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="21_jranp"]
 [ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_2nrtt"]
-[ext_resource type="Script" uid="uid://bovnwydii0nn3" path="res://scripts/classes/nav_soul.gd" id="25_2mtpm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sm6h8"]
 animations = [{
@@ -50,8 +49,9 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_53y5c"]
 
-[sub_resource type="GDScript" id="GDScript_m3yw8"]
-script/source = "extends Panel
+[sub_resource type="GDScript" id="GDScript_bw7va"]
+script/source = "extends NinePatchRect
+
 # I will probably have to move a lot of this logic
 # specifically into the MainConfigMenu control node because
 # the controls menu has some functionality differences
@@ -76,13 +76,13 @@ var border_option_selected := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var submenu_buttons := get_submenu_buttons()
-	
+
 	visibility_changed.connect(
 		func():
 			if visible:
 				submenu_buttons[0].grab_focus()
 	)
-	
+
 	volume_level.text = str(linear_to_percentage(Settings.master_volume)) + \"%\"
 	volume_button.toggled.connect(
 		func(toggled_on):
@@ -92,21 +92,21 @@ func _ready() -> void:
 				if button != volume_button:
 					button.focus_mode = Control.FOCUS_NONE if toggled_on else Control.FOCUS_ALL
 	)
-	
+
 	vfx_label.text = \"ON\" if Settings.simplify_vxf else \"OFF\"
 	vfx_button.pressed.connect(
 		func():
 			Settings.simplify_vxf = !Settings.simplify_vxf
 			vfx_label.text = \"ON\" if Settings.simplify_vxf else \"OFF\"
 	)
-	
+
 	auto_run_label.text = \"ON\" if Settings.auto_run else \"OFF\"
 	auto_run_button.pressed.connect(
 		func():
 			Settings.auto_run = !Settings.auto_run
 			auto_run_label.text = \"ON\" if Settings.auto_run else \"OFF\"
 	)
-	
+
 	border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
 	border_button.toggled.connect(
 		func(toggled_on):
@@ -116,7 +116,7 @@ func _ready() -> void:
 				if button != border_button:
 					button.focus_mode = Control.FOCUS_NONE if toggled_on else Control.FOCUS_ALL
 	)
-	
+
 	back_button.pressed.connect(
 		func():
 			visible = false
@@ -125,7 +125,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !visible: return
-	
+
 	# Handle closing logic of config menu
 	if Input.is_action_just_pressed(\"cancel\"):
 		if !master_volume_selected and !border_option_selected:
@@ -136,7 +136,7 @@ func _process(delta: float) -> void:
 			if border_option_selected:
 				border_button.button_pressed = false
 			Global.play_ui_sound(\"select\")
-	
+
 	# Handle menumove sound playing logic of config menu
 	if Input.is_action_just_pressed(\"down\") or Input.is_action_just_pressed(\"up\"):
 		if !master_volume_selected and !border_option_selected:
@@ -145,7 +145,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if sound_buffer > 0:
 		sound_buffer -= 1
-	
+
 	if master_volume_selected:
 		if Input.is_action_pressed(\"left\"):
 			if Settings.master_volume > 0.0 and Settings.master_volume <= 1.0:
@@ -156,21 +156,21 @@ func _physics_process(delta: float) -> void:
 				change_master_volume(0.02)
 			play_volume_change_sound()
 		volume_level.text = str(linear_to_percentage(Settings.master_volume)) + \"%\"
-		
+
 	if border_option_selected:
 		if Input.is_action_just_pressed(\"left\"):
 			Settings.border_mode -= 1
 		if Input.is_action_just_pressed(\"right\"):
 			Settings.border_mode += 1
-		
-			
+
+
 		Settings.border_mode = clamp(Settings.border_mode, 0, Settings.BorderModes.size()-1)
-		
+
 		if Settings.border_mode == Settings.BorderModes.OFF and Settings.border_enabled:
 			Signals.ToggleBorder.emit(false)
 		elif Settings.border_mode != Settings.BorderModes.OFF and !Settings.border_enabled:
 			Signals.ToggleBorder.emit(true)
-			
+
 		match Settings.border_mode:
 			Settings.BorderModes.DYNAMIC:
 				Signals.changeBorder.emit(Global.current_dynamic_border, 0)
@@ -178,7 +178,7 @@ func _physics_process(delta: float) -> void:
 				Signals.changeBorder.emit(Global.BORDER_SIMPLE, 0)
 			Settings.BorderModes.NONE:
 				Signals.changeBorder.emit(Global.BORDER_NONE, 0)
-		
+
 		border_label.text = str(Settings.BorderModes.find_key(Settings.border_mode))
 		if Settings.border_mode != Settings.BorderModes.OFF:
 			border_label.text = border_label.text.capitalize()
@@ -204,6 +204,7 @@ func linear_to_percentage(linear_value: float) -> int:
 "
 
 [node name="DarkMenu" type="Control" unique_id=25315914]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -329,19 +330,14 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 
-[node name="CONFIG" type="Panel" parent="Submenus" unique_id=37113848]
+[node name="CONFIG" parent="Submenus" unique_id=2138793155 instance=ExtResource("21_jranp")]
 visible = false
 layout_mode = 0
 offset_left = 50.0
 offset_top = 80.0
 offset_right = 591.0
 offset_bottom = 421.0
-script = SubResource("GDScript_m3yw8")
-
-[node name="BoxBG" parent="Submenus/CONFIG" unique_id=2138793155 instance=ExtResource("21_jranp")]
-layout_mode = 0
-offset_right = 270.5
-offset_bottom = 170.5
+script = SubResource("GDScript_bw7va")
 
 [node name="MainConfigMenu" type="Control" parent="Submenus/CONFIG" unique_id=1612331171]
 anchors_preset = 0
@@ -377,7 +373,7 @@ action_mode = 0
 text = "Master Volume"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -396,7 +392,7 @@ action_mode = 0
 text = "Controls"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -413,7 +409,7 @@ action_mode = 0
 text = "Simplify VFX"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -436,7 +432,7 @@ action_mode = 0
 text = "Auto-Run"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -460,7 +456,7 @@ action_mode = 0
 text = "Border"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -479,7 +475,7 @@ action_mode = 0
 text = "Return to Title"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -492,7 +488,7 @@ action_mode = 0
 text = "Back"
 alignment = 0
 script = ExtResource("23_2nrtt")
-soul_offset = Vector2(-25, 10)
+soul_offset = Vector2(-9, 2)
 navigation_direction = 1
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
@@ -501,14 +497,5 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="NavSoul" type="TextureRect" parent="Submenus/CONFIG" unique_id=12970845]
-layout_mode = 0
-offset_left = 81.0
-offset_top = 73.0
-offset_right = 97.0
-offset_bottom = 89.0
-script = ExtResource("25_2mtpm")
-metadata/_custom_type_script = "uid://bovnwydii0nn3"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

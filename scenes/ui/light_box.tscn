@@ -5,10 +5,9 @@
 [node name="LightBox" type="NinePatchRect" unique_id=619300672]
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(2, 2)
 texture = ExtResource("1_c3pdv")
-region_rect = Rect2(4, 4, 25, 25)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
+region_rect = Rect2(8, 8, 50, 50)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32

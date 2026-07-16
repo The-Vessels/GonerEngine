@@ -51,12 +51,11 @@ _data = {
 [node name="DarkBox" type="NinePatchRect" unique_id=619300672]
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(2, 2)
 texture = ExtResource("1_06xid")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=427008337]
 libraries/ = SubResource("AnimationLibrary_qsw8h")
