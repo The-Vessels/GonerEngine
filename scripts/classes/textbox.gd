@@ -141,12 +141,12 @@ func parse_commands():
 		var right_index = dia.get_parsed_text().findn(")", left_index)
 		if right_index == -1: break
 		
-		var tagContent = dia.get_parsed_text().substr(left_index+1, right_index-1-left_index)
+		var tag_content = dia.get_parsed_text().substr(left_index+1, right_index-1-left_index)
 		
 		# erase the command from the dialogue text
-		dia.text = dia.text.erase(dia.text.findn("("+tagContent+")"), right_index+1-left_index)
+		dia.text = dia.text.erase(dia.text.findn("("+tag_content+")"), right_index+1-left_index)
 		
-		var split_command = tagContent.split(":")
+		var split_command = tag_content.split(":")
 		var command_name = split_command[0]
 		var arguments = split_command[1].split(",")
 		
