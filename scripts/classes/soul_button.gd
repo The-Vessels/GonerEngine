@@ -37,7 +37,6 @@ static var lerp_weight: float
 enum NavDirs {BOTH, UP_AND_DOWN, LEFT_AND_RIGHT}
 @export var navigation_direction: NavDirs = NavDirs.BOTH
 
-
 static var soul_pos: Vector2
 static var target_pos: Vector2
 

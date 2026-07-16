@@ -7,6 +7,9 @@ class_name TextBox extends Control
 ## [br]
 ## Instead, use [method TextBox.start_dialogue] (or [method TextBox.create] if you only need a [b]TextBox[/b] node).
 
+signal command_finished
+var awaiting_command := false
+
 @export_multiline var text: Array[String] = [""]:
 	set(new):
 		text = new
@@ -15,7 +18,7 @@ class_name TextBox extends Control
 			set_asterisks()
 
 @onready var ast = $HBoxContainer/asterisks
-@onready var dia = $HBoxContainer/dialoguetext
+@onready var dia: RichTextLabel = $HBoxContainer/dialoguetext
 @onready var dark_box: NinePatchRect = $DarkBox
 @onready var light_box: NinePatchRect = $LightBox
 
@@ -92,26 +95,86 @@ func _ready():
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	
+	dia.visible_ratio = 0.0
+	#var parsed_text = parse_commands(text[text_index])
 	set_text(text[text_index])
+	parse_commands()
 	set_asterisks()
-	animate_text()
 
 
-func animate_text():
-	var text: String = dia.get_parsed_text()
-	print(text)
-	dia.visible_characters = 0
-	while dia.visible_characters < dia.get_total_character_count():
-		if Input.is_action_just_pressed("cancel"):
-			dia.visible_characters = dia.get_total_character_count()
-			animating = false
-			return
-		animating = true
-		dia.visible_characters += 1
-		if text[dia.visible_characters - 1] != ' ':
-			play_talk_sound()
-		await get_tree().physics_frame
-	animating = false
+#func animate_text():
+	#var text: String = dia.get_parsed_text()
+	#print(text)
+	#while dia.visible_characters < dia.get_total_character_count():
+	#if Input.is_action_just_pressed("cancel"):
+		#dia.visible_characters = dia.get_total_character_count()
+		#animating = false
+		#return
+	#animating = true
+	#if text[dia.visible_characters - 1] == "t":
+		#await get_tree().create_timer(Global.frames_to_sec(10)).timeout
+		#text = text.erase(dia.visible_characters)
+	#if text[dia.visible_characters - 1] != ' ':
+		#play_talk_sound()
+		#await get_tree().physics_frame
+	#dia.visible_characters += 1
+	#animating = false
+
+class CommandInfo:
+	var index: int
+	var command: String
+	var arguments: Array[String]
+	func _init(idx: int, cmd: String, args: Array[String]):
+		index = idx
+		command = cmd
+		arguments = args
+
+var commands: Array[CommandInfo] = []
+# Gets all the commands inside the dia text and adds them to the list of commands
+func parse_commands():
+	commands.clear()
+	while true:
+		# find the index of where the command starts (break the loop if it doesnt find any more)
+		var left_index = dia.get_parsed_text().findn("(")
+		if left_index == -1: break
+		# find the index of where the command ends (break the loop if it doesnt find any more)
+		var right_index = dia.get_parsed_text().findn(")", left_index)
+		if right_index == -1: break
+		
+		var tagContent = dia.get_parsed_text().substr(left_index+1, right_index-1-left_index)
+		
+		# erase the command from the dialogue text
+		dia.text = dia.text.erase(dia.text.findn("("+tagContent+")"), right_index+1-left_index)
+		
+		var split_command = tagContent.split(":")
+		var command_name = split_command[0]
+		var arguments = split_command[1].split(",")
+		
+		var command = CommandInfo.new(left_index, command_name, arguments)
+		commands.append(command)
+
+func handle_command(command: CommandInfo):
+	if command.command == "wait":
+		await get_tree().create_timer(Global.frames_to_sec(float(command.arguments[0]))).timeout
+	
+	commands.remove_at(0)
+	command_finished.emit()
+
+func write_char():
+	if awaiting_command:
+		return
+	
+	# Check if the index of the char you're about to write has a command queued for it
+	if commands:
+		print(commands[0].index)
+		print(dia.visible_characters)
+		if dia.visible_characters == commands[0].index:
+			awaiting_command = true
+			handle_command(commands[0])
+			await command_finished
+	awaiting_command = false
+	dia.visible_characters += 1
+	play_talk_sound()
 
 func play_talk_sound():
 	var sound = talk_sounds.pick_random()
@@ -128,7 +191,7 @@ func play_talk_sound():
 	
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or !is_node_ready():
 		return
 	match Global.world_type:
 		Global.WorldTypes.WORLD_LIGHT:
@@ -140,6 +203,8 @@ func _process(_delta: float) -> void:
 			light_box.visible = false
 			$TalkSprite.set_position(Vector2(69.0, 350.0))
 	ast.visible_characters = dia.get_visible_line_count()
+
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("confirm") and !animating:
 		text_index += 1
 		if text_index >= text.size():
@@ -147,9 +212,20 @@ func _process(_delta: float) -> void:
 			has_textbox = false
 			return
 		
+		dia.visible_ratio = 0.0
+		#var parsed_text = parse_commands(text[text_index])
 		set_text(text[text_index])
+		parse_commands()
 		set_asterisks()
-		animate_text()
+	
+	if animating and Input.is_action_just_pressed("cancel"):
+		dia.visible_ratio = 1.0
+	
+	if !(dia.visible_ratio >= 1.0):
+		animating = true
+		write_char()
+	else:
+		animating = false
 
 #func paragraph_starts_with_asterisk(i: int):
 	#var offset = get_paragraph_offset(i)

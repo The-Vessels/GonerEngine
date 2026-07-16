@@ -246,9 +246,9 @@ script/source = "extends StaticBody2D
 
 func interact() -> void:
 	var text = [
-		\"* That's right fuckers, I'm the [shake rate=50.0 level=10 connected=1][color=red][img=x32]res://sprites/example/tennatime.png[/img] Roaring Knight[/color][/shake]!\",
-		\"* wait what the fuck\",
-		\"Where is my asterick\",
+		\"* That's right fuckers,(wait:30) I'm the [shake rate=50.0 level=10 connected=1][color=red][img=x32]res://sprites/example/tennatime.png[/img] Roaring Knight[/color][/shake]!\",
+		\"* wait(wait:10) what the fuck\",
+		\"Where is my(wait:5) aste(wait:50)rick\",
 		\"* ive got many askerisks?\\n* yes\\n* maybe too many\",
 		\"* funnytext test\\n* [img=350x70]res://sprites/souls/soul.png[/img]\"
 	]
@@ -262,7 +262,7 @@ script/source = "extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	var text = [
-		\"* $#!&-stains\",
+		\"* aa $#!&-stains\",
 		\"* $#!&-stains on the wall\",
 		\"yo\"
 	]
