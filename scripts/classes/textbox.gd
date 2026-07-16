@@ -7,9 +7,6 @@ class_name TextBox extends Control
 ## [br]
 ## Instead, use [method TextBox.start_dialogue] (or [method TextBox.create] if you only need a [b]TextBox[/b] node).
 
-signal command_finished
-var awaiting_command := false
-
 @export_multiline var text: Array[String] = [""]:
 	set(new):
 		text = new
@@ -32,8 +29,9 @@ const textbox_scene: PackedScene = preload("uid://c5nrska6i801g")
 
 static var has_textbox := false
 
-var animating := false
-var text_index := 0
+var animating: bool = false
+var pause: int = 0
+var text_index: int = 0
 
 # this is actually called a `paragraph` in `RichTextLabel`
 # because each line here means includes wrapped lines
@@ -101,78 +99,57 @@ func _ready():
 	parse_commands()
 	set_asterisks()
 
-
-#func animate_text():
-	#var text: String = dia.get_parsed_text()
-	#print(text)
-	#while dia.visible_characters < dia.get_total_character_count():
-	#if Input.is_action_just_pressed("cancel"):
-		#dia.visible_characters = dia.get_total_character_count()
-		#animating = false
-		#return
-	#animating = true
-	#if text[dia.visible_characters - 1] == "t":
-		#await get_tree().create_timer(Global.frames_to_sec(10)).timeout
-		#text = text.erase(dia.visible_characters)
-	#if text[dia.visible_characters - 1] != ' ':
-		#play_talk_sound()
-		#await get_tree().physics_frame
-	#dia.visible_characters += 1
-	#animating = false
-
 class CommandInfo:
 	var index: int
 	var command: String
-	var arguments: Array[String]
-	func _init(idx: int, cmd: String, args: Array[String]):
+	func _init(idx: int, cmd: String):
 		index = idx
 		command = cmd
-		arguments = args
 
 var commands: Array[CommandInfo] = []
 # Gets all the commands inside the dia text and adds them to the list of commands
 func parse_commands():
+	print(dia.get_parsed_text())
 	commands.clear()
 	while true:
 		# find the index of where the command starts (break the loop if it doesnt find any more)
-		var left_index = dia.get_parsed_text().findn("(")
+		var left_index = dia.get_parsed_text().findn("{")
 		if left_index == -1: break
 		# find the index of where the command ends (break the loop if it doesnt find any more)
-		var right_index = dia.get_parsed_text().findn(")", left_index)
+		var right_index = dia.get_parsed_text().findn("}", left_index)
 		if right_index == -1: break
 		
 		var tag_content = dia.get_parsed_text().substr(left_index+1, right_index-1-left_index)
 		
 		# erase the command from the dialogue text
-		dia.text = dia.text.erase(dia.text.findn("("+tag_content+")"), right_index+1-left_index)
+		dia.text = dia.text.erase(dia.text.findn("{"+tag_content+"}"), right_index+1-left_index)
 		
-		var split_command = tag_content.split(":")
-		var command_name = split_command[0]
-		var arguments = split_command[1].split(",")
-		
-		var command = CommandInfo.new(left_index, command_name, arguments)
+		var command = CommandInfo.new(left_index, tag_content)
 		commands.append(command)
 
-func handle_command(command: CommandInfo):
-	if command.command == "wait":
-		await get_tree().create_timer(Global.frames_to_sec(float(command.arguments[0]))).timeout
+func evaluate(command, variable_names = [], variable_values = []) -> void:
+	var expression = Expression.new()
+	var error = expression.parse(command, variable_names)
+	if error != OK:
+		push_error(expression.get_error_text())
+		return
+
+	var result = expression.execute(variable_values, self)
+
+	if not expression.has_execute_failed():
+		print(str(result))
 	
 	commands.remove_at(0)
-	command_finished.emit()
 
-func write_char():
-	if awaiting_command:
-		return
-	
+func wait(frames: int) -> void:
+	pause = frames
+
+func write_char():	
 	# Check if the index of the char you're about to write has a command queued for it
 	if commands:
-		print(commands[0].index)
-		print(dia.visible_characters)
 		if dia.visible_characters == commands[0].index:
-			awaiting_command = true
-			handle_command(commands[0])
-			await command_finished
-	awaiting_command = false
+			print(commands[0].command)
+			evaluate(commands[0].command)
 	dia.visible_characters += 1
 	play_talk_sound()
 
@@ -223,17 +200,9 @@ func _physics_process(delta: float) -> void:
 	
 	if !(dia.visible_ratio >= 1.0):
 		animating = true
-		write_char()
+		if pause <= 0:
+			write_char()
 	else:
 		animating = false
-
-#func paragraph_starts_with_asterisk(i: int):
-	#var offset = get_paragraph_offset(i)
-	#for j in range(get_line_count()):
-		#if get_line_offset(j) == offset:
-			#pass
-#
-#func _ready():
-	#print('Lines: %d' % get_paragraph_count())
-	#for i in range(get_paragraph_count()):
-		#print(get_paragraph_offset(i))
+	
+	if pause > 0: pause -= 1
