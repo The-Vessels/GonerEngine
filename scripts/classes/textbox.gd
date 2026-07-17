@@ -182,6 +182,8 @@ func _process(_delta: float) -> void:
 	ast.visible_characters = dia.get_visible_line_count()
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint() or !is_node_ready():
+		return
 	if Input.is_action_just_pressed("confirm") and !animating:
 		text_index += 1
 		if text_index >= text.size():

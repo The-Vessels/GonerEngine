@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d0ukmrnn12ao5"]
+
+[sub_resource type="GDScript" id="GDScript_mxpdu"]
+script/source = "extends Control
+
+var pos: Vector2
+var hi = 1
+var shake_pos := Vector2(200, 200)
+var text_gap := Vector2(8.0, 0.0)
+@export var font_size: int = 16
+@export var line_length := 500.0
+var max_line_chars: int
+@export var text := \"oh my god. Kris... you're so fucking stupid... im gonna fucking kill you so quick\"
+var text_words: PackedStringArray = []
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	text_gap = Vector2(font_size/2, 0.0)
+	# thx sixtyfive for this cool maths
+	max_line_chars = floor(line_length / font_size)
+	
+	text_words = text.split(\" \")
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	hi += 1
+	pos = Vector2(100.0, 100.0) + 10 * Vector2(sin(hi), sin(hi)) + Vector2(tan(hi), 0)
+	queue_redraw()
+
+func _draw() -> void:
+	draw_string(get_theme_default_font(), pos, \"playing with poop yeah\")
+	
+	var char := 0
+	
+	# the position where the top left of the text should start
+	# don't use shake_pos directly cause that will change the top left pos each frame
+	var pos := shake_pos
+	# loop through each word in text_words
+	for j in text_words.size():
+		var word: String = text_words.get(j)
+		
+		# if adding this word would go over the limit, start from the next line
+		if (char + word.length()) > max_line_chars:
+				pos.y += font_size
+				char = 0
+				
+		# loop over each character in the word
+		for i in word.length():
+			draw_char(
+				get_theme_default_font(),
+				pos + (text_gap * (char)) + Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)),
+				word[i],
+				font_size
+			)
+			char += 1
+		
+		# add a space after the word
+		draw_char(
+			get_theme_default_font(),
+			pos + (text_gap * (char)) + Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)),
+			\" \",
+			font_size
+		)
+		char += 1
+"
+
+[node name="Customdrawingtest" type="Control" unique_id=532849005]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_mxpdu")
