@@ -8,22 +8,24 @@ shader = ExtResource("1_m0vko")
 shader_parameter/normal_shadow_top_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
 shader_parameter/normal_shadow_bottom_color = Color(0, 0, 0.5019608, 1)
 shader_parameter/color_shadow_mix = 0.30000001425
-shader_parameter/font_height = 0.0
-shader_parameter/line_height = 0.0
-shader_parameter/shadow_offset = Vector2(0, 0)
-shader_parameter/enable = false
+shader_parameter/font_height = 32.0
+shader_parameter/line_height = 36.0
+shader_parameter/shadow_offset = Vector2(1, 1)
+shader_parameter/enable = true
 
 [node name="TextboxWithColors" type="Node2D" unique_id=342972194]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1629108356]
 material = SubResource("ShaderMaterial_ocjv1")
-offset_right = 604.0
-offset_bottom = 213.0
+offset_right = 562.0
+offset_bottom = 203.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=672823164]
 transparent_bg = true
-size = Vector2i(604, 213)
+handle_input_locally = false
+size = Vector2i(562, 203)
+render_target_update_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport" unique_id=2065571344]
 anchors_preset = 15
