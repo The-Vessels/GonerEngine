@@ -124,7 +124,7 @@ func parse_commands():
 		# erase the command from the dialogue text
 		dia.text = dia.text.erase(dia.text.findn("{"+tag_content+"}"), right_index+1-left_index)
 		
-		var command = CommandInfo.new(left_index, tag_content)
+		var command = CommandInfo.new(left_index-1, tag_content)
 		commands.append(command)
 
 func evaluate(command, variable_names = [], variable_values = []) -> void:
