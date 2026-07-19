@@ -51,7 +51,7 @@ func goto_room(room):
 	
 	prepare_room(room_instantiated)
 	
-	Signals.room_change_finished.emit()
+	Signals.room_change_finished.emit.call_deferred()
 	print("FINISHED ROOM SWAP")
 
 func warp_to_marker(marker_id: int, facing: Enums.Facing) -> void:
