@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cr0a5bqlvl412"]
+
+[ext_resource type="Script" uid="uid://4pjxsww3c707" path="res://scripts/rudebolt_afterimage.gd" id="1_p2jnl"]
+
+[node name="Afterimage" type="Sprite2D" unique_id=1137464098]
+script = ExtResource("1_p2jnl")
+metadata/_custom_type_script = "uid://cioy4spjgtmoj"

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bvci50g1lx7jm"]
+
+[ext_resource type="Script" uid="uid://b4ualrrpsj8ur" path="res://scripts/rude_buster.gd" id="1_8nfev"]
+[ext_resource type="Texture2D" uid="uid://ddq3s54vobhai" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_0.png" id="2_rm1tn"]
+[ext_resource type="PackedScene" uid="uid://cr0a5bqlvl412" path="res://scenes/rude_bolt_afterimage.tscn" id="2_scebe"]
+[ext_resource type="Texture2D" uid="uid://dgkmpnuhjh6ts" path="res://Screenshot 2026-07-14 130120.png" id="3_rm1tn"]
+[ext_resource type="Texture2D" uid="uid://q1y32indyi68" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_1.png" id="3_vccqj"]
+[ext_resource type="Texture2D" uid="uid://b07dev5q0g4r5" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_2.png" id="4_scebe"]
+[ext_resource type="Texture2D" uid="uid://da73g3ffghwra" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_3.png" id="5_3tg5g"]
+[ext_resource type="Texture2D" uid="uid://ddnhu78wawfsr" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_4.png" id="6_hgate"]
+[ext_resource type="Texture2D" uid="uid://dx7h1b8q56j7m" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_5.png" id="7_gxqf2"]
+[ext_resource type="Texture2D" uid="uid://cs6dutgla8wcf" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_6.png" id="8_jpt2j"]
+[ext_resource type="Script" uid="uid://b5e0ouyeldmrb" path="res://scripts/resumer.gd" id="11_3tg5g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6pptq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rm1tn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vccqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_scebe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3tg5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hgate")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gxqf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jpt2j")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="RudeBuster" type="Node2D" unique_id=1492975351 node_paths=PackedStringArray("rude_bolt")]
+script = ExtResource("1_8nfev")
+rude_bolt = NodePath("Rude Bolt")
+afterimage_scene = ExtResource("2_scebe")
+
+[node name="Target" type="Marker2D" parent="." unique_id=1076344769]
+position = Vector2(538, 206)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Target" unique_id=1004006418]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Rude Bolt" type="AnimatedSprite2D" parent="." unique_id=982118459]
+z_index = 5
+position = Vector2(163, 202)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6pptq")
+autoplay = "default"
+frame_progress = 0.21394414
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=159504938]
+z_index = -1
+position = Vector2(308, 246.99998)
+scale = Vector2(0.6380308, 0.6380308)
+texture = ExtResource("3_rm1tn")
+metadata/_edit_lock_ = true
+
+[node name="resumer" type="Node" parent="." unique_id=1519977823]
+process_mode = 3
+script = ExtResource("11_3tg5g")

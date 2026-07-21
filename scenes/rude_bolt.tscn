@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c0tr5jam5ksed"]
+
+[ext_resource type="Texture2D" uid="uid://cs6dutgla8wcf" path="res://sprites/misc/RudeBuster/RudeBeam/spr_rudebuster_beam_6.png" id="1_873hu"]
+[ext_resource type="Script" uid="uid://x66iq0maj3y4" path="res://scripts/rude_bolt.gd" id="2_q4fah"]
+
+[node name="RudeBolt" type="Sprite2D" unique_id=1843299838]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_873hu")
+script = ExtResource("2_q4fah")
+metadata/_custom_type_script = "uid://cioy4spjgtmoj"
