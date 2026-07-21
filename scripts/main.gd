@@ -9,7 +9,7 @@ extends Control
 @onready var game_renderer: TextureRect = $GameRenderer
 
 # Border variables
-var border_tween: Tween
+var border_tween: Tween = null
 
 # The last center position of the window, before it was fullscreened.
 # We use this to return the window's center to its original center,
@@ -30,7 +30,6 @@ func _ready() -> void:
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	
 	border_rect.texture = find_border_texture()
-	border_tween = create_tween()
 	set_border()
 	
 	Signals.changeBorder.connect(
@@ -101,7 +100,8 @@ func set_border_texture(new_border: Texture, duration: float) -> void:
 	border_prev_rect.visible = true
 	border_rect.modulate.a = 0.0
 	
-	border_tween.kill()
+	if border_tween != null:
+		border_tween.kill()
 	border_tween = create_tween()
 	border_tween.tween_property(border_rect, "modulate:a", 1.0, (duration / 30.0))
 	border_tween.tween_callback(func(): border_prev_rect.visible = false)

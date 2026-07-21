@@ -25,4 +25,4 @@ func add(value: Variant) -> void:
 # get(49) returns the 50th most recently added position
 # Try not to get() an index larger than max_length
 func get_val(index: int) -> Variant:
-	return positions[posmod(-index + idx, max_length)]
+	return positions[posmod(-index + idx - 1, max_length)]

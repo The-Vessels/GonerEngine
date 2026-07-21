@@ -16,6 +16,7 @@ size = Vector2(320, 240)
 size = Vector2(40, 40)
 
 [node name="Classroom" type="Node2D" unique_id=830096811]
+scale = Vector2(2, 2)
 script = ExtResource("1_eqjh4")
 
 [node name="CameraBounds" type="Area2D" parent="." unique_id=111864463]
@@ -44,7 +45,6 @@ shape = SubResource("RectangleShape2D_gobvo")
 position = Vector2(-224, -192)
 script = ExtResource("4_jelid")
 target_scene = "uid://cy8co0c6bkwdr"
-player_facing = "down"
 metadata/_custom_type_script = "uid://cnspaa06cvy5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea2" unique_id=2088458932]
@@ -52,7 +52,7 @@ position = Vector2(284, 300)
 shape = SubResource("RectangleShape2D_gobvo")
 
 [node name="TargetMarkerDest" type="Marker2D" parent="." unique_id=786140519]
-position = Vector2(160, 144)
+position = Vector2(160, 160)
 script = ExtResource("5_ituqa")
 metadata/_custom_type_script = "uid://cwiacpp0rgtxs"
 

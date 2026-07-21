@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dw4u4k5xprkb0"]
 
 [ext_resource type="PackedScene" uid="uid://d376k0qo4m4bd" path="res://scenes/overworld/party_member.tscn" id="1_1ixd1"]
-[ext_resource type="Resource" uid="uid://cltnesrsbhr1t" path="res://sprites/actors/kris/kris_character.tres" id="2_l805s"]
-[ext_resource type="Resource" uid="uid://dikw7v5ni7q8q" path="res://sprites/actors/susie/susie_character.tres" id="3_3brok"]
+[ext_resource type="Resource" uid="uid://h3yb2opxvqdd" path="res://sprites/actors/kris/kris_character.tres" id="2_l805s"]
+[ext_resource type="Resource" uid="uid://cso70uyedr7dl" path="res://sprites/actors/susie/susie_character.tres" id="3_3brok"]
 
 [node name="PartyMemberList" type="Node2D" unique_id=1142586290]
 y_sort_enabled = true

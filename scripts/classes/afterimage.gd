@@ -4,7 +4,8 @@ var opacity_rate: float
 var velocity: Vector2
 
 static func with_fade_time(fade_time: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO) -> Afterimage:
-	var fade_rate := starting_opacity / fade_time
+	var fade_rate: float
+	fade_rate = starting_opacity / (fade_time / 30.0)
 	return new(fade_rate, starting_opacity, vel)
 
 func _init(fade_rate: float, starting_opacity: float = 1.0, vel: Vector2 = Vector2.ZERO):

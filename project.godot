@@ -23,7 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-Global="*res://scenes/global.tscn"
+Global="*uid://cbvwmdknjod0"
 Settings="*uid://dkqo1utsrhq80"
 Colors="*uid://bc4tqibect2pp"
 Signals="*uid://dlrt4nnik2trb"
@@ -43,6 +43,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="ENGINE_GONER"
 
+[editor]
+
+script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn")
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
@@ -51,7 +55,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 theme/default_font_antialiasing=0
 theme/custom="uid://dlf02a788g6br"
-theme/custom_font="uid://e8d4ah3nxtnm"
+theme/custom_font="uid://vfpydrrva5km"
 
 [input]
 

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bsn3lnx86eo3e"]
+
+[ext_resource type="Script" uid="uid://buxrtj76p62ib" path="res://scripts/battle/battle_controller.gd" id="1_842bt"]
+
+[node name="BattleController" type="Node2D" unique_id=1920008302]
+script = ExtResource("1_842bt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=816545108]
+z_index = 1000
+offset_right = 320.0
+offset_bottom = 480.0

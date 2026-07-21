@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://d0ukmrnn12ao5"]
+
+[sub_resource type="GDScript" id="GDScript_mxpdu"]
+script/source = "@tool
+extends Control
+
+var text_gap := Vector2(8.0, 0.0)
+@export_multiline(\"monospace\") var text := \"\":
+	set(new):
+		text = new
+		if Engine.is_editor_hint():
+			text = new
+			notify_property_list_changed()
+			text_words = text.split(\" \")
+			queue_redraw()
+			
+@export var font_size: int = 16:
+	set(new):
+		font_size = new
+		if Engine.is_editor_hint():
+			font_size = new
+			notify_property_list_changed()
+			text_gap = Vector2(font_size/2, 0.0)
+			max_line_chars = floor(self.size.x / text_gap.x)
+			queue_redraw()
+#@export var line_length := 500.0
+@export var visible_characters := 0
+@export_range(0.0, 1.0) var visible_ratio: float = 1.0
+var max_line_chars: int
+var text_words: PackedStringArray = []
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print(text)
+	text_gap = Vector2(font_size/2, 0.0)
+	# thx sixtyfive for this cool maths
+	max_line_chars = floor(self.size.x / text_gap.x)
+	text_words = text.split(\" \")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	max_line_chars = floor(self.size.x / text_gap.x)
+	queue_redraw()
+	if visible_characters > -1 and visible_characters < text.length():
+		visible_characters += 1
+		visible_ratio = visible_characters / float(text.length())
+
+func _draw() -> void:
+	var asterisk: bool = false
+	var aster_offset := Vector2(0.0, 0.0)
+	var char := 0
+	var total_chars := 0
+	
+	# the position where the top left of the text should start
+	var pos := Vector2(0, 0 + font_size)
+	# loop through each word in text_words
+	for j in text_words.size():
+		var word: String = text_words.get(j)
+		
+		if visible_characters > -1 and total_chars >= visible_characters:
+			break
+		
+		# if adding this word would go over the limit, start from the next line
+		if (char + word.length()) > max_line_chars:
+				pos.y += font_size
+				char = 0
+				if asterisk: char = 2
+		
+		# loop over each character in the word
+		for i in word.length():
+			draw_char(
+				get_theme_default_font(),
+				pos + (text_gap * (char)) + Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)),
+				word[i],
+				font_size
+			)
+			char += 1
+			total_chars += 1
+			if visible_characters > -1 and total_chars >= visible_characters:
+				break
+		
+		if word == \"*\" and !asterisk:
+			asterisk = true
+		
+		# add a space after the word
+		draw_char(
+			get_theme_default_font(),
+			pos + (text_gap * (char)) + Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)),
+			\" \",
+			font_size
+		)
+		
+		char += 1
+		total_chars += 1
+"
+
+[node name="Customdrawingtest" type="Control" unique_id=532849005]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 91.0
+offset_top = 83.0
+offset_right = -276.0
+offset_bottom = -338.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_mxpdu")
+text = "* oh my god. Kris...
+you're so fucking stupid...
+im gonna fucking kill you so quick"
+visible_characters = 85

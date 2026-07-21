@@ -3,31 +3,24 @@
 # Room switching, player placement, etc.
 extends Node2D
 
-@onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
+# @onready var transition_player: AnimationPlayer = $"../TransitionLayer/TransitionPlayer"
 @onready var world_camera: Camera2D = $"../WorldCamera"
 @onready var menu_layer: CanvasLayer = $"../MenuLayer"
 
 const PARTY_MEMBERS_SCENE = preload("uid://dw4u4k5xprkb0")
-var pm_node: Node
-var player: Node
 
-signal room_change_finished
+var pm_node: Node
+var player: PartyMember
 
 func _ready() -> void:
 	Signals.changeRoom.connect(
-		func(room):
-			Global.moveable = false
-			transition_player.play("fade_to_black")
-			await transition_player.animation_finished
-			goto_room(room)
-			transition_player.play("fade_to_normal")
-			Global.moveable = true
+		goto_room
 	)
 	Signals.warpParty.connect(
 		warp_to_marker
 	)
 	
-	var starting_room = get_child(0)
+	var starting_room: Room = get_child(0)
 	prepare_room(starting_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,9 +33,8 @@ func goto_room(room):
 	for child in get_children():
 		child.queue_free()
 	
-	# Fetch and instantiate the new room to go to
-	var room_scene: PackedScene = load(room)
-	var room_instantiated: Room = room_scene.instantiate()
+	# Instantiate the new room to go to
+	var room_instantiated: Room = room.instantiate()
 
 	# Add the correct menu for the new room's world type
 	menu_layer.get_child(0).queue_free()
@@ -59,39 +51,48 @@ func goto_room(room):
 	
 	prepare_room(room_instantiated)
 	
-	room_change_finished.emit()
+	Signals.room_change_finished.emit.call_deferred()
 	print("FINISHED ROOM SWAP")
 
-func warp_to_marker(marker_id, facing):
-	await room_change_finished
-	for child in Global.currentRoom.get_children():
-		# Set the camera limits provided in the new room
-		if child is CameraBounds:
-			world_camera.limit_left = child.tl_corner.x
-			world_camera.limit_top = child.tl_corner.y
-			world_camera.limit_right = child.br_corner.x
-			world_camera.limit_bottom = child.br_corner.y
-		# Set the player in the correct marker position
-		if child is TargetMarkerDest:
-			if child.marker_id == marker_id:
-				player.position = child.position
-				player.facing = facing if facing else player.facing
+func warp_to_marker(marker_id: int, facing: Enums.Facing) -> void:
+	await Signals.room_change_finished
+	for child in Global.currentRoom.find_children("*", "TargetMarkerDest"):
+		if child.marker_id == marker_id:
+			for pm in pm_node.get_children():
+				var pos_adjusted = get_bottom_middle_tp_pos(pm, child)
+				pm.position = pos_adjusted
+				pm.facing = facing
 	print("tped to marker")
 
-func prepare_room(room):
+func prepare_room(room: Room) -> void:
 	# Get the necessary data from the new room to:
+	print(room.scale)
 	for child in room.get_children():
 		# Set the camera limits provided in the new room
 		if child is CameraBounds:
-			world_camera.limit_left = child.tl_corner.x
-			world_camera.limit_top = child.tl_corner.y
-			world_camera.limit_right = child.br_corner.x
-			world_camera.limit_bottom = child.br_corner.y
+			world_camera.limit_left = child.tl_corner.x * room.scale.x
+			world_camera.limit_top = child.tl_corner.y * room.scale.y
+			world_camera.limit_right = child.br_corner.x * room.scale.x
+			world_camera.limit_bottom = child.br_corner.y * room.scale.y
 		# Create the party and teleport the player to the PlayerMarker
 		if child is PlayerMarker:
 			pm_node = PARTY_MEMBERS_SCENE.instantiate()
 			player = pm_node.get_child(0)
 			room.add_child(pm_node)
-			player.position = child.position
-			print("tped to playermarker")
+			
+			for pm in pm_node.get_children():
+				var pos_adjusted = get_bottom_middle_tp_pos(pm, child)
+				pm.position = pos_adjusted
+			
 			world_camera.target = player
+			print("tped to playermarker")
+
+func get_bottom_middle_tp_pos(player: PartyMember, marker: Marker2D) -> Vector2:
+	var sprite: AnimatedSprite2D = player.find_children("*", "AnimatedSprite2D")[0]
+	var sprite_size: Vector2 =\
+	sprite.sprite_frames.get_frame_texture(sprite.animation, 0).get_size()
+	
+	var adjusted_pos: Vector2 =\
+	Vector2(marker.position.x - (sprite_size.x/2.0), marker.position.y - sprite_size.y)
+	
+	return adjusted_pos

@@ -7,6 +7,17 @@ class_name BorderNode extends Node2D
 @export var border_texture: Texture2D
 @export var frames_length: float = 30.0
 
+# Used for a room's border node to set the dynamic border.
+## Sets the current dynamic border to a given loaded [param texture] resource
+## and fades to it in a given [param time].
+## [codeblock]
+## BorderNode.set_dynamic_border(load("res://sprites/borders/border_simple.png"), 30)
+## [/codeblock]
+func set_dynamic_border(texture: Texture2D, time: float):
+	Global.current_dynamic_border = texture
+	if Settings.border_mode == Settings.BorderModes.DYNAMIC:
+		Signals.changeBorder.emit(Global.current_dynamic_border, time)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#if border_texture == Global.border_texture:
@@ -15,4 +26,4 @@ func _ready() -> void:
 	#if Global.border_mode == Settings.BorderModes.sDYNAMIC:
 		#Global.changeBorder.emit(border_texture)
 	print('border ready')
-	Global.set_dynamic_border(border_texture, frames_length)
+	set_dynamic_border(border_texture, frames_length)

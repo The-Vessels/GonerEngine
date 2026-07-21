@@ -11,62 +11,64 @@
 [ext_resource type="Texture2D" uid="uid://wnavkyf3np4s" path="res://sprites/ui/menu/misc/quitting/quitmessage_3.png" id="10_35vvr"]
 [ext_resource type="Texture2D" uid="uid://slsblr6b4v0j" path="res://sprites/ui/menu/misc/quitting/quitmessage_4.png" id="11_so1mv"]
 
-[sub_resource type="Animation" id="Animation_jweab"]
-length = 0.001
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
+[sub_resource type="GDScript" id="GDScript_1brn0"]
+script/source = "extends CanvasLayer
 
-[sub_resource type="Animation" id="Animation_jrk67"]
-resource_name = "fade_to_black"
-length = 0.41666666
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.41666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
 
-[sub_resource type="Animation" id="Animation_qj1lb"]
-resource_name = "fade_to_normal"
-length = 0.41666666
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.41666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Signals.startDialogue.connect(
+		func(text):
+			if !TextBox.has_textbox and Global.moveable:
+				var textbox := TextBox.create(text)
+				add_child(textbox)
+	)
+"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8adi8"]
-_data = {
-&"RESET": SubResource("Animation_jweab"),
-&"fade_to_black": SubResource("Animation_jrk67"),
-&"fade_to_normal": SubResource("Animation_qj1lb")
-}
+[sub_resource type="GDScript" id="GDScript_1qa5v"]
+script/source = "extends CanvasLayer
+
+func _ready() -> void:
+	var menu_scene: PackedScene
+	if Global.is_dark():
+		menu_scene = load(\"res://scenes/ui/dark_menu.tscn\")
+	else:
+		menu_scene = load(\"res://scenes/ui/light_menu.tscn\")
+	
+	var menu_node: Control = menu_scene.instantiate()
+	menu_node.visible = false
+	add_child(menu_node)
+"
+
+[sub_resource type="GDScript" id="GDScript_melsq"]
+script/source = "extends CanvasLayer
+
+@onready var quitting_sprite: AnimatedSprite2D = $Quitting
+
+var quitting_sprite_index := 0.0
+
+func _physics_process(_delta: float) -> void:
+	handle_quitting()
+
+func handle_quitting():
+	if Input.is_action_pressed(\"quit\"):
+		if quitting_sprite_index >= 5.0:
+			get_tree().quit()
+		
+		quitting_sprite.modulate.a += 0.05
+		quitting_sprite_index += 0.1
+	elif quitting_sprite.modulate.a > 0:
+			quitting_sprite_index -= 0.5
+			quitting_sprite_index = max(0, quitting_sprite_index)
+			
+			quitting_sprite.modulate.a -= 0.1
+	else:
+		quitting_sprite_index = 0.0
+			
+	quitting_sprite.modulate.a = clampf(quitting_sprite.modulate.a, 0.0, 1.0)
+	#print(\"hi: \" + str(quitting_sprite_index) + \" becomes \" + str(quitting_sprite.frame))
+	quitting_sprite.frame = int(quitting_sprite_index)
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gecxn"]
 animations = [{
@@ -91,21 +93,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_1brn0"]
-script/source = "extends CanvasLayer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Signals.startDialogue.connect(
-		func(text):
-			
-			if !TextBox.has_textbox and Global.moveable:
-				var textbox := TextBox.create(text)
-				add_child(textbox)
-	)
-"
-
 [node name="GameRoot" type="Node2D" unique_id=176435316]
 y_sort_enabled = true
 script = ExtResource("1_ywsqi")
@@ -119,10 +106,13 @@ script = ExtResource("1_5dyip")
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=617319159]
 anchor_mode = 0
-zoom = Vector2(2, 2)
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("4_x5456")
-
-[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1020140058]
 follow_viewport_enabled = true
@@ -134,22 +124,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 color = Color(0, 0, 0, 0)
 
-[node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionLayer" unique_id=77294238]
-libraries/ = SubResource("AnimationLibrary_8adi8")
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
+script = SubResource("GDScript_1brn0")
 
-[node name="QuittingLayer" type="CanvasLayer" parent="." unique_id=1415601680]
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=273678583]
+script = SubResource("GDScript_1qa5v")
 
-[node name="Quitting" type="AnimatedSprite2D" parent="QuittingLayer" unique_id=221779437]
+[node name="DeviceLayer" type="CanvasLayer" parent="." unique_id=1415601680]
+script = SubResource("GDScript_melsq")
+
+[node name="Quitting" type="AnimatedSprite2D" parent="DeviceLayer" unique_id=221779437]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(6, 6)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gecxn")
 animation = &"quit_anim"
 centered = false
-
-[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=623746973]
-script = SubResource("GDScript_1brn0")
-
-[connection signal="animation_finished" from="TransitionLayer/TransitionPlayer" to="TransitionLayer" method="_on_transition_player_animation_finished"]

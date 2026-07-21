@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dlqme37rjvfdb"]
+
+[ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="1_8fv6u"]
+
+[sub_resource type="GDScript" id="GDScript_s8wd4"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var but: SoulButton = get_child(0)
+	but.grab_focus()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="SoulbuttonsTest" type="Control" unique_id=1120828457]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_s8wd4")
+
+[node name="SoulButton" type="Button" parent="." unique_id=1624107244]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 33.0
+offset_right = 196.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 32
+text = "Dickbutton"
+script = ExtResource("1_8fv6u")
+lerp_weight = 0.15
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="SoulButton2" type="Button" parent="." unique_id=470825345]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 176.0
+offset_right = 440.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 32
+text = "Dickbutton2"
+script = ExtResource("1_8fv6u")
+lerp_weight = 0.15
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="SoulButton3" type="Button" parent="." unique_id=179747612]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 104.0
+offset_right = 205.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 32
+text = "Dickbutton1225"
+script = ExtResource("1_8fv6u")
+lerp_weight = 0.15
+metadata/_custom_type_script = "uid://b4chsr82apf1m"

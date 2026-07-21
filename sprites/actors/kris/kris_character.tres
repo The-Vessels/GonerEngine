@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Character" format=3 uid="uid://cltnesrsbhr1t"]
+[gd_resource type="Resource" script_class="LightDarkCharacter" format=3 uid="uid://h3yb2opxvqdd"]
 
-[ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_bw3nd"]
-[ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_animations.tres" id="1_ehkif"]
+[ext_resource type="Script" uid="uid://dw10gbdy6gu1l" path="res://scripts/classes/light_dark_character.gd" id="1_lsgw7"]
+[ext_resource type="SpriteFrames" uid="uid://c7ymyai0gv6uw" path="res://sprites/actors/kris/kris_dw_animations.tres" id="1_ttf8t"]
+[ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_lw_animations.tres" id="2_vrafy"]
 
 [resource]
-script = ExtResource("1_bw3nd")
+script = ExtResource("1_lsgw7")
+dark_animations = ExtResource("1_ttf8t")
+light_animations = ExtResource("2_vrafy")
 name = "Kris"
-animations = ExtResource("1_ehkif")
-metadata/_custom_type_script = "uid://coio6dxiiw8m7"
+metadata/_custom_type_script = "uid://dw10gbdy6gu1l"
