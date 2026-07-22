@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://douxp3m50ljy"
-path="res://.godot/imported/left_4.png-1d31d6f49f3bd0d72b03204273022659.ctex"
+uid="uid://b8kbx74gvvwam"
+path="res://.godot/imported/left_0.png-fe389179c0612488da5841683b90618d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/actors/susie/light/walk_unhappy/left_4.png"
-dest_files=["res://.godot/imported/left_4.png-1d31d6f49f3bd0d72b03204273022659.ctex"]
+source_file="res://sprites/actors/susie/light/walk_unhappy/left_0.png"
+dest_files=["res://.godot/imported/left_0.png-fe389179c0612488da5841683b90618d.ctex"]
 
 [params]
 

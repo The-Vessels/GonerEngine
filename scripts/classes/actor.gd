@@ -18,7 +18,7 @@ func _ready() -> void:
 	global_scale = 2.0 * Vector2.ONE
 	
 	$AnimatedSprite2D.offset = chara.caterpillar_offset
-	$AnimatedSprite2D.sprite_frames = chara.get_animation()
+	$AnimatedSprite2D.sprite_frames = chara.get_animation("")
 
 static func get_by_name(actor_name: String) -> Actor:
 	print(actor_dict)
