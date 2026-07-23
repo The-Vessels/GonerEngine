@@ -16,7 +16,7 @@ func wait(n_frames: int):
 	# I use the exact wait function
 	# if n_frames is an integer or close to one.
 	
-	if n_frames - floor(n_frames) < 0.001:
+	if abs(n_frames - floor(n_frames)) < 0.001:
 		await wait_frames_exact(int(n_frames))
 	else:
 		await wait_seconds(n_frames / 30.0)
@@ -30,7 +30,9 @@ func wait_seconds(seconds: float):
 	await Global.get_tree().create_timer(seconds).timeout
 
 # Set whether or not all party members can move independently
+# TODO do we even need this?
 func set_party_movement(can_move: bool):
-	for actor in Actor.get_all():
-		if actor is PartyMember:
-			(actor as PartyMember).can_move = can_move
+	Global.can_move = can_move
+	#for actor in Actor.get_all():
+		#if actor is PartyMember:
+			#(actor as PartyMember).can_move = can_move

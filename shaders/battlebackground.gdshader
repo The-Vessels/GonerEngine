@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D background_sprite;
+uniform sampler2D background_sprite : filter_nearest;
 
 const float bgspeed1 = -15.0;
 const float bgspeed2 = 30.0;

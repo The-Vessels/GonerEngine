@@ -10,6 +10,5 @@ y_sort_enabled = true
 [node name="Kris" parent="." unique_id=1462347025 instance=ExtResource("1_1ixd1")]
 chara = ExtResource("2_l805s")
 
-[node name="Susie" parent="." unique_id=428523818 instance=ExtResource("1_1ixd1")]
-position = Vector2(34, 0)
+[node name="Susie" parent="." unique_id=1560009203 instance=ExtResource("1_1ixd1")]
 chara = ExtResource("3_3brok")

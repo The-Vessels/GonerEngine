@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28e2v")
 
-[node name="ColorRect3" type="ColorRect" parent="." unique_id=1682803274]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1682803274]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=520634785]
+[node name="BackgroundGrid" type="ColorRect" parent="." unique_id=520634785]
 material = SubResource("ShaderMaterial_sp4op")
 layout_mode = 1
 anchors_preset = 15

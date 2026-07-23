@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c28d5srx86v0u" path="res://sprites/gonerengine.png" id="10_eflds"]
 [ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="11_obw5g"]
 [ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="12_oqv75"]
-[ext_resource type="PackedScene" uid="uid://bsn3lnx86eo3e" path="res://scenes/battle/battle_controller.tscn" id="13_j46a3"]
+[ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://sprites/actors/susie/faces/sincere.png" id="13_j46a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -269,6 +269,22 @@ func _on_body_entered(body: Node2D) -> void:
 	TextBox.start_dialogue(text)
 "
 
+[sub_resource type="GDScript" id="GDScript_s20un"]
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	BattleController.spawn()
+
+func _process(_delta: float) -> void:
+	if Global.in_battle:
+		$Sprite2D.rotation = PI
+	else:
+		$Sprite2D.rotation = 0
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_552oo"]
+size = Vector2(45, 51)
+
 [node name="Hometown" type="Node2D" unique_id=2025934906]
 scale = Vector2(2, 2)
 script = ExtResource("1_b2ck7")
@@ -369,7 +385,15 @@ texture = ExtResource("12_oqv75")
 position = Vector2(0.9999695, 5)
 shape = SubResource("RectangleShape2D_j46a3")
 
-[node name="BattleController" parent="." unique_id=1920008302 instance=ExtResource("13_j46a3")]
-visible = false
+[node name="BattleStarter" type="Area2D" parent="." unique_id=833169668]
+position = Vector2(199.5, 35)
+script = SubResource("GDScript_s20un")
+
+[node name="Sprite2D" type="Sprite2D" parent="BattleStarter" unique_id=1969759485]
+texture = ExtResource("13_j46a3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleStarter" unique_id=573438344]
+shape = SubResource("RectangleShape2D_552oo")
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]
+[connection signal="body_entered" from="BattleStarter" to="BattleStarter" method="_on_body_entered"]
