@@ -1,11 +1,92 @@
 [gd_scene format=3 uid="uid://bsn3lnx86eo3e"]
 
 [ext_resource type="Script" uid="uid://buxrtj76p62ib" path="res://scripts/battle/battle_controller.gd" id="1_842bt"]
+[ext_resource type="Shader" uid="uid://ckkmymag3vs3" path="res://shaders/battlebackground.gdshader" id="2_0mskx"]
+[ext_resource type="Texture2D" uid="uid://cp63ifo1my1jy" path="res://sprites/battle/background.png" id="3_ofpn5"]
+[ext_resource type="Script" uid="uid://cd1a8of3kgipq" path="res://scripts/charboxcontainer.gd" id="4_qceqb"]
+[ext_resource type="PackedScene" uid="uid://7r3lp84po220" path="res://scenes/battle/charbox.tscn" id="5_bwcji"]
 
-[node name="BattleController" type="Node2D" unique_id=1920008302]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qceqb"]
+shader = ExtResource("2_0mskx")
+shader_parameter/background_sprite = ExtResource("3_ofpn5")
+
+[node name="BattleController" type="Node2D" unique_id=53540187]
+z_index = 1000
+z_as_relative = false
 script = ExtResource("1_842bt")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=816545108]
-z_index = 1000
-offset_right = 320.0
+[node name="UI" type="Control" parent="." unique_id=397307184]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
 offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="UI" unique_id=1417467757]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="UI/Background" unique_id=1153929606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundGrid" type="ColorRect" parent="UI/Background" unique_id=29626221]
+material = SubResource("ShaderMaterial_qceqb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Foreground" type="Control" parent="UI" unique_id=309543035]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Foreground" unique_id=45287616]
+custom_minimum_size = Vector2(100, 155)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="UI/Foreground/ColorRect" unique_id=1167765982]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+color = Color(0.22576521, 0.12564851, 0.30312884, 1)
+
+[node name="Container" type="Container" parent="UI/Foreground" unique_id=1882412862]
+layout_mode = 0
+offset_top = 325.0
+offset_right = 639.0
+offset_bottom = 365.0
+script = ExtResource("4_qceqb")
+
+[node name="Charbox" parent="UI/Foreground/Container" unique_id=1573525226 instance=ExtResource("5_bwcji")]
+layout_mode = 2

@@ -1,7 +1,7 @@
 class_name PartyMember extends Actor
 ## A party member. May be a playable character.
 
-static var party_list: Array[PartyMember] = [null, null, null]
+static var party_list: Array[PartyMember] = []
 
 enum AnimState {
 	WALKRUN,
@@ -28,10 +28,13 @@ var follow_target := 12
 # Stores last positions, only for main character
 var last_positions: CircularQueue
 
-#TODO we HAVE to figure out better party logic here
+# TODO we HAVE to figure out better party logic here
+# Maybe we should use groups?
 func _enter_tree() -> void:
 	# print("CHARACTER " + chara.name + " ENTERED")
 	super._enter_tree()
+	if get_index() > party_list.size() - 1:
+		party_list.resize(get_index() + 1)
 	party_list[get_index()] = self
 	process_priority = get_index()
 	
@@ -40,6 +43,10 @@ func _exit_tree() -> void:
 	super._exit_tree()
 	if party_list[get_index()] == self:
 		party_list[get_index()] = null
+		
+		# resize array to be smallest it can be
+		while party_list.size() > 0 and party_list[party_list.size() - 1] == null:
+			party_list.pop_back()
 
 func is_playable() -> bool:
 	return get_index() == 0
@@ -123,7 +130,7 @@ func follow_main_character():
 
 func move_playable_character(dtmult: float):
 	# Cancel is same button as sprint
-	if Input.is_action_pressed("cancel"):
+	if walking and Input.is_action_pressed("cancel"):
 		running = true
 		# I do this to prevent floating point precision error!
 		if runtimer < 200.0:
@@ -269,6 +276,9 @@ func play_animation_load(animation: StringName):
 func play_animation_face(animation: StringName):
 	walk_frame = $AnimatedSprite2D.frame
 	walk_progress = 1.0
+	$AnimatedSprite2D.play(animation)
+
+func play_animation(animation: StringName):
 	$AnimatedSprite2D.play(animation)
 
 class CaterpillarInfo:

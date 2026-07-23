@@ -1,14 +1,30 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://c7ymyai0gv6uw"]
 
+[ext_resource type="Texture2D" uid="uid://dynbst26mwtuc" path="res://sprites/actors/kris/dark/battle/sword_jump_down_0.png" id="1_mmajr"]
+[ext_resource type="Texture2D" uid="uid://bya5ah3dqgws2" path="res://sprites/actors/kris/dark/battle/idle_0.png" id="1_nynuf"]
 [ext_resource type="Texture2D" uid="uid://cbkdw38wris04" path="res://sprites/actors/kris/dark/walk/down_0.png" id="1_s1glc"]
 [ext_resource type="Texture2D" uid="uid://drtcntplw8uu6" path="res://sprites/actors/kris/dark/walk/left_0.png" id="2_3t2p8"]
+[ext_resource type="Texture2D" uid="uid://vptfqgujy65u" path="res://sprites/actors/kris/dark/battle/sword_jump_down_1.png" id="2_gip7l"]
+[ext_resource type="Texture2D" uid="uid://bp7rew445kpvk" path="res://sprites/actors/kris/dark/battle/idle_1.png" id="2_wprop"]
+[ext_resource type="Texture2D" uid="uid://6c5en2j4rjo0" path="res://sprites/actors/kris/dark/battle/idle_2.png" id="3_qnaqj"]
+[ext_resource type="Texture2D" uid="uid://do1v77lbdiwu5" path="res://sprites/actors/kris/dark/battle/sword_jump_down_2.png" id="3_qycsk"]
 [ext_resource type="Texture2D" uid="uid://2degdkxyuwkk" path="res://sprites/actors/kris/dark/walk/right_0.png" id="3_u4qwq"]
 [ext_resource type="Texture2D" uid="uid://b6w5oanec3jsm" path="res://sprites/actors/kris/dark/walk/up_0.png" id="4_mmajr"]
+[ext_resource type="Texture2D" uid="uid://cnjg6knu7l5px" path="res://sprites/actors/kris/dark/battle/attack_0.png" id="4_u3uua"]
+[ext_resource type="Texture2D" uid="uid://cicpqwlqyrg3x" path="res://sprites/actors/kris/dark/battle/idle_3.png" id="4_xsj8j"]
+[ext_resource type="Texture2D" uid="uid://vj7oppblviwp" path="res://sprites/actors/kris/dark/battle/attack_1.png" id="5_8p6hk"]
 [ext_resource type="Texture2D" uid="uid://cyhtw4p44kdat" path="res://sprites/actors/kris/dark/walk/down_1.png" id="5_gip7l"]
+[ext_resource type="Texture2D" uid="uid://bv52336o8snoi" path="res://sprites/actors/kris/dark/battle/idle_4.png" id="5_pui8g"]
+[ext_resource type="Texture2D" uid="uid://dce58kqowkf4q" path="res://sprites/actors/kris/dark/battle/idle_5.png" id="6_2y6g6"]
+[ext_resource type="Texture2D" uid="uid://b80dsr185b3ms" path="res://sprites/actors/kris/dark/battle/attack_2.png" id="6_m8g7v"]
 [ext_resource type="Texture2D" uid="uid://ycl7du2yl5f3" path="res://sprites/actors/kris/dark/walk/down_2.png" id="6_qycsk"]
+[ext_resource type="Texture2D" uid="uid://bl0qcsldhsdeh" path="res://sprites/actors/kris/dark/battle/attack_3.png" id="7_meii6"]
 [ext_resource type="Texture2D" uid="uid://cxxwuotdiivhh" path="res://sprites/actors/kris/dark/walk/down_3.png" id="7_rcxjd"]
 [ext_resource type="Texture2D" uid="uid://c4bpt4t407p6d" path="res://sprites/actors/kris/dark/walk/left_1.png" id="8_00cbe"]
+[ext_resource type="Texture2D" uid="uid://fwky3bhy1cgy" path="res://sprites/actors/kris/dark/battle/attack_4.png" id="8_1t5rp"]
+[ext_resource type="Texture2D" uid="uid://8lvo6lcnsq3w" path="res://sprites/actors/kris/dark/battle/attack_5.png" id="9_g7s8d"]
 [ext_resource type="Texture2D" uid="uid://n46x4xajdw2f" path="res://sprites/actors/kris/dark/walk/left_2.png" id="9_ufm3m"]
+[ext_resource type="Texture2D" uid="uid://gj8wmt20v4we" path="res://sprites/actors/kris/dark/battle/attack_6.png" id="10_nynuf"]
 [ext_resource type="Texture2D" uid="uid://b536wjxqh5c4x" path="res://sprites/actors/kris/dark/walk/left_3.png" id="10_onfrq"]
 [ext_resource type="Texture2D" uid="uid://deth2oa2qw4ar" path="res://sprites/actors/kris/dark/walk/right_1.png" id="11_u3uua"]
 [ext_resource type="Texture2D" uid="uid://c3kg3ilu2sibs" path="res://sprites/actors/kris/dark/walk/right_2.png" id="12_8p6hk"]
@@ -19,6 +35,69 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nynuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wprop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qnaqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xsj8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pui8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2y6g6")
+}],
+"loop": 1,
+"name": &"battle_idle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mmajr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gip7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qycsk")
+}],
+"loop": 1,
+"name": &"battle_intro",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_u3uua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8p6hk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m8g7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_meii6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1t5rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g7s8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nynuf")
+}],
+"loop": 1,
+"name": &"battle_intro_land",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_s1glc")

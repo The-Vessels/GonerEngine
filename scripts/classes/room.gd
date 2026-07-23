@@ -24,6 +24,11 @@ static func warp_party(target_marker_id: int, facing: Enums.Facing) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.world_type = world_type
+	
+	# TODO we really need to figure out a way to
+	# easily get top-level nodes. I'm using
+	# groups for now.
+	add_to_group("room")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

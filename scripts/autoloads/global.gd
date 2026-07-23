@@ -7,6 +7,7 @@ var music_player: AudioStreamPlayer
 var mus_track_position: float
 
 var moveable := true
+var in_battle := false
 
 # Documentation is here:
 # https://store.steampowered.com/app/1671210/DELTARUNE/
@@ -95,10 +96,14 @@ func setup_discord_rpc():
 ## [codeblock]
 ## Global.play_ui_sound("menumove")
 ## [/codeblock]
-func play_ui_sound(sound_name: String) -> void:
-	var stream = load('res://sounds/ui/' + sound_name + '.wav')
+func play_ui_sound(sound_name: String, volume: float = 1.0) -> void:
+	play_sound("ui/" + sound_name, volume)
+
+func play_sound(sound_name: String, volume: float = 1.0) -> void:
+	var stream = load("res://sounds/" + sound_name + ".wav")
 	var temp_sound_player = AudioStreamPlayer.new()
 	temp_sound_player.name = "StupidAudioPlayer"
+	temp_sound_player.volume_linear = volume
 	temp_sound_player.finished.connect(
 		func():
 			temp_sound_player.queue_free()

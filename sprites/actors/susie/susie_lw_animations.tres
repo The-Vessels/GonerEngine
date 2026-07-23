@@ -1,57 +1,60 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://ud88elqkjb4u"]
 
-[ext_resource type="Texture2D" uid="uid://dvrunxch1pk8g" path="res://sprites/actors/susie/light/walk/down_1.png" id="1_ljatc"]
-[ext_resource type="Texture2D" uid="uid://b8babkldpe02u" path="res://sprites/actors/susie/light/walk/left_1.png" id="2_edf1t"]
-[ext_resource type="Texture2D" uid="uid://dyr3ytuwwl3tt" path="res://sprites/actors/susie/light/walk/right_1.png" id="3_0dnnq"]
-[ext_resource type="Texture2D" uid="uid://15cp27kq14h8" path="res://sprites/actors/susie/light/walk/up_1.png" id="4_xl1m3"]
-[ext_resource type="Texture2D" uid="uid://burrqpky3rprm" path="res://sprites/actors/susie/light/walk/down_2.png" id="5_w7cc6"]
-[ext_resource type="Texture2D" uid="uid://bsd5x11gc1sm5" path="res://sprites/actors/susie/light/walk/down_3.png" id="6_2jjxq"]
-[ext_resource type="Texture2D" uid="uid://cgxi73kag48u4" path="res://sprites/actors/susie/light/walk/down_4.png" id="7_s6yxa"]
-[ext_resource type="Texture2D" uid="uid://x3gcwg0s407q" path="res://sprites/actors/susie/light/walk/left_2.png" id="8_jvul0"]
-[ext_resource type="Texture2D" uid="uid://dho0di1eu4ebm" path="res://sprites/actors/susie/light/walk/left_3.png" id="9_rmd5u"]
-[ext_resource type="Texture2D" uid="uid://dtkcwh5b6e5f1" path="res://sprites/actors/susie/light/walk/left_4.png" id="10_xygkp"]
-[ext_resource type="Texture2D" uid="uid://qiw6ewibbup6" path="res://sprites/actors/susie/light/walk/right_2.png" id="11_02nck"]
-[ext_resource type="Texture2D" uid="uid://rsij7mjahfef" path="res://sprites/actors/susie/light/walk/right_3.png" id="12_iwo1x"]
-[ext_resource type="Texture2D" uid="uid://bwb5261oe2fw7" path="res://sprites/actors/susie/light/walk/right_4.png" id="13_mkt2a"]
-[ext_resource type="Texture2D" uid="uid://bsk5tbkipp2vt" path="res://sprites/actors/susie/light/walk/up_2.png" id="14_72mdl"]
-[ext_resource type="Texture2D" uid="uid://b7b250n467a4g" path="res://sprites/actors/susie/light/walk/up_3.png" id="15_7wudu"]
-[ext_resource type="Texture2D" uid="uid://bb8hxfts70syh" path="res://sprites/actors/susie/light/walk/up_4.png" id="16_nfoof"]
+[ext_resource type="Texture2D" uid="uid://b85g8vct41gqx" path="res://sprites/actors/susie/light/walk/down_0.png" id="1_ikaj2"]
+[ext_resource type="Texture2D" uid="uid://dh0bel507k86s" path="res://sprites/actors/susie/light/walk/down_1.png" id="1_ljatc"]
+[ext_resource type="Texture2D" uid="uid://bxefoaauhh1sf" path="res://sprites/actors/susie/light/walk/left_0.png" id="2_6ux5n"]
+[ext_resource type="Texture2D" uid="uid://bw3rjc1fcjgdu" path="res://sprites/actors/susie/light/walk/left_1.png" id="2_edf1t"]
+[ext_resource type="Texture2D" uid="uid://dugw8obv8yyp2" path="res://sprites/actors/susie/light/walk/right_1.png" id="3_0dnnq"]
+[ext_resource type="Texture2D" uid="uid://s2ln6klmmvd6" path="res://sprites/actors/susie/light/walk/right_0.png" id="3_w45nn"]
+[ext_resource type="Texture2D" uid="uid://blkvusl4n14bv" path="res://sprites/actors/susie/light/walk/up_0.png" id="4_jdx3u"]
+[ext_resource type="Texture2D" uid="uid://en1nxjk0atag" path="res://sprites/actors/susie/light/walk/up_1.png" id="4_xl1m3"]
+[ext_resource type="Texture2D" uid="uid://cyg51hg8bbli2" path="res://sprites/actors/susie/light/walk/down_2.png" id="5_w7cc6"]
+[ext_resource type="Texture2D" uid="uid://bn6gohr6ajsjx" path="res://sprites/actors/susie/light/walk/down_3.png" id="6_2jjxq"]
+[ext_resource type="Texture2D" uid="uid://caxnyoaogcf35" path="res://sprites/actors/susie/light/walk/left_2.png" id="8_jvul0"]
+[ext_resource type="Texture2D" uid="uid://bwhthii21qjno" path="res://sprites/actors/susie/light/walk/left_3.png" id="9_rmd5u"]
+[ext_resource type="Texture2D" uid="uid://cle521ks76ao2" path="res://sprites/actors/susie/light/walk/right_2.png" id="11_02nck"]
+[ext_resource type="Texture2D" uid="uid://ht663lxraslg" path="res://sprites/actors/susie/light/walk/right_3.png" id="12_iwo1x"]
+[ext_resource type="Texture2D" uid="uid://bv3r0wspgcuow" path="res://sprites/actors/susie/light/walk/up_2.png" id="14_72mdl"]
+[ext_resource type="Texture2D" uid="uid://bditj64x7aacg" path="res://sprites/actors/susie/light/walk/up_3.png" id="15_7wudu"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ljatc")
+"texture": ExtResource("1_ikaj2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_down",
 "speed": 4.5
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_edf1t")
+"texture": ExtResource("2_6ux5n")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_left",
 "speed": 4.5
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_0dnnq")
+"texture": ExtResource("3_w45nn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_right",
 "speed": 4.5
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_xl1m3")
+"texture": ExtResource("4_jdx3u")
 }],
-"loop": true,
+"loop": 1,
 "name": &"face_up",
 "speed": 4.5
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ikaj2")
+}, {
 "duration": 1.0,
 "texture": ExtResource("1_ljatc")
 }, {
@@ -60,15 +63,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_2jjxq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_s6yxa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 4.5
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6ux5n")
+}, {
 "duration": 1.0,
 "texture": ExtResource("2_edf1t")
 }, {
@@ -77,15 +80,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_rmd5u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_xygkp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 4.5
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w45nn")
+}, {
 "duration": 1.0,
 "texture": ExtResource("3_0dnnq")
 }, {
@@ -94,15 +97,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_iwo1x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_mkt2a")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 4.5
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jdx3u")
+}, {
 "duration": 1.0,
 "texture": ExtResource("4_xl1m3")
 }, {
@@ -111,11 +114,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("15_7wudu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_nfoof")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 4.5
 }]

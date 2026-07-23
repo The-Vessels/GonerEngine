@@ -18,7 +18,7 @@ func _ready() -> void:
 	global_scale = 2.0 * Vector2.ONE
 	
 	$AnimatedSprite2D.offset = chara.caterpillar_offset
-	$AnimatedSprite2D.sprite_frames = chara.get_animation()
+	$AnimatedSprite2D.sprite_frames = chara.get_animation("")
 
 static func get_by_name(actor_name: String) -> Actor:
 	print(actor_dict)
@@ -62,3 +62,10 @@ func walk_to_point(point: Vector2, time: float):
 	tween.tween_property(self, "position", point, time / 30.0)
 	tween.tween_callback($AnimatedSprite2D.stop)
 	await tween.finished
+
+func get_current_texture() -> Texture2D:
+	var frames: SpriteFrames = $AnimatedSprite2D.sprite_frames
+	return frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
+
+func get_sprite_offset() -> Vector2:
+	return $AnimatedSprite2D.offset

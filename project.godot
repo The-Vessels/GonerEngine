@@ -51,6 +51,10 @@ script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn")
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
+[global_group]
+
+room="Contains the currently opened room."
+
 [gui]
 
 theme/default_font_antialiasing=0
