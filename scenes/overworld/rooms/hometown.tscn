@@ -270,9 +270,9 @@ func _on_body_entered(body: Node2D) -> void:
 "
 
 [sub_resource type="GDScript" id="GDScript_s20un"]
-script/source = "extends Area2D
+script/source = "extends StaticBody2D
 
-func _on_body_entered(body: Node2D) -> void:
+func interact() -> void:
 	BattleController.spawn()
 
 func _process(_delta: float) -> void:
@@ -385,7 +385,7 @@ texture = ExtResource("12_oqv75")
 position = Vector2(0.9999695, 5)
 shape = SubResource("RectangleShape2D_j46a3")
 
-[node name="BattleStarter" type="Area2D" parent="." unique_id=833169668]
+[node name="BattleStarter" type="StaticBody2D" parent="." unique_id=2058223647]
 position = Vector2(199.5, 35)
 script = SubResource("GDScript_s20un")
 
@@ -396,4 +396,3 @@ texture = ExtResource("13_j46a3")
 shape = SubResource("RectangleShape2D_552oo")
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]
-[connection signal="body_entered" from="BattleStarter" to="BattleStarter" method="_on_body_entered"]

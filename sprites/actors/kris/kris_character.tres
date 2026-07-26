@@ -1,8 +1,16 @@
 [gd_resource type="Resource" script_class="Character" format=3 uid="uid://cqetv5i432u6e"]
 
 [ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_h3i0y"]
+[ext_resource type="Script" uid="uid://d0j1pw74fag0i" path="res://scripts/classes/character_stats.gd" id="1_moopb"]
 [ext_resource type="SpriteFrames" uid="uid://c7ymyai0gv6uw" path="res://sprites/actors/kris/kris_dw_animations.tres" id="1_ttf8t"]
+[ext_resource type="Texture2D" uid="uid://b74r2es2wvqrh" path="res://sprites/actors/kris/battle/head_0.png" id="2_moopb"]
 [ext_resource type="SpriteFrames" uid="uid://djaqaeb50eqtl" path="res://sprites/actors/kris/kris_lw_animations.tres" id="2_vrafy"]
+[ext_resource type="Texture2D" uid="uid://bay3s8uxf18ux" path="res://sprites/actors/kris/battle/name.png" id="3_7xiqm"]
+
+[sub_resource type="Resource" id="Resource_vrafy"]
+script = ExtResource("1_moopb")
+max_hp = 123
+metadata/_custom_type_script = "uid://d0j1pw74fag0i"
 
 [resource]
 script = ExtResource("1_h3i0y")
@@ -11,4 +19,8 @@ states = Dictionary[String, SpriteFrames]({
 "dark": ExtResource("1_ttf8t"),
 "light": ExtResource("2_vrafy")
 })
+color = Color(0, 1, 1, 1)
+face_image = ExtResource("2_moopb")
+name_image = ExtResource("3_7xiqm")
+default_stats = SubResource("Resource_vrafy")
 metadata/_custom_type_script = "uid://coio6dxiiw8m7"

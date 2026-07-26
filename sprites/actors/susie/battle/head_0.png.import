@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2xrf7d3rsof5"
-path="res://.godot/imported/spr_headkris_5.png-a292dd31f8f5e43a18c3aa68f8f2125f.ctex"
+uid="uid://xxjtv5vohr35"
+path="res://.godot/imported/head_0.png-971980cb052b3097ae43b798fb4c20d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/actors/kris/battle/spr_headkris_5.png"
-dest_files=["res://.godot/imported/spr_headkris_5.png-a292dd31f8f5e43a18c3aa68f8f2125f.ctex"]
+source_file="res://sprites/actors/susie/battle/head_0.png"
+dest_files=["res://.godot/imported/head_0.png-971980cb052b3097ae43b798fb4c20d6.ctex"]
 
 [params]
 

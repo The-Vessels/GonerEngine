@@ -54,6 +54,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 [global_group]
 
 room="Contains the currently opened room."
+party_member="For party members."
 
 [gui]
 

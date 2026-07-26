@@ -15,10 +15,14 @@ func _exit_tree() -> void:
 		instance = null
 
 func _ready() -> void:
+	anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+	self.global_position = Vector2(0.0, 0.0)
+	
 	# Set the player to be the target of the camera by default
 	#if !target:
 		#target = player
-	pass
+	Signals.battle_start.connect(func(): target = null)
+	Signals.battle_end_end.connect(func(): target = PartyMember.party_list[0])
 
 ## Gets the size of the camera.
 static func get_size() -> Vector2:
@@ -35,10 +39,11 @@ func get_rect() -> Rect2:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
+	# TODO is this okay? I don't know
 	if is_node_ready():
 		if target:
 			anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
 			self.global_position = target.global_position
-		else:
-			anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
-			self.global_position = Vector2(0.0, 0.0)
+		#else:
+			#anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+			#self.global_position = Vector2(0.0, 0.0)

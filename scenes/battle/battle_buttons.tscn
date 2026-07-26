@@ -14,12 +14,12 @@
 
 [sub_resource type="Theme" id="Theme_0qj1e"]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" unique_id=66708580]
 offset_right = 171.0
 offset_bottom = 32.0
 script = ExtResource("2_muc58")
 
-[node name="Fight" type="TextureButton" parent="."]
+[node name="Fight" type="TextureButton" parent="." unique_id=2024015592]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Defend")
 focus_previous = NodePath("../Defend")
@@ -27,24 +27,26 @@ theme = SubResource("Theme_0qj1e")
 texture_normal = ExtResource("2_jfcx8")
 texture_focused = ExtResource("3_muc58")
 
-[node name="ActTech" type="TextureButton" parent="."]
+[node name="ActTech" type="TextureButton" parent="." unique_id=1407536675]
 layout_mode = 2
 texture_normal = ExtResource("4_fifx6")
 texture_focused = ExtResource("5_3lt7g")
 
-[node name="Item" type="TextureButton" parent="."]
+[node name="Item" type="TextureButton" parent="." unique_id=197902464]
 layout_mode = 2
 texture_normal = ExtResource("6_aj8am")
 texture_focused = ExtResource("7_gbxsp")
 
-[node name="Spare" type="TextureButton" parent="."]
+[node name="Spare" type="TextureButton" parent="." unique_id=1161489328]
 layout_mode = 2
 texture_normal = ExtResource("8_ax5fy")
 texture_focused = ExtResource("9_5j8cd")
 
-[node name="Defend" type="TextureButton" parent="."]
+[node name="Defend" type="TextureButton" parent="." unique_id=1302167891]
 layout_mode = 2
 focus_neighbor_right = NodePath("../Fight")
 focus_next = NodePath("../Fight")
 texture_normal = ExtResource("10_qv163")
 texture_focused = ExtResource("11_dwws5")
+
+[connection signal="pressed" from="Defend" to="." method="_on_defend_pressed"]

@@ -8,6 +8,7 @@ class_name Actor extends CharacterBody2D
 static var actor_dict: Dictionary[String, Actor] = {}
 
 func _enter_tree() -> void:
+	print('NAME IS ', name, ' CHARA IS ', chara)
 	actor_dict[chara.name] = self
 
 func _exit_tree() -> void:

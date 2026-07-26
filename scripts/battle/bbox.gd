@@ -1,5 +1,7 @@
 extends Control
 
+@onready var charbox := get_node("../")
+
 var og_y := position.y
 var og_h := size.y
 var grow_size: float = 0.0
@@ -34,9 +36,20 @@ func animate_openclose(selected: bool, input: float, dt: float) -> float:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Signals.battle_focus_charbox.connect(
+		func(pm: PartyMember):
+			is_selected = (charbox.party_member == pm)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	grow_size = animate_openclose(is_selected, grow_size, delta)
 	set_rect_grow_size(grow_size)
+	if is_selected:
+		$ColorRect.color = charbox.charcolor
+		$ColorRect2.color = charbox.charcolor
+		$ColorRect2/ColorRect3.visible = false
+	else:
+		$ColorRect.color = Color("#332033")
+		$ColorRect2.color = Color("#332033")
+		$ColorRect2/ColorRect3.visible = true

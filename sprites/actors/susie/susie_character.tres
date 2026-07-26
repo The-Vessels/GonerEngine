@@ -2,8 +2,16 @@
 
 [ext_resource type="SpriteFrames" uid="uid://djkn6hdw6v6my" path="res://sprites/actors/susie/susie_dw_animations.tres" id="1_dkh4m"]
 [ext_resource type="Script" uid="uid://coio6dxiiw8m7" path="res://scripts/classes/character.gd" id="1_ifq0d"]
+[ext_resource type="Script" uid="uid://d0j1pw74fag0i" path="res://scripts/classes/character_stats.gd" id="1_iogtn"]
+[ext_resource type="Texture2D" uid="uid://xxjtv5vohr35" path="res://sprites/actors/susie/battle/head_0.png" id="2_mkdqo"]
 [ext_resource type="SpriteFrames" uid="uid://ud88elqkjb4u" path="res://sprites/actors/susie/susie_lw_animations.tres" id="2_xwwpk"]
+[ext_resource type="Texture2D" uid="uid://hyw8o7cyddpw" path="res://sprites/actors/susie/battle/name.png" id="3_26rfh"]
 [ext_resource type="SpriteFrames" uid="uid://bag11m8v7yefp" path="res://sprites/actors/susie/susie_lw_unhappy_animations.tres" id="4_xwwpk"]
+
+[sub_resource type="Resource" id="Resource_xwwpk"]
+script = ExtResource("1_iogtn")
+max_hp = 456
+metadata/_custom_type_script = "uid://d0j1pw74fag0i"
 
 [resource]
 script = ExtResource("1_ifq0d")
@@ -14,4 +22,8 @@ states = Dictionary[String, SpriteFrames]({
 "light": ExtResource("2_xwwpk"),
 "light_unhappy": ExtResource("4_xwwpk")
 })
+color = Color(1, 0, 1, 1)
+face_image = ExtResource("2_mkdqo")
+name_image = ExtResource("3_26rfh")
+default_stats = SubResource("Resource_xwwpk")
 metadata/_custom_type_script = "uid://coio6dxiiw8m7"

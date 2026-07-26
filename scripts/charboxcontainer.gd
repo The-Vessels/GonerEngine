@@ -1,12 +1,23 @@
 @tool
 extends Container
 
+const CHARBOX_SCENE: PackedScene = preload("uid://7r3lp84po220")
+
 func activate() -> void:
 	get_child(0).activate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if Engine.is_editor_hint():
+		return
+	
+	for child in get_children():
+		child.queue_free()
+	
+	for party_member in PartyMember.party_list:
+		var charbox := CHARBOX_SCENE.instantiate()
+		charbox.party_member = party_member
+		add_child(charbox)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_SORT_CHILDREN:

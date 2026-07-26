@@ -8,6 +8,19 @@ class_name Character extends Resource
 @export var caterpillar_offset: Vector2
 
 @export var states: Dictionary[String, SpriteFrames]
+
+# TODO this should be an extended class, but it's gonna be like this for now.
+## These properties are used for party members in GonerEngine.
+@export_group("Party Member")
+## The color shown in the menu and in battle.
+@export var color: Color
+## The face texture shown in the menu and in battle.
+@export var face_image: Texture2D
+## The texture for the character's name, shown in the menu and in battle.
+@export var name_image: Texture2D
+## The default stats for the character (HP, ATK, etc.).
+@export var default_stats: CharacterStats
+
 # @export var animation: SpriteFrames
 
 # `state` is blank for default state.

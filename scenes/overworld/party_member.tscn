@@ -9,7 +9,7 @@ size = Vector2(19, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocjv1"]
 size = Vector2(19, 20)
 
-[node name="PartyMember" type="CharacterBody2D" unique_id=1462347025]
+[node name="PartyMember" type="CharacterBody2D" unique_id=1462347025 groups=["party_member"]]
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_eraik")

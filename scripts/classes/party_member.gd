@@ -2,6 +2,9 @@ class_name PartyMember extends Actor
 ## A party member. May be a playable character.
 
 static var party_list: Array[PartyMember] = []
+static func make_party_list() -> void:
+	party_list.assign(Global.get_tree().get_nodes_in_group("party_member"))
+	party_list.sort_custom(func(a, b): a.get_index() < b.get_index())
 
 enum AnimState {
 	WALKRUN,
@@ -31,22 +34,14 @@ var last_positions: CircularQueue
 # TODO we HAVE to figure out better party logic here
 # Maybe we should use groups?
 func _enter_tree() -> void:
-	# print("CHARACTER " + chara.name + " ENTERED")
+	print(name + " ENTERED")
 	super._enter_tree()
-	if get_index() > party_list.size() - 1:
-		party_list.resize(get_index() + 1)
-	party_list[get_index()] = self
-	process_priority = get_index()
+	make_party_list()
 	
 func _exit_tree() -> void:
 	# print("CHARACTER " + chara.name + " EXITED")
 	super._exit_tree()
-	if party_list[get_index()] == self:
-		party_list[get_index()] = null
-		
-		# resize array to be smallest it can be
-		while party_list.size() > 0 and party_list[party_list.size() - 1] == null:
-			party_list.pop_back()
+	make_party_list()
 
 func is_playable() -> bool:
 	return get_index() == 0
@@ -65,8 +60,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if Global.moveable:
-		party_member_process(delta)
+	if not Global.moveable:
+		return
+	
+	party_member_process(delta)
 	
 	if is_playable():
 		if Input.is_action_just_pressed('menu'):
@@ -207,6 +204,8 @@ func get_walk_speed() -> int:
 		return bwspeed
 
 func facing_same(dir: Vector2) -> bool:
+	#if dir == Vector2.ZERO:
+		#return true
 	match facing:
 		Enums.Facing.RIGHT:
 			return dir.x == 1.0

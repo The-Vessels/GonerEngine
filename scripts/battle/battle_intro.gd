@@ -1,8 +1,8 @@
 class_name BattleIntro extends Cutscene
 
 var bc: BattleController
-func _init(the_bc: BattleController) -> void:
-	self.bc = the_bc
+func _init(battle_controller: BattleController) -> void:
+	self.bc = battle_controller
 
 func _run() -> void:
 	for i in range(PartyMember.party_list.size()):
@@ -17,14 +17,15 @@ func _run() -> void:
 	await wait(14)
 	for member in PartyMember.party_list:
 		member.play_animation("battle_idle")
-	await wait(30)
+	#await wait(30)
 
 func run_party_member(member: PartyMember, idx: int) -> void:
 	member.play_animation("battle_intro")
 	var tween := member.create_tween()
-	var dest_pos := BattleController.get_hero_pos(
+	var dest_pos := bc.get_hero_pos(
 		idx, len(PartyMember.party_list)
 	)
+	# tween.tween_property(member, "global_position", dest_pos, 10/30.0)
 	tween.tween_property(member, "global_position", dest_pos, 10/30.0)
 	
 	await Global.get_tree().physics_frame
@@ -36,5 +37,5 @@ func run_party_member(member: PartyMember, idx: int) -> void:
 		afterimage.global_position = member.global_position
 		afterimage.global_scale = member.global_scale
 		afterimage.offset = member.get_sprite_offset()
-		print(afterimage.global_position, ' and ', member.global_position)
+		# print(afterimage.global_position, ' and ', member.global_position)
 		await Global.get_tree().physics_frame

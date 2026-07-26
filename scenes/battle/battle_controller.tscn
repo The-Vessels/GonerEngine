@@ -82,6 +82,7 @@ grow_horizontal = 2
 color = Color(0.22576521, 0.12564851, 0.30312884, 1)
 
 [node name="Container" type="Container" parent="UI/Foreground" unique_id=1882412862]
+z_index = 10
 layout_mode = 0
 offset_top = 325.0
 offset_right = 639.0
