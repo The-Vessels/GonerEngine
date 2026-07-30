@@ -34,7 +34,7 @@ offset_bottom = 65.0
 theme_override_font_sizes/font_size = 32
 text = "Dickbutton"
 script = ExtResource("1_8fv6u")
-lerp_weight = 0.15
+move_speed = 0.4
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="SoulButton2" type="Button" parent="." unique_id=470825345]
@@ -46,7 +46,7 @@ offset_bottom = 192.0
 theme_override_font_sizes/font_size = 32
 text = "Dickbutton2"
 script = ExtResource("1_8fv6u")
-lerp_weight = 0.15
+move_speed = 0.4
 metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="SoulButton3" type="Button" parent="." unique_id=179747612]
@@ -58,5 +58,5 @@ offset_bottom = 120.0
 theme_override_font_sizes/font_size = 32
 text = "Dickbutton1225"
 script = ExtResource("1_8fv6u")
-lerp_weight = 0.15
+move_speed = 0.4
 metadata/_custom_type_script = "uid://b4chsr82apf1m"

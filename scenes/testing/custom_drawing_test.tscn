@@ -4,9 +4,11 @@
 script/source = "@tool
 extends Control
 
+var tag_content: String = \"\"
+var text_effects: Array[String] = []
+
 var text_gap := Vector2(8.0, 0.0)
 var max_line_chars: int
-
 var text_lines: PackedStringArray = []
 var text_words: Array[PackedStringArray] = []
 @export_multiline(\"monospace\") var text := \"\":
@@ -34,6 +36,7 @@ func prepare_words():
 	for i in text_lines.size():
 		text_lines.set(i, text_lines.get(i).c_unescape())
 		text_words.append(text_lines.get(i).split(\" \"))
+	
 
 func prepare_spacing():
 	text_gap = Vector2(font_size/2, 0.0)
@@ -55,10 +58,15 @@ func _physics_process(delta: float) -> void:
 		visible_ratio = visible_characters / float(text.length())
 
 func _draw() -> void:
+	text_effects.clear()
+	var canvas = self.get_canvas_item()
+	
 	var asterisk: bool = false
 	var current_line_asterisk: bool = false
 	var char := 0
 	var total_chars := 0
+	var command_mode: bool = false
+	var is_closing_tag: bool = false
 	
 	# the position where the top left of the text should start
 	var pos := Vector2(0, 0 + font_size)
@@ -73,8 +81,11 @@ func _draw() -> void:
 			if visible_characters > -1 and total_chars >= visible_characters:
 				break
 			
+			var regex = RegEx.new()
+			regex.compile(\"\\\\[.*?\\\\]\")
+			
 			# if adding this word would go over the limit, start from the next line
-			if (char + word.length()) > max_line_chars:
+			if (char + regex.sub(word, \"\", true).length()) > max_line_chars:
 					pos.y += font_size
 					char = 0
 					if asterisk: char = 2
@@ -90,12 +101,45 @@ func _draw() -> void:
 			
 			# loop over each character in the word
 			for i in word.length():
-				draw_char(
+				var ch = word[i]
+				
+				if ch == \"[\":
+					command_mode = true
+					if word[i+1] == \"/\":
+						text_effects.pop_back()
+						is_closing_tag = true
+					continue
+				
+				if ch == \"]\":
+					command_mode = false
+					if is_closing_tag:
+						is_closing_tag = false
+						continue
+					text_effects.append(tag_content)
+					tag_content = \"\"
+					continue
+				
+				if command_mode:
+					if !is_closing_tag:
+						tag_content += ch
+					continue
+				
+				var typer_char = Char.new(
 					get_theme_default_font(),
-					pos + (text_gap * char) + Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)),
-					word[i],
+					pos + (text_gap * char),
+					Vector2(0.0, 0.0),
+					ch,
 					font_size
 				)
+				typer_char = apply_effects(typer_char, text_effects)
+				draw_char(
+					typer_char.font,
+					typer_char.pos + typer_char.pos_offset,
+					typer_char.glyph,
+					typer_char.font_size,
+					typer_char.color
+				)
+				
 				char += 1
 				total_chars += 1
 				if visible_characters > -1 and total_chars >= visible_characters:
@@ -112,16 +156,77 @@ func _draw() -> void:
 			if word_index != -1:
 				draw_char(
 					get_theme_default_font(),
-					pos + (text_gap * char) + Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)),
+					pos + (text_gap * char),
 					\" \",
 					font_size
 				)
-				char += 1
-				total_chars += 1
+				if !command_mode:
+					char += 1
+					total_chars += 1
+				else:
+					tag_content += \" \"
 			
 		current_line_asterisk = false
 		pos.y += font_size
 		char = 0
+
+class Char extends RefCounted:
+	var glyph: String
+	var pos: Vector2
+	var pos_offset: Vector2
+	var color: Color
+	var font: Font
+	var font_size: int
+	func _init(_font: Font, _pos: Vector2, _pos_offset: Vector2, _glyph: String, _font_size: int, _color: Color = Color(1.0, 1.0, 1.0, 1.0)) -> void:
+		font = _font
+		pos = _pos
+		pos_offset = _pos_offset
+		glyph = _glyph
+		font_size = _font_size
+		color = _color
+
+func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
+	for effect in text_effects:
+		# String.split returns a PackedStringArray so we convert it into an Array[String] for convenience
+		var split_tag: Array[String] = Array(Array(effect.split(\" \")), TYPE_STRING, \"\", null)
+		
+		var effect_name = split_tag[0]
+		
+		# Make a dictionary of OptionName:OptionValue
+		var tag_options: Dictionary = {}
+		for i in range(1, split_tag.size()):
+			var param = split_tag[i]
+			var value_pos = param.find(\"=\")
+			if value_pos > -1:
+				tag_options[param.substr(0, value_pos)] = param.substr(value_pos + 1)
+		
+		var effect_value
+		# If the effect's name has a value, remove it from the name and add it to tag_options
+		var main_value_pos = effect_name.find(\"=\")
+		if main_value_pos > -1:
+			effect_value = effect_name.substr(main_value_pos + 1)
+			effect_name = effect_name.substr(0, main_value_pos)
+			tag_options[effect_name] = effect_value
+			
+		var effecter = typer_effects_registry.get(effect_name)
+		if effecter:
+			typer_char = effecter.effect_char(typer_char, tag_options)
+	return typer_char
+
+var typer_effects_registry: Dictionary = {
+	\"color\": ColorTextEffect.new(),
+	\"shake\": ShakeTextEffect.new()
+}
+
+class ColorTextEffect extends RefCounted:
+	func effect_char(char: Char, params: Dictionary) -> Char:
+		char.color = Color.RED
+		return char
+		
+class ShakeTextEffect extends RefCounted:
+	func effect_char(char: Char, params: Dictionary) -> Char:
+		char.pos_offset = Vector2(randf_range(0.0, 2.0), randf_range(0.0, 2.0))
+		return char
 "
 
 [node name="Customdrawingtest" type="Control" unique_id=532849005]
@@ -129,14 +234,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 53.0
+offset_left = 63.0
 offset_top = 31.0
-offset_right = -317.0
+offset_right = -292.0
 offset_bottom = -399.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_mxpdu")
-text = "oh my god. * Kris...
-* you're aaaaaa so fucking stupid...
+text = "* oh my god. [shake rate=20.0 level=5][color=red]Kris...[/color]
+you're aaaaaa[/shake] so fucking stupid...
 * im gonna fucking kill you so quick"
-visible_characters = 108
+visible_characters = 144
