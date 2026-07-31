@@ -3,6 +3,7 @@ class_name Typer extends Control
 
 var tag_content: String = ""
 var text_effects: Array[String] = []
+var time: int = 0
 
 var text_gap := Vector2(8.0, 0.0)
 var max_line_chars: int
@@ -48,11 +49,13 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	time += 1
 	max_line_chars = floor(self.size.x / text_gap.x)
 	queue_redraw()
 	if visible_characters > -1 and visible_characters < text.length():
 		visible_characters += 1
 		visible_ratio = visible_characters / float(text.length())
+		
 
 func _draw() -> void:
 	text_effects.clear()
@@ -78,6 +81,7 @@ func _draw() -> void:
 			if visible_characters > -1 and total_chars >= visible_characters:
 				break
 			
+			# Regex to get rid of bbcode for word length measuring
 			var regex = RegEx.new()
 			regex.compile("\\[.*?\\]")
 			
@@ -106,7 +110,6 @@ func _draw() -> void:
 						text_effects.pop_back()
 						is_closing_tag = true
 					continue
-				
 				if ch == "]":
 					command_mode = false
 					if is_closing_tag:
@@ -115,7 +118,6 @@ func _draw() -> void:
 					text_effects.append(tag_content)
 					tag_content = ""
 					continue
-				
 				if command_mode:
 					if !is_closing_tag:
 						tag_content += ch
@@ -129,6 +131,7 @@ func _draw() -> void:
 					font_size
 				)
 				typer_char = apply_effects(typer_char, text_effects)
+				
 				draw_char(
 					typer_char.font,
 					typer_char.pos + typer_char.pos_offset,
@@ -212,21 +215,11 @@ func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
 			
 		var effecter = typer_effects_registry.get(effect_name)
 		if effecter:
-			typer_char = effecter.effect_char(typer_char, tag_options)
+			typer_char = effecter.effect_char(typer_char, tag_options, time)
 	return typer_char
 
 ## Dictionary to register every effect
 static var typer_effects_registry: Dictionary = {
-	"color": ColorTextEffect.new(),
-	"shake": ShakeTextEffect.new()
+	"color": ColorTyperEffect.new(),
+	"shake": ShakeTyperEffect.new()
 }
-
-class ColorTextEffect extends TyperEffect:
-	func effect_char(char: Char, params: Dictionary) -> Char:
-		char.color = Color.RED
-		return char
-		
-class ShakeTextEffect extends TyperEffect:
-	func effect_char(char: Char, params: Dictionary) -> Char:
-		char.pos_offset = Vector2(randf_range(0.0, 2.0), randf_range(0.0, 2.0))
-		return char

@@ -7,14 +7,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 63.0
-offset_top = 31.0
-offset_right = -292.0
-offset_bottom = -399.0
+offset_left = 48.0
+offset_top = 37.0
+offset_right = -307.0
+offset_bottom = -393.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_liwy2")
-text = "* oh my god. [shake rate=20.0 level=5][color=red]Kris...[/color]
+text = "* oh my god. [shake level=2.0 connected=1][color=#FF0]Kris...[/color]
 you're aaaaaa[/shake] so fucking stupid...
-* im gonna fucking kill you so quick"
-visible_characters = 144
+* im gonna fucking [shake connected=0]kill[/shake] you so quick"
+visible_characters = 180
