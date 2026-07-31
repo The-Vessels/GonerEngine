@@ -4,11 +4,11 @@ class_name Typer extends Control
 var tag_content: String = ""
 var text_effects: Array[String] = []
 var time: int = 0
-
 var text_gap := Vector2(8.0, 0.0)
 var max_line_chars: int
 var text_lines: PackedStringArray = []
 var text_words: Array[PackedStringArray] = []
+
 @export_multiline("monospace") var text := "":
 	set(new):
 		text = new
@@ -28,14 +28,52 @@ var text_words: Array[PackedStringArray] = []
 @export var visible_characters := 0
 @export_range(0.0, 1.0) var visible_ratio: float = 1.0
 
+func add_linebreaks():
+	var new_text_lines: PackedStringArray = []
+	for line in text_lines:
+		var char_count := 0
+		var start_pos := 0
+		var last_space_pos := 0
+		var command_mode := false
+		var break_text = line.c_unescape()
+		for i in break_text.length():
+			var char_index = start_pos + char_count
+			var char = break_text[char_index]
+			#print(char_count," ", start_pos," ", last_space_pos, " ", max_line_chars, " ",char_index," ", break_text.length(), " ", char)
+			
+			if char == "[":
+				command_mode = true
+				start_pos += 1
+				continue
+			if char == "]":
+				command_mode = false
+				start_pos += 1
+				continue
+			if command_mode:
+				start_pos += 1
+				continue
+			
+			if char_count+1 > max_line_chars:
+				break_text[last_space_pos] = "\n"
+				start_pos += max_line_chars
+				char_count = 0
+			if char == " ":
+				last_space_pos = char_index
+				
+			char_count += 1
+		
+		new_text_lines.append_array(break_text.c_escape().split("\\n"))
+	
+	text_lines = new_text_lines
+
 func prepare_words():
 	text_lines = text.c_escape().split("\\n")
+	add_linebreaks()
 	text_words.clear()
 	for i in text_lines.size():
 		text_lines.set(i, text_lines.get(i).c_unescape())
 		text_words.append(text_lines.get(i).split(" "))
 	
-
 func prepare_spacing():
 	text_gap = Vector2(font_size/2, 0.0)
 	# thx sixtyfive for this cool maths
@@ -47,11 +85,18 @@ func _ready() -> void:
 	prepare_words()
 	queue_redraw()
 	
+	self.resized.connect(
+		func():
+			prepare_words()
+	)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	time += 1
 	max_line_chars = floor(self.size.x / text_gap.x)
 	queue_redraw()
+	
+	# really basic typing functionality
 	if visible_characters > -1 and visible_characters < text.length():
 		visible_characters += 1
 		visible_ratio = visible_characters / float(text.length())
@@ -65,6 +110,7 @@ func _draw() -> void:
 	var current_line_asterisk: bool = false
 	var char := 0
 	var total_chars := 0
+	var display_chars := 0
 	var command_mode: bool = false
 	var is_closing_tag: bool = false
 	
@@ -77,19 +123,10 @@ func _draw() -> void:
 		for j in line.size():
 			var word: String = line.get(j)
 			var word_index = line.find(word)
+			var clean_word = word.substr(0, word.find("["))
 			
-			if visible_characters > -1 and total_chars >= visible_characters:
+			if visible_characters > -1 and display_chars >= visible_characters:
 				break
-			
-			# Regex to get rid of bbcode for word length measuring
-			var regex = RegEx.new()
-			regex.compile("\\[.*?\\]")
-			
-			# if adding this word would go over the limit, start from the next line
-			if (char + regex.sub(word, "", true).length()) > max_line_chars:
-					pos.y += font_size
-					char = 0
-					if asterisk: char = 2
 			
 			# if current word is first word in processing line
 			# and asterisk exists anywhere in the text and it's not in the currently processing line
@@ -103,13 +140,16 @@ func _draw() -> void:
 			# loop over each character in the word
 			for i in word.length():
 				var ch = word[i]
+				total_chars += 1
 				
 				if ch == "[":
-					command_mode = true
-					if word[i+1] == "/":
-						text_effects.pop_back()
-						is_closing_tag = true
-					continue
+					# check if there's actually a closing bracket left in the text
+					if text.find("]", total_chars) > -1:
+						command_mode = true
+						if word[i+1] == "/":
+							text_effects.pop_back()
+							is_closing_tag = true
+						continue
 				if ch == "]":
 					command_mode = false
 					if is_closing_tag:
@@ -139,10 +179,11 @@ func _draw() -> void:
 					typer_char.font_size,
 					typer_char.color
 				)
+				clean_word += ch
 				
 				char += 1
-				total_chars += 1
-				if visible_characters > -1 and total_chars >= visible_characters:
+				display_chars += 1
+				if visible_characters > -1 and display_chars >= visible_characters:
 					break
 			
 			# if current word is first word in processing line and is an asterisk
@@ -161,9 +202,10 @@ func _draw() -> void:
 					font_size
 				)
 				
+				total_chars += 1
 				if !command_mode:
 					char += 1
-					total_chars += 1
+					display_chars += 1
 				else:
 					# add a space to tag_content if currently parsing a tag
 					# since we're splitting the text and practically erasing all spaces
@@ -212,7 +254,7 @@ func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
 			effect_value = effect_name.substr(main_value_pos + 1)
 			effect_name = effect_name.substr(0, main_value_pos)
 			tag_options[effect_name] = effect_value
-			
+		
 		var effecter = typer_effects_registry.get(effect_name)
 		if effecter:
 			typer_char = effecter.effect_char(typer_char, tag_options, time)
