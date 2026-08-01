@@ -7,14 +7,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 48.0
-offset_top = 37.0
-offset_right = -383.0
-offset_bottom = -393.0
+offset_left = 51.0
+offset_top = 48.0
+offset_right = -273.0
+offset_bottom = -382.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_liwy2")
-text = "* oh my god. [shake level=2.0 connected=1][color=#FF0]Kris...[/color]
-you're aaaaaa[/shake] so fucking stupid...
-* im gonna fucking [shake connected=0]kill[/shake] you so quick"
-visible_characters = 180
+text = "* Hey, I'm a[shake rate=10.0 level=2 connected=1] really stylized * string.
+Multiline and [color=red] [shake rate=10.0 level=2 connected=0]somewhat[/shake] complicated[/color].
+* Have fun![/shake]"
+visible_characters = 196
