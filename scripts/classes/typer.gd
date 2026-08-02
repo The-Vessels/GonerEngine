@@ -5,8 +5,16 @@ var tag_content: String = ""
 var text_effects: Array[String] = []
 var time: int = 0
 var text_gap := Vector2(8.0, 0.0)
+var line_height: int = 18
 var max_line_chars: int
 var text_lines: PackedStringArray = []
+
+var typer_shader: TyperShader = null
+
+@export var redraw: bool = false:
+	set(val):
+		if Engine.is_editor_hint():
+			queue_redraw()
 
 @export_multiline("monospace") var text := "":
 	set(new):
@@ -91,7 +99,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	time += 1
 	max_line_chars = floor(self.size.x / text_gap.x)
-	queue_redraw()
+	# queue_redraw()
 	
 	# really basic typing functionality
 	if visible_characters > -1 and visible_characters < text.length():
@@ -100,6 +108,11 @@ func _physics_process(delta: float) -> void:
 		
 
 func _draw() -> void:
+	#print("FONT SIZE IS 16, FONT HEIGHT IS ", get_theme_default_font().get_height())
+	if typer_shader == null:
+		typer_shader = TyperShader.new(self)
+	typer_shader.clear()
+	
 	text_effects.clear()
 	var canvas = self.get_canvas_item()
 	
@@ -169,7 +182,7 @@ func _draw() -> void:
 			)
 			typer_char = apply_effects(typer_char, text_effects)
 			
-			draw_char(
+			typer_shader.draw_char(
 				typer_char.font,
 				typer_char.pos + typer_char.pos_offset,
 				typer_char.glyph,
@@ -183,9 +196,13 @@ func _draw() -> void:
 				break
 		
 		current_line_asterisk = false
-		pos.y += font_size
+		# pos.y += font_size
+		pos.y += line_height
 		pos.x = 0.0
 		char = 0
+	
+	typer_shader.draw()
+	#typer_shader.test_draw()
 
 ## All data for a character being written in the typer
 class Char extends RefCounted:

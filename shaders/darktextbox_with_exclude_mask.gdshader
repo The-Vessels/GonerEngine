@@ -8,8 +8,15 @@ uniform float line_height = 18.0;
 uniform vec2 shadow_offset = vec2(1.0, 1.0);
 uniform bool enable = true;
 
+uniform sampler2D exclude_mask : filter_nearest;
+
 void vertex() {
 	// Called for every vertex the material is visible on.
+}
+
+float incl(vec2 uv) {
+	vec4 exclude_mask_color = texture(exclude_mask, uv);
+	return step(exclude_mask_color.a, 0.1);
 }
 
 vec4 mytexture(sampler2D sampler, vec2 uv) {
@@ -43,9 +50,9 @@ void fragment() {
 		);
 		vec4 shadow_color_colored = shadow * vec4(vec3(color_shadow_mix), 1.0);
 		vec4 shadow_color = mix(shadow_color_colored, shadow_color_normal, text_is_white);
-		vec4 shadow_mask = mix(vec4(0.0), shadow_color, shadow.a);
+		vec4 shadow_mask = mix(vec4(0.0), shadow_color, shadow.a) * incl(uv_shadow);
 		vec4 processed_text = mix(shadow_mask, text_color, text.a);
-		COLOR = processed_text;
+		COLOR = mix(texture(exclude_mask, UV), processed_text, incl(UV));
 		// COLOR = vec4(1.0, 0.0, 0.0, 1.0);
 	}
 }

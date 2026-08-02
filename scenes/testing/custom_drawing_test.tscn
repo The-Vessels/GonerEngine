@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0ukmrnn12ao5"]
 
 [ext_resource type="Script" uid="uid://bpgmegg2lddas" path="res://scripts/classes/typer.gd" id="1_liwy2"]
+[ext_resource type="Texture2D" uid="uid://dwdjrfwgkxt7y" path="res://sprites/references/refdark.png" id="2_h2c5l"]
 
 [node name="Typer" type="Control" unique_id=532849005]
 layout_mode = 3
@@ -14,7 +15,24 @@ offset_bottom = -382.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_liwy2")
-text = "* Hey, I'm a[shake rate=10.0 level=2 connected=1] really stylized * string.
-Multiline and [color=red] [shake rate=10.0 level=2 connected=0]somewhat[/shake] complicated[/color].
-* Have fun![/shake]"
-visible_characters = 196
+text = "* Dreemurr residence,
+[color=red]who[/color] is this?"
+visible_characters = 278
+
+[node name="Label" type="Label" parent="." unique_id=2009939912]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 95.0
+offset_bottom = 57.0
+text = "D
+w"
+
+[node name="Refdark" type="Sprite2D" parent="." unique_id=2084428974]
+visible = false
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(-87, -167)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h2c5l")
+centered = false

@@ -33,6 +33,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_oltr1")
 Button/styles/hover = SubResource("StyleBoxEmpty_dsdwh")
 Button/styles/normal = SubResource("StyleBoxEmpty_stv6m")
 Button/styles/pressed = SubResource("StyleBoxEmpty_xjiex")
+Label/constants/line_spacing = 2
 Panel/styles/panel = SubResource("StyleBoxEmpty_33ktg")
 ProgressBar/colors/font_color = Color(1, 1, 1, 1)
 ProgressBar/styles/background = SubResource("StyleBoxEmpty_polhv")

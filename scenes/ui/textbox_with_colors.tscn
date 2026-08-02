@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://cjjm30hkrb77y"]
 
-[ext_resource type="Shader" uid="uid://chp2n2xbc0brh" path="res://shaders/darktextbox.gdshader" id="1_m0vko"]
+[ext_resource type="Shader" uid="uid://djokdi5qbrote" path="res://shaders/darktextbox.gdshader" id="1_m0vko"]
 [ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://fonts/main_mono.ttf" id="2_k4qkd"]
 [ext_resource type="Script" uid="uid://c6gcgx7yg0tts" path="res://scripts/ui/textbox_label.gd" id="3_k4qkd"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ocjv1"]
-viewport_path = NodePath("SubViewportContainer/ImageOnlySubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ocjv1"]
 resource_local_to_scene = true
@@ -17,7 +14,6 @@ shader_parameter/font_height = 32.0
 shader_parameter/line_height = 36.0
 shader_parameter/shadow_offset = Vector2(1, 1)
 shader_parameter/enable = true
-shader_parameter/exclude_mask = SubResource("ViewportTexture_ocjv1")
 
 [node name="TextboxWithColors" type="Node2D" unique_id=342972194]
 
