@@ -106,7 +106,7 @@ func draw_char(
 	font.draw_char(text_canvas_item, pos, ord(character), font_size, modulate)
 
 func draw() -> void:
-	print('DRAW BEGIN')
+	#print('DRAW BEGIN')
 	var dst_rect := Rect2(Vector2.ZERO, viewport_size)
 	
 	for i in range(shad_num):
@@ -124,7 +124,7 @@ func draw() -> void:
 	var shad_final_viewport := shad_viewports[shad_num - 1] if shad_num > 0 else text_viewport
 	var shad_final_texture := RenderingServer.viewport_get_texture(shad_final_viewport)
 	RenderingServer.canvas_item_add_texture_rect(canvas_item, dst_rect, shad_final_texture)
-	print('DRAW END')
+	#print('DRAW END')
 
 func test_draw() -> void:
 	RenderingServer.canvas_item_add_circle(canvas_item, Vector2.ZERO, 20.0, Color.GREEN)

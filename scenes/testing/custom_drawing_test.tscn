@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0ukmrnn12ao5"]
 
 [ext_resource type="Script" uid="uid://bpgmegg2lddas" path="res://scripts/classes/typer.gd" id="1_liwy2"]
+[ext_resource type="AudioStream" uid="uid://b2y0nkg6g0lnd" path="res://sounds/voice/susie.wav" id="2_7lxqq"]
 [ext_resource type="Texture2D" uid="uid://dwdjrfwgkxt7y" path="res://sprites/references/refdark.png" id="2_h2c5l"]
 
 [node name="Typer" type="Control" unique_id=532849005]
@@ -8,16 +9,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 51.0
-offset_top = 48.0
-offset_right = -273.0
-offset_bottom = -382.0
+offset_left = 54.0
+offset_top = 32.0
+offset_right = -381.0
+offset_bottom = -374.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_liwy2")
-text = "* Dreemurr residence,
+text = "* Dreemurr residence,{wait(10)}
 [color=red]who[/color] is this?"
-visible_characters = 278
+visible_characters = 34
+talk_sounds = Array[AudioStream]([ExtResource("2_7lxqq")])
 
 [node name="Label" type="Label" parent="." unique_id=2009939912]
 visible = false

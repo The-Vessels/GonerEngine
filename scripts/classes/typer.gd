@@ -1,6 +1,12 @@
 @tool
 class_name Typer extends Control
 
+var caller: Node
+var destroy_caller := true
+
+var pause: int
+var animating := false
+
 var tag_content: String = ""
 var text_effects: Array[String] = []
 var time: int = 0
@@ -23,6 +29,7 @@ var typer_shader: TyperShader = null
 			text = new
 			prepare_lines()
 			queue_redraw()
+			visible_characters = get_parsed_text().length()
 
 @export var font_size: int = 16:
 	set(new):
@@ -32,8 +39,34 @@ var typer_shader: TyperShader = null
 			prepare_spacing()
 			queue_redraw()
 
-@export var visible_characters := 0
-@export_range(0.0, 1.0) var visible_ratio: float = 1.0
+var _visible_characters := 0
+@export var visible_characters := 0:
+	get:
+		return _visible_characters
+	set(new):
+		_visible_characters = new
+		
+@export_range(0.0, 1.0) var visible_ratio: float = 1.0:
+	get:
+		return _visible_characters / float(get_parsed_text().length())
+	set(new):
+		var clamped_ratio = clampf(new, 0.0, 1.0)
+		_visible_characters = roundi(clamped_ratio * get_parsed_text().length())
+
+@export_group("Talking Sound")
+@export var talk_sounds: Array[AudioStream]
+@export_subgroup("Random Pitch Range")
+@export_range(-1, 0, 0.1) var lower_range: float = 0.0
+@export_range(0, 1, 0.1) var upper_range: float = 0.0
+
+# Gets the text without bbcode or commands
+func get_parsed_text() -> String:
+	var regex = RegEx.new()
+	regex.compile("\\[.*?\\]")
+	var text_without_tags = regex.sub(text, "", true)
+	regex.compile("\\{.*?\\}")
+	text_without_tags = regex.sub(text_without_tags, "", true)
+	return text_without_tags
 
 func add_linebreaks():
 	var new_text_lines: PackedStringArray = []
@@ -41,22 +74,22 @@ func add_linebreaks():
 		var char_count := 0
 		var start_pos := 0
 		var last_space_pos := 0
-		var command_mode := false
+		var tag_mode := false
 		var break_text = line.c_unescape()
 		for i in break_text.length():
 			var char_index = start_pos + char_count
 			var char = break_text[char_index]
 			#print(char_count," ", start_pos," ", last_space_pos, " ", max_line_chars, " ",char_index," ", break_text.length(), " ", char)
 			
-			if char == "[":
-				command_mode = true
+			if char == "[" or char == "{":
+				tag_mode = true
 				start_pos += 1
 				continue
-			if char == "]":
-				command_mode = false
+			if char == "]" or char == "}":
+				tag_mode = false
 				start_pos += 1
 				continue
-			if command_mode:
+			if tag_mode:
 				start_pos += 1
 				continue
 			
@@ -74,10 +107,11 @@ func add_linebreaks():
 	text_lines = new_text_lines
 
 func prepare_lines():
-	text_lines = text.c_escape().split("\\n")
-	add_linebreaks()
+	var commanded_text = parse_commands()
+	text_lines = commanded_text.c_escape().split("\\n")
 	for i in text_lines.size():
 		text_lines.set(i, text_lines.get(i).c_unescape())
+	add_linebreaks()
 	
 func prepare_spacing():
 	text_gap = Vector2(font_size/2, 0.0)
@@ -94,17 +128,26 @@ func _ready() -> void:
 		func():
 			prepare_lines()
 	)
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	time += 1
 	max_line_chars = floor(self.size.x / text_gap.x)
-	# queue_redraw()
 	
-	# really basic typing functionality
-	if visible_characters > -1 and visible_characters < text.length():
-		visible_characters += 1
-		visible_ratio = visible_characters / float(text.length())
+	if Engine.is_editor_hint() or !is_node_ready():
+		return
+	
+	time += 1
+	if animating and Input.is_action_just_pressed("cancel"):
+		visible_ratio = 1.0
+	
+	if !(visible_ratio >= 1.0):
+		animating = true
+		if pause <= 0:
+			write_char()
+	else:
+		animating = false
+	
+	if pause > 0: pause -= 1
 		
 
 func _draw() -> void:
@@ -121,7 +164,7 @@ func _draw() -> void:
 	var char := 0
 	var total_chars := 0
 	var display_chars := 0
-	var command_mode: bool = false
+	var effect_mode: bool = false
 	var is_closing_tag: bool = false
 	
 	# the position where the top left of the text should start
@@ -131,31 +174,32 @@ func _draw() -> void:
 	for j in text_lines.size():
 		var line: String = text_lines.get(j)
 		
-		if visible_characters > -1 and display_chars >= visible_characters:
-			break
 		
 		# loop over each character in the line
 		for i in line.length():
+			if visible_characters > -1 and display_chars >= visible_characters:
+				break
+				
 			var ch = line[i]
 			total_chars += 1
 			
 			if ch == "[":
 				# check if there's actually a closing bracket left in the text
 				if text.find("]", total_chars) > -1:
-					command_mode = true
+					effect_mode = true
 					if line[i+1] == "/":
 						text_effects.pop_back()
 						is_closing_tag = true
 					continue
 			if ch == "]":
-				command_mode = false
+				effect_mode = false
 				if is_closing_tag:
 					is_closing_tag = false
 					continue
 				text_effects.append(tag_content)
 				tag_content = ""
 				continue
-			if command_mode:
+			if effect_mode:
 				if !is_closing_tag:
 					tag_content += ch
 				continue
@@ -203,6 +247,84 @@ func _draw() -> void:
 	
 	typer_shader.draw()
 	#typer_shader.test_draw()
+
+class CommandInfo:
+	var index: int
+	var command: String
+	func _init(idx: int, cmd: String):
+		index = idx
+		command = cmd
+
+# Literally just for command parsing
+func remove_bbcode(txt: String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\[.*?\\]")
+	var text_without_tags = regex.sub(txt, "", true)
+	return text_without_tags
+	
+var commands: Array[CommandInfo] = []
+# Gets all the commands inside the dia text and adds them to the list of commands
+# while also removing them from the commanded_text
+# (the var name is kinda a misnomer since it's getting cleaned of the commands)
+func parse_commands() -> String:
+	var commanded_text = text
+	commands.clear()
+	while true:
+		# find the index of where the command starts (break the loop if it doesnt find any more)
+		var left_index = remove_bbcode(commanded_text).findn("{")
+		if left_index == -1: break
+		# find the index of where the command ends (break the loop if it doesnt find any more)
+		var right_index = remove_bbcode(commanded_text).findn("}", left_index)
+		if right_index == -1: break
+		
+		var tag_content = remove_bbcode(commanded_text).substr(left_index+1, right_index-1-left_index)
+		
+		# erase the command from the dialogue text
+		commanded_text = commanded_text.erase(commanded_text.findn("{"+tag_content+"}"), right_index+1-left_index)
+		
+		var command = CommandInfo.new(left_index, tag_content)
+		commands.append(command)
+	return commanded_text
+
+func evaluate(command, variable_names = [], variable_values = []) -> void:
+	var expression = Expression.new()
+	var error = expression.parse(command, variable_names)
+	if error != OK:
+		push_error(expression.get_error_text())
+		return
+
+	var result = expression.execute(variable_values, self)
+
+	if not expression.has_execute_failed():
+		print(str(result))
+	
+	commands.remove_at(0)
+
+func wait(frames: int) -> void:
+	pause = frames
+
+func write_char():	
+	# Check if the index of the char you're about to write has a command queued for it
+	if commands:
+		if visible_characters == commands[0].index:
+			print(commands[0].command)
+			evaluate(commands[0].command)
+			return
+	visible_characters += 1
+	play_talk_sound()
+
+func play_talk_sound():
+	var sound = talk_sounds.pick_random()
+	var pitch_offset = randf_range(lower_range, upper_range)
+	var player = AudioStreamPlayer.new()
+	player.stream = sound
+	player.pitch_scale += pitch_offset
+	player.finished.connect(
+		func():
+			player.queue_free()
+	)
+	add_child(player)
+	player.play()
 
 ## All data for a character being written in the typer
 class Char extends RefCounted:
