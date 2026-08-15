@@ -55,16 +55,18 @@ func _ready() -> void:
 		else:
 			soul_node.size = Vector2(9.0, 9.0)
 		soul_node.size *= Vector2(soul_scale, soul_scale)
-			
-		add_child(soul_node)
 		
-		if !soul_pos:
-			soul_node.global_position = self.global_position + soul_offset
-		else:
-			soul_node.global_position = soul_pos
+		add_child(soul_node)
 		
 		var soul_to_right_x = self.global_position.x - soul_node.size.x
 		var center_y = self.global_position.y + (self.size.y / 2) - (soul_node.size.y / 2)
+		
+		if !soul_pos:
+			soul_node.global_position = Vector2(soul_to_right_x, center_y) + soul_offset
+			print(soul_node.global_position)
+		else:
+			soul_node.global_position = soul_pos
+		
 		target_pos = Vector2(soul_to_right_x, center_y) + soul_offset
 		
 		lerp_weight = self.move_speed
@@ -93,17 +95,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if soul_node:
-		soul_node.global_position = lerp(soul_node.global_position, target_pos, lerp_weight)
-	#match soul_image:
-		#SoulImages.NONE:
-			#soul_node.texture = null
-		#SoulImages.NORMAL_SOUL:
-			#soul_node.texture = soul_img
-		#SoulImages.SMALL_SOUL:
-			#soul_node.texture = small_soul_img
-	
-	#if force_soul:
-		#soul_node.visible = true
-	#elif !force_soul and !has_focus():
-		#soul_node.visible = false
-	pass
+		soul_node.global_position = Util.delta_lerp(soul_node.global_position, target_pos, lerp_weight)
