@@ -123,20 +123,6 @@ func play_sound(sound_name: String, volume: float = 1.0) -> void:
 func is_dark() -> bool:
 	return world_type == WorldTypes.WORLD_DARK
 
-## Converts seconds to physics frames (1/30th of a second)
-## [codeblock]
-## Global.sec_to_frames(2.5) #returns 75.0
-## [/codeblock]
-func sec_to_frames(seconds: float) -> float:
-	return seconds * 30.0
-
-## Converts physics frames (1/30th of a second) to seconds
-## [codeblock]
-## Global.frames_to_sec(75.0) #returns 2.5
-## [/codeblock]
-func frames_to_sec(frames: float) -> float:
-	return frames / 30.0
-
 #func toggle_fullscreen():
 	#if is_fullscreen:
 		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
