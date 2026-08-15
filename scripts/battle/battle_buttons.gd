@@ -34,6 +34,19 @@ func _ready():
 func _process(_delta: float) -> void:
 	last_focused = null
 
+func _on_fight_pressed() -> void:
+	Signals.battle_open_enemy_list.emit()
+	var enemy: Enemy = await Signals.battle_enemy_chosen
+
+func _on_act_tech_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_item_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_spare_pressed() -> void:
+	pass # Replace with function body.
+
 func _on_defend_pressed() -> void:
 	var current_pm_idx := PartyMember.party_list.find(charbox.party_member)
 	var next_pm_idx := current_pm_idx + 1

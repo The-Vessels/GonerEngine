@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 room="Contains the currently opened room."
 party_member="For party members."
+enemy="For enemies in battle."
 
 [gui]
 

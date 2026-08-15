@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ds53w5lmeihaj"]
+
+[ext_resource type="Script" uid="uid://co3uj7cjy1mdl" path="res://scripts/classes/actor.gd" id="1_5khwi"]
+[ext_resource type="Texture2D" uid="uid://sqomdpxi0wq1" path="res://sprites/actors/ralsei/dark/walk/left_1.png" id="2_w3g51"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5khwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w3g51")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ActorBase" type="CharacterBody2D" unique_id=1960759770]
+script = ExtResource("1_5khwi")
+metadata/_custom_type_script = "uid://co3uj7cjy1mdl"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=501523107]
+sprite_frames = SubResource("SpriteFrames_5khwi")

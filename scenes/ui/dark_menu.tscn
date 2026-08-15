@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c2eplcusbk2dl" path="res://sprites/references/dcreference.png" id="13_237v3"]
 [ext_resource type="Texture2D" uid="uid://cifm5ht1b8v6d" path="res://sprites/ui/menu/btn/power_h.png" id="14_jranp"]
 [ext_resource type="Texture2D" uid="uid://c7xa7pmx162nx" path="res://sprites/ui/menu/btn/config_h.png" id="17_bw7va"]
+[ext_resource type="Script" uid="uid://cd1a8of3kgipq" path="res://scripts/charboxcontainer.gd" id="20_2nrtt"]
 [ext_resource type="PackedScene" uid="uid://tw5hkjn0a81b" path="res://scenes/ui/dark_box.tscn" id="21_jranp"]
 [ext_resource type="Script" uid="uid://b4chsr82apf1m" path="res://scripts/classes/soul_button.gd" id="23_2nrtt"]
 
@@ -204,7 +205,6 @@ func linear_to_percentage(linear_value: float) -> int:
 "
 
 [node name="DarkMenu" type="Control" unique_id=25315914]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -299,26 +299,26 @@ offset_right = 640.0
 offset_bottom = 480.0
 focus_behavior_recursive = 1
 
-[node name="BottomRect" type="ColorRect" parent="BottomPanel" unique_id=1491312947]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 640.0
-offset_bottom = 63.0
-focus_behavior_recursive = 1
+[node name="ColorRect" type="ColorRect" parent="BottomPanel" unique_id=1402003293]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Charbox" parent="BottomPanel" unique_id=637116621 instance=ExtResource("12_i8uc7")]
+[node name="Container" type="Container" parent="BottomPanel" unique_id=1169317123]
 layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("20_2nrtt")
 
-[node name="Charbox2" parent="BottomPanel" unique_id=625688750 instance=ExtResource("12_i8uc7")]
-layout_mode = 0
-offset_left = 213.0
-offset_right = 426.0
+[node name="Charbox" parent="BottomPanel/Container" unique_id=1573525226 instance=ExtResource("12_i8uc7")]
+layout_mode = 2
 
-[node name="Charbox3" parent="BottomPanel" unique_id=1525097512 instance=ExtResource("12_i8uc7")]
-layout_mode = 0
-offset_left = 426.0
-offset_right = 639.0
+[node name="Charbox2" parent="BottomPanel/Container" unique_id=748690510 instance=ExtResource("12_i8uc7")]
+layout_mode = 2
 
 [node name="DCReference" type="Sprite2D" parent="." unique_id=1646417401]
 visible = false
@@ -365,8 +365,8 @@ layout_mode = 2
 [node name="VolumeButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume" unique_id=1545558110]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/MasterVolume/VolumeButton")
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 action_mode = 0
@@ -385,8 +385,8 @@ text = "50%"
 
 [node name="Controls" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=1295780165]
 layout_mode = 2
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Controls")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Controls"
@@ -402,8 +402,8 @@ layout_mode = 2
 [node name="VFXButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX" unique_id=247337683]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/SimplifyVFX/VFXButton")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Simplify VFX"
@@ -425,8 +425,8 @@ layout_mode = 2
 [node name="AutoRunButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun" unique_id=2034796232]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/AutoRun/AutoRunButton")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Auto-Run"
@@ -448,8 +448,8 @@ layout_mode = 2
 [node name="BorderButton" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border" unique_id=1826428164]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Border/BorderButton")
 theme_override_font_sizes/font_size = 32
 toggle_mode = true
 action_mode = 0
@@ -468,8 +468,8 @@ text = "Dynamic"
 
 [node name="ReturnToTitle" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=203103193]
 layout_mode = 2
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/ReturnToTitle")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Return to Title"
@@ -481,8 +481,8 @@ metadata/_custom_type_script = "uid://b4chsr82apf1m"
 
 [node name="Back" type="Button" parent="Submenus/CONFIG/MainConfigMenu/ConfigsContainer" unique_id=1846032613]
 layout_mode = 2
-focus_neighbor_left = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
-focus_neighbor_right = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/DarkMenu/Submenus/CONFIG/MainConfigMenu/ConfigsContainer/Back")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Back"

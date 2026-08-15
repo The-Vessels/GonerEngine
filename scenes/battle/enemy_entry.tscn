@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://novrldco8cny"]
+
+[ext_resource type="Script" uid="uid://b75ptvvtrornj" path="res://scenes/battle/enemy_entry.gd" id="1_y0q5c"]
+[ext_resource type="Script" uid="uid://dbdww1nds0jky" path="res://scripts/classes/custom_progress_bar.gd" id="2_y0q5c"]
+
+[node name="EnemyEntry" type="Button" unique_id=649740872]
+offset_right = 521.0
+offset_bottom = 32.0
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyEntry")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyEntry")
+theme_override_font_sizes/font_size = 32
+text = "Enemy"
+alignment = 0
+script = ExtResource("1_y0q5c")
+soul_offset = Vector2(-9, 2)
+navigation_direction = 1
+metadata/_custom_type_script = "uid://b4chsr82apf1m"
+
+[node name="HPBar" type="Control" parent="." unique_id=1428896723]
+anchors_preset = 0
+offset_left = 340.0
+offset_top = 5.0
+offset_right = 380.5
+offset_bottom = 21.0
+scale = Vector2(2, 1)
+script = ExtResource("2_y0q5c")
+value = 50.0
+text_offset = Vector2(2, -3)
+fill_color = Color(0.011764706, 1, 0, 1)
+background_color = Color(0.5019608, 0, 0, 1)
+text_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dbdww1nds0jky"
+
+[node name="MercyBar" type="Control" parent="." unique_id=1253545530]
+anchors_preset = 0
+offset_left = 440.0
+offset_top = 5.0
+offset_right = 480.5
+offset_bottom = 21.0
+scale = Vector2(2, 1)
+script = ExtResource("2_y0q5c")
+value = 50.0
+text_offset = Vector2(2, -3)
+fill_color = Color(1, 1, 0, 1)
+background_color = Color(1, 0.3137255, 0.12156863, 1)
+text_color = Color(0.5019608, 0, 0, 1)
+metadata/_custom_type_script = "uid://dbdww1nds0jky"

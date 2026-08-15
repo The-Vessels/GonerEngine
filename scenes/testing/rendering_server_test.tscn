@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://d0rw3d4ma3wl2"]
+
+[sub_resource type="GDScript" id="GDScript_ocjv1"]
+script/source = "@tool
+extends Control
+
+@export var redraw: bool = false:
+	set(val):
+		if Engine.is_editor_hint():
+			queue_redraw()
+
+var viewport: RID = rid_from_int64(0)
+var canvas: RID
+var canvas_item: RID
+
+var old_size := size
+
+#func _process(_delta: float) -> void:
+	#queue_redraw()
+
+func _notification(what: int) -> void:
+	if old_size != size:
+		old_size = size
+		if viewport.is_valid():
+			RenderingServer.viewport_set_size(viewport, ceil(size.x), ceil(size.y))
+		else:
+			make_stuff()
+
+func make_stuff() -> void:
+	viewport = RenderingServer.viewport_create()
+	RenderingServer.viewport_set_size(viewport, ceil(size.x), ceil(size.y))
+	RenderingServer.viewport_set_active(viewport, true)
+	RenderingServer.viewport_set_update_mode(viewport, RenderingServer.VIEWPORT_UPDATE_ALWAYS)
+	
+	canvas = RenderingServer.canvas_create()
+	RenderingServer.viewport_attach_canvas(viewport, canvas)
+	
+	canvas_item = RenderingServer.canvas_item_create()
+	RenderingServer.canvas_item_set_parent(canvas_item, canvas)
+
+func _draw() -> void:
+	if not viewport.is_valid():
+		make_stuff()
+
+	RenderingServer.canvas_item_clear(canvas_item)
+	RenderingServer.canvas_item_add_circle(
+		canvas_item,
+		Vector2(20.0, 20.0), 20.0, Color.YELLOW
+	)
+	
+	RenderingServer.canvas_item_clear(get_canvas_item())
+	RenderingServer.canvas_item_add_texture_rect(
+		get_canvas_item(),
+		Rect2(Vector2.ZERO, size),
+		RenderingServer.viewport_get_texture(viewport)
+	)
+	
+	# RenderingServer.canvas_item_clear(canvas_item)
+	RenderingServer.canvas_item_add_circle(
+		canvas_item,
+		Vector2(30.0, 20.0), 20.0, Color.BLUE
+	)
+	
+	RenderingServer.canvas_item_add_texture_rect_region(
+		get_canvas_item(),
+		Rect2(Vector2(60.0, 0.0), Vector2(40.0, 40.0)),
+		RenderingServer.viewport_get_texture(viewport),
+		Rect2(Vector2.ZERO, Vector2(40.0, 40.0))
+	)
+"
+
+[node name="RenderingServerTest" type="Node2D" unique_id=1831669235]
+
+[node name="Skibidi" type="Control" parent="." unique_id=812957215]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 121.0
+offset_top = 57.0
+offset_right = 351.0
+offset_bottom = 153.0
+script = SubResource("GDScript_ocjv1")

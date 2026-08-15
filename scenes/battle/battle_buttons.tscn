@@ -49,4 +49,8 @@ focus_next = NodePath("../Fight")
 texture_normal = ExtResource("10_qv163")
 texture_focused = ExtResource("11_dwws5")
 
+[connection signal="pressed" from="Fight" to="." method="_on_fight_pressed"]
+[connection signal="pressed" from="ActTech" to="." method="_on_act_tech_pressed"]
+[connection signal="pressed" from="Item" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="Spare" to="." method="_on_spare_pressed"]
 [connection signal="pressed" from="Defend" to="." method="_on_defend_pressed"]

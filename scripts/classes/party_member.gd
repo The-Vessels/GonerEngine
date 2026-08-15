@@ -1,10 +1,13 @@
 class_name PartyMember extends Actor
 ## A party member. May be a playable character.
 
+# TODO should we put "party changed logic" in the party member list node?
+static var party_changed: bool
 static var party_list: Array[PartyMember] = []
 static func make_party_list() -> void:
+	party_changed = true
 	party_list.assign(Global.get_tree().get_nodes_in_group("party_member"))
-	party_list.sort_custom(func(a, b): a.get_index() < b.get_index())
+	party_list.sort_custom(func(a, b): return a.get_index() < b.get_index())
 
 enum AnimState {
 	WALKRUN,
@@ -34,14 +37,18 @@ var last_positions: CircularQueue
 # TODO we HAVE to figure out better party logic here
 # Maybe we should use groups?
 func _enter_tree() -> void:
-	print(name + " ENTERED")
+	# print(name + " ENTERED")
 	super._enter_tree()
+	add_to_group("party_member")
 	make_party_list()
-	
+	#print("AFTER ", name, " ENTERED: ", party_list)
+
 func _exit_tree() -> void:
 	# print("CHARACTER " + chara.name + " EXITED")
 	super._exit_tree()
+	remove_from_group("party_member")
 	make_party_list()
+	#print("AFTER ", name, " EXITED:  ", party_list)
 
 func is_playable() -> bool:
 	return get_index() == 0
@@ -54,22 +61,25 @@ func _ready():
 	else:
 		collision_layer = 0 # Do not collide!
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#if Global.moveable:
 		#party_member_process(delta)
 	pass
 
 func _physics_process(delta: float) -> void:
-	if not Global.moveable:
-		return
+	if party_changed:
+		Signals.party_changed.emit()
+		party_changed = false
 	
-	party_member_process(delta)
+	if Global.moveable:
+		party_member_process(delta)
 	
 	if is_playable():
+		# Toggle menu
 		if Input.is_action_just_pressed('menu'):
 			Signals.toggleMenu.emit()
-		if Global.moveable:
-			if Input.is_action_just_pressed("confirm"):
+		# Interact with objects
+		if Global.moveable and Input.is_action_just_pressed("confirm"):
 				do_interact()
 
 func party_member_process(delta: float) -> void:
@@ -102,8 +112,6 @@ func party_member_process(delta: float) -> void:
 # and I'm wondering if that is okay or not.
 func follow_main_character():
 	var leader := party_list[0]
-	# if leader == null:
-	# 	return
 
 	var info: CaterpillarInfo = leader.last_positions.get_val(follow_target)
 	if info == null:

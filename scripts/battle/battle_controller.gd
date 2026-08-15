@@ -2,6 +2,7 @@ class_name BattleController extends Node2D
 ## Manages everything in a battle.
 
 const battle_controller_scene: PackedScene = preload("uid://bsn3lnx86eo3e")
+const enemy_list_scene: PackedScene = preload("uid://oj1cx36ou5oj")
 
 var old_moveable: bool
 var old_party_z: int
@@ -57,6 +58,7 @@ func _ready() -> void:
 		old_party_facings.append(member.facing)
 	
 	Signals.battle_end.connect(end_battle)
+	Signals.battle_open_enemy_list.connect(open_enemy_list)
 	Signals.battle_start.emit()
 
 	battle_intro()
@@ -80,6 +82,10 @@ func end_battle() -> void:
 	party_list.z_as_relative = true
 	party_list.z_index = old_party_z
 	queue_free()
+
+func open_enemy_list() -> void:
+	var enemy_list: Control = enemy_list_scene.instantiate()
+	$UI/Content.add_child(enemy_list)
 
 func _process(_delta: float) -> void:
 	global_position = WorldCamera.get_pos()

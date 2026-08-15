@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d20bvr56lcvqj"]
+
+[ext_resource type="Script" uid="uid://bke7imltsukd6" path="res://scripts/classes/enemy.gd" id="1_oolia"]
+
+[node name="TestEnemy" type="CharacterBody2D" unique_id=537908515]
+script = ExtResource("1_oolia")
+metadata/_custom_type_script = "uid://bke7imltsukd6"

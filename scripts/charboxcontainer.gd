@@ -11,6 +11,10 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	make_charboxes()
+	Signals.party_changed.connect(make_charboxes)
+
+func make_charboxes() -> void:
 	for child in get_children():
 		child.queue_free()
 	

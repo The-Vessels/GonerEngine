@@ -91,3 +91,14 @@ script = ExtResource("4_qceqb")
 
 [node name="Charbox" parent="UI/Foreground/Container" unique_id=1573525226 instance=ExtResource("5_bwcji")]
 layout_mode = 2
+
+[node name="Content" type="Control" parent="UI" unique_id=1975922190]
+z_index = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -115.0
+grow_horizontal = 2
+grow_vertical = 0

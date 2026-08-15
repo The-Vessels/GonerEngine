@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://oj1cx36ou5oj"]
+
+[ext_resource type="Script" uid="uid://dm67qrh60o4su" path="res://scripts/battle/enemy_list.gd" id="1_qo66n"]
+[ext_resource type="PackedScene" uid="uid://novrldco8cny" path="res://scenes/battle/enemy_entry.tscn" id="2_qo66n"]
+
+[node name="EnemyList" type="Control" unique_id=89738666]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 115.0
+script = ExtResource("1_qo66n")
+
+[node name="HPLabel" type="Label" parent="." unique_id=1660213583]
+layout_mode = 0
+offset_left = 424.0
+offset_top = -1.0
+offset_right = 464.0
+offset_bottom = 15.0
+scale = Vector2(2, 1)
+text = "HP"
+
+[node name="MercyLabel" type="Label" parent="." unique_id=1731952523]
+layout_mode = 0
+offset_left = 524.0
+offset_top = -1.0
+offset_right = 564.0
+offset_bottom = 15.0
+scale = Vector2(2, 1)
+text = "MERCY"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2094891706]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 10.0
+offset_right = 630.0
+offset_bottom = 72.0
+theme_override_constants/separation = -2
+
+[node name="EnemyEntry" parent="VBoxContainer" unique_id=649740872 instance=ExtResource("2_qo66n")]
+layout_mode = 2
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyList/VBoxContainer/EnemyEntry")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyList/VBoxContainer/EnemyEntry")
+
+[node name="EnemyEntry2" parent="VBoxContainer" unique_id=864378649 instance=ExtResource("2_qo66n")]
+layout_mode = 2
+focus_neighbor_left = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyList/VBoxContainer/EnemyEntry2")
+focus_neighbor_right = NodePath("/root/@EditorNode@19523/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10149/@VSplitContainer@9908/@HSplitContainer@9910/@HSplitContainer@9912/@Control@9913/@SubViewportContainer@9914/@SubViewport@9915/EnemyList/VBoxContainer/EnemyEntry2")

@@ -21,15 +21,25 @@ static func goto(room: PackedScene) -> void:
 static func warp_party(target_marker_id: int, facing: Enums.Facing) -> void:
 	Signals.warpParty.emit(target_marker_id, facing)
 
+func _enter_tree() -> void:
+	add_to_group("room")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.world_type = world_type
 	
-	# TODO we really need to figure out a way to
-	# easily get top-level nodes. I'm using
-	# groups for now.
-	add_to_group("room")
+	if get_parent() is Window:
+		# This room is the root node.
+		change_root_to_main()
 
+
+func change_root_to_main() -> void:
+	var main: Node = load("uid://d4byrh7pgiy13").instantiate()
+	# get_parent().remove_child(self)
+	get_parent().add_child.call_deferred(main)
+	await get_tree().process_frame
+	get_parent().remove_child(self)
+	Signals.changeRoom.emit(self, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

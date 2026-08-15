@@ -15,6 +15,7 @@ var menu_open := false
 var submenu_open := false
 
 func _ready():
+	visible = false
 	menu_options = options_container.get_children()
 	menu_options[current_option].grab_focus()
 	
@@ -54,6 +55,7 @@ func _ready():
 		
 	Signals.toggleMenu.connect(
 		func():
+			print('toogly doogly')
 			if !animating:
 				if menu_open:
 					if !submenu_open:

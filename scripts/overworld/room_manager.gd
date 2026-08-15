@@ -27,14 +27,18 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func goto_room(room):
+func goto_room(room, instantiate: bool = true):
 	print("STARTING ROOM SWAP")
 	# Find and remove the current room from the scene
 	for child in get_children():
 		child.queue_free()
 	
 	# Instantiate the new room to go to
-	var room_instantiated: Room = room.instantiate()
+	var room_instantiated: Room
+	if instantiate:
+		room_instantiated = room.instantiate()
+	else:
+		room_instantiated = room
 
 	# Add the correct menu for the new room's world type
 	menu_layer.get_child(0).queue_free()
