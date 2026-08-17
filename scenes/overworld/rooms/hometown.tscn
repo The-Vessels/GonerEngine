@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="11_obw5g"]
 [ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="12_oqv75"]
 [ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://sprites/actors/susie/faces/sincere.png" id="13_j46a3"]
-[ext_resource type="SpriteFrames" uid="uid://by6rywxspr5ov" path="res://sprites/misc/realistic_explosion/realistic_explosion.tres" id="14_s20un"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -396,11 +395,5 @@ texture = ExtResource("13_j46a3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleStarter" unique_id=573438344]
 shape = SubResource("RectangleShape2D_552oo")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=170271932]
-position = Vector2(84, 102.5)
-sprite_frames = ExtResource("14_s20un")
-frame = 16
-frame_progress = 1.0
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]
