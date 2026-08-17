@@ -253,7 +253,7 @@ func interact() -> void:
 		\"* funnytext test\\n* [img=350x70]res://sprites/souls/soul.png[/img]\"
 	]
 	TextBox.start_dialogue(text)
-	Util.explode(self, 1)
+	Util.explode(self, Vector2(2, 0.5), 0.5)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j46a3"]
