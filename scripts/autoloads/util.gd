@@ -24,3 +24,31 @@ func sec_to_frames(seconds: float) -> float:
 ## [/codeblock]
 func frames_to_sec(frames: float) -> float:
 	return frames / 30.0
+
+## Explode a Node2D
+func explode(node: Node2D, scale: Variant = Vector2(1.0, 1.0), speed: float = 1.0, offset: Vector2 = Vector2.ZERO) -> void:
+	var explode_node = AnimatedSprite2D.new()
+	explode_node.sprite_frames = load("res://sprites/misc/realistic_explosion/realistic_explosion.tres")
+	explode_node.speed_scale = speed
+	
+	if scale is Vector2 or scale is float or scale is int:
+		if !(scale is Vector2):
+			scale = Vector2(scale, scale)
+		explode_node.scale = scale
+	else:
+		push_error(
+			"Type '{type}' is not supported for explode scale. Supported types: float, int, Vector2"
+				.format({"type": type_string(typeof(scale))})
+		)
+		explode_node.scale = Vector2(1.0, 1.0)
+	
+	
+	Global.currentRoom.add_child(explode_node)
+	explode_node.global_position = node.global_position + offset
+	
+	node.queue_free()
+	explode_node.play()
+	Global.play_sound("misc/snd_badexplosion")
+	
+	await explode_node.animation_finished
+	explode_node.queue_free()
