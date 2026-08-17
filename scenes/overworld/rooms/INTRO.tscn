@@ -12,7 +12,6 @@ metadata/_custom_type_script = "uid://bb8pql8fxg4kr"
 [node name="MusicNode" type="Node2D" parent="." unique_id=1776149500]
 script = ExtResource("2_vx6y5")
 music = ExtResource("3_phvki")
-pitch = 0.41400000000000003
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=330594535]

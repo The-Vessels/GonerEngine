@@ -9,6 +9,7 @@ class_name TeleportArea extends Area2D
 # ID of the TargetMarkerDest to position the player at
 @export var target_marker_id: int
 @export var player_facing: Enums.Facing = Enums.Facing.DOWN
+@export var frames_length: float = 10.0
 
 #@onready var scene_container: Node = get_tree().root.get_child(-1).get_node("RoomManager")
 
@@ -22,10 +23,10 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	Global.moveable = false
-	await Global.fader_fade(0.0, 1.0, 10)
+	await Global.fader_fade(0.0, 1.0, frames_length)
 	
 	Room.goto(load(target_scene))
 	Room.warp_party(target_marker_id, player_facing)
 	
-	Global.fader_fade(1.0, 0.0, 10)
+	Global.fader_fade(1.0, 0.0, frames_length)
 	Global.moveable = true

@@ -15,6 +15,10 @@ var line_height: int = 18
 var max_line_chars: int
 var text_lines: PackedStringArray = []
 
+var write_condition: bool:
+	get:
+		return (pause <= 0.0)
+
 var typer_shader: TyperShader = null
 
 @export var redraw: bool = false:
@@ -39,8 +43,8 @@ var typer_shader: TyperShader = null
 			prepare_spacing()
 			queue_redraw()
 
-var _visible_characters := 0
-@export var visible_characters := 0:
+var _visible_characters := -1
+@export var visible_characters := -1:
 	get:
 		return _visible_characters
 	set(new):
@@ -48,8 +52,17 @@ var _visible_characters := 0
 		
 @export_range(0.0, 1.0) var visible_ratio: float = 1.0:
 	get:
+		if _visible_characters == -1:
+			return 1.0
 		return _visible_characters / float(get_parsed_text().length())
 	set(new):
+		if new == 1.0:
+			_visible_characters = -1
+			return
+		if new == 0.0:
+			_visible_characters = 0
+			return
+		
 		var clamped_ratio = clampf(new, 0.0, 1.0)
 		_visible_characters = roundi(clamped_ratio * get_parsed_text().length())
 
@@ -142,7 +155,7 @@ func _physics_process(delta: float) -> void:
 	
 	if !(visible_ratio >= 1.0):
 		animating = true
-		if pause <= 0:
+		if write_condition:
 			write_char()
 	else:
 		animating = false
@@ -288,14 +301,14 @@ func parse_commands() -> String:
 
 func evaluate(command, variable_names = [], variable_values = []) -> void:
 	var expression = Expression.new()
-	var error = expression.parse(command, variable_names)
+	var error = expression.parse(command)
 	if error != OK:
-		push_error(expression.get_error_text())
+		#push_error(expression.get_error_text())
 		return
-
-	var result = expression.execute(variable_values, self)
-
-	if not expression.has_execute_failed():
+	
+	var result = expression.execute([], self)
+	
+	if not expression.has_execute_failed() and result:
 		print(str(result))
 	
 	commands.remove_at(0)
@@ -307,11 +320,10 @@ func write_char():
 	# Check if the index of the char you're about to write has a command queued for it
 	if commands:
 		if visible_characters == commands[0].index:
-			print(commands[0].command)
 			evaluate(commands[0].command)
-			return
-	visible_characters += 1
-	play_talk_sound()
+	if write_condition:
+		visible_characters += 1
+		play_talk_sound()
 
 func play_talk_sound():
 	var sound = talk_sounds.pick_random()

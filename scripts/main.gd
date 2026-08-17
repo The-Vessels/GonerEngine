@@ -88,7 +88,7 @@ func find_border_texture() -> Texture2D:
 
 # Uses an animation to set the border to `new_border`.
 func set_border_texture(new_border: Texture, duration: float) -> void:
-	print('SET BORDER TEXTURE!!!')
+	print('SET BORDER TEXTURE!!! ', border_tween)
 	
 	# Set the current texture to the previous texture
 	# and set the new texture.
@@ -100,11 +100,14 @@ func set_border_texture(new_border: Texture, duration: float) -> void:
 	border_prev_rect.visible = true
 	border_rect.modulate.a = 0.0
 	
-	if border_tween != null:
+	if border_tween and border_tween.is_running():
 		border_tween.kill()
-	border_tween = create_tween()
-	border_tween.tween_property(border_rect, "modulate:a", 1.0, (duration / 30.0))
-	border_tween.tween_callback(func(): border_prev_rect.visible = false)
+		border_prev_rect.visible = false
+		border_rect.modulate.a = 1.0
+	else:
+		border_tween = create_tween()
+		border_tween.tween_property(border_rect, "modulate:a", 1.0, (duration / 30.0))
+		border_tween.tween_callback(func(): border_prev_rect.visible = false)
 
 # Get what the window size should be, which changes based on `Settings.border_enabled`.
 func calculate_window_size():
