@@ -6,9 +6,11 @@ extends Node
 ## [br][br]
 ## [b]Note:[/b] Actually uses dtmult (deltatime * 30) to be consistent with Deltarune's 30 FPS logic
 func delta_lerp(from: Variant, to: Variant, weight: Variant) -> Variant:
+	assert(typeof(from) == typeof(to), "Parameters 'from' and 'to' must be of the same type.")
+	assert(weight is float or weight is int, "'weight' must be a float or int")
+	
 	var dtmult = get_process_delta_time() * 30.0
-	var lerp_vector = Vector2(pow(1.0 - weight, dtmult), pow(1.0 - weight, dtmult))
-	var result = (from - to) * lerp_vector + to
+	var result = (from - to) * pow(1.0 - weight, dtmult) + to
 	return result
 
 ## Converts seconds to physics frames (1/30th of a second)
