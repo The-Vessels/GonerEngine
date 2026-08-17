@@ -9,7 +9,8 @@ class_name TeleportArea extends Area2D
 # ID of the TargetMarkerDest to position the player at
 @export var target_marker_id: int
 @export var player_facing: Enums.Facing = Enums.Facing.DOWN
-@export var frames_length: float = 10.0
+# https://www.desmos.com/calculator/zis855e0vt
+@export var frames_length: float = 12.5
 
 #@onready var scene_container: Node = get_tree().root.get_child(-1).get_node("RoomManager")
 
