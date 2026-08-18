@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b7dc70ogpvjts" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_16.png" id="17_qu721"]
 
 [resource]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,

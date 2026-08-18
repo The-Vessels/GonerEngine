@@ -13,6 +13,24 @@
 [ext_resource type="Script" uid="uid://br8uupftjxwuh" path="res://scripts/classes/player_marker.gd" id="11_obw5g"]
 [ext_resource type="Texture2D" uid="uid://cxowetj4sjjhk" path="res://sprites/class_icons/Room.svg" id="12_oqv75"]
 [ext_resource type="Texture2D" uid="uid://bu708k77nhnyg" path="res://sprites/actors/susie/faces/sincere.png" id="13_j46a3"]
+[ext_resource type="PackedScene" uid="uid://blg07sudsfcu0" path="res://scenes/misc/realistic_explosion.tscn" id="14_s20un"]
+[ext_resource type="Texture2D" uid="uid://cebs73l0q78xc" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_0.png" id="15_tpxho"]
+[ext_resource type="Texture2D" uid="uid://dsibv5a7855cj" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_1.png" id="16_x0a43"]
+[ext_resource type="Texture2D" uid="uid://bu4xll1kn72mq" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_2.png" id="17_rrnrg"]
+[ext_resource type="Texture2D" uid="uid://ba81x8xvex0c8" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_3.png" id="18_yy5gs"]
+[ext_resource type="Texture2D" uid="uid://j8ohu0puqnqr" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_4.png" id="19_kl38a"]
+[ext_resource type="Texture2D" uid="uid://w2ngw0meemvk" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_5.png" id="20_pfib5"]
+[ext_resource type="Texture2D" uid="uid://daklgh1t8kek7" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_6.png" id="21_5vpuc"]
+[ext_resource type="Texture2D" uid="uid://i5fio3wv60u2" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_7.png" id="22_q6exc"]
+[ext_resource type="Texture2D" uid="uid://ca236vjfeo4ko" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_8.png" id="23_6hfet"]
+[ext_resource type="Texture2D" uid="uid://dc6tyercatujn" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_9.png" id="24_ibkc0"]
+[ext_resource type="Texture2D" uid="uid://b64fo8cia5ngj" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_10.png" id="25_h5p0b"]
+[ext_resource type="Texture2D" uid="uid://blc2r0umkabsf" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_11.png" id="26_14iar"]
+[ext_resource type="Texture2D" uid="uid://cxtt6w2s518o8" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_12.png" id="27_brfx2"]
+[ext_resource type="Texture2D" uid="uid://dtyuoo8n48htw" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_13.png" id="28_aypt8"]
+[ext_resource type="Texture2D" uid="uid://c6xqd0vjwvx73" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_14.png" id="29_ud24b"]
+[ext_resource type="Texture2D" uid="uid://4i5dj25qqfl8" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_15.png" id="30_bmet8"]
+[ext_resource type="Texture2D" uid="uid://b7dc70ogpvjts" path="res://sprites/misc/realistic_explosion/spr_realisticexplosion_16.png" id="31_conwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgb4"]
 size = Vector2(640, 480)
@@ -286,6 +304,66 @@ func _process(_delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_552oo"]
 size = Vector2(45, 51)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhaeg"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_tpxho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_x0a43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_rrnrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_yy5gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kl38a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_pfib5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5vpuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_q6exc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6hfet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ibkc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_h5p0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_14iar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_brfx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_aypt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ud24b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_bmet8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_conwl")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 30.0
+}]
+
 [node name="Hometown" type="Node2D" unique_id=2025934906]
 scale = Vector2(2, 2)
 script = ExtResource("1_b2ck7")
@@ -351,6 +429,7 @@ border_texture = ExtResource("7_w3h1d")
 [node name="MusicNode" type="Node2D" parent="." unique_id=256684731]
 script = ExtResource("8_hsx7m")
 music = ExtResource("9_1xjm1")
+gain = 0.5
 metadata/_custom_type_script = "uid://c1gf4tb6hioe0"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=509112503]
@@ -395,5 +474,12 @@ texture = ExtResource("13_j46a3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleStarter" unique_id=573438344]
 shape = SubResource("RectangleShape2D_552oo")
+
+[node name="RealisticExplosion" parent="." unique_id=467437345 instance=ExtResource("14_s20un")]
+position = Vector2(117.5, 63.5)
+sprite_frames = SubResource("SpriteFrames_mhaeg")
+speed_scale = 0.5
+loop = true
+volume = 0.1
 
 [connection signal="body_entered" from="Room2" to="Room2" method="_on_body_entered"]

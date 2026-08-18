@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://blg07sudsfcu0"]
+
+[ext_resource type="SpriteFrames" uid="uid://by6rywxspr5ov" path="res://sprites/misc/realistic_explosion/realistic_explosion.tres" id="1_6khfm"]
+
+[sub_resource type="GDScript" id="GDScript_iogtn"]
+resource_name = "realistic_explosion"
+script/source = "extends AnimatedSprite2D
+
+@export var loop: bool
+@export_range(0.0, 1.0, 0.05) var volume: float = 1.0
+
+func _init(looped: bool = false, gain: float = 1.0) -> void:
+	loop = looped
+	volume = gain
+
+func _ready() -> void:
+	if loop:
+		sprite_frames.set_animation_loop_mode(\"default\", SpriteFrames.LOOP_LINEAR)
+		animation_looped.connect(
+			func():
+				Global.play_sound(\"misc/snd_badexplosion\", volume)
+		)
+		do_explode()
+	else:
+		play_and_delete()
+
+func play_and_delete():
+	do_explode()
+	await animation_finished
+	queue_free()
+
+func do_explode():
+	play()
+	Global.play_sound(\"misc/snd_badexplosion\", volume)
+"
+
+[node name="RealisticExplosion" type="AnimatedSprite2D" unique_id=467437345]
+y_sort_enabled = true
+sprite_frames = ExtResource("1_6khfm")
+script = SubResource("GDScript_iogtn")
