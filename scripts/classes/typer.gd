@@ -26,7 +26,13 @@ var typer_shader: TyperShader = null
 		if Engine.is_editor_hint():
 			queue_redraw()
 
-@export_multiline("monospace") var text := "":
+@export var text_index: int = 0:
+	set(new):
+		text_index = new
+		if Engine.is_editor_hint():
+			prepare_lines()
+			queue_redraw()
+@export_multiline("monospace") var text: Array[String] = [""]:
 	set(new):
 		text = new
 		if Engine.is_editor_hint():
@@ -76,7 +82,7 @@ var _visible_characters := -1
 func get_parsed_text() -> String:
 	var regex = RegEx.new()
 	regex.compile("\\[.*?\\]")
-	var text_without_tags = regex.sub(text, "", true)
+	var text_without_tags = regex.sub(text[text_index], "", true)
 	regex.compile("\\{.*?\\}")
 	text_without_tags = regex.sub(text_without_tags, "", true)
 	return text_without_tags
@@ -114,9 +120,7 @@ func add_linebreaks():
 				last_space_pos = char_index
 				
 			char_count += 1
-		
 		new_text_lines.append_array(break_text.c_escape().split("\\n"))
-	
 	text_lines = new_text_lines
 
 func prepare_lines():
@@ -150,6 +154,16 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	time += 1
+	
+	if Input.is_action_just_pressed("confirm") and !animating:
+		text_index += 1
+		if text_index >= text.size():
+			queue_free()
+			return
+		
+		prepare_lines()
+		visible_ratio = 0.0
+	
 	if animating and Input.is_action_just_pressed("cancel"):
 		visible_ratio = 1.0
 	
@@ -161,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		animating = false
 	
 	if pause > 0: pause -= 1
-		
+	queue_redraw()
 
 func _draw() -> void:
 	#print("FONT SIZE IS 16, FONT HEIGHT IS ", get_theme_default_font().get_height())
@@ -187,7 +201,6 @@ func _draw() -> void:
 	for j in text_lines.size():
 		var line: String = text_lines.get(j)
 		
-		
 		# loop over each character in the line
 		for i in line.length():
 			if visible_characters > -1 and display_chars >= visible_characters:
@@ -198,7 +211,7 @@ func _draw() -> void:
 			
 			if ch == "[":
 				# check if there's actually a closing bracket left in the text
-				if text.find("]", total_chars) > -1:
+				if text[text_index].find("]", total_chars) > -1:
 					effect_mode = true
 					if line[i+1] == "/":
 						text_effects.pop_back()
@@ -280,7 +293,7 @@ var commands: Array[CommandInfo] = []
 # while also removing them from the commanded_text
 # (the var name is kinda a misnomer since it's getting cleaned of the commands)
 func parse_commands() -> String:
-	var commanded_text = text
+	var commanded_text = text[text_index]
 	commands.clear()
 	while true:
 		# find the index of where the command starts (break the loop if it doesnt find any more)
