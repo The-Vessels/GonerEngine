@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://1imsckmk8lpg"]
+
+[ext_resource type="Script" uid="uid://bdy0sv85sf2e0" path="res://scripts/testing/canvasitem_test.gd" id="1_cwfo3"]
+[ext_resource type="Shader" uid="uid://d10c5td8gnces" path="res://scenes/testing/canvasitem_test.gdshader" id="2_s63pv"]
+[ext_resource type="FontFile" uid="uid://vfpydrrva5km" path="res://fonts/main.ttf" id="3_hddtf"]
+[ext_resource type="Texture2D" uid="uid://kqhjo1jaxjeo" path="res://sprites/references/delta2.png" id="5_5o1q3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwfo3"]
+shader = ExtResource("2_s63pv")
+
+[sub_resource type="Shader" id="Shader_ifcbi"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_a : source_color;
+uniform vec4 color_b : source_color;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	COLOR = mix(color_a, color_b, UV.y);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocjv1"]
+shader = SubResource("Shader_ifcbi")
+shader_parameter/color_a = Color(0.2901961, 0.9490196, 0.9490196, 1)
+shader_parameter/color_b = Color(0.082091086, 0, 0.7192892, 1)
+
+[node name="CanvasitemTest" type="Control" unique_id=606316669]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cwfo3")
+char_material = SubResource("ShaderMaterial_cwfo3")
+the_font = ExtResource("3_hddtf")
+
+[node name="Label2" type="Label" parent="." unique_id=1904054538]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 84.0
+offset_bottom = -16.0
+text = "Delta,|."
+
+[node name="Label" type="Label" parent="." unique_id=305588334]
+visible = false
+clip_children = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 16.0
+offset_right = 127.0
+offset_bottom = 32.0
+text = "Goonerengine"
+
+[node name="ColorRect" type="ColorRect" parent="Label" unique_id=1105615035]
+material = SubResource("ShaderMaterial_ocjv1")
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 20.0
+
+[node name="Delta2" type="Sprite2D" parent="." unique_id=1705469994]
+position = Vector2(-4, -1)
+texture = ExtResource("5_5o1q3")
+centered = false

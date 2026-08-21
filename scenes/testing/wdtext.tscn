@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bvdm6e4p13bpr"]
+
+[ext_resource type="Shader" uid="uid://xlxse50l2xg2" path="res://shaders/gastertext.gdshader" id="1_0lu0g"]
+[ext_resource type="FontFile" uid="uid://dcrh8bap8gwdn" path="res://fonts/main_mono.ttf" id="1_2d0md"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4up7"]
+shader = ExtResource("1_0lu0g")
+
+[sub_resource type="FontVariation" id="FontVariation_ocjv1"]
+base_font = ExtResource("1_2d0md")
+spacing_glyph = 4
+
+[node name="Wdtext" type="Node2D" unique_id=2076176696]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=534189296]
+material = SubResource("ShaderMaterial_d4up7")
+offset_right = 348.0
+offset_bottom = 228.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2125098288]
+transparent_bg = true
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport" unique_id=791356075]
+offset_left = 98.0
+offset_top = 82.0
+offset_right = 274.0
+offset_bottom = 116.0
+theme_override_fonts/font = SubResource("FontVariation_ocjv1")
+text = "THEN IT WILL BE
+DISCARDED."
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1663585694]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=1824996508]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D" unique_id=1625196617]
+offset_left = 46.0
+offset_top = -17.0
+offset_right = 86.0
+offset_bottom = 23.0
+color = Color(1, 1, 1, 0.16470589)
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D" unique_id=1877470655]
+offset_left = 60.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 24.0
+color = Color(1, 1, 1, 0.16470589)
+
+[node name="ColorRect4" type="ColorRect" parent="Node2D" unique_id=1506301041]
+offset_left = 49.0
+offset_right = 89.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0.16470589)
