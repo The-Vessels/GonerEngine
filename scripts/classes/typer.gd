@@ -1,6 +1,9 @@
 @tool
 class_name Typer extends Control
 
+var silent_chars: Array[String] = [" ", "^", "!", ".", "?", ",", ":", "/", "\\", "|", "*", "\n"]
+var current_char: String
+
 var caller: Node
 var destroy_caller := true
 
@@ -149,6 +152,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	max_line_chars = floor(self.size.x / text_gap.x)
+	queue_redraw()
 	
 	if Engine.is_editor_hint() or !is_node_ready():
 		return
@@ -175,7 +179,6 @@ func _physics_process(delta: float) -> void:
 		animating = false
 	
 	if pause > 0: pause -= 1
-	queue_redraw()
 
 func _draw() -> void:
 	#print("FONT SIZE IS 16, FONT HEIGHT IS ", get_theme_default_font().get_height())
@@ -265,6 +268,11 @@ func _draw() -> void:
 			if visible_characters > -1 and display_chars >= visible_characters:
 				break
 		
+		# manually increment display_chars after each line to mimic newline chars
+		display_chars += 1
+		if visible_characters > -1 and display_chars >= visible_characters:
+				break
+		
 		current_line_asterisk = false
 		# pos.y += font_size
 		pos.y += line_height
@@ -336,7 +344,9 @@ func write_char():
 			evaluate(commands[0].command)
 	if write_condition:
 		visible_characters += 1
-		play_talk_sound()
+		current_char = get_parsed_text()[visible_characters-1]
+		if !silent_chars.has(current_char):
+			play_talk_sound()
 
 func play_talk_sound():
 	var sound = talk_sounds.pick_random()
