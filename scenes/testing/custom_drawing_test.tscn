@@ -19,8 +19,6 @@ script = ExtResource("1_liwy2")
 text = Array[String](["* [shake]Dreemurr residence,[/shake]{wait(30)}
 [color=red][shake level=3.0 connected=0]w{wait(10)}h{wait(10)}o{wait(10)}[/shake][/color] is this?", "* {wait(30)}Ruh{wait(10)}.{wait(10)}.{wait(10)}.{wait(30)}
 [color=red][shake]ok[/shake][/color]"])
-visible_characters = 0
-visible_ratio = 0.0
 talk_sounds = Array[AudioStream]([ExtResource("2_7lxqq")])
 
 [node name="Label" type="Label" parent="." unique_id=2009939912]

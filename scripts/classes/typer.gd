@@ -255,12 +255,44 @@ func _draw() -> void:
 			)
 			typer_char = apply_effects(typer_char, text_effects)
 			
-			typer_shader.draw_char(
+			#typer_shader.draw_char(
+				#typer_char.font,
+				#typer_char.pos + typer_char.pos_offset,
+				#typer_char.glyph,
+				#typer_char.font_size,
+				#typer_char.color
+			#)
+			var color_top: Color
+			var color_bottom: Color
+			var shad_color_top: Color
+			var shad_color_bottom: Color
+			
+			if typer_char.color == Color.WHITE:
+				color_top = Color.WHITE
+				color_bottom = Color.WHITE
+				shad_color_top = Colors.c_dkgray
+				shad_color_bottom = Colors.c_navy
+			else:
+				color_top = Color.WHITE
+				color_bottom = typer_char.color
+				var shadow_color: Color = lerp(Color.BLACK, typer_char.color, 0.3)
+				shad_color_top = shadow_color
+				shad_color_bottom = shadow_color
+			
+			draw_char_color(
+				typer_char.font,
+				typer_char.pos + typer_char.pos_offset + Vector2.ONE,
+				typer_char.glyph,
+				typer_char.font_size,
+				shad_color_top, shad_color_bottom
+			)
+			
+			draw_char_color(
 				typer_char.font,
 				typer_char.pos + typer_char.pos_offset,
 				typer_char.glyph,
 				typer_char.font_size,
-				typer_char.color
+				color_top, color_bottom
 			)
 			
 			char += 1
@@ -279,7 +311,7 @@ func _draw() -> void:
 		pos.x = 0.0
 		char = 0
 	
-	typer_shader.draw()
+	#typer_shader.draw()
 	#typer_shader.test_draw()
 
 class CommandInfo:
@@ -405,6 +437,70 @@ func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
 		if effecter:
 			typer_char = effecter.effect_char(typer_char, tag_options, time)
 	return typer_char
+
+func draw_texture_color(
+	item: RID, pos: Vector2, texture: RID, texture_size: Vector2, src_rect: Rect2,
+	color_tl: Color, color_tr: Color, color_br: Color, color_bl: Color
+):
+	var indices := PackedInt32Array([0, 1, 2, 2, 3, 0])
+	var colors := PackedColorArray([color_tl, color_tr, color_br, color_bl])
+	
+	var dst_size := src_rect.size
+	var pos_tl := pos
+	var pos_tr := pos + Vector2(1.0, 0.0) * dst_size
+	var pos_br := pos + Vector2(1.0, 1.0) * dst_size
+	var pos_bl := pos + Vector2(0.0, 1.0) * dst_size
+	var points := PackedVector2Array([pos_tl, pos_tr, pos_br, pos_bl])
+	
+	var uv_pos := src_rect.position / texture_size
+	var uv_size := src_rect.size / texture_size
+	var uv_tl := uv_pos
+	var uv_tr := uv_pos + Vector2(1.0, 0.0) * uv_size
+	var uv_br := uv_pos + Vector2(1.0, 1.0) * uv_size
+	var uv_bl := uv_pos + Vector2(0.0, 1.0) * uv_size
+	var uvs := PackedVector2Array([uv_tl, uv_tr, uv_br, uv_bl])
+	
+	RenderingServer.canvas_item_add_triangle_array(
+		item, indices, points, colors, uvs,
+		PackedInt32Array(), PackedFloat32Array(), texture
+	)
+
+func get_top_and_bottom_colors(
+	glyph_offset: Vector2, glyph_size: Vector2,
+	font_size: int, tcolor: Color, bcolor: Color
+) -> Array[Color]:
+	var font_height := font_size
+	var ystart := font_height + glyph_offset.y
+	var yend := ystart + glyph_size.y
+	var top_color: Color = lerp(tcolor, bcolor, ystart / font_height)
+	var bot_color: Color = lerp(tcolor, bcolor, yend / font_height)
+	return [top_color, bot_color]
+
+func draw_char_color(
+	font: Font, pos: Vector2, chara: String, font_size: int,
+	color_top: Color, color_bottom: Color
+) -> void:
+	var ts := TextServerManager.get_primary_interface()
+	var font_rid := font.get_rids()[0] # Apparently font.get_rid() is not valid. You MUST use font.get_rids().
+	var glyph := ts.font_get_glyph_index(font_rid, font_size, ord(chara), 0)
+	var font_size_vec := Vector2i(font_size, 0)
+	var ascent_vec := Vector2(0.0, font.get_ascent(font_size))
+	
+	var glyph_offset := ts.font_get_glyph_offset(font_rid, font_size_vec, glyph)
+	# print('GLYPH OFFSET OF ', char, ': ', glyph_offset)
+	var glyph_rect := ts.font_get_glyph_uv_rect(font_rid, font_size_vec, glyph)
+	var glyph_tex := ts.font_get_glyph_texture_rid(font_rid, font_size_vec, glyph)
+	var glyph_tex_size := ts.font_get_glyph_texture_size(font_rid, font_size_vec, glyph)
+	
+	var colors := get_top_and_bottom_colors(
+		glyph_offset, glyph_rect.size, font_size, color_top, color_bottom
+	)
+	
+	draw_texture_color(
+		get_canvas_item(), pos + glyph_offset + ascent_vec,
+		glyph_tex, glyph_tex_size, glyph_rect,
+		colors[0], colors[0], colors[1], colors[1]
+	)
 
 ## Dictionary to register every effect
 static var typer_effects_registry: Dictionary = {

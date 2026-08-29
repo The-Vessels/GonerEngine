@@ -62,25 +62,29 @@ func get_top_and_bottom_colors(
 	var bot_color: Color = lerp(tcolor, bcolor, yend / font_height)
 	return [top_color, bot_color]
 
-func my_draw_char(char: String, font: Font, font_size: int, pos: Vector2) -> void:
+func draw_char_color(
+	chara: String, font: Font, font_size: int, pos: Vector2,
+	color_top: Color, color_bottom: Color
+) -> void:
 	var ts := TextServerManager.get_primary_interface()
 	var font_rid := font.get_rids()[0] # Apparently font.get_rid() is not valid. You MUST use font.get_rids().
-	var glyph := ts.font_get_glyph_index(font_rid, font_size, ord(char), 0)
+	var glyph := ts.font_get_glyph_index(font_rid, font_size, ord(chara), 0)
 	var font_size_vec := Vector2i(font_size, 0)
+	var ascent_vec := Vector2(0.0, font.get_ascent(font_size))
 	
 	var glyph_offset := ts.font_get_glyph_offset(font_rid, font_size_vec, glyph)
-	#glyph_offset.y += font.get_ascent(font_size)
-	print('GLYPH OFFSET OF ', char, ': ', glyph_offset)
+	# print('GLYPH OFFSET OF ', char, ': ', glyph_offset)
 	var glyph_rect := ts.font_get_glyph_uv_rect(font_rid, font_size_vec, glyph)
 	var glyph_tex := ts.font_get_glyph_texture_rid(font_rid, font_size_vec, glyph)
 	var glyph_tex_size := ts.font_get_glyph_texture_size(font_rid, font_size_vec, glyph)
 	
 	var colors := get_top_and_bottom_colors(
-		glyph_offset, glyph_rect.size, font_size, Color.RED, Color.BLUE
+		glyph_offset, glyph_rect.size, font_size, color_top, color_bottom
 	)
 	
 	draw_texture_color(
-		get_canvas_item(), pos + glyph_offset, glyph_tex, glyph_tex_size, glyph_rect,
+		get_canvas_item(), pos + glyph_offset + ascent_vec,
+		glyph_tex, glyph_tex_size, glyph_rect,
 		colors[0], colors[0], colors[1], colors[1]
 	)
 
@@ -89,7 +93,7 @@ func do_something_crazy(font: Font, font_size: int) -> void:
 	var pos := Vector2.ZERO
 	var advance := 10
 	for char in string:
-		my_draw_char(char, font, font_size, pos)
+		draw_char_color(char, font, font_size, pos, Color.WHITE, Color.BLACK)
 		pos.x += font.get_char_size(ord(char), font_size).x
 
 func make_char(font: Font, font_size: int, character: String) -> RID:
