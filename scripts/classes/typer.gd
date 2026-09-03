@@ -1,6 +1,9 @@
 @tool
 class_name Typer extends Control
 
+var time: int = 0
+var time_loopback: int = 1225
+
 var silent_chars: Array[String] = [" ", "^", "!", ".", "?", ",", ":", "/", "\\", "|", "*", "\n"]
 var current_char: String
 
@@ -12,7 +15,6 @@ var animating := false
 
 var tag_content: String = ""
 var text_effects: Array[String] = []
-var time: int = 0
 var text_gap := Vector2(8.0, 0.0)
 var line_height: int = 18
 var max_line_chars: int
@@ -152,12 +154,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	max_line_chars = floor(self.size.x / text_gap.x)
+	
+	time = (time + 1) % time_loopback
 	queue_redraw()
 	
 	if Engine.is_editor_hint() or !is_node_ready():
 		return
 	
-	time += 1
 	
 	if Input.is_action_just_pressed("confirm") and !animating:
 		text_index += 1
@@ -182,9 +185,9 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	#print("FONT SIZE IS 16, FONT HEIGHT IS ", get_theme_default_font().get_height())
-	if typer_shader == null:
-		typer_shader = TyperShader.new(self)
-	typer_shader.clear()
+	#if typer_shader == null:
+		#typer_shader = TyperShader.new(self)
+	#typer_shader.clear()
 	
 	text_effects.clear()
 	var canvas = self.get_canvas_item()
@@ -198,7 +201,7 @@ func _draw() -> void:
 	var is_closing_tag: bool = false
 	
 	# the position where the top left of the text should start
-	var pos := Vector2(0, 0 + font_size)
+	var pos := Vector2(0, 0)
 	
 	# loop through each line in text_lines
 	for j in text_lines.size():
@@ -246,54 +249,18 @@ func _draw() -> void:
 			if char == 0 and asterisk and !current_line_asterisk and ch != "*":
 				char = 2
 			
-			var typer_char = Char.new(
+			var typer_char: Char = Char.new(
 				get_theme_default_font(),
 				pos + (text_gap * char),
 				Vector2(0.0, 0.0),
 				ch,
-				font_size
+				font_size,
+				[Color.WHITE],
+				true if Engine.is_editor_hint() else Global.is_dark(),
+				true if Engine.is_editor_hint() else Global.is_dark()
 			)
 			typer_char = apply_effects(typer_char, text_effects)
-			
-			#typer_shader.draw_char(
-				#typer_char.font,
-				#typer_char.pos + typer_char.pos_offset,
-				#typer_char.glyph,
-				#typer_char.font_size,
-				#typer_char.color
-			#)
-			var color_top: Color
-			var color_bottom: Color
-			var shad_color_top: Color
-			var shad_color_bottom: Color
-			
-			if typer_char.color == Color.WHITE:
-				color_top = Color.WHITE
-				color_bottom = Color.WHITE
-				shad_color_top = Colors.c_dkgray
-				shad_color_bottom = Colors.c_navy
-			else:
-				color_top = Color.WHITE
-				color_bottom = typer_char.color
-				var shadow_color: Color = lerp(Color.BLACK, typer_char.color, 0.3)
-				shad_color_top = shadow_color
-				shad_color_bottom = shadow_color
-			
-			draw_char_color(
-				typer_char.font,
-				typer_char.pos + typer_char.pos_offset + Vector2.ONE,
-				typer_char.glyph,
-				typer_char.font_size,
-				shad_color_top, shad_color_bottom
-			)
-			
-			draw_char_color(
-				typer_char.font,
-				typer_char.pos + typer_char.pos_offset,
-				typer_char.glyph,
-				typer_char.font_size,
-				color_top, color_bottom
-			)
+			typer_char.draw_self(get_canvas_item())
 			
 			char += 1
 			display_chars += 1
@@ -310,9 +277,6 @@ func _draw() -> void:
 		pos.y += line_height
 		pos.x = 0.0
 		char = 0
-	
-	#typer_shader.draw()
-	#typer_shader.test_draw()
 
 class CommandInfo:
 	var index: int
@@ -393,21 +357,89 @@ func play_talk_sound():
 	add_child(player)
 	player.play()
 
-## All data for a character being written in the typer
+## A character being written in the typer
 class Char extends RefCounted:
 	var glyph: String
 	var pos: Vector2
 	var pos_offset: Vector2
-	var color: Color
+	var color: Variant
+	var shadow_color: Variant
+	var shadow: bool
+	var dark: bool
 	var font: Font
 	var font_size: int
-	func _init(_font: Font, _pos: Vector2, _pos_offset: Vector2, _glyph: String, _font_size: int, _color: Color = Color(1.0, 1.0, 1.0, 1.0)) -> void:
+	func _init(
+		_font: Font, _pos: Vector2, _pos_offset: Vector2,
+		_glyph: String, _font_size: int,
+		_color: Variant = Color.WHITE, _dark = true,
+		_shadow: bool = true, _shadow_color: Array = [Colors.c_dkgray, Colors.c_navy]
+	) -> void:
 		font = _font
 		pos = _pos
 		pos_offset = _pos_offset
 		glyph = _glyph
 		font_size = _font_size
+		
 		color = _color
+		if color is not Array:
+			color = [color]
+		
+		dark = _dark
+		shadow = _shadow
+		shadow_color = _shadow_color
+	func draw_self(item: RID):
+		if color is not Array:
+			color = [color]
+		
+		var color_top: Color
+		var color_bottom: Color
+		
+		if color.size() > 1:
+			color_top = color[0]
+			color_bottom = color[1]
+		else:
+			color_top = color[0]
+			color_bottom = color[0]
+		
+		var shad_color_top: Color
+		var shad_color_bottom: Color
+		
+		if shadow_color.size() > 1:
+			shad_color_top = shadow_color[0]
+			shad_color_bottom = shadow_color[1]
+		else:
+			shad_color_top = shadow_color[0]
+			shad_color_bottom = shadow_color[0]
+		
+		if color != [Color.WHITE]:
+			if dark or color.size() > 1:
+				color_top = Color.WHITE if color.size() == 1 else color[0]
+				color_bottom = color[1] if color.size() > 1 else color [0]
+				var shadow_color: Color = lerp(Color.BLACK, color[0], 0.3)
+				shad_color_top = shadow_color
+				shad_color_bottom = shadow_color
+			else:
+				color_top = color[0]
+				color_bottom = color[1] if color.size() > 1 else color [0]
+		
+		if shadow:
+			Typer.draw_char_color(
+				item,
+				font,
+				pos + pos_offset + Vector2.ONE,
+				glyph,
+				font_size,
+				shad_color_top, shad_color_bottom
+			)
+			
+		Typer.draw_char_color(
+			item,
+			font,
+			pos + pos_offset,
+			glyph,
+			font_size,
+			color_top, color_bottom
+		)
 
 ## Returns a given char after all active effects have been applied to it
 func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
@@ -438,7 +470,7 @@ func apply_effects(typer_char: Char, effects: Array[String]) -> Char:
 			typer_char = effecter.effect_char(typer_char, tag_options, time)
 	return typer_char
 
-func draw_texture_color(
+static func draw_texture_color(
 	item: RID, pos: Vector2, texture: RID, texture_size: Vector2, src_rect: Rect2,
 	color_tl: Color, color_tr: Color, color_br: Color, color_bl: Color
 ):
@@ -465,7 +497,7 @@ func draw_texture_color(
 		PackedInt32Array(), PackedFloat32Array(), texture
 	)
 
-func get_top_and_bottom_colors(
+static func get_top_and_bottom_colors(
 	glyph_offset: Vector2, glyph_size: Vector2,
 	font_size: int, tcolor: Color, bcolor: Color
 ) -> Array[Color]:
@@ -476,7 +508,7 @@ func get_top_and_bottom_colors(
 	var bot_color: Color = lerp(tcolor, bcolor, yend / font_height)
 	return [top_color, bot_color]
 
-func draw_char_color(
+static func draw_char_color(item: RID,
 	font: Font, pos: Vector2, chara: String, font_size: int,
 	color_top: Color, color_bottom: Color
 ) -> void:
@@ -492,12 +524,12 @@ func draw_char_color(
 	var glyph_tex := ts.font_get_glyph_texture_rid(font_rid, font_size_vec, glyph)
 	var glyph_tex_size := ts.font_get_glyph_texture_size(font_rid, font_size_vec, glyph)
 	
-	var colors := get_top_and_bottom_colors(
+	var colors := Typer.get_top_and_bottom_colors(
 		glyph_offset, glyph_rect.size, font_size, color_top, color_bottom
 	)
 	
-	draw_texture_color(
-		get_canvas_item(), pos + glyph_offset + ascent_vec,
+	Typer.draw_texture_color(
+		item, pos + glyph_offset + ascent_vec,
 		glyph_tex, glyph_tex_size, glyph_rect,
 		colors[0], colors[0], colors[1], colors[1]
 	)
@@ -505,5 +537,7 @@ func draw_char_color(
 ## Dictionary to register every effect
 static var typer_effects_registry: Dictionary = {
 	"color": ColorTyperEffect.new(),
-	"shake": ShakeTyperEffect.new()
+	"shake": ShakeTyperEffect.new(),
+	"dark": DarkTyperEffect.new(),
+	"light": LightTyperEffect.new()
 }

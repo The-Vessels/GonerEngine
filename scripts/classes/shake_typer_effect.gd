@@ -1,7 +1,7 @@
 class_name ShakeTyperEffect extends TyperEffect
 
 func effect_char(char: Typer.Char, params: Dictionary, time: int) -> Typer.Char:
-	var connected = params.get("connected", "1")
+	var connected = params.get("connected", "0")
 	var level_string: String = params.get("level", "1.0")
 	var level = float(level_string)
 	
